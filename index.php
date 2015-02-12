@@ -9,7 +9,7 @@
 		 <![endif]-->
 		 <?php wp_head(); ?>
 	</head>
-	<body>
+	<body> 
 		<div id="wrap">
 			<header class="header">
 				<?php get_header(); ?>
