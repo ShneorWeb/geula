@@ -44,7 +44,7 @@
 			<div class="sidebar">
 				<?php get_sidebar(); ?>
 			</div><!-- .sidebar -->
-			<footer class="footer">  
+			<footer class="footer">   
 				<?php get_footer(); ?>
 			</footer><!-- .footer -->
 		</div><!-- #wrap -->
