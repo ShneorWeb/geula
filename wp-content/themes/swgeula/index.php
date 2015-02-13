@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html ng-app>
 	<head> 
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width">
@@ -14,6 +15,12 @@
 				<?php get_header(); ?>
 			</header><!-- .header -->
 			<div class="container">
+				<div>
+					<input type="text" ng-model="name">
+			 
+					<p>Hello, {{name}}!</p>
+				</div>
+
 				<?php if ( have_posts() ) : ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 						<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
