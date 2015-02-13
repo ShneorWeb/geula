@@ -13,7 +13,7 @@
 			<header class="header">
 				<?php get_header(); ?>
 			</header><!-- .header -->
-			<div class="content">
+			<div class="container">
 				<?php if ( have_posts() ) : ?>
 					<?php while ( have_posts() ) : the_post(); ?>
 						<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -39,13 +39,13 @@
 						</nav><!--.navigation-->
 					<?php else : ?>
 				<?php endif; ?>
-			</div><!--.content--> .content -->
-			<div class="sidebar">
+				<div class="sidebar">
 				<?php get_sidebar(); ?>
 			</div><!-- .sidebar -->
 			<footer class="footer">
 				<?php get_footer(); ?>
 			</footer><!-- .footer -->
+			</div><!--.container-->			
 		</div><!-- #wrap -->
 	</body>
 </html>
