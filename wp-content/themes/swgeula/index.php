@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="appgeula">
 	<head> 
-		<base href="/geula/">
+		<script>
+		var newBase = document.createElement("base");
+		newBase.setAttribute("href", document.location);
+		document.getElementsByTagName("head")[0].appendChild(newBase);		
+		</script>				
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width">
 		<title><?php wp_title( '|', true, 'right' ); ?></title>		
