@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="appgeula">
 	<head> 
-		<base href="/">
+		<base href="/geula/">
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 		<meta name="viewport" content="width=device-width">
 		<title><?php wp_title( '|', true, 'right' ); ?></title>		
