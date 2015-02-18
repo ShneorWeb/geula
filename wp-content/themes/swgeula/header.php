@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<head>
-=======
 <?php
 /**
  * The header for our theme.
@@ -15,7 +12,6 @@
 		newBase.setAttribute("href", document.location);
 		document.getElementsByTagName("head")[0].appendChild(newBase);		
 	</script>
->>>>>>> 1622975fcd9a395ad14f5f7f0d106eb4604e82b2
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width">
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
@@ -25,11 +21,7 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
 	<?php wp_head(); ?>
-<<<<<<< HEAD
-</head> 
-=======
 </head> 
 <body>   
 		<div id="wrap">			
 			<div class="container">
->>>>>>> 1622975fcd9a395ad14f5f7f0d106eb4604e82b2
