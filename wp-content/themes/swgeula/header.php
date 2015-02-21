@@ -14,7 +14,12 @@
 	</script>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width">
-	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<link rel="shortcut icon" href="<?php bloginfo('template_directory');?>/images/favicon.ico">
+
+    <title>
+      <?php wp_title( '|', true, 'right' ); ?>
+      <?php bloginfo( 'name' ); ?>
+    </title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 	<!--[if lt IE 9]>
@@ -55,13 +60,20 @@
               'container'   => 'false'
             );
             wp_nav_menu( $args );
-          ?>
-
-        </div><!--/.navbar-collapse -->
+          ?></div><!--/.navbar-collapse -->
 
       </div>
     </div>
+   
+      
 
    
 		<div id="wrap">			
 			<div class="container">
+<div class="row">
+    <div class="col-md-3" style="position:fixed; float:right; margin-right: -15px; padding-right: 0px;
+top: 50px;">
+           <div class="navbar-collapse collapse" style="margin-top:-50px;">
+          <?php get_sidebar(); ?></div></div>
+
+        
