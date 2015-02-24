@@ -71,9 +71,9 @@
 		<div id="wrap">			
 			<div class="container">
 <div class="row">
-    <div class="col-md-3" style="position:fixed; float:right; margin-right: -15px; padding-right: 0px;
-top: 50px;">
-           <div class="navbar-collapse collapse" style="margin-top:-50px;">
-          <?php get_sidebar(); ?></div></div>
+    <div class="col-md-3 col-sm-3" style="margin-top:-50px; float:right;">
+           
+            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="-20px" style="padding-right:0px;">
+          <?php get_sidebar(); ?></ul></div>
 
         

@@ -1,6 +1,6 @@
 <?php get_header(); ?>	
 
-        <div class="col-sm-9">					
+    <div class="col-md-9 col-sm-8">					
 				<div>
 					<input type="text" ng-model="name">
 			 
@@ -24,6 +24,31 @@
 				</article>
 				<?php endwhile; endif; ?>
 				</div>
+				<div class="col-md-9 col-sm-9" style="margin-top:30px;" >
+				 <div class="row">
+
+			<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			<div class="col-sm-4 portfolio-piece">
+					<?php 
+						$thumb_id = get_post_thumbnail_id();
+						$thumb_url = wp_get_attachment_image_src($thumb_id,'thumbnail-size', true);						
+					 ?>
+					<p><a href="<?php the_permalink(); ?>"><img src="<?php echo $thumb_url[0]; ?>"></a></p>
+				<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+				<p><a href="<?php the_permalink(); ?>"><?php the_excerpt(); ?></a></p>
+
+			</div>
+
+			<?php $count = $the_query->current_post + 1; ?>
+			<?php if( $count % 3 == 0): ?>
+
+			</div><div class="row">
+			
+			<?php endif; ?>
+
+			<?php endwhile; endif; ?>
+
+	    </div></div>
 
 
 
@@ -33,7 +58,7 @@
 				<?php get_sidebar(); ?>
 			<!-- .sidebar -->			
 			</div>
+			
 			</div>
-			<footer class="footer">
 				<?php get_footer(); ?>
 				

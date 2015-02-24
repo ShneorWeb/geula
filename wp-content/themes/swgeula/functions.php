@@ -94,6 +94,43 @@ create_widget("Front Page Right", "front-right", "Displays on the right hand sid
 
 
 
+/*define('MY_CATEGORY_FIELDS', 'my_category_fields_option');
+add_filter('edit_category_form', 'my_category_fields');
+function my_category_fields($tag) {
+	$tag_extra_fields = get_option(MY_CATEGORY_FIELDS); ?>
+	<table class="form-table">
+		<tr class="form-field">
+			<th scope="row" valign="top"><label for="custom_cat_title">Custom Category Title</label></th>
+			<td><textarea  name="custom_cat_title" id="custom_cat_title"><?php echo $tag_extra_fields[$tag->term_id]['my_description']; ?></textarea>
+				<p class="description">Custom category title attribute for menus on parent pages</p></td>
+		</tr>
+		<tr>
+			<th scope="row" valign="top"><label for="custom_cat_thumb">Custom Category Thumbnail</label></th>
+			<td><input name="custom_cat_thumb" type="text" id="custom_cat_thumb" size="50" aria-required="false" value="<?php echo $tag_extra_fields[$tag->term_id]['my_thumbnail']; ?>" />
+				<p class="description">Upload the image and enter the filename here.</p></td>
+		</tr>
+	</table>
+    <?php
+}
+add_filter('edited_terms', 'update_my_category_fields');
+function update_my_category_fields($term_id) {
+  if($_POST['taxonomy'] == 'category'):
+    $tag_extra_fields = get_option(MY_CATEGORY_FIELDS);
+    $tag_extra_fields[$term_id]['my_description'] = strip_tags($_POST['custom_cat_title']);
+    $tag_extra_fields[$term_id]['my_thumbnail'] = strip_tags($_POST['custom_cat_thumb']);
+    update_option(MY_CATEGORY_FIELDS, $tag_extra_fields);
+  endif;
+}
+add_filter('deleted_term_taxonomy', 'remove_my_category_fields');
+function remove_my_category_fields($term_id) {
+  if($_POST['taxonomy'] == 'category'):
+    $tag_extra_fields = get_option(MY_CATEGORY_FIELDS);
+    unset($tag_extra_fields[$term_id]);
+    update_option(MY_CATEGORY_FIELDS, $tag_extra_fields);
+  endif;
+}*/
+
+
 
 ?>
 
