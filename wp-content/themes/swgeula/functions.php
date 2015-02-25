@@ -58,6 +58,27 @@ add_action('after_setup_theme', 'lang_setup');
 
 
 /************************** user registration stuff: ************************************/
+function my_front_end_login_fail( $username ) {	
+   $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+   // if there's a valid referrer, and it's not the default log-in screen
+   if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+      wp_redirect( add_query_arg( 'login', 'failed',$referrer ) );  // let's append some information (login=failed) to the URL for the theme to use
+      exit;
+   }
+}
+add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
+
+function verify_username_password( $user, $username, $password ) {  
+    $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+    if( empty($username) || empty($password) ) {  
+    	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+        	wp_redirect( add_query_arg( 'login', 'empty',$referrer ) );  
+        	exit;  
+        }
+    }  
+}  
+add_filter( 'authenticate', 'verify_username_password', 1, 3);  
+
 function mb_basename($file) {
 	return end(explode('/',$file));
 }

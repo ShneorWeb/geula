@@ -5,7 +5,7 @@
  * @package swgeula
  */
 ?><!DOCTYPE html>
-<html ng-app="appgeula">
+<html g-app="appgeula">
 <head>
 	<script>
 		var newBase = document.createElement("base");
@@ -31,24 +31,19 @@
 
 
 	<?php //if (!is_user_logged_in()) : ?>
-    <script>
-    jQuery.noConflict()
+    <script> 
 
     (function($) {
 
-		$(document).ready(function() {	
-		/*	$j("a#inline1").fancybox({
-				'modal': true,
-				'padding':0,
-				'margin':0,
-			});				
-			$j("a#inline1").click();*/
-			
+		$(document).ready(function() {
+      //console.log("123abc");			
 		});		
 
 	})(jQuery);
 	</script>  
+
     <?php //endif;?>  
+
 </head> 
 
 <body <?php body_class(); ?>>

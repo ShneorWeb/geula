@@ -33,6 +33,31 @@ Tags:
 #div-login .forgetmenot {	
 	direction: rtl; /* CHANGE ACCORDING TO LANGUAGE!!! */
 }
+.login-error-msg {
+  color:red;  
+}
+.login-remember {
+  direction: rtl;
+}
+#div-login .button-primary {
+  background-color: #50b46e;
+  color:#FFF;
+  width:335px;
+  height:43px;
+  font-size:22px;
+  font-family: 'Open Sans Hebrew';
+}
+#div-login input[type="text"] {  
+  width:335px;
+}
+#div-login input[type="password"] {  
+  width:335px;
+}
+#div-login .login-remember label {
+  font-size: 20px !important;
+  margin-top:20px;
+}
+
 body {
 	background-color: #ccc;
 	/*@import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);*/
@@ -322,4 +347,4 @@ span.category_top_time{
 .category_square_author_name{
   display:inline-block;
 }
->>>>>>> 88830a88274bbea51d73d4a4cb001c21a2d37d35
+

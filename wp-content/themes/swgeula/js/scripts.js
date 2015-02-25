@@ -10,10 +10,9 @@ angular.module('appgeula', ['ngRoute'])
 	.when('/:ID', {
 		templateUrl: myLocalized.partials + 'single.html',
 		controller: 'Single'
-	});
-	otherwise({
-		if (document.location.href.indexOf("127.0.0.1")!=-1) redirectTo: '/geula'
-        else redirectTo: '/'
+	}),
+	otherwise ({
+		redirectTo: '/'
     });
 })
 .controller('Content', function($scope, $http, $routeParams) {
