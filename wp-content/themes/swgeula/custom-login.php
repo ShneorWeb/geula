@@ -64,26 +64,7 @@ function login_header($title = 'Log In', $message = '', $wp_error = '') {
 	if ( $interim_login )
 		$login_header_url = '#';
 
-	?>
-    <style type="text/css">
-	.user-submit { 
-		font-family:Tahoma, Geneva, sans-serif !important; 
-		padding: 5px 10px; margin: 5px 0; 		
-		font-size:14px; 
-		float:right;
-		background-image:url(<?php bloginfo('template_url'); ?>/images/buton.png);
-		width:120px;
-		height:30px;
-		border-style:none;
-		text-align:center;
-		color:#FFFFFF;
-		font-size:14px;
-		margin-right:92px; 
-	}
-	.user-submit:hover { 
-		background-image:url(<?php bloginfo('template_url'); ?>/images/buton_hover.png); 
-	}
-	</style>
+	?>    
 	</head>
 	<body class="login<?php if ( wp_is_mobile() ) echo ' mobile'; ?>">
 	<div id="login" style="direction:rtl; padding-top:10px;">
@@ -132,7 +113,7 @@ function login_footer($input_id = '') {
 
 	// Don't allow interim logins to navigate away from the page.
 	if ( ! $interim_login ): ?>
-	<p id="backtoblog"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php esc_attr_e( 'Are you lost?' ); ?>"><?php printf( __( '&larr; Back to %s' ), get_bloginfo( 'title', 'display' ) ); ?></a></p>
+	<!--<p id="backtoblog"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php esc_attr_e( 'Are you lost?' ); ?>"><?php printf( __( '&larr; Back to %s' ), get_bloginfo( 'title', 'display' ) ); ?></a></p>-->
 	<?php endif; ?>
 
 	</div>
@@ -728,23 +709,23 @@ default:
 	<?php include_once("header.php");?>
 	<div id="div-login">       
 
-		<div>כניסה באמצעות חשבון קיים</div>
-		<div>הזן את <strong>כתובת האימייל</strong> ואת <strong>הסיסמה</strong> שלך</div>
+		<h1><?php _e("Login with an exisiting account","swgeulatr");?></h1>
+		<h2><?php _e("enter your email address and your password","swgeulatr");?></h2>
 
 		<form role="form" name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
 
 			<div class="form-group">
-				<label for="user_login"><?php _e('Username','swgeula') ?></label>
+				<label for="user_login"><?php _e('Username','swgeulatr') ?></label>
 				<input type="text" name="log" id="user_login" class="form-control" value="<?php echo esc_attr($user_login); ?>" />
 			</div>
 			<div class="form-group">
-				<label for="user_pass"><?php _e('Password') ?></label>
+				<label for="user_pass"><?php _e('Password',"swgeulatr") ?></label>
 				<input type="password" name="pwd" id="user_pass" class="form-control" value=""/>
 			</div>
-			<?php do_action('login_form'); ?>
-				<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever" tabindex="90"<?php checked( $rememberme ); ?> /> <?php esc_attr_e('Remember Me'); ?></label></p>
+			<?php do_action('login_form'); ?>				
 				<p class="submit">
-					<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="<?php esc_attr_e('Log In'); ?>" tabindex="100" />
+					<input type="submit" name="wp-submit" id="wp-submit" class="button-primary" value="<?php esc_attr_e('Log In','swgeulatr'); ?>" tabindex="100" />
+				<p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever" tabindex="90"<?php checked( $rememberme ); ?> /> <?php esc_attr_e('Remember Me',"swgeulatr"); ?></label></p>					
 			<?php	if ( $interim_login ) { ?>
 					<input type="hidden" name="interim-login" value="1" />
 			<?php	} else { ?>
@@ -760,11 +741,10 @@ default:
 		<?php if ( !$interim_login ) { ?>
 		<p id="nav">
 		<?php if ( isset($_GET['checkemail']) && in_array( $_GET['checkemail'], array('confirm', 'newpass') ) ) : ?>
-		<?php elseif ( get_option('users_can_register') ) : ?>
-		<a href="<?php echo esc_url( site_url( '/?action=register', 'login' ) ); ?>"><?php _e( 'Register' ); ?></a> |
-		<a href="<?php echo site_url();?>" title="<?php esc_attr_e( 'Password Lost and Found' ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+		<?php elseif ( get_option('users_can_register') ) : ?>		
+		<a href="<?php echo site_url();?>" title="<?php esc_attr_e( 'Password Lost and Found' ); ?>"><?php _e( 'Lost my password','swgeulatr' ); ?></a>
 		<?php else : ?>
-		<a href="<?php echo site_url(); ?>" title="<?php esc_attr_e( 'Password Lost and Found' ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+		<a href="<?php echo site_url(); ?>" title="<?php esc_attr_e( 'Password Lost and Found' ); ?>"><?php _e( 'Lost my password','swgeulatr' ); ?></a>
 		<?php endif; ?>
 		</p>
 		<?php } ?>

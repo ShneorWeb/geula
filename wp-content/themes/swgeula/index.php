@@ -1,11 +1,4 @@
 <?php get_header(); ?>						
-				<!--<div>
-					<input type="text" ng-model="name">
-			 
-					<p>Hello, {{name}}!</p>
-				</div>-->
-
-				<?php //echo do_shortcode('[login_widget]'); ?>
 
 				<div ng-view></div>
 				<?php				;
@@ -16,5 +9,16 @@
 				<?php _e("Web site","swgeulatr");?>
 
 				<div class="sidebar">
+
+				</div>
+				<div class="col-md-3">	
+				
+				
+				<!-- .sidebar -->				
 				<?php get_sidebar(); ?>
-			</div><!-- .sidebar -->			
+			
+			</div>
+			</div>
+		
+<?php get_footer(); ?>
+				
