@@ -20,8 +20,33 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
+    
+
 	<?php wp_head(); ?>
+
+
+	<?php //if (!is_user_logged_in()) : ?>
+    <script>
+    jQuery.noConflict()
+
+    (function($) {
+
+		$(document).ready(function() {	
+		/*	$j("a#inline1").fancybox({
+				'modal': true,
+				'padding':0,
+				'margin':0,
+			});				
+			$j("a#inline1").click();*/
+			
+		});		
+
+	})(jQuery);
+	</script>  
+    <?php //endif;?>  
 </head> 
 <body>   
 		<div id="wrap">			
 			<div class="container">
+
+				<?php include_once("inc/user_log.php"); ?>

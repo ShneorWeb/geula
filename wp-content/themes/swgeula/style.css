@@ -14,12 +14,20 @@ Tags:
 */
 
 body {
-	
+	background-color: #ccc;
 }
 
 #wrap {
 	width:1024px;
 	margin-right: auto;
-	margin-left: auto;
+	margin-left: auto;	
 }
 
+#div-login {
+	margin-top: 100px;
+	width:600px;
+	margin-right: auto;
+	margin-left: auto;
+	background-color: #FFF;
+	text-align: center;
+}
