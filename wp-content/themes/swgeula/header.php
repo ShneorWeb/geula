@@ -40,7 +40,7 @@
 <body <?php body_class(); ?>>
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
+      <div class="contaner">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -48,22 +48,28 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+           
           <a class="navbar-brand" href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a>
-        </div>
-
-        <div class="navbar-collapse collapse">
-
-          <?php 
+         
+        </div><div style="float:left;"><?php 
             $args = array(
               'menu'        => 'header-menu',
               'menu_class'  => 'nav navbar-nav',
               'container'   => 'false'
             );
             wp_nav_menu( $args );
-          ?></div><!--/.navbar-collapse -->
+          ?></div>
+
+        <div class="navbar-collapse collapse">
+
+           
+            <ul class="drop"  style="padding-right:0px; right:0;">
+          <?php get_sidebar(); ?></ul>
+          </div><!--/.navbar-collapse -->
 
       </div>
     </div>
+    
    
       
 
@@ -71,9 +77,6 @@
 		<div id="wrap">			
 			<div class="container">
 <div class="row">
-    <div class="col-md-3 col-sm-3" style="margin-top:-50px; float:right;">
-           
-            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="-20px" style="padding-right:0px;">
-          <?php get_sidebar(); ?></ul></div>
+    
 
         
