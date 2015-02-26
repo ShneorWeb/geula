@@ -1,5 +1,42 @@
 <?php include_once("header.php");?>
 
+
+<script>
+function signinCallback(authResult) {
+  if (authResult['status']['signed_in'] && authResult['status']['method']=="PROMPT") {
+    // Update the app to reflect a signed in user
+    // Hide the sign-in button now that the user is authorized, for example:
+    //document.getElementById('signinButton').setAttribute('style', 'display: none');    
+    document.location.href="<?php echo home_url();?>";    
+  }
+  else {  
+    // Update the app to reflect a signed out user
+    // Possible error values:
+    //   "user_signed_out" - User is signed-out
+    //   "access_denied" - User denied access to your app
+    //   "immediate_failed" - Could not automatically log in the user
+    //console.log('Sign-in state: ' + authResult['error']);    
+  }
+}
+
+(function($) {
+        $(document).ready(function() {          
+            $('#user_login').attr( "placeholder", "<?php _e( 'Email','swgeulatr' ); ?>" );
+            $('#user_pass').attr( "placeholder", "<?php _e( 'Password','swgeulatr' );?>" );             
+            var temp = $("#div-login .login-remember").html();
+            $("#div-login .login-remember").html($("#div-login .login-submit").html());
+            $("#div-login .login-submit").html(temp);
+            $("#div-login .login-remember").addClass("login-submit");
+            $("#div-login .login-remember").removeClass("login-remember");          
+            $("#div-login .login-submit").addClass("login-remember");
+            $("#div-login .login-submit").removeClass("login-submit");                                 
+            })
+        });             
+
+})(jQuery);
+</script>
+
+
 	<div id="div-login">       
 
 		<h1><?php _e("Login with an exisiting account","swgeulatr");?></h1>
@@ -17,7 +54,7 @@ if ( $login === "failed" ) {  ?>
 <?php }  
 
 $args = array(
-        'redirect' => admin_url(), 
+        'redirect' => home_url(), 
         'form_id' => 'loginform-custom',
         'label_username' => '',
         'label_password' => '',                
@@ -39,28 +76,10 @@ wp_login_form($args);
   <span
     class="g-signin"
     data-callback="signinCallback"
-    data-clientid="CLIENT_ID"
+    data-clientid="1071363229202-e8nga4duksuc3vldrpm3guuikc9i82ae.apps.googleusercontent.com"
     data-cookiepolicy="single_host_origin"
     data-requestvisibleactions="http://schema.org/AddAction"
     data-scope="https://www.googleapis.com/auth/plus.login">
   </span>
 </span>
 </p>
-
- <script>    
-
-    (function($) {
-		$(document).ready(function() {			
-			$('#user_login').attr( "placeholder", "<?php _e( 'Email','swgeulatr' ); ?>" );
-			$('#user_pass').attr( "placeholder", "<?php _e( 'Password','swgeulatr' );?>" );				
-			var temp = $("#div-login .login-remember").html();
-			$("#div-login .login-remember").html($("#div-login .login-submit").html());
-			$("#div-login .login-submit").html(temp);
-			$("#div-login .login-remember").addClass("login-submit");
-			$("#div-login .login-remember").removeClass("login-remember");			
-			$("#div-login .login-submit").addClass("login-remember");
-			$("#div-login .login-submit").removeClass("login-submit");						
-		});				
-
-	})(jQuery);
-</script>  
