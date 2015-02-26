@@ -21,10 +21,12 @@
 				<?php } ?>-->
 				
 
-				
+				<div class="col-md-12">	
 					<?php echo $cfs->get('image');
 				    	$cat_image =  get_category_meta('image');?>
-				    		<?php echo wp_get_attachment_image($cat_image, 'category_image'); 
+				    		<?php echo wp_get_attachment_image($cat_image, 'category_image'); ?>
+				    		</div>
+				    		<?php
 				    		$values = get_category_meta('level');
 foreach ($values as $value => $label) {
     echo '<p>' . $value . '</p>';
@@ -51,7 +53,7 @@ foreach ($values as $value => $label) {
 					</div>
 						<div class="category_square_content">
 						<div class="category_square-format">
-							<?php $values = get_category_meta('type');
+							<?php $values =  get_category_meta('type', get_term_by('slug', $cat->cat_name, 'category'));
 foreach ($values as $value => $label) {
     echo '<p><span>' . $value .'</span>' ;
 }
@@ -64,17 +66,21 @@ foreach ($values as $value => $label) {
 				<h3><a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->cat_name; ?></a></h3>
 				<div class="category_square_description">
 						<?php echo category_description($cat->term_id); 
-
+						
 						?>
+
 				</div>
 
 				<div class="category_square_author">
-						<?php $values = get_category_meta('authors');
-foreach ($values as $user_id) {
+						<?php
+							
+						 $values = get_category_meta('authors', $term);
+						foreach ($values as $user_id) {
     $the_user = get_user_by('id', $user_id);
     echo '<div class="category_square_avatar">'. get_avatar( $the_user, 60 ) . '</div>'; 
+
     echo '<div class="category_square_author_name">' . $the_user->user_login . '</div>';
-    get_the_author_meta( description, $userID );
+    echo get_the_author_meta( description, $userID );
     
 
 }?>
