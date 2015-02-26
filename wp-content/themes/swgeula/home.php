@@ -1,11 +1,6 @@
 <?php get_header(); ?>	
 
-    <div class="col-md-12">					
-				<div>
-					<input type="text" ng-model="name">
-			 
-					<p>Hello, {{name}}!</p>
-				</div>
+    <div class="col-md-12">									
 
 				<div ng-view></div>
 				<p class="pull-right visible-xs">

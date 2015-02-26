@@ -1,21 +1,24 @@
-<?php get_header(); ?>	
-
-        <div class="col-md-9">					
-				<div>
-					<input type="text" ng-model="name">
-			 
-					<p>Hello, {{name}}!</p>
-				</div>
+<?php get_header(); ?>						
 
 				<div ng-view></div>
+				<?php				;
+				//echo("lang=".WPLANG);
+				?>
+				<?php _e("hello world","swgeulatr");?>
+
+				<?php _e("Web site","swgeulatr");?>
+
+				<div class="sidebar">
+
 				</div>
 				<div class="col-md-3">	
 				
 				
+				<!-- .sidebar -->				
 				<?php get_sidebar(); ?>
-			<!-- .sidebar -->			
+			
 			</div>
 			</div>
 		
-				<?php get_footer(); ?>
+<?php get_footer(); ?>
 				

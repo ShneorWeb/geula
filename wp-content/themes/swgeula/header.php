@@ -25,21 +25,35 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
+    
+
 	<?php wp_head(); ?>
-	<!-- Latest compiled and minified CSS -->
-<!-- Latest compiled and minified CSS -->
 
 
+	<?php //if (!is_user_logged_in()) : ?>
+    <script>
+    jQuery.noConflict()
 
+    (function($) {
 
+		$(document).ready(function() {	
+		/*	$j("a#inline1").fancybox({
+				'modal': true,
+				'padding':0,
+				'margin':0,
+			});				
+			$j("a#inline1").click();*/
+			
+		});		
 
-
-
-</head>
+	})(jQuery);
+	</script>  
+    <?php //endif;?>  
+</head> 
 
 <body <?php body_class(); ?>>
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">     
       <div class="contaner">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

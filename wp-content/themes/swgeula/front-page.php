@@ -1,11 +1,6 @@
 <?php get_header(); ?>	
 
-        <div class="col-sm-9">					
-				<div>
-					<input type="text" ng-model="name">
-			 
-					<p>Hello, {{name}}!</p>
-				</div>
+        <div class="col-sm-9">									
 
 				<div ng-view></div>
 

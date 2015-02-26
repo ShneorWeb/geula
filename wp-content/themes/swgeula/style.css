@@ -13,10 +13,32 @@ Author URI:
 Tags: 
 */
 
-/*@import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);*/
-/*
- * Open Sans Hebrew (Hebrew) http://www.google.com/fonts/earlyaccess
- */
+#div-login {
+	margin-top: 100px;
+	width:600px;
+	margin: 100px auto 60px auto;
+	padding: 30px;
+	background-color: #FFF;
+	text-align: center;
+}
+#div-login h1 {
+	font-size: 40px;
+	font-weight: normal;	
+}
+#div-login h2 {
+	font-size: 22px;
+	font-weight: normal;
+}
+
+#div-login .forgetmenot {	
+	direction: rtl; /* CHANGE ACCORDING TO LANGUAGE!!! */
+}
+body {
+	background-color: #ccc;
+	/*@import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);*/
+	/*
+ 		* Open Sans Hebrew (Hebrew) http://www.google.com/fonts/earlyaccess
+ 	*/
 @font-face {
   font-family: 'Open Sans Hebrew';
   font-style: italic;
@@ -117,10 +139,7 @@ ul{
 #wrap {
 	/*width:1024px;*/
 	margin-right: auto;
-	margin-left: auto;
-	margin-top:19px;
-	max-width:100%;
-	
+	margin-left: auto;	
 }
 
 .navbar{
@@ -303,3 +322,4 @@ span.category_top_time{
 .category_square_author_name{
   display:inline-block;
 }
+>>>>>>> 88830a88274bbea51d73d4a4cb001c21a2d37d35
