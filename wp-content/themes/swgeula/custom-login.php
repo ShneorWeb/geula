@@ -34,10 +34,7 @@ function signinCallback(authResult) {
             $("#div-login .login-remember").addClass("login-submit");
             $("#div-login .login-remember").removeClass("login-remember");          
             $("#div-login .login-submit").addClass("login-remember");
-            $("#div-login .login-submit").removeClass("login-submit");                                 
-            })
-        });             
-
+        })        
 })(jQuery);
 </script>
 
