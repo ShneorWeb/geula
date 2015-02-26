@@ -35,6 +35,7 @@ Tags:
 }
 body {
 	background-color: #ccc;
+}
 	/*@import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);*/
 	/*
  		* Open Sans Hebrew (Hebrew) http://www.google.com/fonts/earlyaccess
@@ -265,7 +266,7 @@ width: 770px;}
 
 @media (min-width: 1300px){
 .container {
-width: 870px;}
+width: 1000px;}
 }
 @media (min-width: 770px){
   .drop{
@@ -316,10 +317,31 @@ span.category_top_time{
 .category_square_avatar {
   display:inline-block;
     margin-left:10px;
+
 }
 
 
 .category_square_author_name{
   display:inline-block;
+
 }
->>>>>>> 88830a88274bbea51d73d4a4cb001c21a2d37d35
+.page-header{
+  display:inline-block;
+}
+.author_des, .category_square_avatar{
+  display:table-cell;
+  vertical-align:middle;
+}
+.author_des{
+  padding-right:10px;
+}
+span.oval{
+  padding:10px;
+  padding-top:5px;
+  padding-bottom:5px;
+  border-radius:10px;
+  margin-left:10px;
+}
+.category_square_author{
+  padding-bottom:10px;
+}

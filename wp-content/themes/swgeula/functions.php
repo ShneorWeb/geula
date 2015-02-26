@@ -20,7 +20,7 @@ function my_scripts() {
 		'http://code.jquery.com/jquery-migrate-1.2.1.min.js'
 	);
 
-	wp_enqueue_style( 'swgeula_style', get_template_directory_uri() . '/style.css');
+	//wp_enqueue_style( 'swgeula_style', get_template_directory_uri() . '/style.css');
 
 	
 	wp_enqueue_script(
@@ -205,5 +205,16 @@ create_widget("Front Page Right", "front-right", "Displays on the right hand sid
 	
 	add_theme_support( 'post-thumbnails' );
 	add_image_size('category_image', 1371, 0);
+
+// Filter function
+function add_contact_fields($profile_fields) {
+	// Adding fields
+	$profile_fields['subject'] = 'Subject';
+	
+
+	return $profile_fields;
+}
+// Adding the filter
+add_filter('user_contactmethods', 'add_contact_fields');
 
 ?>
