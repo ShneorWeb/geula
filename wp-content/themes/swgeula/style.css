@@ -57,6 +57,13 @@ Tags:
   font-size: 20px !important;
   margin-top:20px;
 }
+#login-bottom-text {
+  margin-right: auto;
+  margin-left:auto;
+  text-align: center;
+  margin-top: -20px; 
+  font-size: 18px;
+}
 
 body {
 	background-color: #ccc;

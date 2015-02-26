@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
-"POT-Creation-Date: 2015-02-25 23:10+0200\n"
-"PO-Revision-Date: 2015-02-25 23:10+0200\n"
+"POT-Creation-Date: 2015-02-26 14:31+0200\n"
+"PO-Revision-Date: 2015-02-26 14:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -16,75 +16,70 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;esc_attr_e\n"
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\geula\\wp-content\\themes\\swgeula\n"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:5
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:24
+msgid "Email"
+msgstr "אימייל"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:25
+msgid "Password"
+msgstr "סיסמא"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:43
 msgid "Login with an exisiting account"
 msgstr "כניסה באמצעות חשבון קיים"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:6
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:44
 msgid "enter your email address and your password"
 msgstr "הזן את כתובת האימייל ואת הסיסמה שלך"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:12
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:14
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:16
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:50
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:52
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:54
 msgid "ERROR:"
 msgstr "שגיאה:"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:12
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:50
 msgid "Invalid username and/or password."
 msgstr "שם משתמש או סיסמה שגויים"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:14
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:52
 msgid "Username and/or Password is empty"
 msgstr "שם המתשמש או הסיסמה ריקים"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:16
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:54
 msgid "You are logged out."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:24
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:62
 msgid "Remember Me"
 msgstr "תשאיר אותי מחובר"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:25
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:63
 msgid "Log In"
 msgstr "היכנס"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:31
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:69
 msgid "Lost my password"
 msgstr "שכחתי את הסיסמה"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:35
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:73
 msgid "Or sign in with your Google account"
 msgstr "או היכנס באמצעות חשבון גוגל"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-profile.php:43
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-profile.php:74
-msgid "דוא\"ל"
-msgstr ""
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:89
+msgid "Is this your first time? "
+msgstr "זאת הפעם הראשונה שלך?"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-profile.php:47
-msgid "סיסמה"
-msgstr ""
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:89
+msgid "Create a new account"
+msgstr "צור חשבון חדש"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-profile.php:80
-msgid "שלחי"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:175
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:163
 msgid "Header Menu"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:192
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:180
 msgid "Right Menu"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/custom-profile.php:54
-msgid "עלייך להיות מחוברת למערכת כדי לעדכן את הפרופיל."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/custom-profile.php:68
-msgid "הפרופיל עודכן בהצלחה"
 msgstr ""
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/index.php:7
@@ -94,12 +89,6 @@ msgstr "שלום עולם"
 #: C:\wamp\www\geula\wp-content\themes\swgeula/index.php:9
 msgid "Web site"
 msgstr "אתר אינטרנט"
-
-#~ msgid "Email"
-#~ msgstr "אימייל"
-
-#~ msgid "Password"
-#~ msgstr "סיסמא"
 
 #~ msgid "Username"
 #~ msgstr "שם משתמש"
