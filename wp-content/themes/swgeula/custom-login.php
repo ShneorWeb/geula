@@ -88,5 +88,5 @@ function signinCallback(authResult) {
     </p>
 </div>
 
-<div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo wp_registration_url();?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
+<div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/custom-register-page/?action=register";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
 </div>
