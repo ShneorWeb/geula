@@ -57,7 +57,7 @@ function signinCallback(authResult) {
     <?php } elseif ( $login === "false" ) {  ?>
         <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("You are logged out.","swgeulatr");?></p>  
     <?php } elseif  ( isset($_GET['checkemail']) && 'registered' == $_GET['checkemail'] ) {?>
-        <p class="login-msg">    <?php echo e_('Registration complete. Please check your e-mail.','swgeulatr');?> </p>
+        <p class="login-msg">    <?php echo _e('Registration complete. Please check your e-mail and login.','swgeulatr');?> </p>
         <?php  }   
 
     $args = array(

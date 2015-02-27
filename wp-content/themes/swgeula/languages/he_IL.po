@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
-"POT-Creation-Date: 2015-02-26 22:58+0200\n"
-"PO-Revision-Date: 2015-02-27 00:03+0200\n"
+"POT-Creation-Date: 2015-02-27 14:53+0200\n"
+"PO-Revision-Date: 2015-02-27 14:55+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -16,65 +16,69 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;esc_attr_e\n"
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\geula\\wp-content\\themes\\swgeula\n"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:29
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:30
 msgid "Email"
 msgstr "אימייל"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:30
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:31
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:816
 msgid "Password"
 msgstr "סיסמא"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:45
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:47
 msgid "Login with an exisiting account"
 msgstr "כניסה באמצעות חשבון קיים"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:46
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:48
 msgid "enter your email address and your password"
 msgstr "הזן את כתובת האימייל ואת הסיסמה שלך"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:52
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:54
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:56
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:58
 msgid "ERROR:"
 msgstr "שגיאה:"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:52
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:54
 msgid "Invalid username and/or password."
 msgstr "שם משתמש או סיסמה שגויים"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:54
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:56
 msgid "Username and/or Password is empty"
 msgstr "שם המתשמש או הסיסמה ריקים"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:56
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:58
 msgid "You are logged out."
 msgstr "יצאת מהמערכת"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:64
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:60
+msgid "Registration complete. Please check your e-mail and login."
+msgstr "ההרשמה הושלמה. אנא בדקו את האימייל שלכם והיכנסו למערכת."
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:68
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:827
 msgid "Remember Me"
 msgstr "תשאיר אותי מחובר"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:65
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:69
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:803
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:829
 msgid "Log In"
 msgstr "היכנס"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:71
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:75
 msgid "Lost my password"
 msgstr "שכחתי את הסיסמה"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:75
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:79
 msgid "Or sign in with your Google account"
 msgstr "או היכנס באמצעות חשבון גוגל"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:91
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:95
 msgid "Is this your first time? "
 msgstr "זאת הפעם הראשונה שלך?"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:91
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:95
 msgid "Create a new account"
 msgstr "צור חשבון חדש"
 
@@ -323,11 +327,11 @@ msgstr ""
 msgid "<strong>ERROR</strong>: Please type your last name."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:111
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:134
 msgid "Header Menu"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:128
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:151
 msgid "Right Menu"
 msgstr ""
 

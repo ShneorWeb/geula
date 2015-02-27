@@ -58,6 +58,29 @@ function swgeula_registration_errors( $errors, $sanitized_user_login, $user_emai
         return $errors;
 }
 add_filter( 'registration_errors', 'swgeula_registration_errors', 10, 3 );
+
+function my_front_end_login_fail( $username ) {	
+   $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+   // if there's a valid referrer, and it's not the default log-in screen
+   if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+      wp_redirect( add_query_arg( 'login', 'failed',$referrer ) );  // let's append some information (login=failed) to the URL for the theme to use
+      exit;
+   }
+}
+add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
+
+function verify_username_password( $user, $username, $password ) {  
+    $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+    if( empty($username) || empty($password) ) {  
+    	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+        	wp_redirect( add_query_arg( 'login', 'empty',$referrer ) );  
+        	exit;  
+        }
+    }  
+}  
+add_filter( 'authenticate', 'verify_username_password', 1, 3);  
+
+
 /*
 function swgeula_register_form() {
 
