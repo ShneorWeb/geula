@@ -598,7 +598,7 @@ case 'register' :
 
 		$errors = register_new_user($user_login, $user_email);
 		if ( !is_wp_error($errors) ) {
-			$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url().'/custom-login-page/?checkemail=registered'; //redirect here to profile
+			$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url().'/custom-login-page/?checkemail=registered';
 			wp_safe_redirect( $redirect_to );
 			exit();
 		}

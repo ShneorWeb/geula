@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
 "POT-Creation-Date: 2015-02-26 22:58+0200\n"
-"PO-Revision-Date: 2015-02-26 22:59+0200\n"
+"PO-Revision-Date: 2015-02-27 00:03+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -49,7 +49,7 @@ msgstr "שם המתשמש או הסיסמה ריקים"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:56
 msgid "You are logged out."
-msgstr ""
+msgstr "יצאת מהמערכת"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:64
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:827

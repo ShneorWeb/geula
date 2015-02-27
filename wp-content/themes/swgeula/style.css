@@ -36,6 +36,9 @@ Tags:
 .login-error-msg {
   color:red;  
 }
+.login-msg {
+  color:blue;
+}
 .login-remember {
   direction: rtl;
 }

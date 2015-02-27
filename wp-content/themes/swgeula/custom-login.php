@@ -1,7 +1,8 @@
+<?php
 /*
 Template Name: Custom_Login
 */
-
+?>
 
 <?php include_once("header.php");?>
 
@@ -28,6 +29,7 @@ function signinCallback(authResult) {
         $(document).ready(function() {          
             $('#user_login').attr( "placeholder", "<?php _e( 'Email','swgeulatr' ); ?>" );
             $('#user_pass').attr( "placeholder", "<?php _e( 'Password','swgeulatr' );?>" );             
+            
             var temp = $("#div-login .login-remember").html();
             $("#div-login .login-remember").html($("#div-login .login-submit").html());
             $("#div-login .login-submit").html(temp);
@@ -49,12 +51,14 @@ function signinCallback(authResult) {
 
     $login  = (isset($_GET['login']) ) ? $_GET['login'] : 0;  
     if ( $login === "failed" ) {  ?>
-        '<p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Invalid username and/or password.","swgeulatr");?></p>  
+        <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Invalid username and/or password.","swgeulatr");?></p>  
     <?php } elseif ( $login === "empty" ) {  ?>
-        '<p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Username and/or Password is empty","swgeulatr");?>.</p>
+        <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Username and/or Password is empty","swgeulatr");?>.</p>
     <?php } elseif ( $login === "false" ) {  ?>
-        '<p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("You are logged out.","swgeulatr");?></p>  
-    <?php }  
+        <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("You are logged out.","swgeulatr");?></p>  
+    <?php } elseif  ( isset($_GET['checkemail']) && 'registered' == $_GET['checkemail'] ) {?>
+        <p class="login-msg">    <?php echo e_('Registration complete. Please check your e-mail.','swgeulatr');?> </p>
+        <?php  }   
 
     $args = array(
             'redirect' => home_url(), 
