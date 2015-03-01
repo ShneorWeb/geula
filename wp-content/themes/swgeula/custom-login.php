@@ -94,4 +94,4 @@ function signinCallback(authResult) {
 <div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/custom-register-page/?action=register";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
 </div>
 
-<a href="/geula/#eprf">edit profile</a>
+<a href="/#eprf">edit profile</a>

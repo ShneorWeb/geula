@@ -27,7 +27,7 @@
 	<![endif]-->
     
   <script src="https://apis.google.com/js/client:platform.js" async defer></script>
-  
+
 	<?php wp_head(); ?>
 
 
@@ -38,6 +38,8 @@
 
 		$(document).ready(function() {                   
         $(".sidebar .menu a:not([href$='edit-profile/'])").attr("target","_self");
+        $(".nav .menu-item a:not([href$='edit-profile/'])").attr("target","_self");
+
 
         if (document.location.href.indexOf("#eprf")!=-1) {
             angular.element(document).ready(function() {
