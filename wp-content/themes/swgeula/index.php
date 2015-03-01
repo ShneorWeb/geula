@@ -1,6 +1,5 @@
 <?php get_header(); ?>						
-
-				<div ng-view></div>
+				
 				<?php				;
 				//echo("lang=".WPLANG);
 				?>
@@ -13,7 +12,10 @@
 				</div>
 				<div class="col-md-3">				
 				
-				
+				<div ng-controller="Profile">
+					<div ng-view></div>
+				</div>					
+
 				<!-- .sidebar -->				
 				<?php get_sidebar(); ?>
 			

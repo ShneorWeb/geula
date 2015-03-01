@@ -4,11 +4,6 @@ function my_scripts() {
 
 	wp_enqueue_style( 'swgeula_style', get_template_directory_uri() . '/style.css');
 
-	wp_enqueue_script(
-		'googlebutton',
-		'https://apis.google.com/js/client:platform.js?defer&async'
-	);
-
 	
 	wp_enqueue_script(
 		'angularjs',
@@ -17,13 +12,29 @@ function my_scripts() {
 
 	wp_enqueue_script(
 		'angularjs-route',
-		get_stylesheet_directory_uri() . '/angular/angular-route.min.js'
+		get_stylesheet_directory_uri() . '/angular/angular-route.min.js',
+		array( 'angularjs')
 	);
 	wp_enqueue_script(
-		'my-scripts',
-		get_stylesheet_directory_uri() . '/js/scripts.js',
-		array( 'angularjs', 'angularjs-route' )
+		'ui-bootstrap',
+		get_stylesheet_directory_uri() . '/angular/ui-bootstrap-tpls-0.12.1.min.js',
+		array( 'angularjs')
 	);
+	wp_enqueue_script(
+		'angular-translate',
+		get_stylesheet_directory_uri() . '/angular/angular-translate.min.js',
+		array( 'angularjs')
+	);	
+	wp_enqueue_script(
+		'angular-translate-loader-partial',
+		get_stylesheet_directory_uri() . '/angular/angular-translate-loader-partial.min.js',
+		array( 'angularjs')
+	);	
+	wp_enqueue_script(
+		'my-scripts',
+		get_stylesheet_directory_uri() . '/js/angular_main.js',
+		array( 'angularjs', 'angularjs-route' )
+	);		
 
 	wp_localize_script(
 		'my-scripts',

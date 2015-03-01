@@ -5,7 +5,7 @@
  * @package swgeula
  */
 ?><!DOCTYPE html>
-<html g-app="appgeula">
+<html>
 <head>
 	<script>
 		var newBase = document.createElement("base");
@@ -26,7 +26,8 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
     
-
+  <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+  
 	<?php wp_head(); ?>
 
 
@@ -35,9 +36,17 @@
 
     (function($) {
 
-		$(document).ready(function() {
-      //console.log("123abc");			
+		$(document).ready(function() {                   
+        $(".sidebar .menu a:not([href$='edit-profile/'])").attr("target","_self");
+
+        if (document.location.href.indexOf("#eprf")!=-1) {
+            angular.element(document).ready(function() {
+              angular.bootstrap(document,['appgeula']);                 
+            });
+        }
 		});		
+
+  
 
 	})(jQuery);
 	</script>  
@@ -58,7 +67,7 @@
             <span class="icon-bar"></span>
           </button>
            
-          <a class="navbar-brand" href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a>
+          <a class="navbar-brand" href="<?php bloginfo( 'url' ); ?>" target="_self"><?php bloginfo( 'name' ); ?></a>
          
         </div><div style="float:left;"><?php 
             $args = array(
@@ -77,10 +86,8 @@
           </div><!--/.navbar-collapse -->
 
       </div>
-    </div>
-    
-   
-      
+    </div> 
+     
 
    
 		<div id="wrap">			
