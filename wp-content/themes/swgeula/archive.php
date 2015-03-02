@@ -1,5 +1,5 @@
 <?php get_header(); ?>	
-    <div class="col-md-12"style="margin-top:34px;">	
+    <div class="col-lg-12 col-md-12"style="margin-top:34px;">	
     <?php
 						$child = get_category($cat); 
 						$parent = $child->parent;
@@ -33,9 +33,9 @@
 background-size:contain;
 background-position:right;">
 				    			<?php
-				    				echo '<div class="current_category_name">'. $cat_name.'</div>';
+				    				echo '<div class="current_category_name"><h1 style="padding-top:20px;">'. $cat_name.'</h1></div>';
 				    				 ?>
-				    				 <div class="current_category_description"><?php echo category_description($cat->term_id);  ?>
+				    				 <div class="current_category_description"><h4><?php echo category_description($cat->term_id);  ?></h4>
 				    		</div>
 				    		</div>
 				</div>
@@ -43,7 +43,7 @@ background-position:right;">
 
 			<div >
 					<div class="col-md-12">
-							<div class="search_by">
+							<div class="search_by"><h5>
 											<div style="float:right;">
 													<span class="glyphicon glyphicon-search" aria-hidden="true"></span>  חיפוש
 											</div>
@@ -51,7 +51,7 @@ background-position:right;">
 													<span style="padding-left:30px;">חדש לישן</span>   <span class="glyphicon glyphicon-menu-down" aria-hidden="true" style="font-size: 1.2em; color:black;"></span>
 													<span style="padding-left:30px;">נושא  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
 													<span style="padding-left:30px;">מוסר שיעור   <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
-											</div>
+											</div></h5>
 
 
 							</div>
@@ -94,10 +94,10 @@ background-position:right;">
 
 									<li class="category_square"> 
 										<div class="category_top_square" style="background:<?php echo $color; ?>">
-											<span class="category_top_time"><a>12 שעות</a></span>
-											<span class="glyphicon glyphicon-folder-open"></span>
+											<p><span class="category_top_time">12 שעות</span>
+											<span class="glyphicon glyphicon-folder-open" style="padding-right:20px;"></span></p>
 										</div>
-										<div class="category_square_content">
+										<div class="category_square_content"><h5>
 											<div class="category_square-format">
 												<?php $values =  get_category_meta('type', get_term_by('slug', $cat->cat_name, 'category'));
 												foreach ($values as $value => $label) {
@@ -107,15 +107,15 @@ background-position:right;">
 												foreach ($values as $value => $label) {
 												    echo  '&nbsp; <span>' . $value . '</span></p>';
 												}?>
-											</div>
+											</div></h5>
 										
 
 											<h3><a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->cat_name; ?></a></h3>
 											<div class="category_square_description">
 													<!--<?php echo category_description($cat->term_id); ?>-->
-													<?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
+													<p><?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
 														echo $short_description;
-														?>
+														?></p>
 											</div>
 
 											<div class="category_square_author">
@@ -126,11 +126,11 @@ background-position:right;">
 												    $the_user = get_user_by('id', $user_id);
 												    echo '<div class="category_square_avatar">'. get_avatar( $the_user, 60 ) . '</div>'; 
 
-												    echo '<div class="author_des"><div class="category_square_author_name">' . $the_user->user_login . '</div></br>';
+												    echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->user_login . '</h4></div></br>';
 												    
-												    echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';?>
+												    echo '<div class="category_square_author_subject"><h4><small>' .get_the_author_meta('subject', $user_id ). '</small></h4></div>';?>
 											    	<div class="category_square_number">
-														38 שיעורים בספריה
+														<h5><small>38 שיעורים בספריה</small></h5>
 													</div></div>
 													<?php } ?>
 
@@ -138,7 +138,7 @@ background-position:right;">
 											
 											
 											</div><div style="clear:both;"></div>
-											<div class="category_square_oval">
+											<div class="category_square_oval"><h4>
 											<?php
 												
 											   			 echo '<span class="oval" style="background:'. $color .'; color:#ffffff;">חדש</span>';
@@ -152,7 +152,7 @@ background-position:right;">
 											   			 echo '<span class="oval" style="border:1px solid #b2bac2; color:#b2bac2;">' . $value . '</span>';
 													}
 
-											?>
+											?></h4>
 											</div>
 										</div>
 									</li>

@@ -317,10 +317,7 @@ width: 1000px;}
     float: none;
     }
   }
-  @media (min-width: 2000px){
-.container {
-width: 1700px;}
-}
+
 
 .category_square{
   background:#ffffff;
@@ -337,7 +334,7 @@ span.category_top_time a{
   font-size:14px;
 }
 span.category_top_time{
-
+  float:left;
   padding-left:20px;
   }
 .category_square_content{
