@@ -1,10 +1,10 @@
+<?php
 /*
 Template Name: Custom_Login
 */
-
+?>
 
 <?php include_once("header.php");?>
-
 
 <script>
 function signinCallback(authResult) {
@@ -28,6 +28,7 @@ function signinCallback(authResult) {
         $(document).ready(function() {          
             $('#user_login').attr( "placeholder", "<?php _e( 'Email','swgeulatr' ); ?>" );
             $('#user_pass').attr( "placeholder", "<?php _e( 'Password','swgeulatr' );?>" );             
+            
             var temp = $("#div-login .login-remember").html();
             $("#div-login .login-remember").html($("#div-login .login-submit").html());
             $("#div-login .login-submit").html(temp);
@@ -49,12 +50,14 @@ function signinCallback(authResult) {
 
     $login  = (isset($_GET['login']) ) ? $_GET['login'] : 0;  
     if ( $login === "failed" ) {  ?>
-        '<p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Invalid username and/or password.","swgeulatr");?></p>  
+        <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Invalid username and/or password.","swgeulatr");?></p>  
     <?php } elseif ( $login === "empty" ) {  ?>
-        '<p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Username and/or Password is empty","swgeulatr");?>.</p>
+        <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Username and/or Password is empty","swgeulatr");?>.</p>
     <?php } elseif ( $login === "false" ) {  ?>
-        '<p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("You are logged out.","swgeulatr");?></p>  
-    <?php }  
+        <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("You are logged out.","swgeulatr");?></p>  
+    <?php } elseif  ( isset($_GET['checkemail']) && 'registered' == $_GET['checkemail'] ) {?>
+        <p class="login-msg">    <?php echo _e('Registration complete. Please check your e-mail and login.','swgeulatr');?> </p>
+        <?php  }   
 
     $args = array(
             'redirect' => home_url(), 
@@ -88,5 +91,7 @@ function signinCallback(authResult) {
     </p>
 </div>
 
-<div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo wp_registration_url();?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
+<div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/custom-register-page/?action=register";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
 </div>
+
+<a href="/#eprf">edit profile</a>

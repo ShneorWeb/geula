@@ -1,0 +1,98 @@
+<div class="col-md-12" ng-controller="Profile"> 
+
+  <div id="div-login">       
+
+        <h1 id="ttl1">{{"Your_Account" | translate}}</h1>
+        
+    
+   <tabset type ="pills">
+          <tab heading="{{'Settings' | translate}}" active="true" class="pull-right">
+
+              <div class="form-wrapper">
+   
+              <h2 class="register-heading"><?php _e( 'Sign Up', 'debate' ); ?></h2>
+               
+              <div id="error-message"></div>
+               
+              <form method="post" name="st-register-form">         
+                
+                <div class="form-label"><label for="st-psw">{{'Password' | translate}}</label></div>
+                 <div class="field"><input type="password" name="password" id="st-psw" /></div>
+                 
+                 <div class="field"><input type="password" name="password2" id="st-psw2" /></div>
+
+
+                <div class="form-label"><label for="st-email">{{'Email' | translate}}</label></div>
+                 <div class="field"><input type="text" autocomplete="off" name="mail" id="st-email" /></div>           
+                
+                 
+                 <div class="form-label"><label for="st-country">{{'Country' | translate}}</label></div>
+                 <div class="field"><input type="text" autocomplete="off" name="fcountry" id="st-country" /></div>
+                 
+                <div class="form-label"><label for="st-city">{{'City' | translate}}</label></div>
+                 <div class="field"><input type="text" autocomplete="off" name="fcity" id="st-city" /></div>
+
+                <div class="form-label"><label for="st-city">{{'Time_Zone' | translate}}</label></div>
+                 <div class="field"><input type="text" autocomplete="off" name="ftimezone" id="st-timezone" /></div>
+                 
+                <div class="form-label"><label for="st-language">{{'Language_UI' | translate}}</label></div>
+                 <div class="field"><input type="text" autocomplete="off" name="flanguage" id="st-language" /></div>  
+                 
+                <div class="frm-button"><input type="button" id="register-me" value="{{'Save_Details' | translate}}" /></div>
+               
+              </form>
+             
+            </div>
+
+          </tab>          
+          <tab select="" disabled="false" class="pull-right">
+            <tab-heading>
+              {{'Profile' | translate}}
+            </tab-heading>
+
+            <form>
+              first namae, last name, poisition, about
+            </form>
+         
+          </tab>
+
+          <tab select="" disabled="false" class="pull-right">
+            <tab-heading>
+              {{'Picture' | translate}}
+            </tab-heading>
+
+            <form>
+              Picture
+            </form>
+         
+          </tab>
+
+
+          <tab select="" disabled="false" class="pull-right">
+            <tab-heading>
+              {{'Alerts' | translate}}
+            </tab-heading>
+
+            <form>
+              alerts
+            </form>
+         
+          </tab>
+    </tabset>          
+        
+
+<!--
+        <form novalidate class="simple-form">
+          Name: <input type="text" ng-model="user.name" /><br />
+          E-mail: <input type="email" ng-model="user.email" /><br />
+          Gender: <input type="radio" ng-model="user.gender" value="male" />male
+          <input type="radio" ng-model="user.gender" value="female" />female<br />
+          <input type="button" ng-click="reset()" value="Reset" />
+          <input type="submit" ng-click="update(user)" value="Save" />
+        </form>    
+-->
+        <!--<a href="/geula/edit-profile/2">Step 2</a>-->
+
+  </div>
+
+</div>

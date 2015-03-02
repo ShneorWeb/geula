@@ -4,11 +4,6 @@ function my_scripts() {
 
 	wp_enqueue_style( 'swgeula_style', get_template_directory_uri() . '/style.css');
 
-	wp_enqueue_script(
-		'googlebutton',
-		'https://apis.google.com/js/client:platform.js?defer&async'
-	);
-
 	
 	wp_enqueue_script(
 		'angularjs',
@@ -17,13 +12,29 @@ function my_scripts() {
 
 	wp_enqueue_script(
 		'angularjs-route',
-		get_stylesheet_directory_uri() . '/angular/angular-route.min.js'
+		get_stylesheet_directory_uri() . '/angular/angular-route.min.js',
+		array( 'angularjs')
 	);
 	wp_enqueue_script(
-		'my-scripts',
-		get_stylesheet_directory_uri() . '/js/scripts.js',
-		array( 'angularjs', 'angularjs-route' )
+		'ui-bootstrap',
+		get_stylesheet_directory_uri() . '/angular/ui-bootstrap-tpls-0.12.1.min.js',
+		array( 'angularjs')
 	);
+	wp_enqueue_script(
+		'angular-translate',
+		get_stylesheet_directory_uri() . '/angular/angular-translate.min.js',
+		array( 'angularjs')
+	);	
+	wp_enqueue_script(
+		'angular-translate-loader-partial',
+		get_stylesheet_directory_uri() . '/angular/angular-translate-loader-partial.min.js',
+		array( 'angularjs')
+	);	
+	wp_enqueue_script(
+		'my-scripts',
+		get_stylesheet_directory_uri() . '/js/angular_main.js',
+		array( 'angularjs', 'angularjs-route' )
+	);		
 
 	wp_localize_script(
 		'my-scripts',
@@ -46,6 +57,19 @@ add_action('after_setup_theme', 'lang_setup');
 
 
 /************************** user registration stuff: ************************************/
+function swgeula_registration_errors( $errors, $sanitized_user_login, $user_email ) {
+        
+        if ( empty( $_POST['first_name'] ) || ! empty( $_POST['first_name'] ) && trim( $_POST['first_name'] ) == '' ) {
+            $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: Please type your first name.', 'mydomain' ) );
+        }
+         if ( empty( $_POST['last_name'] ) || ! empty( $_POST['last_name'] ) && trim( $_POST['last_name'] ) == '' ) {
+            $errors->add( 'last_name_error', __( '<strong>ERROR</strong>: Please type your last name.', 'mydomain' ) );
+        }
+
+        return $errors;
+}
+add_filter( 'registration_errors', 'swgeula_registration_errors', 10, 3 );
+
 function my_front_end_login_fail( $username ) {	
    $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
    // if there's a valid referrer, and it's not the default log-in screen
@@ -67,91 +91,49 @@ function verify_username_password( $user, $username, $password ) {
 }  
 add_filter( 'authenticate', 'verify_username_password', 1, 3);  
 
-function mb_basename($file) {
-	return end(explode('/',$file));
+
+/*
+function swgeula_register_form() {
+
+    	$first_name = ( ! empty( $_POST['first_name'] ) ) ? trim( $_POST['first_name'] ) : '';
+        
+        ?>
+        <p>
+            <label for="first_name"><?php _e( 'First Name', 'mydomain' ) ?><br />
+                <input type="text" name="first_name" id="first_name" placeholder="First Name" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" /></label>
+        </p>
+        <?php
+
+        $last_name = ( ! empty( $_POST['last_name'] ) ) ? trim( $_POST['last_name'] ) : '';
+        
+        ?>
+        <p>
+            <label for="last_name"><?php _e( 'Last Name', 'mydomain' ) ?><br />
+                <input type="text" name="first_name" id="first_name" placeholder="Last Name" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" /></label>
+        </p>
+        <?php
 }
-function process_post(){	
- 	if(count($_FILES)>0 && isset($_FILES["user_avatar"])){
-		
-	  // we need this for the wp_handle_upload function
-	  require_once ABSPATH.'wp-admin/includes/file.php';	
-	
-	  // just be aware that GIFs are annoying as fuck
-	  $allowed_image_types = array(
-		'jpg|jpeg|jpe' => 'image/jpeg',
-		'png'          => 'image/png',
-		'gif'          => 'image/gif',
-	  );	
-	  
-	  $status = wp_handle_upload($_FILES['user_avatar'], array('mimes' => $allowed_image_types, 'test_form' => FALSE));	    	  
+add_action( 'register_form', 'swgeula_register_form' );
 
-	  if(empty($status['error'])){	
-		//resize		
-		$resized = image_resize($status['file'], 200, 200, $crop = true);	 
-	
-		if(!is_wp_error($resized)) { //resize successful		
-			$uploads = wp_upload_dir();					
-			$_POST['resized_url'] = $uploads['url'].'/'.mb_basename($resized); //resized_url will be used in register_extra_fields function							
-		}
-	  }	 
-	}
-	elseif ($_POST) $_POST['resized_url']='';
+//2. Add validation. In this case, we make sure first_name is required.
+function swgeula_registration_errors( $errors, $sanitized_user_login, $user_email ) {
+        
+        if ( empty( $_POST['first_name'] ) || ! empty( $_POST['first_name'] ) && trim( $_POST['first_name'] ) == '' ) {
+            $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: You must include a first name.', 'mydomain' ) );
+        }
+
+        return $errors;
 }
-add_action('init', 'process_post');
+add_filter( 'registration_errors', 'swgeula_registration_errors', 10, 3 );
 
-
-function register_extra_fields($user_id, $password="", $meta=array())  {
-
-	$userdata = array();
-	
-	$userdata['ID'] = $user_id;
-	//Enter first/last name into DB
-	$userdata['first_name'] = $_POST['first_name'];
-	$userdata['last_name'] = $_POST['last_name'];
-	$userdata['display_name'] = mb_substr($_POST['user_neshei_nick'],0);
-	$userdata['user_pass'] = $_POST['pass1'];
-	$userdata['resized_url'] = $_POST['resized_url'];
-	$userdata['show_admin_bar_front'] = false;	
-	$userdata['wp_user_level'] = 'subscriber';				
-	wp_update_user($userdata);
-	
-	//custom meta data:
-	$userdata['user_avatar'] = $_POST['user_avatar'];	
-	
-	//update_usermeta($user_id, 'display_name',$userdata['display_name']);
-	if (!empty($userdata['resized_url'])) update_usermeta($user_id, 'custom_avatar', $userdata['resized_url']);
+//3. Finally, save our extra registration user meta.
+function swgeula_user_register( $user_id ) {
+        if ( ! empty( $_POST['first_name'] ) ) {
+            update_user_meta( $user_id, 'first_name', trim( $_POST['first_name'] ) );
+        }
 }
-add_action('user_register', 'register_extra_fields');
-
-
-function custom_avatars($avatar, $id_or_email, $size){	  	
-  $current_id=-1; 
-  $def_avatar=get_bloginfo('template_url').'/images/user.png';
-  if (is_numeric($id_or_email)) $current_id=$id_or_email;
-  elseif (is_string($id_or_email) && is_email($id_or_email)) {
-	  	$current_user = get_user_by('email', $id_or_email);
-		$current_id=$current_user->ID;
-  }
-  elseif(is_user_logged_in()) {
-	  $current_user = wp_get_current_user(); 
-	  $current_id=$current_user->ID;
-  }
-
-  if ($current_id>0) {
-    $image_url = get_user_meta($current_id, 'custom_avatar', true);	
-	if (empty($image_url)) $image_url=$def_avatar;
-    else return '<img src="'.$image_url.'" class="avatar photo" width="'.$size.'" height="'.$size.'" alt="'.(is_object($current_user)?$current_user->display_name:'') .'" />';
-  }
-  return '<img src="'.$def_avatar.'" class="avatar photo" width="'.$size.'" height="'.$size.'"  />';
-}
-add_filter('get_avatar', 'custom_avatars', 10, 3);
-
-function get_comment_avatar($uid, $size){	 	
-    $image_url = get_user_meta($uid, 'custom_avatar', true);
-	if (empty($image_url)) $image_url=get_bloginfo('template_url').'/images/user.png';
-    if($user_avatar !== false) return '<img src="'.$image_url.'" class="avatar photo" width="'.$size.'" height="'.$size.'" alt="'.$uid->display_name .'" />';
-	return $avatar;  
-}
+add_action( 'user_register', 'swgeula_user_register' );
+*/
 /************************** end user registration stuff: ************************************/
 
 add_theme_support ('menus');
