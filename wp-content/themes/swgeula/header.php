@@ -41,7 +41,7 @@
         $(".nav .menu-item a:not([href$='edit-profile/'])").attr("target","_self");
 
 
-        if (document.location.href.indexOf("#eprf")!=-1) {
+        if (document.location.href.indexOf("custom-profile-page")!=-1) {          
             angular.element(document).ready(function() {
               angular.bootstrap(document,['appgeula']);                 
             });

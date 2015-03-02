@@ -50,7 +50,7 @@ function my_scripts() {
 		'my-scripts',
 		'myLocalized',
 		array(
-			'partials' => trailingslashit( get_template_directory_uri() ) . 'partials/'
+			'theme_dir' => trailingslashit( get_template_directory_uri() ) 
 			)
 	);
 
@@ -209,7 +209,107 @@ function add_contact_fields($profile_fields) {
 }
 // Adding the filter
 add_filter('user_contactmethods', 'add_contact_fields');
+/*****************************AJAX/ANGUALR FUNCTIONS******************/
+function get_user_profile() {   
+    if (is_user_logged_in()) {
+	    global $current_user;
+	    get_currentuserinfo(); 
+	    
+	    $response = '{"firstName":"'.$current_user->user_firstname.'", "lastName":"'.$current_user->user_lastname.'", "email":"'.$current_user->user_email.'"}'; 
+	    
+	    header( "Content-Type: application/json" );    
+	    echo $response; 
+	}
+	else {
+		$error .= 'No Logged IN';
+		echo $error;
+	}
+    
+    exit;
+}
+add_action( 'wp_ajax_nopriv_getuser', 'get_user_profile' );
+add_action( 'wp_ajax_getuser', 'get_user_profile' );
+
+function set_user_profile(){
+ 
+	if( $_POST['action'] == 'register_action' ) {
+	 
+	$error = '';
+	 
+	 $uname = trim( $_POST['username'] );
+	 //$email = trim( $_POST['mail_id'] );
+	 //$fname = trim( $_POST['firname'] );
+	 //$lname = trim( $_POST['lasname'] );
+	 $pswrd = $_POST['passwrd'];
+	 
+	if( empty( $_POST['username'] ) )
+	 $error .= '<p class="error">Enter Username</p>';
+	
+	if( empty( $_POST['mail_id'] ) )	
+	 $error .= '<p class="error">Enter Email Id</p>';
+	 elseif( !filter_var($email, FILTER_VALIDATE_EMAIL) )
+	 $error .= '<p class="error">Enter Valid Email</p>';
+	 
+	if( empty( $_POST['passwrd'] ) )
+	 $error .= '<p class="error">Password should not be blank</p>';
+	 
+	/*if( empty( $_POST['firname'] ) )
+	 $error .= '<p class="error">Enter First Name</p>';
+	 elseif( !preg_match("/^[a-zA-Z'-]+$/",$fname) )
+	 $error .= '<p class="error">Enter Valid First Name</p>';
+	 
+	if( empty( $_POST['lasname'] ) )
+	 $error .= '<p class="error">Enter Last Name</p>';
+	 elseif( !preg_match("/^[a-zA-Z'-]+$/",$lname) )
+	 $error .= '<p class="error">Enter Valid Last Name</p>';*/
+	 
+	if( empty( $error ) ){
+
+		array( 'ID' => $user_id, 'user_url' => $website );
+	 
+		$status = wp_update_user( $uname, $pswrd ,$email );
+		 
+		if( is_wp_error($status) ){
+			 
+			$msg = '';
+			 
+			 foreach( $status->errors as $key=>$val ){
+			 
+			 	foreach( $val as $k=>$v ){
+			 
+					 $msg = '<p class="error">'.$v.'</p>';
+		 		}
+	 		}
+	 
+			echo $msg;
+	 
+	 	}
+	 	else {	 
+			$msg = '<p class="success">Registration Successful</p>';	 
+	 		echo $msg;
+	 	}
 
 
+	 	//$user_id = 1;
+		//$new_value = 'some new value';
+
+		// will return false if the previous value is the same as $new_value
+		//update_user_meta( $user_id, 'some_meta_key', $new_value );
+
+		// so check and make sure the stored value matches $new_value
+		//if ( get_user_meta($user_id,  'some_meta_key', true ) != $new_value )
+			//wp_die('An error occurred');
+	 
+	}
+	else {
+	 
+		echo $error;
+	}
+	die(1);
+	}
+}
+add_action( 'wp_ajax_nopriv_setuser', 'set_user_profile' );
+add_action( 'wp_ajax_setuser', 'set_user_profile' );
+/*****************************END AJAX/ANGUALR FUNCTIONS******************/
 
 ?>

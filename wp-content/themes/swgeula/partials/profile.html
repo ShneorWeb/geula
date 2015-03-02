@@ -26,7 +26,7 @@
 
 
                 <div class="form-label"><label for="st-email">{{'Email' | translate}}</label></div>
-                 <div class="field"><input type="text" autocomplete="off" name="mail" id="st-email" value="{{email_id}}" /></div>           
+                 <div class="field"><input type="text" autocomplete="off" name="mail" id="st-email" value="{{user.email}}" /></div>           
                 
                  
                  <div class="form-label"><label for="st-country">{{'Country' | translate}}</label></div>
@@ -39,9 +39,9 @@
                  <div class="field"><input type="text" autocomplete="off" name="ftimezone" id="st-timezone" /></div>
                  
                 <div class="form-label"><label for="st-language">{{'Language_UI' | translate}}</label></div>
-                 <div class="field"><input type="text" autocomplete="off" name="flanguage" id="st-language" /></div>  
+                 <div class="field"><select><option value="he_IL">{{'Hebrew' | translate}}</option><option value="en_US">{{'English' | translate}}</option></select></div>  
                  
-                <div class="frm-button"><input type="button" id="register-me" value="{{'Save_Details' | translate}}" /></div>
+                <div class="frm-button" style="margin-top:30px;"><input type="button" id="register-me" value="{{'Save_Details' | translate}}" /></div>
                
               </form>
              
@@ -54,7 +54,18 @@
             </tab-heading>
 
             <form>
-              first namae, last name, poisition, about
+                  <div class="form-label"><label for="st-firstname">{{'First_Name' | translate}}</label></div>
+                  <div class="field"><input type="text" autocomplete="off" name="firstname" id="st_firstname" value="{{user.firstName}}" /></div>  
+                  
+                  <div class="form-label"><label for="st-lastname">{{'Last_Name' | translate}}</label></div>
+                  <div class="field"><input type="text" autocomplete="off" name="lastname" id="st_lastname" value="{{user.lastName}}" /></div>  
+
+                  <div class="form-label"><label for="st-position">{{'Position' | translate}}</label></div>
+                  <div class="field"><input type="text" autocomplete="off" name="position" id="st_position" value="{{user.position}}" /></div>  
+
+                  <div class="form-label"><label for="st-about">{{'About' | translate}}</label></div>
+                  <div class="field"><textarea  name="about" id="st_about">{{user.about}}</textarea></div>  
+
             </form>
          
           </tab>
