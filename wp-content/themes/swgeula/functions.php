@@ -24,7 +24,17 @@ function my_scripts() {
 		'angular-translate',
 		get_stylesheet_directory_uri() . '/angular/angular-translate.min.js',
 		array( 'angularjs')
-	);	
+	);
+	wp_enqueue_script(
+		'angular.country-select',
+		get_stylesheet_directory_uri() . '/angular/angular.country-select.min.js	',
+		array( 'angularjs')
+	);
+	wp_enqueue_script(
+		'angular-timezones',
+		get_stylesheet_directory_uri() . '/angular/angular-timezones.js	',
+		array( 'angularjs')
+	);		
 	wp_enqueue_script(
 		'angular-translate-loader-partial',
 		get_stylesheet_directory_uri() . '/angular/angular-translate-loader-partial.min.js',

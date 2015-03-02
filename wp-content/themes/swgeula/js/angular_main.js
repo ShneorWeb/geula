@@ -1,13 +1,13 @@
-var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.translate']).config(function($routeProvider, $locationProvider,$translateProvider) {		 
+var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.translate','countrySelect']).config(function($routeProvider, $locationProvider,$translateProvider) {		 
     
 	$locationProvider.html5Mode(true);	
 
 	$translateProvider.translations('en', {
 	    Your_Account: 'Your Account',
 	    Settings: 'Settings.',	    
-	    Profile: 'Profile.',	    
-	    Picture: 'Picture.',	    
-	    Alerts: 'Alerts.',	    
+	    Profile: 'Profile',	    
+	    Picture: 'Picture',	    
+	    Alerts: 'Alerts',	    
 	    Password: 'Password',
 	    Email: 'Email',	    
 	    Country: 'Country',	    
@@ -19,9 +19,9 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	  $translateProvider.translations('he', {
 	    Your_Account: 'החשבון שלך',
 	    Settings: 'הגדרות',	    
-	    Profile: 'פרופיל.',	    
-	    Picture: 'תמונה.',	    
-	    Alerts: 'התראות.',	
+	    Profile: 'פרופיל',	    
+	    Picture: 'תמונה',	    
+	    Alerts: 'התראות',	
 	    Password: 'סיסמה',
 	    Email: 'אימייל',	
 	    Country: 'מדינה',	    

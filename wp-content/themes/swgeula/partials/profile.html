@@ -15,6 +15,9 @@
               <div id="error-message"></div>
                
               <form method="post" name="st-register-form">         
+
+                <input type="hidden" id="action" name="action" value="register_action" />
+                <input type="hidden" id="username" name="username" value="{{email_id}}" />
                 
                 <div class="form-label"><label for="st-psw">{{'Password' | translate}}</label></div>
                  <div class="field"><input type="password" name="password" id="st-psw" /></div>
@@ -23,11 +26,11 @@
 
 
                 <div class="form-label"><label for="st-email">{{'Email' | translate}}</label></div>
-                 <div class="field"><input type="text" autocomplete="off" name="mail" id="st-email" /></div>           
+                 <div class="field"><input type="text" autocomplete="off" name="mail" id="st-email" value="{{email_id}}" /></div>           
                 
                  
                  <div class="form-label"><label for="st-country">{{'Country' | translate}}</label></div>
-                 <div class="field"><input type="text" autocomplete="off" name="fcountry" id="st-country" /></div>
+                 <div class="field"><country-select data-ng-model="selectedCountry"></country-select></div>                 
                  
                 <div class="form-label"><label for="st-city">{{'City' | translate}}</label></div>
                  <div class="field"><input type="text" autocomplete="off" name="fcity" id="st-city" /></div>
