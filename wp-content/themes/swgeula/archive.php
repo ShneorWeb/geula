@@ -1,44 +1,87 @@
 <?php get_header(); ?>	
-
-    <div class="col-md-12">			
+    <div class="col-md-12"style="margin-top:20px;">			
 			<div class="page-header">	
 				
-				<!--<?php $post = $posts[0]; // Hack. Set $post so that the_date() works. ?>
-				<?php /* If this is a category archive */ if (is_category()) { ?>
-				<h1 class="pagetitle">Archive for the ‘<?php single_cat_title(); ?>’ Category</h1>
-				<?php /* If this is a tag archive */ } elseif( is_tag() ) { ?>
-				<h1 class="pagetitle">Posts Tagged ‘<?php single_tag_title(); ?>’</h1>
-				<?php /* If this is a daily archive */ } elseif (is_day()) { ?>
-				<h1 class="pagetitle">Archive for <?php the_time('F jS, Y'); ?></h1>
-				<?php /* If this is a monthly archive */ } elseif (is_month()) { ?>
-				<h1 class="pagetitle">Archive for <?php the_time('F, Y'); ?></h1>
-				<?php /* If this is a yearly archive */ } elseif (is_year()) { ?>
-				<h1 class="pagetitle">Archive for <?php the_time('Y'); ?></h1>
-				<?php /* If this is an author archive */ } elseif (is_author()) { ?>
-				<h1 class="pagetitle">Author Archive</h1>
-				<?php /* If this is a paged archive */ } elseif (isset($_GET['paged']) && !empty($_GET['paged'])) { ?>
-				<h1 class="pagetitle">Blog Archives</h1>
-				<?php } ?>-->
-				
 
-				<div class="col-md-12">	
-					<?php echo $cfs->get('image');
-				    	$cat_image =  get_category_meta('image');?>
-				    		<?php echo wp_get_attachment_image($cat_image, 'category_image'); ?>
+				<div class="col-md-12 header_category">	
+
+					
+					  
+						<?php $child = get_category($cat); 
+						$parent = $child->parent;
+						$parent_name = get_category($parent);
+						$parent_name = $parent_name->name;
+						$category_id = get_cat_ID( $parent_name );
+						$category_link = get_category_link( $category_id );
+						$this_category = get_category($cat);
+					
+						
+						if (($category_id) != 0){
+						echo '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> <a href="'.  esc_url( $category_link ) .'" style="font-size:18px; color:#7f8a94;">'.$parent_name .'</a>';}?>
+							
+
+								<?php 
+				    				$cat_image =  get_category_meta('image');
+				    				$page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
+				    				$page_bg_image_url = $page_bg_image[0];
+				    				$cat_name = get_category(get_query_var('cat'))->name;?>
+				    				<div class="image_category" style="background-image:url(<?php echo $cat_image ?>); background-repeat:no-repeat;
+background-size:contain;
+background-position:right;">
+				    			<?php
+				    				echo '<div class="current_category_name">'. $cat_name.'</div>';
+				    				 ?>
+				    				 <div class="current_category_description"><?php echo category_description($cat->term_id);  ?>
+				    		</div>
+				    		</div>
 				</div>
+			</div>
+
+			<div >
+					<div class="col-md-12">
+							<div class="search_by">
+											<div style="float:right;">
+													<span class="glyphicon glyphicon-search" aria-hidden="true"></span>  חיפוש
+											</div>
+											<div style="float:left;">
+													<span style="padding-left:30px;">חדש לישן</span>   <span class="glyphicon glyphicon-menu-down" aria-hidden="true" style="font-size: 1.2em; color:black;"></span>
+													<span style="padding-left:30px;">נושא  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
+													<span style="padding-left:30px;">מוסר שיעור   <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
+											</div>
+
+
+							</div>
+
+					</div>
+
 			</div>
 				    	
 			   	
-			<?php $this_category = get_category($cat); ?>
 
+		<?php $this_category = get_category($cat);
+  if (get_category_children($this_category->cat_ID) != "") {?>
 			<div class="categories">
 
 				<ul class="product_list" style="padding:0px;">
+
+
 					<?php
-					if (is_category()) {
+					if (is_category()|| is_single()) {
+						$this_category = get_category($cat);
+						
 					$id = get_query_var('cat');
-					$args = array(	'parent' => $id );
-						foreach (get_categories($args) as $cat) : ?>
+					$args = array(	 'parent' => $this_category->cat_ID,
+ 
+  'hide_empty' => 0
+					 );
+
+
+ 
+					$count = 0;
+					
+						foreach (get_categories($args) as $cat) : 
+
+							?>
 
 
 							<div class="col-sm-4 ">
@@ -82,7 +125,7 @@
 
 												    echo '<div class="author_des"><div class="category_square_author_name">' . $the_user->user_login . '</div></br>';
 												    
-												    echo get_the_author_meta('subject', $user_id );?>
+												    echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';?>
 											    	<div class="category_square_number">
 														38 שיעורים בספריה
 													</div></div>
@@ -112,10 +155,11 @@
 									</li>
 							</div>
 
-							<?php $count = $the_query->current_post + 1; ?>
+							<?php $count = $count + 1;
+						 ?>
 							<?php if( $count % 3 == 0): ?>
 
-							</div><div class="row">
+							<div class="rows"></div>
 							
 							<?php endif; ?>
 
@@ -126,22 +170,26 @@
 						<?php endforeach; } ?>
 				</ul>
 				</div>
-			</div>
-			
-				<!--<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+				<?php } 
+
+					else{
+						if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 				<article>
 
 				    <div class="page-header">	
 				    	<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-				    	
-
-				    	<p> <?php the_author(); ?> on <?php echo the_time('l, F jS, Y'); ?> in <?php the_category( ', ' );?>.  <a href="<?php comments_link(); ?>"><?php comments_number(); ?></a></p>
+				    	<p>By <?php the_author(); ?> on <?php echo the_time('l, F jS, Y'); ?> in <?php the_category( ', ' );?>.  <a href="<?php comments_link(); ?>"><?php comments_number(); ?></a></p>
 				    </div>				
 
 					<?php the_excerpt(); ?>
 
 				</article>
-				<?php endwhile; endif; ?>-->
+				<?php endwhile; endif; 
+					}
+				?>
+			</div>
+			
+				
 			<div class="col-md-3">	
 				
 				
@@ -149,6 +197,9 @@
 			<!-- .sidebar -->			
 			</div>
 		</div>
+
+		
+
 			
-			<?php get_footer(); ?>
+<?php get_footer(); ?>
 				

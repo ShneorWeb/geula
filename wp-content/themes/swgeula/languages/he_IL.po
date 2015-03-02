@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
-"POT-Creation-Date: 2015-02-25 14:48+0200\n"
-"PO-Revision-Date: 2015-02-25 14:49+0200\n"
+"POT-Creation-Date: 2015-02-26 14:31+0200\n"
+"PO-Revision-Date: 2015-02-26 14:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -16,280 +16,70 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;esc_attr_e\n"
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\geula\\wp-content\\themes\\swgeula\n"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:56
-msgid "http://www.neshi.com/"
-msgstr ""
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:24
+msgid "Email"
+msgstr "אימייל"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:57
-msgid "אתר נשי חב\"ד"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:135
-msgid "Are you lost?"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:135
-#, php-format
-msgid "&larr; Back to %s"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:181
-msgid "<strong>ERROR</strong>: Enter a username or e-mail address."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:185
-msgid ""
-"<strong>ERROR</strong>: There is no user registered with that email address."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:197
-msgid "<strong>ERROR</strong>: Invalid username or e-mail."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:211
-msgid "Password reset is not allowed for this user"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:223
-msgid "Someone requested that the password be reset for the following account:"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:226
-#, php-format
-msgid "Username: %s"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:227
-msgid "If this was a mistake, just ignore this email and nothing will happen."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:228
-msgid "To reset your password, visit the following address:"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:238
-#, php-format
-msgid "[%s] Password Reset"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:244
-msgid "The e-mail could not be sent."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:244
-msgid "Possible reason: your host may have disabled the mail() function..."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:265
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:268
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:273
-msgid "Invalid key"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:308
-msgid "<strong>שגיאה:</strong>: נא למלא שם משתמש"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:311
-msgid "<strong>שגיאה:</strong>: שם המשתמש לא קביל. נא למלא שם משתמש אחר"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:314
-msgid "<strong>שגיאה:</strong>: שם המשתמש הזה כבר בשמוש, נא למלא שם משתמש אחר"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:319
-msgid "<strong>שגיאה:</strong>: נא למלא כתובת דוא\"ל."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:321
-msgid "<strong>שגיאה:</strong>: כתובת הדוא\"ל לא תקינה"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:324
-msgid ""
-"<strong>שגיאה:</strong>: כתובת הדוא\"ל הזאת כבר שומה במערכת. אנא בחרי כתובת "
-"דוא\"ל אחרת"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:360
-#, php-format
-msgid ""
-"<strong>ERROR</strong>: Couldn&#8217;t register you... please contact the <a "
-"href=\"mailto:%s\">webmaster</a> !"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:447
-msgid "Sorry, that key does not appear to be valid."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:451
-msgid "שכחת סיסמה?"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:451
-msgid "אנא הזיני שם משתמש או כתובת דוא\"ל. סיסמה חדשה תשלח אלייך במייל."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:459
-msgid "Username or E-mail:"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:464
-msgid "Get New Password"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:468
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:525
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:608
-msgid "Log in"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:470
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:527
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:604
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:764
-msgid "Register"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:490
-msgid "The passwords do not match."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:502
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:521
-msgid "Reset Password"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:502
-msgid "Enter your new password below."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:509
-msgid "New password"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:513
-msgid "Confirm new password"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:517
-msgid "Strength indicator"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:518
-msgid ""
-"Hint: The password should be at least seven characters long. To make it "
-"stronger, use upper and lower case letters, numbers and symbols like ! \" ? "
-"$ % ^ &amp; )."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:561
-msgid "Registration Form"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:561
-msgid "רישום לאתר נשי חב\"ד"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:609
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:765
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:767
-msgid "Password Lost and Found"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:609
-msgid "Lost your password?"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:658
-msgid "You have logged in successfully."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:664
-msgid "Close"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:695
-msgid ""
-"<strong>ERROR</strong>: Cookies are blocked or not supported by your "
-"browser. You must <a href='http://www.google.com/cookies.html'>enable "
-"cookies</a> to use WordPress."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:699
-msgid "You are now logged out."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:701
-msgid "User registration is currently not allowed."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:703
-msgid "Check your e-mail for the confirmation link."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:705
-msgid "Check your e-mail for your new password."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:707
-msgid "Registration complete. Please check your e-mail."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:709
-msgid "Your session has expired. Please log-in again."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:711
-msgid ""
-"<strong>You have successfully updated WordPress!</strong> Please log back in "
-"to experience the awesomeness."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:731
-msgid "Login with an exisiting account"
-msgstr "כניסה באמצעות חשבון קיים"
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:732
-msgid "enter your email address and your password"
-msgstr "הזן את כתובת האימייל ואת הסיסמה שלך"
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:737
-msgid "Username"
-msgstr "שם משתמש"
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:741
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:25
 msgid "Password"
 msgstr "סיסמא"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:745
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:43
+msgid "Login with an exisiting account"
+msgstr "כניסה באמצעות חשבון קיים"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:44
+msgid "enter your email address and your password"
+msgstr "הזן את כתובת האימייל ואת הסיסמה שלך"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:50
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:52
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:54
+msgid "ERROR:"
+msgstr "שגיאה:"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:50
+msgid "Invalid username and/or password."
+msgstr "שם משתמש או סיסמה שגויים"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:52
+msgid "Username and/or Password is empty"
+msgstr "שם המתשמש או הסיסמה ריקים"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:54
+msgid "You are logged out."
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:62
 msgid "Remember Me"
 msgstr "תשאיר אותי מחובר"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:747
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:63
 msgid "Log In"
 msgstr "היכנס"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:765
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:767
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:69
 msgid "Lost my password"
 msgstr "שכחתי את הסיסמה"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:154
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:73
+msgid "Or sign in with your Google account"
+msgstr "או היכנס באמצעות חשבון גוגל"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:89
+msgid "Is this your first time? "
+msgstr "זאת הפעם הראשונה שלך?"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:89
+msgid "Create a new account"
+msgstr "צור חשבון חדש"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:163
 msgid "Header Menu"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:171
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:180
 msgid "Right Menu"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/custom-profile.php:54
-msgid "עלייך להיות מחוברת למערכת כדי לעדכן את הפרופיל."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/custom-profile.php:68
-msgid "הפרופיל עודכן בהצלחה"
 msgstr ""
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/index.php:7
@@ -299,6 +89,9 @@ msgstr "שלום עולם"
 #: C:\wamp\www\geula\wp-content\themes\swgeula/index.php:9
 msgid "Web site"
 msgstr "אתר אינטרנט"
+
+#~ msgid "Username"
+#~ msgstr "שם משתמש"
 
 #~ msgid "הזן את"
 #~ msgstr "הזן את"

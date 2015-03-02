@@ -1,26 +1,13 @@
 <?php
 
-function theme_styles() {
+function my_scripts() {	
 
-	
-	wp_enqueue_style( 'main_css', get_template_directory_uri() . '/style.css' );
-
-}
-add_action( 'wp_enqueue_scripts', 'theme_styles' );
-
-
-function my_scripts() {
+	wp_enqueue_style( 'swgeula_style', get_template_directory_uri() . '/style.css');
 
 	wp_enqueue_script(
-		'jquery',
-		'http://code.jquery.com/jquery-1.11.2.min.js'
+		'googlebutton',
+		'https://apis.google.com/js/client:platform.js?defer&async'
 	);
-	wp_enqueue_script(
-		'jquery',
-		'http://code.jquery.com/jquery-migrate-1.2.1.min.js'
-	);
-
-	//wp_enqueue_style( 'swgeula_style', get_template_directory_uri() . '/style.css');
 
 	
 	wp_enqueue_script(
@@ -45,6 +32,7 @@ function my_scripts() {
 			'partials' => trailingslashit( get_template_directory_uri() ) . 'partials/'
 			)
 	);
+
 }
 
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
@@ -58,6 +46,27 @@ add_action('after_setup_theme', 'lang_setup');
 
 
 /************************** user registration stuff: ************************************/
+function my_front_end_login_fail( $username ) {	
+   $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+   // if there's a valid referrer, and it's not the default log-in screen
+   if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+      wp_redirect( add_query_arg( 'login', 'failed',$referrer ) );  // let's append some information (login=failed) to the URL for the theme to use
+      exit;
+   }
+}
+add_action( 'wp_login_failed', 'my_front_end_login_fail' );  // hook failed login
+
+function verify_username_password( $user, $username, $password ) {  
+    $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
+    if( empty($username) || empty($password) ) {  
+    	if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
+        	wp_redirect( add_query_arg( 'login', 'empty',$referrer ) );  
+        	exit;  
+        }
+    }  
+}  
+add_filter( 'authenticate', 'verify_username_password', 1, 3);  
+
 function mb_basename($file) {
 	return end(explode('/',$file));
 }
@@ -152,6 +161,7 @@ function register_theme_menus() {
 	register_nav_menus(
 		array(
 			'header-menu'	=> _('Header Menu'),
+			'right-menu' => _( 'Right Menu' ),
 			
 
       
@@ -164,17 +174,7 @@ function register_theme_menus() {
 }
 add_action( 'init', 'register_theme_menus');
 
-function register_my_menus() {
-register_nav_menus(
-array(
-			
-			'right-menu' => _( 'Right Menu' ),
 
-      
-			)
-);
-}
-add_action( ‘init’, ‘register_my_menus’ );
 
 // Function for creating Widegets
 function create_widget($name, $id, $description) {
@@ -204,7 +204,8 @@ create_widget("Front Page Right", "front-right", "Displays on the right hand sid
  add_theme_support( 'post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video')); // Add 3.1 post format theme support.
 	
 	add_theme_support( 'post-thumbnails' );
-	add_image_size('category_image', 1371, 0);
+	add_image_size('category_image', 0, 290);
+
 
 // Filter function
 function add_contact_fields($profile_fields) {
@@ -216,5 +217,7 @@ function add_contact_fields($profile_fields) {
 }
 // Adding the filter
 add_filter('user_contactmethods', 'add_contact_fields');
+
+
 
 ?>
