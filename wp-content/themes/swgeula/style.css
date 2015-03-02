@@ -298,10 +298,7 @@ width: 700px;}
 width: 770px;}
 }
 
-@media (min-width: 2000px){
-.container {
-width: 1700px;}
-}
+
 @media (min-width: 1300px){
 .container {
 width: 1000px;}
@@ -320,6 +317,10 @@ width: 1000px;}
     float: none;
     }
   }
+  @media (min-width: 2000px){
+.container {
+width: 1700px;}
+}
 
 .category_square{
   background:#ffffff;

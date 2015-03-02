@@ -1,5 +1,5 @@
 <?php get_header(); ?>	
-    <div class="col-md-12"style="margin-top:20px;">	
+    <div class="col-md-12"style="margin-top:34px;">	
     <?php
 						$child = get_category($cat); 
 						$parent = $child->parent;
