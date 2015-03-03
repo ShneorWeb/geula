@@ -20,7 +20,7 @@
 					
 						
 						
-						echo '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span> <a href="'.  esc_url( $category_link ) .'" style="font-size:18px; color:#7f8a94;">'.$parent_name .'</a>';
+						echo '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="color:#7f8a94;"></span> <a href="'.  esc_url( $category_link ) .'" style="font-size:18px; color:#7f8a94;">'.$parent_name .'</a>';
 						?>
 							
 
@@ -85,7 +85,7 @@ background-position:right;">
 							?>
 
 
-							<div class="col-sm-4 ">
+							<div class="col-md-4 col-sm-12 col-xs-12 ">
 
 
 							<?php $color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category'));

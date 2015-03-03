@@ -54,7 +54,7 @@
 	</script>  
 
     <?php //endif;?>  
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head> 
 
 <body <?php body_class(); ?>>
@@ -93,8 +93,8 @@
 
    
 		<div id="wrap">			
-			<div class="container">
-<div class="row" style="margin-top:65px;">
+			<div class="container-fluid">
+<div class="row" style="margin-top:32px;">
     
 
         
