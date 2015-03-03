@@ -70,8 +70,7 @@
           </button>
            
           <a class="navbar-brand" href="<?php bloginfo( 'url' ); ?>" target="_self"><?php bloginfo( 'name' ); ?></a>
-         
-        </div><div style="float:left;"><?php 
+         <div class="menu-top" style="float:left;"><?php 
             $args = array(
               'menu'        => 'header-menu',
               'menu_class'  => 'nav navbar-nav',
@@ -79,6 +78,7 @@
             );
             wp_nav_menu( $args );
           ?></div>
+        </div>
 
         <div class="navbar-collapse collapse">
 
