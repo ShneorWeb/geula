@@ -1,13 +1,13 @@
-var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.translate']).config(function($routeProvider, $locationProvider,$translateProvider) {		 
+var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.translate','countrySelect']).config(function($routeProvider, $locationProvider,$translateProvider) {		 
     
 	$locationProvider.html5Mode(true);	
 
-	$translateProvider.translations('en', {
+	$translateProvider.translations('en_US', {
 	    Your_Account: 'Your Account',
 	    Settings: 'Settings.',	    
-	    Profile: 'Profile.',	    
-	    Picture: 'Picture.',	    
-	    Alerts: 'Alerts.',	    
+	    Profile: 'Profile',	    
+	    Picture: 'Picture',	    
+	    Alerts: 'Alerts',	    
 	    Password: 'Password',
 	    Email: 'Email',	    
 	    Country: 'Country',	    
@@ -15,13 +15,21 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    Time_Zone: 'Time Zone',	    
 	    Language_UI: 'Language UI',	
 	    Save_Details: 'Save Details',	
+	    Hebrew: 'Hebrew',
+	    English: 'English',
+	    First_Name : 'First Name',
+	    Last_Name : 'Last Name',
+	    Position : 'Position',
+	    About : 'About',
+	    Current_Password : 'Current Password',
+	    New_Password : 'New Password'
 	  });
-	  $translateProvider.translations('he', {
+	  $translateProvider.translations('he_IL', {
 	    Your_Account: 'החשבון שלך',
 	    Settings: 'הגדרות',	    
-	    Profile: 'פרופיל.',	    
-	    Picture: 'תמונה.',	    
-	    Alerts: 'התראות.',	
+	    Profile: 'פרופיל',	    
+	    Picture: 'תמונה',	    
+	    Alerts: 'התראות',	
 	    Password: 'סיסמה',
 	    Email: 'אימייל',	
 	    Country: 'מדינה',	    
@@ -29,17 +37,24 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    Time_Zone: 'אזור זמן',	    
 	    Language_UI: 'שפת ממשק',
 	    Save_Details: 'שמירת נתונים',	     
+	    Hebrew: 'עברית',
+	    English: 'אנגלית',
+	    First_Name : 'שם פרטי',
+	    Last_Name : 'שם משפחה',
+	    Position : 'תפקיד',
+	    About : 'אודות',
+	    Current_Password : 'סיסמה נוכחית',
+	    New_Password : 'סיסמה חדשה'
 	  });
-	$translateProvider.preferredLanguage('he');
+	$translateProvider.preferredLanguage('he_IL');
  	
 	$routeProvider				
-	.when('/', {				
+	.when('/', {						
+	});
+	/*.when('/edit-profile', {		
+		templateUrl: myLocalized.theme_dir + 'partials/profile.html',
 		controller: 'Profile'
-	})
-	.when('/edit-profile', {		
-		templateUrl: myLocalized.partials + 'profile.html',
-		controller: 'Profile'
-	})	
+	})*/	
 })
 .controller('Content', function($scope, $http, $routeParams) {
 	$http.get('wp-json/posts/').success(function(res){
@@ -51,69 +66,64 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		$scope.post = res;
 	});
 })
-.controller('Profile', function($scope, $http, $routeParams,$location,$window) {
+.controller('Profile', function($scope, $http, $routeParams,$translate) {
 	console.log("IN");
-	console.log($location.url());
-	$scope.tabs = [
-	    { title:'Dynamic Title 1', content:'Dynamic content 1' },
-	    { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
-	  ];
+	//console.log($location.url());
+	var userID = 1;		
+	
+	$scope.user = {};
+	$scope.PSWRD_MATCH_ERROR = false;	
+	$scope.user.password = '';
+	$scope.user.password2 = '';
+	console.log("lang="+$translate.preferredLanguage());		
 
-	  $scope.alertMe = function() {
-	    setTimeout(function() {
-	      $window.alert('You\'ve selected the alert tab!');
-	    });
-	  };
+	$scope.template = {name: "edit profile 1",url: myLocalized.theme_dir + 'partials/profile.html'};
+	
+	$http.get('/geula/wp-admin/admin-ajax.php?action=getuser&uid=' + userID).success(function(res){	
+		//console.log(res);
+		$scope.user = res;		
+
+		$scope.user.lang = $translate.preferredLanguage();
+
+		/*$scope.changeLanguage = function (key) {
+    		$translate.use(key);
+  		};*/
+	});
+
+	$scope.checkError = function()  {
+		console.log("IN checkError");		
+		if ($scope.user.password.length && $scope.user.password2.length) {
+			if ($scope.user.password != $scope.user.password2) {				
+				$scope.PSWRD_MATCH_ERROR = true;				
+				return true;
+			}
+		}
+		return false;
+	}
 
 
-	if ($location.url().indexOf("eprf")!=-1) $scope.template = {name: "edit profile 1",url: myLocalized.partials + 'profile.html'};	
-	//else $scope.template = {name: "edit profile 2",url: myLocalized.partials + 'profile2html'};	
+	$scope.submitTheForm = function(item, event) {
+	    if ($scope.checkError()) return false;
+       console.log("--> Submitting form");
+       var dataStr = 'action=setuser' + 
+       					'&uid=2' + 
+       					'&password=' + $scope.user.password;                    
+       
+        
 
-	//if ($location.url().indexOf("edit-profile/2")!=-1) $location.path("/edit-profile/2");
-	//else $location.path("/edit-profile");
-	//$scope.$routeParams = $routeParams;		
-	/*myApp.run(['$route', function($route)  {
-  		$route.reload();
-	}]);*/
-	//myApp.run(['$route', angular.noop]);
-	/*$scope.templates =
-    [ { name: 'profile1', url: 'partials/profile1.html'},
-      { name: 'profile2', url: 'partials/profile2.html'} ];
-  	$scope.template = $scope.templates[0];	
-	console.log("IN2");*/
+       console.log(dataStr);
+      
+	   $http({
+            url: 'http://127.0.0.1/geula/wp-admin/admin-ajax.php?action=setuser',
+            method: "POST",
+            data: dataStr,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function (data, status, headers, config) {
+                console.log(data);
+            }).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+     }
+	
 });
 
-/*.controller('MainCtrl',[ // <- Use this controller outside of the ng-view!
-  '$rootScope','$window',
-  function($rootScope,$window){
-    $rootScope.$on("$routeChangeStart", function (event, next, current) {
-      // next.$$route <-not set when routed through 'otherwise' since none $route were matched
-      if (next && !next.$$route) {
-        event.preventDefault(); // Stops the ngRoute to proceed with all the history state logic
-        // We have to do it async so that the route callback 
-        // can be cleanly completed first, so $timeout works too
-        $rootScope.$evalAsync(function() {
-          // next.redirectTo would equal be 'http://yourExternalSite.com/404.html'
-          $window.location.href = next.redirectTo;
-        });
-      }
-    });
-  }
-]);*/
-/*
-myApp.run(function($location, $rootElement) {
-  		$rootElement.off('click');
-	})
-}*/
-/*
-angular.module('appgeula',['appgeula.directives']);
-var myModule = angular.module('appgeula.directives', []);
-
-myModule.directive('edprofile', function() {
-    return { 
-        restrict:'E',
-        replace:true,
-        templateUrl: myLocalized.partials + 'profile1.html',
-    }
-});
-*/

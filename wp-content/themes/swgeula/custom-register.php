@@ -617,6 +617,18 @@ case 'register' :
 <div class="col-md-12"> 
     <div id="div-login">   		
 
+    		<script>
+    		function RegSetFields(f)  {
+    			f.user_login.value=f.user_email.value;
+    			var arrName = f.full_name.value.split(" ");    			
+    			f.first_name.value = arrName[0];
+    			f.last_name.value = arrName[1];
+
+    			return true;
+
+    		}
+    		</script>
+
     		<h1><?php _e("Creating a new account","swgeulatr");?></h1>
     		<h2><?php _e("enter your full name and email address","swgeulatr");?></h2>
 
@@ -625,15 +637,18 @@ case 'register' :
 				login_header(__('Registration Form'), '', $errors);
 			?>
 
-			<form name="registerform" id="registerform" action="<?php echo esc_url( site_url('/custom-register-page/?action=register', 'login_post') ); ?>" method="post" novalidate="novalidate" onsubmit="this.user_login.value=this.user_email.value;">
+			<form name="registerform" id="registerform" action="<?php echo esc_url( site_url('/custom-register-page/?action=register', 'login_post') ); ?>" method="post" novalidate="novalidate" onsubmit="RegSetFields(this)">
 				<p>		
 					<input type="hidden" name="user_login" id="user_login" value="<?php echo esc_attr(wp_unslash($user_login)); ?>" />
 				</p>
 				<p>					
-					<input type="text" name="first_name" id="first_name" placeholder="<?php _e('First Name','swgeulatr'); ?>" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" />
+					<input type="hidden" name="first_name" id="first_name" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" />
 				</p>
 				<p>					
-					<input type="text" name="last_name" id="last_name" placeholder="<?php _e('Last Name','swgeulatr'); ?>" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" />
+					<input type="hidden" name="last_name" id="last_name" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" />
+				</p>
+				<p>					
+					<input type="text" name="full_name" id="full_name" placeholder="<?php _e('Name','swgeulatr'); ?>" value="<?php echo esc_attr( wp_unslash( $first_name ) ) . '' . esc_attr( wp_unslash( $last_name ) ); ?>" />
 				</p>
 				<p>					
 					<input type="email" name="user_email" id="user_email" placeholder="<?php _e('E-mail','swgeulatr') ?>" value="<?php echo esc_attr( wp_unslash( $user_email ) ); ?>" />
