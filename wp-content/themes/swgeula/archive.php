@@ -9,6 +9,8 @@
 						$category_link = get_category_link( $category_id );
 						$this_category = get_category($cat);
      if (($category_id) != 0){	?>	
+     	<?php $this_category = get_category($cat);
+  if (get_category_children($this_category->cat_ID) != "") {?>
 			<div class="page-header">	
 				
 
@@ -62,8 +64,7 @@ background-position:right;">
 				    	
 			   	
 
-		<?php $this_category = get_category($cat);
-  if (get_category_children($this_category->cat_ID) != "") {?>
+		
 			<div class="categories">
 
 				<ul class="product_list" style="padding:0px;">
@@ -173,10 +174,52 @@ background-position:right;">
 						<?php endforeach; } ?>
 				</ul>
 				</div>
-				<?php } 
+				
+			</div>
+			
+				
+			<div class="col-md-3">	
+				
+				
+				<?php get_sidebar(); ?>
+			<!-- .sidebar -->			
+			</div>
+			<?php } 
 
-					else{
-						if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			else{?>
+
+				<div class="page-header">	
+				
+
+				<div class="col-md-12 header_category">	
+
+					
+					  
+						<?php 
+					
+						
+						
+						echo '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="color:#7f8a94;"></span> <a href="'.  esc_url( $category_link ) .'" style="font-size:18px; color:#7f8a94;">'.$parent_name .'</a>';
+						?>
+							
+
+								<?php 
+				    				$cat_image =  get_category_meta('image');
+				    				$page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
+				    				$page_bg_image_url = $page_bg_image[0];
+				    				$cat_name = get_category(get_query_var('cat'))->name;?>
+				    				<div class="image_category" style="background-image:url(<?php echo $cat_image ?>); background-repeat:no-repeat;
+background-size:contain;
+background-position:right;">
+				    			<?php
+				    				echo '<div class="current_category_name"><h1 style="padding-top:20px;">'. $cat_name.'</h1></div>';
+				    				 ?>
+				    				 <div class="current_category_description"><h4><?php echo category_description($cat->term_id);  ?></h4>
+				    		</div>
+				    		</div>
+				</div>
+			</div>
+						<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 				<article>
 
 				    <div class="page-header">	
@@ -188,17 +231,8 @@ background-position:right;">
 
 				</article>
 				<?php endwhile; endif; 
-					}
-				?>
-			</div>
-			
-				
-			<div class="col-md-3">	
-				
-				
-				<?php get_sidebar(); ?>
-			<!-- .sidebar -->			
-			</div>
+			}
+			?>
 		<?php } else{ ?>
 		<div class="page-header">
 			<div class="col-md-12 header_category">	

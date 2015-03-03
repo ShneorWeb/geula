@@ -482,9 +482,18 @@ padding-left: 10%;
   }
  
 }
+
+@media (max-width: 1300px) and (min-width:770px){
+  .container-fluid {
+  padding-right: 200px;
+  padding-left: 20px;
+  }
+ 
+}
+
 @media (min-width: 1600px){
 .container-fluid {
-max-width:1400px;
+max-width:1600px;
 }
 }
 .navbar-brand{
