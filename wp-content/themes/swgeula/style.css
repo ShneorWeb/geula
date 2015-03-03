@@ -339,12 +339,22 @@ span.category_top_time{
   }
 .category_square_content{
   padding:20px;
+  padding-top:5px;
 
+}
+.category_square_content h4, .category_square_content h5, .category_square_content h6{
+margin-top: 0px;
+margin-bottom: 0px;
 }
 .category_square-format{
   color:#b2bac2;
   font-size:16px;
 }
+.search_by h5{
+  margin-top:0px;
+  margin-bottom:0px;
+}
+
 .category_square_content h3 a{
     font-size:20px; 
     color:#384047;
@@ -385,9 +395,9 @@ span.category_top_time{
   margin-top:10px;
 }
 span.oval{
-  padding:10px;
-  padding-top:5px;
-  padding-bottom:5px;
+  padding:12px;
+  padding-top:0px;
+  padding-bottom:0px;
   border-radius:20px;
   margin-left:10px;
 }
@@ -455,9 +465,12 @@ padding-right: 30%;
 }
 .current_category_description{
     padding-right: 30%;
-padding-bottom: 30px;
+padding-bottom: 20px;
 padding-left: 10%;
 }
 .navbar{
   min-height:64px;
+}
+.navbar-nav>li>a, .navbar-brand{
+  line-height: 34px;
 }

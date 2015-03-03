@@ -141,7 +141,7 @@ background-position:right;">
 											<div class="category_square_oval"><h4>
 											<?php
 												
-											   			 echo '<span class="oval" style="background:'. $color .'; color:#ffffff;">חדש</span>';
+											   			 echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';
 													
 													$values = get_category_meta('subject', get_term_by('slug', $cat->cat_name, 'category'));
 													foreach ($values as $value => $label) {
