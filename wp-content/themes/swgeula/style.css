@@ -157,12 +157,15 @@ body {
        url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.ttf) format('truetype');
 }
 
-html, body {
+body {
 	background:#f1f1f1;
 	direction:rtl;
 	text-align:right;
 	
 	font-family: 'Open Sans Hebrew', Helvetica, Arial, Sans-Serif;
+}
+html{
+  margin-top:32px;
 }
 img{
   max-width: 100%;
