@@ -252,6 +252,9 @@ function set_user_profile(){
 		 
 		if( empty( $_POST['password'] ) )
 		 $error .= '<p class="error">Password should not be blank</p>';
+
+
+		//wp_check_password( $password, $hash) 
 		 
 		/*if( empty( $_POST['firname'] ) )
 		 $error .= '<p class="error">Enter First Name</p>';
