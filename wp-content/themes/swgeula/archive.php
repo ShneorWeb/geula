@@ -213,17 +213,22 @@ background-position:right;">
 				    				$page_bg_image_url = $page_bg_image[0];
 				    				$cat_name = get_category(get_query_var('cat'))->name;?>
 				    				<div class="image_category" style="background-image:url(<?php echo $cat_image ?>); background-repeat:no-repeat; background-size:contain; background-position:right;">
-				    				<?php
-				    				echo '<div class="current_category_name">'. $cat_name.'</div>';
-				    				 ?>
-				    				 <div class="current_category_description"><?php echo category_description($cat->term_id);  ?>
-				    		</div>	
+					    				<?php
+					    				echo '<div class="current_category_name">'. $cat_name.'</div>';
+					    				 ?>
+					    				 <div class="current_category_description"><?php echo category_description($cat->term_id);  ?>
+					    				</div>	
 				    				</div>
 			</div>
 		</div>
+	</div>
+	<div style="clear:both;"></div>
+	</div></div>
+
+
 		<?php $this_category = get_category($cat);
   if (get_category_children($this_category->cat_ID) != "") {?>
-			<div class="categories">
+			<div class="categories sub_categories">
 
 				<ul class="product_list" style="padding:0px;">
 
@@ -242,8 +247,9 @@ background-position:right;">
 						foreach (get_categories($args) as $cat) : 
 
 							?>
-
-
+							<div class="container-fluid">
+							<div class="row">
+							<div class="col-sm-12 ">
 							<div class="col-sm-12 ">
 								<h3><a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->cat_name; ?></a></h3>
 								<?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
@@ -253,23 +259,118 @@ background-position:right;">
 							
 
 									
-							</div>
+							</div></div></div></div>
+							<div><?php
+							$cat_image =  get_category_meta('image', get_term_by('slug', $cat->cat_name, 'category'));
+				    				$page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
+				    				$page_bg_image_url = $page_bg_image[0];
+				    				$cat_name = get_category(get_query_var('cat'))->name;?>
+				    				<div class="image_category" style="background-image:url(<?php echo $cat_image ?>); background-repeat:no-repeat;
+background-size:contain;
+background-position:right;">
 
-							<?php $count = $count + 1;
-						 ?>
-							<?php if( $count % 3 == 0): ?>
 
-							<div class="rows"></div>
+										<div class="container-fluid">
+							<div class="row">
+							<div class="col-sm-12 ">
+									
+									<?php 
+						
+					$id = get_query_var('cat');
+					$args = array(	 'parent' => $cat->cat_ID, 'hide_empty' => 0, 'number' => 3, );
+
+
+ 
+					$count = 0;
+					
+						foreach (get_categories($args) as $cat) : 
+
+
 							
-							<?php endif; ?>
+							$color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category'));
+													
+													?>
+									<div class="col-md-4 col-sm-12 col-xs-12 ">
+									<li class="category_square"> 
+										<div class="category_top_square" style="background:<?php echo $color; ?>">
+											<p><span class="category_top_time">12 שעות</span>
+											<span class="glyphicon glyphicon-folder-open" style="padding-right:20px;"></span></p>
+										</div>
+										<div class="category_square_content"><h5>
+											<div class="category_square-format">
+												<?php $values =  get_category_meta('type', get_term_by('slug', $cat->cat_name, 'category'));
+												foreach ($values as $value => $label) {
+												    echo '<p><span>' . $value .'</span>' ;
+												}
+												$values = get_category_meta('format', get_term_by('slug', $cat->cat_name, 'category'));
+												foreach ($values as $value => $label) {
+												    echo  '&nbsp; <span>' . $value . '</span></p>';
+												}?>
+											</div></h5>
+										
 
+											<h3><a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->cat_name; ?></a></h3>
+											<div class="category_square_description">
+													<!--<?php echo category_description($cat->term_id); ?>-->
+													<p><?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
+														echo $short_description;
+														?></p>
+											</div>
+
+											<div class="category_square_author">
+												<?php
+													
+												 $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
+												foreach ($values as $user_id) {
+												    $the_user = get_user_by('id', $user_id);
+												    echo '<div class="category_square_avatar">'. get_avatar( $the_user, 60 ) . '</div>'; 
+
+												    echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->user_login . '</h4></div></br>';
+												    
+												    echo '<div class="category_square_author_subject"><h4><small>' .get_the_author_meta('subject', $user_id ). '</small></h4></div>';?>
+											    	<div class="category_square_number">
+														<h5><small>38 שיעורים בספריה</small></h5>
+													</div></div>
+													<?php } ?>
+
+												
+											
+											
+											</div><div style="clear:both;"></div>
+											<div class="category_square_oval"><h4>
+											<?php
+												
+											   			 echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';
+													
+													$values = get_category_meta('subject', get_term_by('slug', $cat->cat_name, 'category'));
+													foreach ($values as $value => $label) {
+											   			 echo '<span class="oval" style="border:1px solid #b2bac2; color:'. $color .';">' . $value . '</span>';
+													}
+													$values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
+													foreach ($values as $value => $label) {
+											   			 echo '<span class="oval" style="border:1px solid #b2bac2; color:#b2bac2;">' . $value . '</span>';
+													}
+
+											?></h4>
+											</div></li></div><?php endforeach;  ?>
+										</div>
+
+							</div></div>
+				    		</div>
+				    		</div>
 							
+							
+
+												
 
 					
 
 						<?php endforeach; } ?>
 				</ul>
 				</div>
+				<div class="container-fluid">
+							<div class="row">
+							<div class="col-sm-12 ">
 				<?php } 
 
 					else{

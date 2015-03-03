@@ -440,7 +440,7 @@ padding-bottom: 0px;
 .category_square_number{
   font-size:12px;
 }
-.container li, .search_by, .image_category{
+.container li, .search_by, .image_category, li.category_square{
   border-radius: 3px;
 
 box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
@@ -489,4 +489,9 @@ max-width:1400px;
 }
 .navbar-brand{
   float:right;
+}
+.sub_categories .col-md-4.col-sm-12 {
+
+margin-bottom: 20px;
+margin-top: 20px;
 }
