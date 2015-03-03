@@ -2,7 +2,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
     
 	$locationProvider.html5Mode(true);	
 
-	$translateProvider.translations('en', {
+	$translateProvider.translations('en_US', {
 	    Your_Account: 'Your Account',
 	    Settings: 'Settings.',	    
 	    Profile: 'Profile',	    
@@ -20,9 +20,11 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    First_Name : 'First Name',
 	    Last_Name : 'Last Name',
 	    Position : 'Position',
-	    About : 'About'
+	    About : 'About',
+	    Current_Password : 'Current Password',
+	    New_Password : 'New Password'
 	  });
-	  $translateProvider.translations('he', {
+	  $translateProvider.translations('he_IL', {
 	    Your_Account: 'החשבון שלך',
 	    Settings: 'הגדרות',	    
 	    Profile: 'פרופיל',	    
@@ -40,9 +42,11 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    First_Name : 'שם פרטי',
 	    Last_Name : 'שם משפחה',
 	    Position : 'תפקיד',
-	    About : 'אודות'
+	    About : 'אודות',
+	    Current_Password : 'סיסמה נוכחית',
+	    New_Password : 'סיסמה חדשה'
 	  });
-	$translateProvider.preferredLanguage('he');
+	$translateProvider.preferredLanguage('he_IL');
  	
 	$routeProvider				
 	.when('/', {						
@@ -62,17 +66,64 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		$scope.post = res;
 	});
 })
-.controller('Profile', function($scope, $http, $routeParams,$location,$window) {
+.controller('Profile', function($scope, $http, $routeParams,$translate) {
 	console.log("IN");
-	console.log($location.url());
-	var userID = 1;
+	//console.log($location.url());
+	var userID = 1;		
+	
+	$scope.user = {};
+	$scope.PSWRD_MATCH_ERROR = false;	
+	$scope.user.password = '';
+	$scope.user.password2 = '';
+	console.log("lang="+$translate.preferredLanguage());		
 
 	$scope.template = {name: "edit profile 1",url: myLocalized.theme_dir + 'partials/profile.html'};
 	
 	$http.get('/geula/wp-admin/admin-ajax.php?action=getuser&uid=' + userID).success(function(res){	
-		console.log(res);
-		$scope.user = res;
+		//console.log(res);
+		$scope.user = res;		
+
+		$scope.user.lang = $translate.preferredLanguage();
+
+		/*$scope.changeLanguage = function (key) {
+    		$translate.use(key);
+  		};*/
 	});
+
+	$scope.checkError = function()  {
+		console.log("IN checkError");		
+		if ($scope.user.password.length && $scope.user.password2.length) {
+			if ($scope.user.password != $scope.user.password2) {				
+				$scope.PSWRD_MATCH_ERROR = true;				
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	$scope.submitTheForm = function(item, event) {
+	    if ($scope.checkError()) return false;
+       console.log("--> Submitting form");
+       var dataStr = 'action=setuser' + 
+       					'&uid=2' + 
+       					'&password=' + $scope.user.password;                    
+       
+        
+
+       console.log(dataStr);
+      
+	   $http({
+            url: 'http://127.0.0.1/geula/wp-admin/admin-ajax.php?action=setuser',
+            method: "POST",
+            data: dataStr,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function (data, status, headers, config) {
+                console.log(data);
+            }).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+     }
 	
 });
 

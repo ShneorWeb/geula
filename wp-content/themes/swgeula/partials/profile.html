@@ -1,3 +1,9 @@
+<script>
+function validate1(f) {
+
+  return true;
+}
+</script>
 <div class="col-md-12" ng-controller="Profile"> 
 
   <div id="div-login">       
@@ -8,42 +14,47 @@
    <tabset type ="pills">
           <tab heading="{{'Settings' | translate}}" active="true" class="pull-right">
 
-              <div class="form-wrapper">
-   
-              <h2 class="register-heading"><?php _e( 'Sign Up', 'debate' ); ?></h2>
+              <div class="form-wrapper">              
                
-              <div id="error-message"></div>
-               
-              <form method="post" name="st-register-form">         
 
-                <input type="hidden" id="action" name="action" value="register_action" />
-                <input type="hidden" id="username" name="username" value="{{email_id}}" />
+                <div id="errors">
+
+                    <div id="error-message"></div>
                 
-                <div class="form-label"><label for="st-psw">{{'Password' | translate}}</label></div>
-                 <div class="field"><input type="password" name="password" id="st-psw" /></div>
+                </div>                    
                  
-                 <div class="field"><input type="password" name="password2" id="st-psw2" /></div>
+                <form method="post" name="regForm1" id="regForm1" novalidate ng-submit="submitTheForm()">         
+
+                  <input type="hidden" id="action" name="action" value="register_action" />
+                  <input type="hidden" id="username" name="username" value="{{email_id}}" />
+                  
+                  <div class="form-label"><label for="st-psw">{{'Password' | translate}}</label></div>
+                  <div  class="login-error-msg" ng-show="PSWRD_MATCH_ERROR">Passwords do not match</div>
+                   <div class="field"><input type="password" name="password" id="st-psw" ng-model="user.password" placeholder="{{'Current_Password' | translate}}" /></div>                   
+                   <div class="field"><input type="password" name="password2" id="st-psw2" ng-model="user.password2" placeholder="{{'New_Password' | translate}}" /></div>
 
 
-                <div class="form-label"><label for="st-email">{{'Email' | translate}}</label></div>
-                 <div class="field"><input type="text" autocomplete="off" name="mail" id="st-email" value="{{user.email}}" /></div>           
-                
-                 
-                 <div class="form-label"><label for="st-country">{{'Country' | translate}}</label></div>
-                 <div class="field"><country-select data-ng-model="selectedCountry"></country-select></div>                 
-                 
-                <div class="form-label"><label for="st-city">{{'City' | translate}}</label></div>
-                 <div class="field"><input type="text" autocomplete="off" name="fcity" id="st-city" /></div>
+                  <div class="form-label"><label for="st-email">{{'Email' | translate}}</label></div>
+                   <div class="field">                    
+                    <input  type="text" autocomplete="off" name="email" id="st-email" required ng-model="user.email" disabled />
+                   </div>                              
+                  
+                   
+                   <!--<div class="form-label"><label for="st-country">{{'Country' | translate}}</label></div>
+                   <div class="field"><country-select ng-model="selectedCountry"></country-select></div> -->
+                   
+                  <div class="form-label"><label for="st-city">{{'City' | translate}}</label></div>
+                   <div class="field"><input type="text" autocomplete="off" name="fcity" id="st-city" /></div>
 
-                <div class="form-label"><label for="st-city">{{'Time_Zone' | translate}}</label></div>
-                 <div class="field"><input type="text" autocomplete="off" name="ftimezone" id="st-timezone" /></div>
+                  <div class="form-label"><label for="st-city">{{'Time_Zone' | translate}}</label></div>
+                   <div class="field"><input type="text" autocomplete="off" name="ftimezone" id="st-timezone" /></div>
+                   
+                  <div class="form-label"><label for="st-language">{{'Language_UI' | translate}}</label></div>
+                   <div class="field"><select name="sel_lang" id="sel_lang" ng-model="user.lang"><option value="he_IL">{{'Hebrew' | translate}}</option><option value="en_US">{{'English' | translate}}</option></select></div>  
+                   
+                  <div class="frm-button" style="margin-top:30px;"><input type="submit" id="register-me" value="{{'Save_Details' | translate}}" /></div>
                  
-                <div class="form-label"><label for="st-language">{{'Language_UI' | translate}}</label></div>
-                 <div class="field"><select><option value="he_IL">{{'Hebrew' | translate}}</option><option value="en_US">{{'English' | translate}}</option></select></div>  
-                 
-                <div class="frm-button" style="margin-top:30px;"><input type="button" id="register-me" value="{{'Save_Details' | translate}}" /></div>
-               
-              </form>
+                </form>
              
             </div>
 
@@ -72,11 +83,12 @@
 
           <tab select="" disabled="false" class="pull-right">
             <tab-heading>
-              {{'Picture' | translate}}
+              {{'Picture' | translate}}              
             </tab-heading>
 
             <form>
-              Picture
+              <input type="input">
+              <input type="button">
             </form>
          
           </tab>
