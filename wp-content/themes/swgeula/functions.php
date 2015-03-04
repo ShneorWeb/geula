@@ -298,7 +298,7 @@ function set_user_profile1(){
 			 
 			 	}
 			 	else {	 
-					$msg = 'Registration Successful';	 
+					$msg = '1';	 
 			 		echo $msg;
 			 		exit;
 			 	}

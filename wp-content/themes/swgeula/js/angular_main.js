@@ -75,9 +75,19 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.PSWRD_MATCH_ERROR = false;	
 	$scope.user.password = '';
 	$scope.user.password2 = '';
+
+	$scope.tabs = [
+  		{active: true, disabled: false},
+  		{active: false, disabled: true},
+  		{active: false, disabled: true},
+  		{active: false, disabled: true}
+	];
+
+		
 	console.log("lang="+$translate.preferredLanguage());		
 
 	$scope.template = {name: "edit profile 1",url: myLocalized.theme_dir + 'partials/profile.html'};
+	
 	
 	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser&uid=' + userID).success(function(res){	
 		//console.log(res);
@@ -101,6 +111,11 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		return false;
 	}
 
+	/*$scope.isActiveTab = function(tab){
+    	return $scope.tabs[tab].active?'active':'';
+  	};*/
+
+	
 
 	$scope.submitTheForm = function(item, event) {
 	    if ($scope.checkError()) return false;
@@ -119,9 +134,15 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
             url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser',
             method: "POST",
             data: dataStr,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
         }).success(function (data, status, headers, config) {
                 console.log(data);
+                if (data==1) {                	    				    					
+					   	$scope.tabs[1].disabled = false;
+					   	$scope.tabs[0].active = false;		
+					   	$scope.tabs[1].active = true;		
+
+                }
             }).error(function (data, status, headers, config) {
                 console.log(data);
             });

@@ -1,9 +1,3 @@
-<script>
-function validate1(f) {
-
-  return true;
-}
-</script>
 <div class="col-md-12" ng-controller="Profile"> 
 
   <div id="div-login">       
@@ -12,7 +6,7 @@ function validate1(f) {
         
     
    <tabset type ="pills">
-          <tab heading="{{'Settings' | translate}}" active="true" class="pull-right">
+          <tab heading="{{'Settings' | translate}}" disabled="tabs[0].disabled" class="active pull-right">
 
               <div class="form-wrapper">              
                
@@ -59,7 +53,7 @@ function validate1(f) {
             </div>
 
           </tab>          
-          <tab select="" disabled="false" class="pull-right">
+          <tab select="" disabled="tabs[1].disabled" class="pull-right">
             <tab-heading>
               {{'Profile' | translate}}
             </tab-heading>
@@ -81,7 +75,7 @@ function validate1(f) {
          
           </tab>
 
-          <tab select="" disabled="false" class="pull-right">
+          <tab select="" disabled="tabs[2].disabled" class="pull-right">
             <tab-heading>
               {{'Picture' | translate}}              
             </tab-heading>
@@ -94,7 +88,7 @@ function validate1(f) {
           </tab>
 
 
-          <tab select="" disabled="false" class="pull-right">
+          <tab disabled="tabs[3].disabled" class="pull-right">
             <tab-heading>
               {{'Alerts' | translate}}
             </tab-heading>
