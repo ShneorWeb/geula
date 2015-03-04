@@ -50,7 +50,8 @@ function my_scripts() {
 		'my-scripts',
 		'myLocalized',
 		array(
-			'theme_dir' => trailingslashit( get_template_directory_uri() ) 
+			'theme_dir' => trailingslashit( get_template_directory_uri() ), 
+			'wpadmin_dir' => trailingslashit( admin_url() )
 			)
 	);
 
@@ -214,6 +215,8 @@ function get_user_profile() {
     if (is_user_logged_in()) {
 	    global $current_user;
 	    get_currentuserinfo(); 
+
+
 	    
 	    $response = '{"firstName":"'.$current_user->user_firstname.'", "lastName":"'.$current_user->user_lastname.'", "email":"'.$current_user->user_email.'"}'; 
 	    
@@ -230,13 +233,101 @@ function get_user_profile() {
 add_action( 'wp_ajax_nopriv_getuser', 'get_user_profile' );
 add_action( 'wp_ajax_getuser', 'get_user_profile' );
 
-function set_user_profile(){
+function set_user_profile1(){
  
 	if( $_POST['action'] == 'setuser' ) {
 	 	
 		$error = '';
 		 
-		 $uid = trim( $_POST['uid'] );
+		 $uid = $_POST['uid'];
+		 $pswrd = $_POST['password'];
+		 $pswrd2 = $_POST['password2'];
+		 $lang = trim( $_POST['lang'] );
+		 
+		if( empty( $_POST['uid'] ) )
+		 $error .= 'Enter UserID';
+		
+		// if( empty( $_POST['mail_id'] ) )	
+		 //$error .= '<p class="error">Enter Email Id</p>';
+		 //elseif( !filter_var($email, FILTER_VALIDATE_EMAIL) )
+		 //$error .= '<p class="error">Enter Valid Email</p>';
+
+		if ( !empty($pswrd) && !empty($pswrd2) ) :
+		 
+			if( empty($pswrd) || empty($pswrd2) )
+			 $error .= 'Password should not be blank';
+
+			else {
+				 global $current_user;
+		    	get_currentuserinfo(); 
+				if (!wp_check_password($pswrd, $current_user->user_pass))
+					$error .= 'Your current password is incorrect';				
+			}
+
+		endif;	
+		
+		
+		 
+		if( empty( $error ) ){
+			$userdata = array( 'ID' => $uid, 'user_pass' => $pswrd2 );		 
+			$status = wp_update_user( $userdata );			 
+			if( is_wp_error($status) ){				 
+				$msg = '';				 
+				 foreach( $status->errors as $key=>$val ){				 
+				 	foreach( $val as $k=>$v ){				 
+						 $msg = $v;
+			 		}
+		 		}		 
+				echo $msg;
+				exit;
+		 
+		 	}
+		 	else {	 
+				//now update meta data:
+		 		update_user_meta( $uid, 'user_lang', $lang );
+
+		 		if( is_wp_error($status) ){				 
+					$msg = '';				 
+					 foreach( $status->errors as $key=>$val ){				 
+					 	foreach( $val as $k=>$v ){				 
+							 $msg = $v;
+				 		}
+			 		}		 
+					echo $msg;
+					exit;
+			 
+			 	}
+			 	else {	 
+					$msg = 'Registration Successful';	 
+			 		echo $msg;
+			 		exit;
+			 	}
+		 	}	 	
+		 
+		}
+		else {
+		 
+			echo $error;
+			exit;
+		}
+		exit;
+	}
+}
+add_action( 'wp_ajax_nopriv_setuser', 'set_user_profile1' );
+add_action( 'wp_ajax_setuser', 'set_user_profile1' );
+
+function set_user_profile2(){
+ 
+	if( $_POST['action'] == 'setuser' ) {
+	 	
+		$error = '';
+		 
+		 $uid = $_POST['uid'];
+		 $pswrd = $_POST['password'];
+		 $pswrd2 = $_POST['password2'];
+		 $lang = trim( $_POST['lang'] );
+
+
 		 //$email = trim( $_POST['mail_id'] );
 		 //$fname = trim( $_POST['firname'] );
 		 //$lname = trim( $_POST['lasname'] );
@@ -314,8 +405,8 @@ function set_user_profile(){
 		exit;
 	}
 }
-add_action( 'wp_ajax_nopriv_setuser', 'set_user_profile' );
-add_action( 'wp_ajax_setuser', 'set_user_profile' );
+add_action( 'wp_ajax_nopriv_setuser', 'set_user_profile2' );
+add_action( 'wp_ajax_setuser', 'set_user_profile2' );
 /*****************************END AJAX/ANGUALR FUNCTIONS******************/
 
 ?>

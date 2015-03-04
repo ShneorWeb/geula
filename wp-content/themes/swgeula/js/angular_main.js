@@ -79,7 +79,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 
 	$scope.template = {name: "edit profile 1",url: myLocalized.theme_dir + 'partials/profile.html'};
 	
-	$http.get('/geula/wp-admin/admin-ajax.php?action=getuser&uid=' + userID).success(function(res){	
+	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser&uid=' + userID).success(function(res){	
 		//console.log(res);
 		$scope.user = res;		
 
@@ -92,12 +92,12 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 
 	$scope.checkError = function()  {
 		console.log("IN checkError");		
-		if ($scope.user.password.length && $scope.user.password2.length) {
+		/*if ($scope.user.password.length && $scope.user.password2.length) {
 			if ($scope.user.password != $scope.user.password2) {				
 				$scope.PSWRD_MATCH_ERROR = true;				
 				return true;
 			}
-		}
+		}*/
 		return false;
 	}
 
@@ -107,14 +107,16 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
        console.log("--> Submitting form");
        var dataStr = 'action=setuser' + 
        					'&uid=2' + 
-       					'&password=' + $scope.user.password;                    
+       					'&password=' + $scope.user.password +
+       					'&password2=' + $scope.user.password2+
+       					'&lang=' + $scope.user.lang;                    
        
         
 
        console.log(dataStr);
       
 	   $http({
-            url: 'http://127.0.0.1/geula/wp-admin/admin-ajax.php?action=setuser',
+            url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser',
             method: "POST",
             data: dataStr,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
