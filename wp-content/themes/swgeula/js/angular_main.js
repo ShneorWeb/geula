@@ -1,4 +1,4 @@
-var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.translate','countrySelect']).config(function($routeProvider, $locationProvider,$translateProvider) {		 
+var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.translate','countrySelect','angularFileUpload']).config(function($routeProvider, $locationProvider,$translateProvider) {		 
     
 	$locationProvider.html5Mode(true);	
 
@@ -22,7 +22,10 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    Position : 'Position',
 	    About : 'About',
 	    Current_Password : 'Current Password',
-	    New_Password : 'New Password'
+	    New_Password : 'New Password',
+	    Choose_file_to_upload : 'Choose file to upload',
+	    Drop_Text : 'Drop image here or click to upload',
+	    Drop_Not_Supported : 'File Drag/Drop is not supported for this browser'
 	  });
 	  $translateProvider.translations('he_IL', {
 	    Your_Account: 'החשבון שלך',
@@ -44,7 +47,10 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    Position : 'תפקיד',
 	    About : 'אודות',
 	    Current_Password : 'סיסמה נוכחית',
-	    New_Password : 'סיסמה חדשה'
+	    New_Password : 'סיסמה חדשה',
+	    Choose_file_to_upload : 'בחר תמונה להעלות',
+	    Drop_Text : 'גרור תמונה לכאן או לחץ לבחור תמונה',
+	    Drop_Not_Supported : 'גרירה אינה נתמכת לדפדפן זה' 
 	  });
 	$translateProvider.preferredLanguage('he_IL');
  	
@@ -66,7 +72,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		$scope.post = res;
 	});
 })
-.controller('Profile', function($scope, $http, $routeParams,$translate) {
+.controller('Profile', ['$scope', '$http', '$routeParams','$translate','$upload', function($scope, $http, $routeParams,$translate,$upload) {
 	console.log("IN");
 	//console.log($location.url());
 	var userID = 1;		
@@ -78,9 +84,9 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 
 	$scope.tabs = [
   		{active: true, disabled: false},
-  		{active: false, disabled: true},
-  		{active: false, disabled: true},
-  		{active: false, disabled: true}
+  		{active: false, disabled: false},
+  		{active: false, disabled: false},
+  		{active: false, disabled: false}
 	];
 
 		
@@ -89,8 +95,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.template = {name: "edit profile 1",url: myLocalized.theme_dir + 'partials/profile.html'};
 	
 	
-	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser&uid=' + userID).success(function(res){	
-		//console.log(res);
+	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser&uid=2').success(function(res){	
+		console.log(res);
 		$scope.user = res;		
 
 		$scope.user.lang = $translate.preferredLanguage();
@@ -118,6 +124,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	
 
 	$scope.submitTheForm = function(item, event) {
+		console.log($scope.user.chosenCountry);
+		return;
 	    if ($scope.checkError()) return false;
        console.log("--> Submitting form");
        var dataStr = 'action=setuser' + 
@@ -140,13 +148,95 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
                 if (data==1) {                	    				    					
 					   	$scope.tabs[1].disabled = false;
 					   	$scope.tabs[0].active = false;		
-					   	$scope.tabs[1].active = true;		
+					   	$scope.tabs[1].active = true;							   						   	
 
                 }
             }).error(function (data, status, headers, config) {
                 console.log(data);
             });
      }
+
+     $scope.submitTheForm2 = function(item, event) {
+	    if ($scope.checkError()) return false;
+       console.log("--> Submitting form");
+       var dataStr = 'action=setuser2' + 
+       					'&uid=2' + 
+       					'&firstname=' + $scope.user.firstname +
+       					'&lastname=' + $scope.user.lastname+
+       					'&position=' + $scope.user.position+
+       					'&about=' + $scope.user.about;                         
+
+       console.log(dataStr);
+      
+	   $http({
+            url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser2',
+            method: "POST",
+            data: dataStr,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
+        }).success(function (data, status, headers, config) {
+                console.log(data);
+                if (data==1) {                	    				    					
+					   	$scope.tabs[2].disabled = false;
+					   	$scope.tabs[3].disabled = false;
+					   	$scope.tabs[1].active = false;		
+					   	$scope.tabs[2].active = true;							   						   	
+
+                }
+            }).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+     }
+
+     /*$scope.submitTheForm3 = function(item, event) {
+	    if ($scope.checkError()) return false;
+       console.log("--> Submitting form");
+       var dataStr = 'action=setuser3' + 
+       					'&uid=2' + 
+       					'&user_avatar=' + $scope.user.avatar;      					                        
+
+       console.log(dataStr);
+      
+	   $http({
+            url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser3',
+            method: "POST",
+            data: dataStr,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
+        }).success(function (data, status, headers, config) {
+                console.log(data);
+                if (data==1) {                	    				    										   
+					   	$scope.tabs[2].active = false;		
+					   	$scope.tabs[3].active = true;							   						   	
+
+                }
+            }).error(function (data, status, headers, config) {
+                console.log(data);
+            });
+     }*/     
+
+     $scope.upload = function (files) {     	
+        
+        if (files && files.length) {       	        	
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];             
+
+                $upload.upload({
+                    url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser3&uid=2',                                        
+                    headers: {'Content-Type': file.type},
+                    method: "POST",
+                    file: file,                    
+            		data: file,            		         		
+                }).progress(function (evt) {
+                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                    console.log('progress: ' + progressPercentage + '% ' +
+                                evt.config.file.name);
+                }).success(function (data, status, headers, config) {
+                    console.log('file ' + config.file.name + ' uploaded. Response: ' +
+                                JSON.stringify(data));
+                });
+
+            }
+        }
+    }
 	
-});
+}]);
 

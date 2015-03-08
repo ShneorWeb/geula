@@ -6,7 +6,7 @@
         
     
    <tabset type ="pills">
-          <tab heading="{{'Settings' | translate}}" disabled="tabs[0].disabled" class="active pull-right">
+          <tab heading="{{'Settings' | translate}}" disabled="tabs[0].disabled" active="tabs[0].active" class="pull-right">
 
               <div class="form-wrapper">              
                
@@ -34,8 +34,8 @@
                    </div>                              
                   
                    
-                   <!--<div class="form-label"><label for="st-country">{{'Country' | translate}}</label></div>
-                   <div class="field"><country-select ng-model="selectedCountry"></country-select></div> -->
+                   <div class="form-label"><label for="st-country">{{'Country' | translate}}</label></div>
+                   <div class="field"><country-select ng-model="user.chosenCountry"></country-select></div> 
                    
                   <div class="form-label"><label for="st-city">{{'City' | translate}}</label></div>
                    <div class="field"><input type="text" autocomplete="off" name="fcity" id="st-city" /></div>
@@ -53,42 +53,80 @@
             </div>
 
           </tab>          
-          <tab select="" disabled="tabs[1].disabled" class="pull-right">
+          <tab select="" disabled="tabs[1].disabled" class="pull-right" active="tabs[1].active">
             <tab-heading>
               {{'Profile' | translate}}
             </tab-heading>
 
-            <form>
+            <form method="post" name="regForm2" id="regForm2" novalidate ng-submit="submitTheForm2()">
                   <div class="form-label"><label for="st-firstname">{{'First_Name' | translate}}</label></div>
-                  <div class="field"><input type="text" autocomplete="off" name="firstname" id="st_firstname" value="{{user.firstName}}" /></div>  
+                  <div class="field"><input type="text" autocomplete="off" name="firstname" id="st_firstname" ng-model="user.firstname" placeholder="{{'First_Name' | translate}}" /></div>  
                   
                   <div class="form-label"><label for="st-lastname">{{'Last_Name' | translate}}</label></div>
-                  <div class="field"><input type="text" autocomplete="off" name="lastname" id="st_lastname" value="{{user.lastName}}" /></div>  
+                  <div class="field"><input type="text" autocomplete="off" name="lastname" id="st_lastname" ng-model="user.lastname" placeholder="{{'Last_Name' | translate}}"  /></div>  
 
                   <div class="form-label"><label for="st-position">{{'Position' | translate}}</label></div>
-                  <div class="field"><input type="text" autocomplete="off" name="position" id="st_position" value="{{user.position}}" /></div>  
+                  <div class="field"><input type="text" autocomplete="off" name="position" id="st_position" ng-model="user.position" placeholder="{{'Position' | translate}}" /></div>  
 
                   <div class="form-label"><label for="st-about">{{'About' | translate}}</label></div>
-                  <div class="field"><textarea  name="about" id="st_about">{{user.about}}</textarea></div>  
+                  <div class="field"><textarea  name="about" id="st_about" ng-model="user.about">{{user.about}}</textarea></div>  
+
+                  <div class="frm-button" style="margin-top:30px;"><input type="submit" id="register-me" value="{{'Save_Details' | translate}}" /></div>
 
             </form>
          
           </tab>
 
-          <tab select="" disabled="tabs[2].disabled" class="pull-right">
+          <tab  disabled="tabs[2].disabled" class="pull-right" active="tabs[2].active">
             <tab-heading>
               {{'Picture' | translate}}              
             </tab-heading>
 
-            <form>
-              <input type="input">
-              <input type="button">
-            </form>
+            <style>
+            .button {
+    -moz-appearance: button;
+    /* Firefox */
+    -webkit-appearance: button;
+    /* Safari and Chrome */
+    padding: 10px;
+    margin: 10px;
+    width: 70px;
+}
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+          </style>
+           
+              <div style="float:right; width:240px; height:240px; background-color:#e8e8e8; -moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px; -khtml-border-radius: 10px;"><img ng-src={{user.avatar}} /></div>
+              
+              <div style="float:left;">                                   
+
+                  <div name="userpic" id="userpic" ng-file-drop ng-file-select ng-model="files" class="drop-box" 
+                    drag-over-class="dragover" 
+                    ng-accept="'.gif,.jpg,.png'">{{'Drop_Text' | translate}}
+                  </div>
+                   <div ng-no-file-drop>{{'Drop_Not_Supported' | translate}}</div>
+                   <ul>
+                      <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
+                  </ul>             
+
+              </div>                                
+
+              <div class="frm-button" style="clear:both; float:left; margin-top:30px;"><input type="button" id="register-me" value="{{'Save_Details' | translate}}" ng-click="upload(files)" /></div>     
          
           </tab>
 
 
-          <tab disabled="tabs[3].disabled" class="pull-right">
+          <tab disabled="tabs[3].disabled" class="pull-right" active="tabs[3].active">
             <tab-heading>
               {{'Alerts' | translate}}
             </tab-heading>

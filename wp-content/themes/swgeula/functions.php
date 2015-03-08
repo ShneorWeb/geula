@@ -27,7 +27,7 @@ function my_scripts() {
 	);
 	wp_enqueue_script(
 		'angular.country-select',
-		get_stylesheet_directory_uri() . '/angular/angular.country-select.min.js	',
+		get_stylesheet_directory_uri() . '/angular/angular.country-select.js	',
 		array( 'angularjs')
 	);
 	wp_enqueue_script(
@@ -39,7 +39,17 @@ function my_scripts() {
 		'angular-translate-loader-partial',
 		get_stylesheet_directory_uri() . '/angular/angular-translate-loader-partial.min.js',
 		array( 'angularjs')
-	);	
+	);
+	wp_enqueue_script(
+		'angular-file-upload',
+		get_stylesheet_directory_uri() . '/angular/angular-file-upload.min.js	',
+		array( 'angularjs')
+	);
+	wp_enqueue_script(
+		'angular-file-upload-shim',
+		get_stylesheet_directory_uri() . '/angular/angular-file-upload-shim.min.js	',
+		array( 'angularjs')
+	);			
 	wp_enqueue_script(
 		'my-scripts',
 		get_stylesheet_directory_uri() . '/js/angular_main.js',
@@ -102,49 +112,6 @@ function verify_username_password( $user, $username, $password ) {
 }  
 add_filter( 'authenticate', 'verify_username_password', 1, 3);  
 
-
-/*
-function swgeula_register_form() {
-
-    	$first_name = ( ! empty( $_POST['first_name'] ) ) ? trim( $_POST['first_name'] ) : '';
-        
-        ?>
-        <p>
-            <label for="first_name"><?php _e( 'First Name', 'mydomain' ) ?><br />
-                <input type="text" name="first_name" id="first_name" placeholder="First Name" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" /></label>
-        </p>
-        <?php
-
-        $last_name = ( ! empty( $_POST['last_name'] ) ) ? trim( $_POST['last_name'] ) : '';
-        
-        ?>
-        <p>
-            <label for="last_name"><?php _e( 'Last Name', 'mydomain' ) ?><br />
-                <input type="text" name="first_name" id="first_name" placeholder="Last Name" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" /></label>
-        </p>
-        <?php
-}
-add_action( 'register_form', 'swgeula_register_form' );
-
-//2. Add validation. In this case, we make sure first_name is required.
-function swgeula_registration_errors( $errors, $sanitized_user_login, $user_email ) {
-        
-        if ( empty( $_POST['first_name'] ) || ! empty( $_POST['first_name'] ) && trim( $_POST['first_name'] ) == '' ) {
-            $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: You must include a first name.', 'mydomain' ) );
-        }
-
-        return $errors;
-}
-add_filter( 'registration_errors', 'swgeula_registration_errors', 10, 3 );
-
-//3. Finally, save our extra registration user meta.
-function swgeula_user_register( $user_id ) {
-        if ( ! empty( $_POST['first_name'] ) ) {
-            update_user_meta( $user_id, 'first_name', trim( $_POST['first_name'] ) );
-        }
-}
-add_action( 'user_register', 'swgeula_user_register' );
-*/
 /************************** end user registration stuff: ************************************/
 
 add_theme_support ('menus');
@@ -212,23 +179,31 @@ function add_contact_fields($profile_fields) {
 add_filter('user_contactmethods', 'add_contact_fields');
 /*****************************AJAX/ANGUALR FUNCTIONS******************/
 function get_user_profile() {   
-    if (is_user_logged_in()) {
-	    global $current_user;
-	    get_currentuserinfo(); 
+
+	if( $_GET['action'] == 'getuser' ) {
+
+	    if (is_user_logged_in()) {
+
+	    	 $uid = $_GET['uid'];
+
+		    global $current_user;
+		    get_currentuserinfo(); 
 
 
-	    
-	    $response = '{"firstName":"'.$current_user->user_firstname.'", "lastName":"'.$current_user->user_lastname.'", "email":"'.$current_user->user_email.'"}'; 
-	    
-	    header( "Content-Type: application/json" );    
-	    echo $response; 
+
+		    $avtr = get_user_meta( $uid, 'custom_avatar', true );
+		    
+		    $response = '{"firstName":"'.$current_user->user_firstname.'", "lastName":"'.$current_user->user_lastname.'", "email":"'.$current_user->user_email.'","avatar":"'.$avtr.'"}'; 
+		    
+		    header( "Content-Type: application/json" );    
+		    echo $response; 
+		}
+		else {
+			$error .= 'No Logged IN';
+			echo $error;
+		}   	    
 	}
-	else {
-		$error .= 'No Logged IN';
-		echo $error;
-	}
-    
-    exit;
+	exit;    
 }
 add_action( 'wp_ajax_nopriv_getuser', 'get_user_profile' );
 add_action( 'wp_ajax_getuser', 'get_user_profile' );
@@ -318,48 +293,29 @@ add_action( 'wp_ajax_setuser', 'set_user_profile1' );
 
 function set_user_profile2(){
  
-	if( $_POST['action'] == 'setuser' ) {
+	if( $_POST['action'] == 'setuser2' ) {
 	 	
 		$error = '';
 		 
 		 $uid = $_POST['uid'];
-		 $pswrd = $_POST['password'];
-		 $pswrd2 = $_POST['password2'];
-		 $lang = trim( $_POST['lang'] );
-
-
-		 //$email = trim( $_POST['mail_id'] );
-		 //$fname = trim( $_POST['firname'] );
-		 //$lname = trim( $_POST['lasname'] );
-		 $pswrd = $_POST['password'];
+		 $fname = trim($_POST['firstname']);
+		 $lname = trim($_POST['lastname']);
+		 $position = trim($_POST['position']);
+		 $about = trim($_POST['about']);		 
 		 
 		if( empty( $_POST['uid'] ) )
-		 $error .= '<p class="error">Enter UserID</p>';
-		
-		// if( empty( $_POST['mail_id'] ) )	
-		 //$error .= '<p class="error">Enter Email Id</p>';
-		 //elseif( !filter_var($email, FILTER_VALIDATE_EMAIL) )
-		 //$error .= '<p class="error">Enter Valid Email</p>';
+		 $error .= '<p class="error">Enter UserID</p>';						 
+			
 		 
-		if( empty( $_POST['password'] ) )
-		 $error .= '<p class="error">Password should not be blank</p>';
-
-
-		//wp_check_password( $password, $hash) 
+		if( empty( $fname ) )
+		 $error .= '<p class="error">Enter First Name</p>';	
 		 
-		/*if( empty( $_POST['firname'] ) )
-		 $error .= '<p class="error">Enter First Name</p>';
-		 elseif( !preg_match("/^[a-zA-Z'-]+$/",$fname) )
-		 $error .= '<p class="error">Enter Valid First Name</p>';
-		 
-		if( empty( $_POST['lasname'] ) )
-		 $error .= '<p class="error">Enter Last Name</p>';
-		 elseif( !preg_match("/^[a-zA-Z'-]+$/",$lname) )
-		 $error .= '<p class="error">Enter Valid Last Name</p>';*/
+		if( empty( $lname ) )
+		 $error .= '<p class="error">Enter Last Name</p>';		 
 		 
 		if( empty( $error ) ){
 
-			$userdata = array( 'ID' => $uid, 'user_pass' => $pswrd );
+			$userdata = array( 'ID' => $uid, 'first_name' => $fname, 'last_name' => $lname );
 		 
 			$status = wp_update_user( $userdata );
 			 
@@ -380,10 +336,27 @@ function set_user_profile2(){
 		 
 		 	}
 		 	else {	 
-				$msg = '<p class="success">Registration Successful</p>';	 
-		 		echo $msg;
-		 		exit;
-		 	}
+				//now update meta data:
+		 		update_user_meta( $uid, 'position', $position );
+		 		if (!is_wp_error($status)) update_user_meta( $uid, 'about', $about );
+
+		 		if( is_wp_error($status) ){				 
+					$msg = '';				 
+					 foreach( $status->errors as $key=>$val ){				 
+					 	foreach( $val as $k=>$v ){				 
+							 $msg = $v;
+				 		}
+			 		}		 
+					echo $msg;
+					exit;
+			 
+			 	}
+			 	else {	 
+					$msg = '1';	 
+			 		echo $msg;
+			 		exit;
+			 	}
+		 	}	 	
 
 
 		 	//$user_id = 1;
@@ -405,8 +378,82 @@ function set_user_profile2(){
 		exit;
 	}
 }
-add_action( 'wp_ajax_nopriv_setuser', 'set_user_profile2' );
-add_action( 'wp_ajax_setuser', 'set_user_profile2' );
-/*****************************END AJAX/ANGUALR FUNCTIONS******************/
+add_action( 'wp_ajax_nopriv_setuser2', 'set_user_profile2' );
+add_action( 'wp_ajax_setuser2', 'set_user_profile2' );
 
+
+function set_user_profile3(){ 
+	if( $_GET['action'] == 'setuser3' ) {
+		$error = '';
+		 
+		 $uid = $_GET['uid'];		 
+
+		 if( empty( $uid ) )
+		 	$error .= '<p class="error">Enter UserID</p>';		
+
+		 if( empty( $error ) ) {
+		 	
+
+		 	$filename = $_FILES['file']['name'];
+		 			 	
+
+		 	if(count($_FILES)>0 && isset($_FILES["file"])){
+		
+			  // we need this for the wp_handle_upload function
+			  require_once ABSPATH.'wp-admin/includes/file.php';	
+			
+			  // just be aware that GIFs are annoying as fuck
+			  $allowed_image_types = array(
+				'jpg|jpeg|jpe' => 'image/jpeg',
+				'png'          => 'image/png',
+				'gif'          => 'image/gif',
+			  );	
+			  $status = wp_handle_upload($_FILES['file'], array('mimes' => $allowed_image_types, 'test_form' => FALSE));	    	  
+			  
+			  if(empty($status['error'])){	
+				//resize
+				$resized = image_resize($status['file'], 96, 96, $crop = true);	 
+			
+				if(!is_wp_error($resized)) { //resize successful		
+					$uploads = wp_upload_dir();		
+					$_POST['resized_url'] = $uploads['url'].'/'.basename($resized); 					
+				}
+			  }
+			  else {
+			  	echo( $status['error'] );
+			  	exit;
+			  }	 
+			}
+			elseif ($_POST) $_POST['resized_url']='';
+
+
+		 	$userdata['resized_url'] = $_POST['resized_url'];		
+			
+			if (!empty($userdata['resized_url'])) update_usermeta($uid, 'custom_avatar', $userdata['resized_url']);
+			else $error .= '<p class="error">File not found</p>';	
+
+			if( !empty( $error ) ) {			 
+						 
+				echo $error;			
+				exit;
+		 
+		 	}
+		 	else {	 
+					$msg = '1';	 
+			 		echo $msg;
+			 		exit;
+			 }
+
+		}
+		else {
+		 
+			echo $error;
+			exit;
+		}
+		exit;
+	}
+}
+add_action( 'wp_ajax_nopriv_setuser3', 'set_user_profile3' );
+add_action( 'wp_ajax_setuser3', 'set_user_profile3' );
+/*****************************END AJAX/ANGUALR FUNCTIONS******************/
 ?>
