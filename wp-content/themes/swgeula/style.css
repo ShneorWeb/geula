@@ -563,3 +563,18 @@ max-width: 200px;
 height: auto;
 
 }
+.circle{
+  display: inline-block;
+min-width: 10px;
+padding: 3px 7px;
+
+font-weight: 500;
+line-height: 1;
+
+text-align: center;
+white-space: nowrap;
+vertical-align: baseline;
+
+border-radius: 20px;
+border: 1px solid #7dc2d7;
+}
