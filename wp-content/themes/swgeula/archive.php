@@ -10,7 +10,13 @@
 						$this_category = get_category($cat);
      if (($category_id) != 0){	?>	
      	<?php $this_category = get_category($cat);
-  if (get_category_children($this_category->cat_ID) != "") {?>
+  if (get_category_children($this_category->cat_ID) != "") {
+
+
+/*page category*/
+  	?>
+
+  
 			<div class="page-header">	
 				
 
@@ -185,7 +191,12 @@ background-position:right;">
 				<?php get_sidebar(); ?>
 			<!-- .sidebar -->			
 			</div>
-			<?php } 
+			<?php 
+/*end page category*/
+
+
+/*page single category with list of posts*/
+		} 
 
 			else{?>
 					
@@ -283,8 +294,8 @@ background-position:right;">
 								</div>
 								</div>
 				    			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-				    			<a href="<?php echo get_category_link($cat->term_id); ?>"><button type="button" class="btn btn-default " style="background-color:green; color:#ffffff;" aria-label="Left Align"><span class="glyphicon glyphicon-chevron-left" style="color:#ffffff;"></span> התחל </button></a>	
-				    			<a href="<?php echo get_category_link($cat->term_id); ?>"><button type="button" class="btn btn-default " style="background-color:red; color:#ffffff;" aria-label="Left Align"><span class="glyphicon glyphicon-dashboard" style="color:#ffffff;"></span> תזמן למעל </button></a>	
+				    			<a href="<?php echo get_category_link($cat->term_id); ?>"><button type="button" class="btn btn-default " style="background-color:#5fcf80; color:#ffffff;" aria-label="Left Align"><span class="glyphicon glyphicon-chevron-left" style="color:#ffffff;"></span> התחל </button></a>	
+				    			<a href="<?php echo get_category_link($cat->term_id); ?>"><button type="button" class="btn btn-default " style="background-color:#e15258; color:#ffffff;" aria-label="Left Align"><span class="glyphicon glyphicon-dashboard" style="color:#ffffff;"></span> תזמן למעל </button></a>	
 				    			</div>
 				    			
 				    		</div>
@@ -313,7 +324,8 @@ background-position:right;">
 
 											    	<div class="category_square_number">
 														<h5><small>38 שיעורים בספריה</small></h5>
-													</div></div><?php 
+													</div>
+													</div><?php 
 
 													echo '<div class="category_square_avatar" style="vertical-align:top;">'. get_avatar( $the_user, 60 ) . '</div>'; 
 													} ?>
@@ -339,7 +351,8 @@ background-position:right;">
 
 								  		<div style="border-bottom:1px solid #ccc; padding:10px;">
 								  		<div style="display:inline-block; width:100%;">
-								    	 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="padding-left:10px;"></span><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								    	 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="padding-left:10px;"></span>
+								    	 <span><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>
 								    	 <span style="float:left;">18:23</span>
 								    	<!--<p>By <?php the_author(); ?> on <?php echo the_time('l, F jS, Y'); ?> in <?php the_category( ', ' );?>.  <a href="<?php comments_link(); ?>"><?php comments_number(); ?></a></p>-->
 								    			
@@ -358,7 +371,13 @@ background-position:right;">
 				</div>
 			</div>
 						
-		<?php } else{ ?>
+		<?php 
+
+/*end page single category with list of posts*/
+
+/*page library*/
+
+		} else{ ?>
 		<div class="page-header">
 			<div class="col-md-12 header_category">	
 
@@ -371,12 +390,28 @@ background-position:right;">
 				    				$page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
 				    				$page_bg_image_url = $page_bg_image[0];
 				    				$cat_name = get_category(get_query_var('cat'))->name;?>
-				    				<div class="image_category" style="background-image:url(<?php echo $cat_image ?>); background-repeat:no-repeat; background-size:contain; background-position:right;">
-					    				<?php
-					    				echo '<div class="current_category_name">'. $cat_name.'</div>';
-					    				 ?>
-					    				 <div class="current_category_description"><?php echo category_description($cat->term_id);  ?>
-					    				</div>	
+				    				<div class="image_category" style="padding:20px; display: table; width:100%;">
+				    				
+				    					<div class="col-md-4" style="vertical-align:middle; display: table-cell;">
+				    					<h4><small><ul style="color:#686969; line-height:30px; ">
+				    					<li><span  class="circle">1</span> בחר קטגוריה</li>
+				    					<li><span class="circle">2</span> בחר והוסף נושא לימוד</li>
+				    					<li><span class="circle">3</span> הנושא התווסף לשיעורים שלך</li>
+				    					</ul></small></h4>
+					    				</div>
+					    				
+					    				 <div class="col-md-8" style="margin-top:0px; background-image:url(<?php echo $cat_image ?>); display:inline-block; background-repeat:no-repeat; background-size:contain; background-position:right;"><div class="current_category_name" style="color:#39add1; font-size:40px; line-height:40px;">
+					    				 <?php $short_description = get_category_meta('short_description');
+														echo $short_description;
+														?>
+										</div>
+										<div class="current_category_description" style="padding-bottom:0px;">
+					    				 <?php echo category_description($cat->term_id);  ?>
+					    				</div>	</div>
+					    				
+					    				
+					    				
+					    				
 
 				    				</div>
 			</div>
@@ -426,9 +461,7 @@ background-position:right;">
 				    				$page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
 				    				$page_bg_image_url = $page_bg_image[0];
 				    				$cat_name = get_category(get_query_var('cat'))->name;?>
-				    				<div class="image_category" style="background-image:url(<?php echo $cat_image ?>); background-repeat:no-repeat;
-background-size:contain;
-background-position:right;">
+				    				<div class="image_category" style="background-image:url(<?php echo $cat_image ?>); background-repeat:no-repeat; background-size:contain; background-position:right;">
 
 
 										<div class="container-fluid">
