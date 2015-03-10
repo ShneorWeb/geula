@@ -455,5 +455,81 @@ function set_user_profile3(){
 }
 add_action( 'wp_ajax_nopriv_setuser3', 'set_user_profile3' );
 add_action( 'wp_ajax_setuser3', 'set_user_profile3' );
+
+function get_country_select() {
+	global $wpdb;
+	$retVal = "[";
+
+	$result = $wpdb->get_results( 'SELECT id,country FROM wp_countries ORDER BY country ASC;', OBJECT );
+
+	$bFirst = true;
+	foreach($result as $row) {
+		//$retVal  .= '{name: "'.$row->country.'", code=""}'.',';
+		if (!$bFirst) $retVal .= ",";
+		$retVal  .= "{id: ".$row->id.", name: '".$row->country."'}";		
+		$bFirst=false;
+	}
+
+	$retVal .= "];";
+
+	echo $retVal;
+	exit;
+}
+add_action( 'wp_ajax_nopriv_getctrselect', 'get_country_select' );
+add_action( 'wp_ajax_getctrselect', 'get_country_select' );
+
+function get_cities() {
+	$ctry = (int) trim($_GET['ctry']);
+
+	if (!empty($ctry) && is_numeric($ctry)) { 
+		global $wpdb;
+		$retVal = "[";
+
+		$result = $wpdb->get_results( "SELECT id,city FROM wp_cities WHERE country=$ctry ORDER BY city ASC;", OBJECT );
+
+		$bFirst = true;
+		foreach($result as $row) {
+			//$retVal  .= '{name: "'.$row->country.'", code=""}'.',';
+			if (!$bFirst) $retVal .= ",";
+			$retVal  .= "{id: ".$row->id.", name: '".$row->city."'}";		
+			$bFirst=false;
+		}
+
+		$retVal .= "];";
+
+		echo $retVal;
+		exit;
+	}
+	else echo "error - no country provided";
+	exit;
+}
+add_action( 'wp_ajax_nopriv_getcities', 'get_cities' );
+add_action( 'wp_ajax_getcities', 'get_cities' );
+
+function getTimeZones() {	
+
+		$zones = timezone_identifiers_list();
+		$locations = array();
+
+		foreach ($zones as $zone) {
+		    $zone = explode('/', $zone); // 0 => Continent, 1 => City
+		    
+		    // Only use "friendly" continent names
+		    if ($zone[0] == 'Africa' || $zone[0] == 'America' || $zone[0] == 'Antarctica' || $zone[0] == 'Arctic' || $zone[0] == 'Asia' || $zone[0] == 'Atlantic' || $zone[0] == 'Australia' || $zone[0] == 'Europe' || $zone[0] == 'Indian' || $zone[0] == 'Pacific')
+		    //if ($zone[0] == $continent) 
+		    {        
+		        if (isset($zone[1]) != '')
+		        {
+		        	if (!is_array($locations[$zone[0]]))	$locations[$zone[0]] = array();
+		            array_push($locations[$zone[0]], array('name' => str_replace('_', ' ', $zone[1]).'/'.$zone[0], 'id' => str_replace('_', ' ', $zone[1]), 'zonegroup' => $zone[0] ) ); // Creates array(DateTimeZone => 'Friendly name')
+		        } 
+		    }
+		}
+		//echo($locations['Africa'][0]);
+		echo json_encode($locations);
+		exit;	
+}
+add_action( 'wp_ajax_nopriv_gettimez', 'getTimeZones' );
+add_action( 'wp_ajax_gettimez', 'getTimeZones' );
 /*****************************END AJAX/ANGUALR FUNCTIONS******************/
 ?>

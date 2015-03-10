@@ -25,7 +25,10 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    New_Password : 'New Password',
 	    Choose_file_to_upload : 'Choose file to upload',
 	    Drop_Text : 'Drop image here or click to upload',
-	    Drop_Not_Supported : 'File Drag/Drop is not supported for this browser'
+	    Drop_Not_Supported : 'File Drag/Drop is not supported for this browser',
+	    Select_Country : 'Select Country',
+	    Select_City : 'Select City',
+	    Select_Timezone : 'Select Timezone'
 	  });
 	  $translateProvider.translations('he_IL', {
 	    Your_Account: 'החשבון שלך',
@@ -50,7 +53,10 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    New_Password : 'סיסמה חדשה',
 	    Choose_file_to_upload : 'בחר תמונה להעלות',
 	    Drop_Text : 'גרור תמונה לכאן או לחץ לבחור תמונה',
-	    Drop_Not_Supported : 'גרירה אינה נתמכת לדפדפן זה' 
+	    Drop_Not_Supported : 'גרירה אינה נתמכת לדפדפן זה',
+		Select_Country : 'בחר מדינה',
+		Select_City : 'בחר עיר',
+		Select_Timezone : 'בחר אזור זמן'
 	  });
 	$translateProvider.preferredLanguage('he_IL');
  	
@@ -81,6 +87,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.PSWRD_MATCH_ERROR = false;	
 	$scope.user.password = '';
 	$scope.user.password2 = '';
+	$scope.countries = [];
+	$scope.cities = [];
 
 	$scope.tabs = [
   		{active: true, disabled: false},
@@ -106,6 +114,41 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
   		};*/
 	});
 
+	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getctrselect').success(function(res){		
+		//console.log(res);
+		 $scope.countries = eval(res);					
+	});
+
+	$scope.getCitiesForCountry = function(cntry) {		
+		ctry = cntry.id + 236;
+		//console.log("IN getCitiesForCountry. country="+ctry);
+		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getcities&ctry='+ctry).success(function(res){		
+			//console.log(res);
+			$scope.cities = [];
+			$scope.cities = eval(res);					
+		});
+	}
+	$scope.getTimeZones = function(cntry) {				
+		console.log("IN getTimeZones");
+		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=gettimez').success(function(res){		
+			console.log(res);						
+			var fullArray = eval(res['Africa'])
+			fullArray = fullArray.concat( eval(res['America']) );
+			fullArray = fullArray.concat( eval(res['Antarctica']) );
+			fullArray = fullArray.concat( eval(res['Arctic']) );
+			fullArray = fullArray.concat( eval(res['Asia']) );
+			fullArray = fullArray.concat( eval(res['Atlantic']) );
+			fullArray = fullArray.concat( eval(res['Australia']) );
+			fullArray = fullArray.concat( eval(res['Europe']) );
+			fullArray = fullArray.concat( eval(res['Indian']) );
+			fullArray = fullArray.concat( eval(res['Pacific']) );
+
+			$scope.timezones = fullArray;					
+
+		});		
+	}
+	$scope.getTimeZones();
+
 	$scope.checkError = function()  {
 		console.log("IN checkError");		
 		/*if ($scope.user.password.length && $scope.user.password2.length) {
@@ -115,7 +158,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 			}
 		}*/
 		return false;
-	}
+	};
 
 	/*$scope.isActiveTab = function(tab){
     	return $scope.tabs[tab].active?'active':'';
