@@ -1,13 +1,15 @@
 <?php get_header(); ?>	
     <div class="col-lg-12 col-md-12">	
     <?php
-						$child = get_category($cat); 
-						$parent = $child->parent;
-						$parent_name = get_category($parent);
-						$parent_name = $parent_name->name;
-						$category_id = get_cat_ID( $parent_name );
-						$category_link = get_category_link( $category_id );
-						$this_category = get_category($cat);
+
+      $child = get_category($cat); 
+      $parent = $child->parent;
+      $parent_name = get_category($parent);
+      $parent_name = $parent_name->name;
+      $category_id = get_cat_ID( $parent_name );
+      $category_link = get_category_link( $category_id );
+      $this_category = get_category($cat);
+
      if (($category_id) != 0){	?>	
      	<?php $this_category = get_category($cat);
   if (get_category_children($this_category->cat_ID) != "") {
