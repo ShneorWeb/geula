@@ -88,7 +88,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.user.password = '';
 	$scope.user.password2 = '';
 	$scope.countries = [];
-	$scope.cities = [];
+	$scope.cities = [];	
 
 	$scope.tabs = [
   		{active: true, disabled: false},
@@ -131,24 +131,19 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.getTimeZones = function(cntry) {				
 		console.log("IN getTimeZones");
 		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=gettimez').success(function(res){		
-			console.log(res);						
-			var fullArray = eval(res['Africa'])
-			fullArray = fullArray.concat( eval(res['America']) );
-			fullArray = fullArray.concat( eval(res['Antarctica']) );
-			fullArray = fullArray.concat( eval(res['Arctic']) );
-			fullArray = fullArray.concat( eval(res['Asia']) );
-			fullArray = fullArray.concat( eval(res['Atlantic']) );
-			fullArray = fullArray.concat( eval(res['Australia']) );
-			fullArray = fullArray.concat( eval(res['Europe']) );
-			fullArray = fullArray.concat( eval(res['Indian']) );
-			fullArray = fullArray.concat( eval(res['Pacific']) );
+			//console.log(res);									
+			$scope.timezones = eval(res);	
 
-			$scope.timezones = fullArray;					
-
+			var tz = jstz.determine(); // Determines the time zone of the browser client
+			console.log(tz.name());			
+			var sLocalTZ = tz.name();
+			if (sLocalTZ = 'Asia/Beirut') sLocalTZ = 'Asia/Jerusalem';//fix Israel TZ
+			$scope.user.chosenTtimeZ = {id:sLocalTZ,value:''};    		
 		});		
 	}
-	$scope.getTimeZones();
+	$scope.getTimeZones();	
 
+	
 	$scope.checkError = function()  {
 		console.log("IN checkError");		
 		/*if ($scope.user.password.length && $scope.user.password2.length) {
@@ -167,19 +162,23 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	
 
 	$scope.submitTheForm = function(item, event) {
-		console.log($scope.user.chosenCountry);
-		return;
-	    if ($scope.checkError()) return false;
+		//console.log("pswrd="+$scope.user.password2);		
+	   if ($scope.checkError()) return false;
+	   var sPswrd = (typeof $scope.user.password === 'undefined')?'':$scope.user.password;
+	   var sPswrd2 = (typeof $scope.user.password2 === 'undefined')?'':$scope.user.password2;
        console.log("--> Submitting form");
        var dataStr = 'action=setuser' + 
        					'&uid=2' + 
-       					'&password=' + $scope.user.password +
-       					'&password2=' + $scope.user.password2+
+       					'&password=' + sPswrd +
+       					'&password2=' + sPswrd2+
+       					'&country=' + $scope.user.chosenCountry.name+
+       					'&city=' + $scope.user.chosenCity.name+
+       					'&timezone=' + $scope.user.chosenTtimeZ.id+
        					'&lang=' + $scope.user.lang;                    
        
         
 
-       console.log(dataStr);
+       console.log("dataStr="+dataStr);
       
 	   $http({
             url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser',
