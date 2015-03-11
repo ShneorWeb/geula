@@ -13,7 +13,7 @@
 		document.getElementsByTagName("head")[0].appendChild(newBase);		
 	</script>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="<?php bloginfo('template_directory');?>/images/favicon.ico">
 
     <title>
@@ -54,15 +54,14 @@
 	</script>  
 
     <?php //endif;?>  
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
 
 </head> 
 
 <body <?php body_class(); ?>>
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">     
-      <div class="contaner">
+    <div class="navbar navbar-inverse navbar-fixed-top" >
+       
+      <header id="masthead" class="site-header" role="banner">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -71,8 +70,17 @@
             <span class="icon-bar"></span>
           </button>
            
-          <a class="navbar-brand" href="<?php bloginfo( 'url' ); ?>" target="_self"><?php bloginfo( 'name' ); ?></a>
-         <div class="menu-top" style="float:left;"><?php 
+          
+          <div class="site-branding">
+              <h1 class="site-title">
+                  <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="nav-brand">
+                      <?php bloginfo( 'name' ); ?>
+                  </a>
+              </h1>
+          </div><!-- .site-branding -->
+
+            
+         <div class="menu-top" ><?php 
             $args = array(
               'menu'        => 'header-menu',
               'menu_class'  => 'nav navbar-nav',
@@ -84,19 +92,22 @@
 
         <div class="navbar-collapse collapse">
 
-           
+           	<nav id="site-navigation" class="main-navigation" role="navigation">
             <ul class="drop"  style="padding-right:0px; right:0;">
           <?php get_sidebar(); ?></ul>
+            </nav>
           </div><!--/.navbar-collapse -->
-
+        
+        </header>
+        
       </div>
-    </div> 
+
      
 
    
-		<div id="wrap">			
-			<div class="container-fluid">
-<div class="row" style="margin-top:32px;">
+		<div id="content" class="site-content">			
+			<div class="container">
+                <div class="row">
     
 
         
