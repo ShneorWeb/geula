@@ -1,9 +1,132 @@
 <?php
 
+/**
+ * swgeula functions and definitions
+ *
+ * @package swgeula
+ */
+
+/**
+ * Set the content width based on the theme's design and stylesheet.
+ */
+if ( ! isset( $content_width ) ) {
+	$content_width = 640; /* pixels */
+}
+
+if ( ! function_exists( 'swgeula_setup' ) ) :
+/**
+ * Sets up theme defaults and registers support for various WordPress features.
+ *
+ * Note that this function is hooked into the after_setup_theme hook, which
+ * runs before the init hook. The init hook is too late for some features, such
+ * as indicating support for post thumbnails.
+ */
+function swgeula_setup() {
+
+	/*
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on swgeula, use a find and replace
+	 * to change 'swgeula' to the name of your theme in all the template files
+	 */
+	load_theme_textdomain( 'swgeula', get_template_directory() . '/languages' );
+
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support( 'automatic-feed-links' );
+
+	/*
+	 * Let WordPress manage the document title.
+	 * By adding theme support, we declare that this theme does not use a
+	 * hard-coded <title> tag in the document head, and expect WordPress to
+	 * provide it for us.
+	 */
+	add_theme_support( 'title-tag' );
+
+	/*
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+	 */
+	//add_theme_support( 'post-thumbnails' );
+
+	// This theme uses wp_nav_menu() in one location.
+	register_nav_menus( array(
+		'primary' => __( 'Primary Menu', 'swgeula' ),
+	) );
+
+	/*
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
+	add_theme_support( 'html5', array(
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
+	) );
+
+	/*
+	 * Enable support for Post Formats.
+	 * See http://codex.wordpress.org/Post_Formats
+	 */
+	add_theme_support( 'post-formats', array(
+		'aside', 'image', 'video', 'quote', 'link',
+	) );
+
+	// Set up the WordPress core custom background feature.
+	add_theme_support( 'custom-background', apply_filters( 'swgeula_custom_background_args', array(
+		'default-color' => 'ffffff',
+		'default-image' => '',
+	) ) );
+}
+endif; // swgeula_setup
+add_action( 'after_setup_theme', 'swgeula_setup' );
+
+/**
+ * Register widget area.
+ *
+ * @link http://codex.wordpress.org/Function_Reference/register_sidebar
+ */
+
+
+/**
+ * Enqueue scripts and styles.
+ */
+function swgeula_scripts() {
+
+	wp_enqueue_script( 'swgeula-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+
+	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'swgeula_scripts' );
+
+/**
+ * Implement the Custom Header feature.
+ */
+//require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Custom template tags for this theme.
+ */
+require get_template_directory() . '/inc/template-tags.php';
+
+/**
+ * Custom functions that act independently of the theme templates.
+ */
+require get_template_directory() . '/inc/extras.php';
+
+/**
+ * Customizer additions.
+ */
+require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Load Jetpack compatibility file.
+ */
+require get_template_directory() . '/inc/jetpack.php';
+
 function my_scripts() {	
-
-	wp_enqueue_style( 'swgeula_style', get_template_directory_uri() . '/style.css');
-
 	
 	wp_enqueue_script(
 		'angularjs',
@@ -68,10 +191,50 @@ function my_scripts() {
 			'wpadmin_dir' => trailingslashit( admin_url() )
 			)
 	);
-
+    
 }
 
 add_action( 'wp_enqueue_scripts', 'my_scripts' );
+
+
+/************************************************************************
+erez styles and scripts
+*************************************************************************/
+
+/* styles */
+function swgeula_styles() {
+	wp_enqueue_style(
+        'bootstrap_css', get_template_directory_uri() . '/css/bootstrap.min.css' 
+    );
+    
+    /* theme css have to be last */
+    wp_enqueue_style(
+        'swgeula_style', get_template_directory_uri() . '/style.css'
+    );
+}
+
+add_action( 'wp_enqueue_scripts', 'swgeula_styles' );
+
+/* script */
+function swgeula_manual_scripts(){
+	wp_enqueue_script(
+        'jquery', '//code.jquery.com/jquery-1.11.2.min.js', array(), '1.0.0'
+    );
+    wp_enqueue_script(
+        'live', get_template_directory_uri() . '/js/live.js', array(), '1.0.0'
+    );
+    wp_enqueue_script(
+        'bootstrap_script', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '1.0.0'
+    );
+    
+    /* theme js have to be last */
+     wp_enqueue_script(
+        'theme_js', get_template_directory_uri() . '/js/theme.js', array(), '1.0.0'
+    );
+}
+
+add_action( 'wp_enqueue_scripts', 'swgeula_manual_scripts' );
+
 
 /***************************LANGUAGE SETTINGS********************************************/
 function lang_setup(){
@@ -165,10 +328,10 @@ create_widget("Front Page Left", "front-left", "Displays on the left hand side o
 create_widget("Front Page Center", "front-center", "Displays in the center of the homepage");
 create_widget("Front Page Right", "front-right", "Displays on the right hand side of the homepage");
 
- add_theme_support( 'post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video')); // Add 3.1 post format theme support.
+add_theme_support( 'post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video')); // Add 3.1 post format theme support.
 	
-	add_theme_support( 'post-thumbnails' );
-	add_image_size('category_image', 0, 290);
+add_theme_support( 'post-thumbnails' );
+add_image_size('category_image', 0, 290);
 
 
 // Filter function
