@@ -22,58 +22,59 @@
 			<div class="page-header">	
 				
 
-				<div class="col-md-12 header_category">	
+				<div class="header_category">	
 
-					
-					  
-						<?php 
-					
-						
-						
-						echo '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="color:#7f8a94;"></span> <a href="'.  esc_url( $category_link ) .'" style="font-size:18px; color:#7f8a94;">'.$parent_name .'</a>';
-						?>
-							
+					    <div class="back_to_libary">
+                          <a href="<?php echo esc_url( $category_link ); ?>">
+                              <i class="fa fa-arrow-right"></i>
+                              <?php echo $parent_name; ?>
+                          </a>
+                        </div>
 
-								<?php 
-				    				$cat_image =  get_category_meta('image');
-				    				$page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
-				    				$page_bg_image_url = $page_bg_image[0];
-				    				$cat_name = get_category(get_query_var('cat'))->name;?>
-				    				<div class="image_category" style="background-image:url(<?php echo $cat_image ?>); background-repeat:no-repeat;
-background-size:contain;
-background-position:right;">
-				    			<?php
-				    				echo '<div class="current_category_name"><h1 style="padding-top:20px;">'. $cat_name.'</h1></div>';
-				    				 ?>
-				    				 <div class="current_category_description"><h4><?php echo category_description($cat->term_id);  ?></h4>
-				    		</div>
-				    		</div>
+                        <?php 
+                                    $cat_image =  get_category_meta('image');
+                                    $page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
+                                    $page_bg_image_url = $page_bg_image[0];
+                                    $cat_name = get_category(get_query_var('cat'))->name;
+
+                        ?>
+
+                        <div class="image_category" style="background-image:url(<?php echo $cat_image ?>);">
+
+                             <div class="current_category_name">
+                                     <h1><?php echo $cat_name; ?></h1>
+                            </div>
+
+                            <div class="current_category_description">
+                                <?php echo category_description($cat->term_id);  ?>
+                            </div>
+
+                        </div>
 				</div>
+                
 			</div>
+        
 
-			<div >
-					<div class="col-md-12">
-							<div class="search_by"><h5>
-											<div style="float:right;">
-													<span class="glyphicon glyphicon-search" aria-hidden="true"></span>  חיפוש
-											</div>
+			
+			<div class="search_by">
+                    
+                <div class="search_text">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  חיפוש
+                </div>
 											<div style="float:left;">
 													<span style="padding-left:30px;">חדש לישן</span>   <span class="glyphicon glyphicon-menu-down" aria-hidden="true" style="font-size: 1.2em; color:black;"></span>
 													<span style="padding-left:30px;">נושא  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
 													<span style="padding-left:30px;">מוסר שיעור   <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
-											</div></h5>
-
-
-							</div>
-
-					</div>
+											</div>
 
 			</div>
+
+				
 				    	
 			   	
 
 		
-			<div class="categories">
+			<div class="categories row">
 
 				<ul class="product_list" style="padding:0px;">
 
@@ -93,7 +94,7 @@ background-position:right;">
 
 							?>
 
-
+                           
 							<div class="col-md-4 col-sm-12 col-xs-12 ">
 
 

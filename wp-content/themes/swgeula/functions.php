@@ -202,6 +202,12 @@ function swgeula_styles() {
 	wp_enqueue_style(
         'bootstrap_css', get_template_directory_uri() . '/css/bootstrap.min.css' 
     );
+    wp_enqueue_style(
+        'font-awesome', get_template_directory_uri() . '/css/font-awesome.css' 
+    );
+     wp_enqueue_style(
+        'geulasw_font', get_template_directory_uri() . '/css/geulasw_font.css' 
+    );
     
     /* theme css have to be last */
     wp_enqueue_style(
