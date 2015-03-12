@@ -345,22 +345,46 @@ function add_contact_fields($profile_fields) {
 // Adding the filter
 add_filter('user_contactmethods', 'add_contact_fields');
 /*****************************AJAX/ANGUALR FUNCTIONS******************/
+function get_user_id() {
+	if ( is_user_logged_in() ) {
+		$current_user = wp_get_current_user();
+		echo $current_user->ID;
+		exit;
+	}	
+	echo "not logged in";
+	exit;
+}
+add_action( 'wp_ajax_nopriv_getuserid', 'get_user_id' );
+add_action( 'wp_ajax_getuserid', 'get_user_id' );
+
 function get_user_profile() {   
 
 	if( $_GET['action'] == 'getuser' ) {
 
-	    if (is_user_logged_in()) {
-
-	    	 $uid = $_GET['uid'];
+	    if (is_user_logged_in()) {	    	 
 
 		    global $current_user;
 		    get_currentuserinfo(); 
 
-
+		    $current_user = wp_get_current_user();
+			$uid = $current_user->ID;
+		    
 
 		    $avtr = get_user_meta( $uid, 'custom_avatar', true );
+		    $lang = get_user_meta( $uid, 'user_lang', true );
+		    $country = get_user_meta( $uid, 'user_country', true );
+		    $city = get_user_meta( $uid, 'user_city', true );
+		    $timezone = get_user_meta( $uid, 'user_timezone', true );
 		    
-		    $response = '{"firstName":"'.$current_user->user_firstname.'", "lastName":"'.$current_user->user_lastname.'", "email":"'.$current_user->user_email.'","avatar":"'.$avtr.'"}'; 
+		    $response = '{"firstName":"'.$current_user->user_firstname.
+		    	'", "lastName":"'.$current_user->user_lastname.
+		    	'", "email":"'.$current_user->user_email.
+		    	'","avatar":"'.$avtr.
+		    	'","lang":"'.$lang.
+		    	'","country":"'.$country.
+		    	'","city":"'.$city.
+		    	'","timezone":"'.$timezone.
+		    	'"}'; 
 		    
 		    header( "Content-Type: application/json" );    
 		    echo $response; 
@@ -377,11 +401,13 @@ add_action( 'wp_ajax_getuser', 'get_user_profile' );
 
 function set_user_profile1(){
  
-	if( $_POST['action'] == 'setuser' ) {
+	if( $_POST['action'] == 'setuser' && is_user_logged_in()) {
 	 	
 		$error = '';
 		 
-		 $uid = $_POST['uid'];
+		 $current_user = wp_get_current_user();
+		 $uid = $current_user->ID;
+
 		 $pswrd = trim( $_POST['password'] );
 		 $pswrd2 = trim( $_POST['password2'] );
 		 $country = trim($_POST['country']);
@@ -389,7 +415,7 @@ function set_user_profile1(){
 		 $timezone = trim($_POST['timezone']);
 		 $lang = trim( $_POST['lang'] );
 		 
-		if( empty( $_POST['uid'] ) )
+		if( empty( $uid ) )
 		 $error .= 'Enter UserID';
 		
 		// if( empty( $_POST['mail_id'] ) )	
@@ -466,17 +492,19 @@ add_action( 'wp_ajax_setuser', 'set_user_profile1' );
 
 function set_user_profile2(){
  
-	if( $_POST['action'] == 'setuser2' ) {
+	if( $_POST['action'] == 'setuser2' && is_user_logged_in() ) {
 	 	
 		$error = '';
 		 
-		 $uid = $_POST['uid'];
+		 $current_user = wp_get_current_user();
+		 $uid = $current_user->ID;
+
 		 $fname = trim($_POST['firstname']);
 		 $lname = trim($_POST['lastname']);
 		 $position = trim($_POST['position']);
 		 $about = trim($_POST['about']);		 
 		 
-		if( empty( $_POST['uid'] ) )
+		if( empty( $uid ) )
 		 $error .= '<p class="error">Enter UserID</p>';						 
 			
 		 
@@ -556,10 +584,11 @@ add_action( 'wp_ajax_setuser2', 'set_user_profile2' );
 
 
 function set_user_profile3(){ 
-	if( $_GET['action'] == 'setuser3' ) {
+	if( $_GET['action'] == 'setuser3' && is_user_logged_in() ) {
 		$error = '';
 		 
-		 $uid = $_GET['uid'];		 
+		 $current_user = wp_get_current_user();
+		 $uid = $current_user->ID;		 
 
 		 if( empty( $uid ) )
 		 	$error .= '<p class="error">Enter UserID</p>';		
@@ -650,6 +679,24 @@ function get_country_select() {
 }
 add_action( 'wp_ajax_nopriv_getctrselect', 'get_country_select' );
 add_action( 'wp_ajax_getctrselect', 'get_country_select' );
+
+function get_country_by_id() {
+	$cname =  trim($_GET['cname']);
+	$retVal = "";
+
+	if (!empty($cname)) {
+
+		global $wpdb;			
+		$result = $wpdb->get_results( "SELECT id FROM wp_countries WHERE country='$cname';", OBJECT );						
+		foreach($result as $row) {			
+			$retVal  = $row->id;					
+		}						
+	}
+	echo $retVal;;
+	exit;
+}
+add_action( 'wp_ajax_nopriv_getctrbyid', 'get_country_by_id' );
+add_action( 'wp_ajax_getctrbyid', 'get_country_by_id' );
 
 function get_cities() {
 	$ctry = (int) trim($_GET['ctry']);
