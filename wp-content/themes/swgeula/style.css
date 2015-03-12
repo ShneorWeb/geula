@@ -644,7 +644,7 @@ h1.site-title a {
 }
 
 .page-header {
-  margin: 5px 0 20px;
+  margin: 5px 0 13px;
 }
 
 .image_category {
@@ -685,8 +685,8 @@ h1.site-title a {
 
 .search_by {
   line-height: 20px;
-  padding: 20px;
-  margin-bottom: 24px;
+  padding: 18px 16px 18px 28px;
+  margin-bottom: 32px;
   height: 60px;
   font-size: 18px;
   -moz-border-radius: 4px;
@@ -700,8 +700,30 @@ h1.site-title a {
 .search_by .search_text {
   float: right;
 }
+.search_by .search_text input[type=search] {
+  border: none;
+  outline: none;
+}
 .search_by .search_text .glyphicon-search {
   margin-left: 12px;
+}
+
+.selects {
+  float: left;
+}
+.selects form {
+  float: left;
+  margin-right: 30px;
+}
+.selects select {
+  border: none !important;
+  -webkit-appearance: none;
+  background-image: url(images/select_arr.png);
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 25px;
+  outline: none;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

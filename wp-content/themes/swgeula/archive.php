@@ -59,13 +59,40 @@
 			<div class="search_by">
                     
                 <div class="search_text">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  חיפוש
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
+                    <input type="search" placeholder="חיפוש">
                 </div>
-											<div style="float:left;">
-													<span style="padding-left:30px;">חדש לישן</span>   <span class="glyphicon glyphicon-menu-down" aria-hidden="true" style="font-size: 1.2em; color:black;"></span>
-													<span style="padding-left:30px;">נושא  <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
-													<span style="padding-left:30px;">מוסר שיעור   <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></span>
-											</div>
+                
+				<div class="selects">
+                    <!-- TODO: http://pastebin.com/LCFS945E -->
+                    
+                     <form method="post" id="order">
+                        <select name="select" onchange='this.form.submit()'>
+                            <option value="newest"<?php selected( $_POST['select'],'newest', 1 ); ?>>מוסר שיעור</option>
+                            <option value="tag"<?php selected( $_POST['select'],'tag', 1 ); ?>>Tag</option>
+                        </select>
+                    </form>
+                    
+                     <form method="post" id="order">
+                        <select name="select" onchange='this.form.submit()'>
+                            <option value="newest"<?php selected( $_POST['select'],'newest', 1 ); ?>>נושא</option>
+                            <option value="tag"<?php selected( $_POST['select'],'tag', 1 ); ?>>Tag</option>
+                        </select>
+                    </form>
+                    
+                    
+                      <form method="post" id="order">
+                        <select name="select" onchange='this.form.submit()'>
+                            <option value="newest"<?php selected( $_POST['select'],'newest', 1 ); ?>>חדש לישן</option>
+                            <option value="tag"<?php selected( $_POST['select'],'tag', 1 ); ?>>Tag</option>
+                            <option value="title"<?php selected( $_POST['select'],'title', 1 ); ?>>Title</option>
+                            <option value="oldest"<?php selected( $_POST['select'], 'oldest', 1 ); ?>>Oldest</option>
+                            <option value="mcommented"<?php selected( $_POST['select'],'mcommented', 1 ); ?>>Most commented</option>
+                            <option value="lcommented"<?php selected( $_POST['select'],'lcommented' , 1 ); ?>>least commented</option>
+                        </select>
+                    </form>
+													
+				</div>
 
 			</div>
 
