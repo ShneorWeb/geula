@@ -35,16 +35,16 @@
                   
                    
                    <div class="form-label"><label for="st-country">{{'Country' | translate}}</label></div>
-                   <div class="field"><country-select ng-model="user.chosenCountry"></country-select></div> 
+                   <div class="field"><select id="st-country" ng-model="user.chosenCountry" ng-options="country.name for country in countries track by country.id" ng-change="getCitiesForCountry(user.chosenCountry);"><option value="">{{'Select_Country' | translate}}</option></select></div> 
                    
                   <div class="form-label"><label for="st-city">{{'City' | translate}}</label></div>
-                   <div class="field"><input type="text" autocomplete="off" name="fcity" id="st-city" /></div>
+                   <div class="field"><select id="st-city" ng-model="user.chosenCity" ng-options="city.name for city in cities track by city.name"><option value="">{{'Select_City' | translate}}</option></select></div>
 
-                  <div class="form-label"><label for="st-city">{{'Time_Zone' | translate}}</label></div>
-                   <div class="field"><input type="text" autocomplete="off" name="ftimezone" id="st-timezone" /></div>
+                  <div class="form-label"><label for="st-timezone">{{'Time_Zone' | translate}}</label></div>
+                   <div class="field"><select id="st-timezone" style="direction:ltr;" ng-model="user.chosenTtimeZ" ng-options="timez.name group by timez.zonegroup for timez in timezones track by timez.id" ng-change="zoneChanged();"></select></div>
                    
                   <div class="form-label"><label for="st-language">{{'Language_UI' | translate}}</label></div>
-                   <div class="field"><select name="sel_lang" id="sel_lang" ng-model="user.lang"><option value="he_IL">{{'Hebrew' | translate}}</option><option value="en_US">{{'English' | translate}}</option></select></div>  
+                   <div class="field"><select name="sel_lang" id="st-language" ng-model="user.lang"><option value="he_IL">{{'Hebrew' | translate}}</option><option value="en_US">{{'English' | translate}}</option></select></div>  
                    
                   <div class="frm-button" style="margin-top:30px;"><input type="submit" id="register-me" value="{{'Save_Details' | translate}}" /></div>
                  

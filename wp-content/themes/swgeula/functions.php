@@ -172,6 +172,10 @@ function my_scripts() {
 		'angular-file-upload-shim',
 		get_stylesheet_directory_uri() . '/angular/angular-file-upload-shim.min.js	',
 		array( 'angularjs')
+	);	
+	wp_enqueue_script(
+		'detect-zone',
+		get_stylesheet_directory_uri() . '/js/jstz-1.0.4.min.js	'			
 	);			
 	wp_enqueue_script(
 		'my-scripts',
@@ -347,22 +351,46 @@ function add_contact_fields($profile_fields) {
 // Adding the filter
 add_filter('user_contactmethods', 'add_contact_fields');
 /*****************************AJAX/ANGUALR FUNCTIONS******************/
+function get_user_id() {
+	if ( is_user_logged_in() ) {
+		$current_user = wp_get_current_user();
+		echo $current_user->ID;
+		exit;
+	}	
+	echo "not logged in";
+	exit;
+}
+add_action( 'wp_ajax_nopriv_getuserid', 'get_user_id' );
+add_action( 'wp_ajax_getuserid', 'get_user_id' );
+
 function get_user_profile() {   
 
 	if( $_GET['action'] == 'getuser' ) {
 
-	    if (is_user_logged_in()) {
-
-	    	 $uid = $_GET['uid'];
+	    if (is_user_logged_in()) {	    	 
 
 		    global $current_user;
 		    get_currentuserinfo(); 
 
-
+		    $current_user = wp_get_current_user();
+			$uid = $current_user->ID;
+		    
 
 		    $avtr = get_user_meta( $uid, 'custom_avatar', true );
+		    $lang = get_user_meta( $uid, 'user_lang', true );
+		    $country = get_user_meta( $uid, 'user_country', true );
+		    $city = get_user_meta( $uid, 'user_city', true );
+		    $timezone = get_user_meta( $uid, 'user_timezone', true );
 		    
-		    $response = '{"firstName":"'.$current_user->user_firstname.'", "lastName":"'.$current_user->user_lastname.'", "email":"'.$current_user->user_email.'","avatar":"'.$avtr.'"}'; 
+		    $response = '{"firstName":"'.$current_user->user_firstname.
+		    	'", "lastName":"'.$current_user->user_lastname.
+		    	'", "email":"'.$current_user->user_email.
+		    	'","avatar":"'.$avtr.
+		    	'","lang":"'.$lang.
+		    	'","country":"'.$country.
+		    	'","city":"'.$city.
+		    	'","timezone":"'.$timezone.
+		    	'"}'; 
 		    
 		    header( "Content-Type: application/json" );    
 		    echo $response; 
@@ -379,16 +407,21 @@ add_action( 'wp_ajax_getuser', 'get_user_profile' );
 
 function set_user_profile1(){
  
-	if( $_POST['action'] == 'setuser' ) {
+	if( $_POST['action'] == 'setuser' && is_user_logged_in()) {
 	 	
 		$error = '';
 		 
-		 $uid = $_POST['uid'];
-		 $pswrd = $_POST['password'];
-		 $pswrd2 = $_POST['password2'];
+		 $current_user = wp_get_current_user();
+		 $uid = $current_user->ID;
+
+		 $pswrd = trim( $_POST['password'] );
+		 $pswrd2 = trim( $_POST['password2'] );
+		 $country = trim($_POST['country']);
+		 $city = trim($_POST['city']);
+		 $timezone = trim($_POST['timezone']);
 		 $lang = trim( $_POST['lang'] );
 		 
-		if( empty( $_POST['uid'] ) )
+		if( empty( $uid ) )
 		 $error .= 'Enter UserID';
 		
 		// if( empty( $_POST['mail_id'] ) )	
@@ -412,25 +445,11 @@ function set_user_profile1(){
 		
 		
 		 
-		if( empty( $error ) ){
-			$userdata = array( 'ID' => $uid, 'user_pass' => $pswrd2 );		 
-			$status = wp_update_user( $userdata );			 
-			if( is_wp_error($status) ){				 
-				$msg = '';				 
-				 foreach( $status->errors as $key=>$val ){				 
-				 	foreach( $val as $k=>$v ){				 
-						 $msg = $v;
-			 		}
-		 		}		 
-				echo $msg;
-				exit;
-		 
-		 	}
-		 	else {	 
-				//now update meta data:
-		 		update_user_meta( $uid, 'user_lang', $lang );
-
-		 		if( is_wp_error($status) ){				 
+		if( empty($error) ) {
+			if ( !empty($pswrd) && !empty($pswrd2)  ) {
+				$userdata = array( 'ID' => $uid, 'user_pass' => $pswrd2 );		 
+				$status = wp_update_user( $userdata );			 
+				if( is_wp_error($status) ){				 
 					$msg = '';				 
 					 foreach( $status->errors as $key=>$val ){				 
 					 	foreach( $val as $k=>$v ){				 
@@ -441,12 +460,29 @@ function set_user_profile1(){
 					exit;
 			 
 			 	}
-			 	else {	 
+			 }
+			//now update meta data:
+	 		if (!empty($lang)) update_user_meta( $uid, 'user_lang', $lang );
+	 		if (!empty($country)) update_user_meta( $uid, 'user_country', $country );
+	 		if (!empty($city)) update_user_meta( $uid, 'user_city', $city );
+	 		if (!empty($timezone)) update_user_meta( $uid, 'user_timezone', $timezone );
+
+	 		if( is_wp_error($status) ){				 
+						$msg = '';				 
+						 foreach( $status->errors as $key=>$val ){				 
+						 	foreach( $val as $k=>$v ){				 
+								 $msg = $v;
+					 		}
+				 		}		 
+						echo $msg;
+						exit;
+				 
+			}
+			else {	 
 					$msg = '1';	 
 			 		echo $msg;
 			 		exit;
-			 	}
-		 	}	 	
+			}		 	
 		 
 		}
 		else {
@@ -462,17 +498,19 @@ add_action( 'wp_ajax_setuser', 'set_user_profile1' );
 
 function set_user_profile2(){
  
-	if( $_POST['action'] == 'setuser2' ) {
+	if( $_POST['action'] == 'setuser2' && is_user_logged_in() ) {
 	 	
 		$error = '';
 		 
-		 $uid = $_POST['uid'];
+		 $current_user = wp_get_current_user();
+		 $uid = $current_user->ID;
+
 		 $fname = trim($_POST['firstname']);
 		 $lname = trim($_POST['lastname']);
 		 $position = trim($_POST['position']);
 		 $about = trim($_POST['about']);		 
 		 
-		if( empty( $_POST['uid'] ) )
+		if( empty( $uid ) )
 		 $error .= '<p class="error">Enter UserID</p>';						 
 			
 		 
@@ -552,10 +590,11 @@ add_action( 'wp_ajax_setuser2', 'set_user_profile2' );
 
 
 function set_user_profile3(){ 
-	if( $_GET['action'] == 'setuser3' ) {
+	if( $_GET['action'] == 'setuser3' && is_user_logged_in() ) {
 		$error = '';
 		 
-		 $uid = $_GET['uid'];		 
+		 $current_user = wp_get_current_user();
+		 $uid = $current_user->ID;		 
 
 		 if( empty( $uid ) )
 		 	$error .= '<p class="error">Enter UserID</p>';		
@@ -624,5 +663,250 @@ function set_user_profile3(){
 }
 add_action( 'wp_ajax_nopriv_setuser3', 'set_user_profile3' );
 add_action( 'wp_ajax_setuser3', 'set_user_profile3' );
+
+function get_country_select() {
+	global $wpdb;
+	$retVal = "[";
+
+	$result = $wpdb->get_results( 'SELECT id,country FROM wp_countries ORDER BY country ASC;', OBJECT );
+
+	$bFirst = true;
+	foreach($result as $row) {
+		//$retVal  .= '{name: "'.$row->country.'", code=""}'.',';
+		if (!$bFirst) $retVal .= ",";
+		$retVal  .= "{id: ".$row->id.", name: '".$row->country."'}";		
+		$bFirst=false;
+	}
+
+	$retVal .= "];";
+
+	echo $retVal;
+	exit;
+}
+add_action( 'wp_ajax_nopriv_getctrselect', 'get_country_select' );
+add_action( 'wp_ajax_getctrselect', 'get_country_select' );
+
+function get_country_by_id() {
+	$cname =  trim($_GET['cname']);
+	$retVal = "";
+
+	if (!empty($cname)) {
+
+		global $wpdb;			
+		$result = $wpdb->get_results( "SELECT id FROM wp_countries WHERE country='$cname';", OBJECT );						
+		foreach($result as $row) {			
+			$retVal  = $row->id;					
+		}						
+	}
+	echo $retVal;;
+	exit;
+}
+add_action( 'wp_ajax_nopriv_getctrbyid', 'get_country_by_id' );
+add_action( 'wp_ajax_getctrbyid', 'get_country_by_id' );
+
+function get_cities() {
+	$ctry = (int) trim($_GET['ctry']);
+
+	if (!empty($ctry) && is_numeric($ctry)) { 
+		global $wpdb;
+		$retVal = "[";
+
+		$result = $wpdb->get_results( "SELECT id,city FROM wp_cities WHERE country=$ctry ORDER BY city ASC;", OBJECT );
+
+		$bFirst = true;
+		foreach($result as $row) {
+			//$retVal  .= '{name: "'.$row->country.'", code=""}'.',';
+			if (!$bFirst) $retVal .= ",";
+			$retVal  .= "{id: ".$row->id.", name: '".$row->city."'}";		
+			$bFirst=false;
+		}
+
+		$retVal .= "];";
+
+		echo $retVal;
+		exit;
+	}
+	else echo "error - no country provided";
+	exit;
+}
+add_action( 'wp_ajax_nopriv_getcities', 'get_cities' );
+add_action( 'wp_ajax_getcities', 'get_cities' );
+
+/*
+function getTimeZones() {	
+
+		$zones = timezone_identifiers_list();
+		$locations = array();
+
+		foreach ($zones as $zone) {
+		    $zone = explode('/', $zone); // 0 => Continent, 1 => City		    
+		    
+		    if ($zone[0] == 'Africa' || $zone[0] == 'America' || $zone[0] == 'Antarctica' || $zone[0] == 'Arctic' || $zone[0] == 'Asia' || $zone[0] == 'Atlantic' || $zone[0] == 'Australia' || $zone[0] == 'Europe' || $zone[0] == 'Indian' || $zone[0] == 'Pacific')
+		    //if ($zone[0] == $continent) 
+		    {        
+		        if (isset($zone[1]) != '')
+		        {
+		        	if (!is_array($locations[$zone[0]]))	$locations[$zone[0]] = array();
+		            array_push($locations[$zone[0]], array('name' => str_replace('_', ' ', $zone[1]).'/'.$zone[0], 'id' => str_replace('_', ' ', $zone[1]), 'zonegroup' => $zone[0] ) ); 
+		        } 
+		    }
+		}
+		//echo($locations['Africa'][0]);
+		echo json_encode($locations);
+		exit;	
+}
+*/
+function getTimeZones() {	
+	$arrTimez = array (
+	    array('name' => 'Midway Island (UTC-11:00)', 'id' => 'Pacific/Midway'),
+	    array('name' => 'Samoa (UTC-11:00)', 'id' => 'Pacific/Samoa'),
+	    array('name' => 'Hawaii (UTC-10:00)', 'id' => 'Pacific/Honolulu'),
+	    array('name' => 'Alaska (UTC-09:00)', 'id' => 'US/Alaska'),
+	    array('name' => 'Pacific Time (US & Canada) (UTC-08:00)', 'id' => 'America/Los_Angeles'),
+	    array('name' => 'Tijuana (UTC-08:00)', 'id' => 'America/Tijuana'),
+	    array('name' => 'Arizona (UTC-07:00)', 'id' => 'US/Arizona'),
+	    array('name' => 'Chihuahua (UTC-07:00)', 'id' => 'America/Chihuahua'),
+	    array('name' => 'La Paz (UTC-07:00)', 'id' => 'America/Chihuahua'),
+	    array('name' => 'Mazatlan (UTC-07:00)', 'id' => 'America/Mazatlan'),
+	    array('name' => 'Mountain Time (US & Canada) (UTC-07:00)', 'id' => 'US/Mountain'),
+	    array('name' => 'Central America (UTC-06:00)', 'id' => 'America/Managua'),
+	    array('name' => 'Central Time (US & Canada) (UTC-06:00)', 'id' => 'US/Central'),
+	    array('name' => 'Guadalajara (UTC-06:00)', 'id' => 'America/Mexico_City'),
+	    array('name' => 'Mexico City (UTC-06:00)', 'id' => 'America/Mexico_City'),
+	    array('name' => 'Monterrey (UTC-06:00)', 'id' => 'America/Monterrey'),
+	    array('name' => 'Saskatchewan (UTC-06:00)', 'id' => 'Canada/Saskatchewan'),
+	    array('name' => 'Bogota (UTC-05:00)', 'id' => 'America/Bogota'),
+	    array('name' => 'Eastern Time (US & Canada) (UTC-05:00)', 'id' => 'US/Eastern'),
+	    array('name' => 'Indiana (East) (UTC-05:00)', 'id' => 'US/East-Indiana'),
+	    array('name' => 'Lima (UTC-05:00)', 'id' => 'America/Lima'),
+	    array('name' => 'Quito (UTC-05:00)', 'id' => 'America/Bogota'),
+	    array('name' => 'Atlantic Time (Canada) (UTC-04:00)','id' => 'Canada/Atlantic'),
+	    array('name' => 'Caracas (UTC-04:30)', 'id' => 'America/Caracas'),
+	    array('name' => 'La Paz (UTC-04:00)', 'id' => 'America/La_Paz'),
+	    array('name' => 'Santiago (UTC-04:00)', 'id' => 'America/Santiago'),
+	    array('name' => 'Newfoundland (UTC-03:30)', 'id' => 'Canada/Newfoundland'),
+	    array('name' => 'Brasilia (UTC-03:00)', 'id' => 'America/Sao_Paulo'),
+	    array('name' => 'Buenos Aires (UTC-03:00)', 'id' => 'America/Argentina/Buenos_Aires'),
+	    array('name' => 'Georgetown (UTC-03:00)', 'id' => 'America/Argentina/Buenos_Aires'),
+	    array('name' => 'Greenland (UTC-03:00)', 'id' => 'America/Godthab'),
+	    array('name' => 'Mid-Atlantic (UTC-02:00)', 'id' => 'America/Noronha'),
+	    array('name' => 'Azores (UTC-01:00)', 'id' => 'Atlantic/Azores'),
+	    array('name' => 'Cape Verde Is.(UTC-01:00)', 'id' => 'Atlantic/Cape_Verde'),
+	    array('name' => 'Casablanca (UTC+00:00)', 'id' => 'Africa/Casablanca'),
+	    array('name' => 'Edinburgh (UTC+00:00)', 'id' => 'Europe/London'),
+	    array('name' => 'Greenwich Mean Time : Dublin (UTC+00:00)', 'id' => 'Etc/Greenwich'),
+	    array('name' => 'Lisbon (UTC+00:00)', 'id' => 'Europe/Lisbon'),
+	    array('name' => 'London (UTC+00:00)', 'id' => 'Europe/London'),
+	    array('name' => 'Monrovia (UTC+00:00)', 'id' => 'Africa/Monrovia'),
+	    array('name' => 'UTC (UTC+00:00)', 'id' => 'UTC'),
+	    array('name' => 'Amsterdam (UTC+01:00)', 'id' => 'Europe/Amsterdam'),
+	    array('name' => 'Belgrade (UTC+01:00)', 'id' => 'Europe/Belgrade'),
+	    array('name' => 'Berlin (UTC+01:00)', 'id' => 'Europe/Berlin'),
+	    array('name' => 'Bern (UTC+01:00)', 'id' => 'Europe/Berlin'),
+	    array('name' => 'Bratislava (UTC+01:00)', 'id' => 'Europe/Bratislava'),
+	    array('name' => 'Brussels (UTC+01:00)', 'id' => 'Europe/Brussels'),
+	    array('name' => 'Budapest (UTC+01:00)', 'id' => 'Europe/Budapest'),
+	    array('name' => 'Copenhagen (UTC+01:00)', 'id' => 'Europe/Copenhagen'),
+	    array('name' => 'Ljubljana (UTC+01:00)', 'id' => 'Europe/Ljubljana'),
+	    array('name' => 'Madrid (UTC+01:00)', 'id' => 'Europe/Madrid'),
+	    array('name' => 'Paris (UTC+01:00)', 'id' => 'Europe/Paris'),
+	    array('name' => 'Prague (UTC+01:00)', 'id' => 'Europe/Prague'),
+	    array('name' => 'Rome (UTC+01:00)', 'id' => 'Europe/Rome'),
+	    array('name' => 'Sarajevo (UTC+01:00)', 'id' => 'Europe/Sarajevo'),
+	    array('name' => 'Skopje (UTC+01:00)', 'id' => 'Europe/Skopje'),
+	    array('name' => 'Stockholm (UTC+01:00)', 'id' => 'Europe/Stockholm'),
+	    array('name' => 'Vienna (UTC+01:00)', 'id' => 'Europe/Vienna'),
+	    array('name' => 'Warsaw (UTC+01:00)', 'id' => 'Europe/Warsaw'),
+	    array('name' => 'West Central Africa (UTC+01:00)', 'id' => 'Africa/Lagos'),
+	    array('name' => 'Zagreb (UTC+01:00)', 'id' => 'Europe/Zagreb'),
+	    array('name' => 'Athens (UTC+02:00)', 'id' => 'Europe/Athens'),
+	    array('name' => 'Bucharest (UTC+02:00)', 'id' => 'Europe/Bucharest'),
+	    array('name' => 'Cairo (UTC+02:00)', 'id' => 'Africa/Cairo'),
+	    array('name' => 'Harare (UTC+02:00)', 'id' => 'Africa/Harare'),
+	    array('name' => 'Helsinki (UTC+02:00)', 'id' => 'Europe/Helsinki'),
+	    array('name' => 'Istanbul (UTC+02:00)', 'id' => 'Europe/Istanbul'),
+	    array('name' => 'Jerusalem (UTC+02:00)', 'id' => 'Asia/Jerusalem'),
+	    array('name' => 'Kyiv (UTC+02:00)', 'id' => 'Europe/Helsinki'),
+	    array('name' => 'Pretoria (UTC+02:00)', 'id' => 'Africa/Johannesburg'),
+	    array('name' => 'Riga (UTC+02:00)', 'id' => 'Europe/Riga'),
+	    array('name' => 'Sofia (UTC+02:00)', 'id' => 'Europe/Sofia'),
+	    array('name' => 'Tallinn (UTC+02:00)', 'id' => 'Europe/Tallinn'),
+	    array('name' => 'Vilnius (UTC+02:00)', 'id' => 'Europe/Vilnius'),
+	    array('name' => 'Baghdad (UTC+03:00)', 'id' => 'Asia/Baghdad'),
+	    array('name' => 'Kuwait (UTC+03:00)', 'id' => 'Asia/Kuwait'),
+	    array('name' => 'Minsk (UTC+03:00)', 'id' => 'Europe/Minsk'),
+	    array('name' => 'Nairobi (UTC+03:00)', 'id' => 'Africa/Nairobi'),
+	    array('name' => 'Riyadh (UTC+03:00)', 'id' => 'Asia/Riyadh'),
+	    array('name' => 'Volgograd (UTC+03:00)', 'id' => 'Europe/Volgograd'),
+	    array('name' => 'Tehran (UTC+03:30)', 'id' => 'Asia/Tehran'),
+	    array('name' => 'Abu Dhabi (UTC+04:00)', 'id' => 'Asia/Muscat'),
+	    array('name' => 'Baku (UTC+04:00)', 'id' => 'Asia/Baku'),
+	    array('name' => 'Moscow (UTC+04:00)', 'id' => 'Europe/Moscow'),
+	    array('name' => 'Muscat (UTC+04:00)', 'id' => 'Asia/Muscat'),
+	    array('name' => 'St. Petersburg (UTC+04:00)', 'id' => 'Europe/Moscow'),
+	    array('name' => 'Tbilisi (UTC+04:00)', 'id' => 'Asia/Tbilisi'),
+	    array('name' => 'Yerevan (UTC+04:00)', 'id' => 'Asia/Yerevan'),
+	    array('name' => 'Kabul (UTC+04:30)', 'id' => 'Asia/Kabul'),
+	    array('name' => 'Islamabad (UTC+05:00)', 'id' => 'Asia/Karachi'),
+	    array('name' => 'Karachi (UTC+05:00)', 'id' => 'Asia/Karachi'),
+	    array('name' => 'Tashkent (UTC+05:00)', 'id' => 'Asia/Tashkent'),
+	    array('name' => 'Chennai (UTC+05:30)', 'id' => 'Asia/Calcutta'),
+	    array('name' => 'Kolkata (UTC+05:30)', 'id' => 'Asia/Kolkata'),
+	    array('name' => 'Mumbai (UTC+05:30)', 'id' => 'Asia/Calcutta'),
+	    array('name' => 'New Delhi (UTC+05:30)', 'id' => 'Asia/Calcutta'),
+	    array('name' => 'Sri Jayawardenepura (UTC+05:30)', 'id' => 'Asia/Calcutta'),
+	    array('name' => 'Kathmandu (UTC+05:45)', 'id' => 'Asia/Katmandu'),
+	    array('name' => 'Almaty (UTC+06:00)', 'id' => 'Asia/Almaty'),
+	    array('name' => 'Astana (UTC+06:00)', 'id' => 'Asia/Dhaka'),
+	    array('name' => 'Dhaka (UTC+06:00)', 'id' => 'Asia/Dhaka'),
+	    array('name' => 'Ekaterinburg (UTC+06:00)', 'id' => 'Asia/Yekaterinburg'),
+	    array('name' => 'Rangoon (UTC+06:30)', 'id' => 'Asia/Rangoon'),
+	    array('name' => 'Bangkok (UTC+07:00)', 'id' => 'Asia/Bangkok'),
+	    array('name' => 'Hanoi (UTC+07:00)', 'id' => 'Asia/Bangkok'),
+	    array('name' => 'Jakarta (UTC+07:00)', 'id' => 'Asia/Jakarta'),
+	    array('name' => 'Novosibirsk (UTC+07:00)', 'id' => 'Asia/Novosibirsk'),
+	    array('name' => 'Beijing (UTC+08:00)', 'id' => 'Asia/Hong_Kong'),
+	    array('name' => 'Chongqing (UTC+08:00)', 'id' => 'Asia/Chongqing'),
+	    array('name' => 'Hong Kong (UTC+08:00)', 'id' => 'Asia/Hong_Kong'),
+	    array('name' => 'Krasnoyarsk (UTC+08:00)', 'id' => 'Asia/Krasnoyarsk'),
+	    array('name' => 'Kuala Lumpur (UTC+08:00)', 'id' => 'Asia/Kuala_Lumpur'),
+	    array('name' => 'Perth (UTC+08:00)', 'id' => 'Australia/Perth'),
+	    array('name' => 'Singapore (UTC+08:00)', 'id' => 'Asia/Singapore'),
+	    array('name' => 'Taipei (UTC+08:00)', 'id' => 'Asia/Taipei'),
+	    array('name' => 'Ulaan Bataar (UTC+08:00)', 'id' => 'Asia/Ulan_Bator'),
+	    array('name' => 'Urumqi (UTC+08:00)', 'id' => 'Asia/Urumqi'),
+	    array('name' => 'Irkutsk (UTC+09:00)', 'id' => 'Asia/Irkutsk'),
+	    array('name' => 'Osaka (UTC+09:00)', 'id' => 'Asia/Tokyo'),
+	    array('name' => 'Sapporo (UTC+09:00)', 'id' => 'Asia/Tokyo'),
+	    array('name' => 'Seoul (UTC+09:00)', 'id' => 'Asia/Seoul'),
+	    array('name' => 'Tokyo (UTC+09:00)', 'id'=> 'Asia/Tokyo'),
+	    array('name' => 'Adelaide (UTC+09:30)', 'id' => 'Australia/Adelaide'),
+	    array('name' => 'Darwin (UTC+09:30)', 'id' => 'Australia/Darwin'),
+	    array('name' => 'Brisbane (UTC+10:00)', 'id' => 'Australia/Brisbane'),
+	    array('name' => 'Canberra (UTC+10:00)', 'id' => 'Australia/Canberra'),
+	    array('name' => 'Guam (UTC+10:00)', 'id' => 'Pacific/Guam'),
+	    array('name' => 'Hobart (UTC+10:00)', 'id' => 'Australia/Hobart'),
+	    array('name' => 'Melbourne (UTC+10:00)', 'id' => 'Australia/Melbourne'),
+	    array('name' => 'Port Moresby (UTC+10:00)', 'id' => 'Pacific/Port_Moresby'),
+	    array('name' => 'Sydney (UTC+10:00)', 'id' => 'Australia/Sydney'),
+	    array('name' => 'Yakutsk (UTC+10:00)', 'id' => 'Asia/Yakutsk'),
+	    array('name' => 'Vladivostok (UTC+11:00)', 'id' => 'Asia/Vladivostok'),
+	    array('name' => 'Auckland (UTC+12:00)', 'id' => 'Pacific/Auckland'),
+	    array('name' => 'Fiji (UTC+12:00)', 'id' => 'Pacific/Fiji'),
+	    array('name' => 'International Date Line West (UTC+12:00)', 'id' => 'Pacific/Kwajalein'),
+	    array('name' => 'Kamchatka (UTC+12:00)', 'id' => 'Asia/Kamchatka'),
+	    array('name' => 'Magadan (UTC+12:00)', 'id' => 'Asia/Magadan'),
+	    array('name' => 'Marshall Is. (UTC+12:00)', 'id' => 'Pacific/Fiji'),
+	    array('name' => 'New Caledonia (UTC+12:00)', 'id' => 'Asia/Magadan'),
+	    array('name' => 'Solomon Is. (UTC+12:00)', 'id' => 'Asia/Magadan'),
+	    array('name' => 'Wellington (UTC+12:00)', 'id' => 'Pacific/Auckland'),
+	    array('name' => 'Nuku\'alofa (UTC+13:00)', 'id' => 'Pacific/Tongatapu')
+	);
+	echo json_encode($arrTimez);
+	exit;	
+}
+add_action( 'wp_ajax_nopriv_gettimez', 'getTimeZones' );
+add_action( 'wp_ajax_gettimez', 'getTimeZones' );
+
 /*****************************END AJAX/ANGUALR FUNCTIONS******************/
 ?>

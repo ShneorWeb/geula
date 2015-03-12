@@ -25,7 +25,10 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    New_Password : 'New Password',
 	    Choose_file_to_upload : 'Choose file to upload',
 	    Drop_Text : 'Drop image here or click to upload',
-	    Drop_Not_Supported : 'File Drag/Drop is not supported for this browser'
+	    Drop_Not_Supported : 'File Drag/Drop is not supported for this browser',
+	    Select_Country : 'Select Country',
+	    Select_City : 'Select City',
+	    Select_Timezone : 'Select Timezone'
 	  });
 	  $translateProvider.translations('he_IL', {
 	    Your_Account: 'החשבון שלך',
@@ -50,7 +53,10 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    New_Password : 'סיסמה חדשה',
 	    Choose_file_to_upload : 'בחר תמונה להעלות',
 	    Drop_Text : 'גרור תמונה לכאן או לחץ לבחור תמונה',
-	    Drop_Not_Supported : 'גרירה אינה נתמכת לדפדפן זה' 
+	    Drop_Not_Supported : 'גרירה אינה נתמכת לדפדפן זה',
+		Select_Country : 'בחר מדינה',
+		Select_City : 'בחר עיר',
+		Select_Timezone : 'בחר אזור זמן'
 	  });
 	$translateProvider.preferredLanguage('he_IL');
  	
@@ -72,15 +78,15 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		$scope.post = res;
 	});
 })
-.controller('Profile', ['$scope', '$http', '$routeParams','$translate','$upload', function($scope, $http, $routeParams,$translate,$upload) {
-	console.log("IN");
-	//console.log($location.url());
-	var userID = 1;		
+.controller('Profile', ['$scope', '$http', '$routeParams','$translate','$upload', function($scope, $http, $routeParams,$translate,$upload) {	
+	//console.log($location.url());	
 	
 	$scope.user = {};
 	$scope.PSWRD_MATCH_ERROR = false;	
 	$scope.user.password = '';
 	$scope.user.password2 = '';
+	$scope.countries = [];
+	$scope.cities = [];	
 
 	$scope.tabs = [
   		{active: true, disabled: false},
@@ -95,17 +101,63 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.template = {name: "edit profile 1",url: myLocalized.theme_dir + 'partials/profile.html'};
 	
 	
-	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser&uid=2').success(function(res){	
-		console.log(res);
-		$scope.user = res;		
+	$scope.getTimeZones = function(cntry) {				
+		//console.log("IN getTimeZones");
+		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=gettimez').success(function(res){		
+			//console.log(res);									
+			$scope.timezones = eval(res);	
 
-		$scope.user.lang = $translate.preferredLanguage();
+			var tz = jstz.determine(); // Determines the time zone of the browser client
+			//console.log(tz.name());			
+			var sLocalTZ = tz.name();
+			if (sLocalTZ == 'Asia/Beirut') sLocalTZ = 'Asia/Jerusalem';//fix Israel TZ
+			if (sLocalTZ =="United Kingdom") sLocalTZ = 'Europe/London';//fix UK TZ
+
+			if ($scope.user.timezone.length>0) $scope.user.chosenTtimeZ =  {id:$scope.user.timezone};    		 
+			else $scope.user.chosenTtimeZ = {id:sLocalTZ};			
+		});		
+	}
+
+	$scope.getCitiesForCountry = function(cntry) {		
+		ctry = cntry.id + 236;				
+		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getcities&ctry='+ctry).success(function(res){		
+			//console.log(res);
+			$scope.cities = [];
+			$scope.cities = eval(res);								
+			$scope.user.chosenCity = {name:$scope.user.city}; 	
+		});
+	}		
+	
+	
+	//get user data and init ui elemnts:
+	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser').success(function(res){	
+		console.log(res);
+		$scope.user = res;
+		
+		//get countries:
+		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getctrselect').success(function(res){		
+			//console.log(res);
+		 	$scope.countries = eval(res);							 	
+		});
+		
+		$scope.getTimeZones();		
+
+		if ($scope.user.lang=="" || $scope.user.lang==null) $scope.user.lang = $translate.preferredLanguage();
+
+
+		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getctrbyid&cname='+$scope.user.country).success(function(res){					
+				//console.log(res);
+			 	$scope.user.chosenCountry = {id:eval(res)}; 	
+			 	$scope.getCitiesForCountry({id:eval(res)});			 				 	
+		});		 
+		
 
 		/*$scope.changeLanguage = function (key) {
     		$translate.use(key);
   		};*/
-	});
+	});			
 
+	
 	$scope.checkError = function()  {
 		console.log("IN checkError");		
 		/*if ($scope.user.password.length && $scope.user.password2.length) {
@@ -115,7 +167,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 			}
 		}*/
 		return false;
-	}
+	};
 
 	/*$scope.isActiveTab = function(tab){
     	return $scope.tabs[tab].active?'active':'';
@@ -124,19 +176,22 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	
 
 	$scope.submitTheForm = function(item, event) {
-		console.log($scope.user.chosenCountry);
-		return;
-	    if ($scope.checkError()) return false;
+		//console.log("pswrd="+$scope.user.password2);		
+	   if ($scope.checkError()) return false;
+	   var sPswrd = (typeof $scope.user.password === 'undefined')?'':$scope.user.password;
+	   var sPswrd2 = (typeof $scope.user.password2 === 'undefined')?'':$scope.user.password2;
        console.log("--> Submitting form");
-       var dataStr = 'action=setuser' + 
-       					'&uid=2' + 
-       					'&password=' + $scope.user.password +
-       					'&password2=' + $scope.user.password2+
+       var dataStr = 'action=setuser' +        					
+       					'&password=' + sPswrd +
+       					'&password2=' + sPswrd2+
+       					'&country=' + $scope.user.chosenCountry.name+
+       					'&city=' + $scope.user.chosenCity.name+
+       					'&timezone=' + $scope.user.chosenTtimeZ.id+
        					'&lang=' + $scope.user.lang;                    
        
         
 
-       console.log(dataStr);
+       console.log("dataStr="+dataStr);
       
 	   $http({
             url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser',
@@ -159,8 +214,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
      $scope.submitTheForm2 = function(item, event) {
 	    if ($scope.checkError()) return false;
        console.log("--> Submitting form");
-       var dataStr = 'action=setuser2' + 
-       					'&uid=2' + 
+       var dataStr = 'action=setuser2' +        					
        					'&firstname=' + $scope.user.firstname +
        					'&lastname=' + $scope.user.lastname+
        					'&position=' + $scope.user.position+
@@ -186,32 +240,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
                 console.log(data);
             });
      }
-
-     /*$scope.submitTheForm3 = function(item, event) {
-	    if ($scope.checkError()) return false;
-       console.log("--> Submitting form");
-       var dataStr = 'action=setuser3' + 
-       					'&uid=2' + 
-       					'&user_avatar=' + $scope.user.avatar;      					                        
-
-       console.log(dataStr);
-      
-	   $http({
-            url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser3',
-            method: "POST",
-            data: dataStr,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
-        }).success(function (data, status, headers, config) {
-                console.log(data);
-                if (data==1) {                	    				    										   
-					   	$scope.tabs[2].active = false;		
-					   	$scope.tabs[3].active = true;							   						   	
-
-                }
-            }).error(function (data, status, headers, config) {
-                console.log(data);
-            });
-     }*/     
+     
 
      $scope.upload = function (files) {     	
         
@@ -220,7 +249,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
                 var file = files[i];             
 
                 $upload.upload({
-                    url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser3&uid=2',                                        
+                    url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser3',                                        
                     headers: {'Content-Type': file.type},
                     method: "POST",
                     file: file,                    
