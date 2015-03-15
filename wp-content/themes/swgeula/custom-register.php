@@ -10,6 +10,7 @@ require( ABSPATH . '/wp-load.php' );
 
 include_once("header.php");
 
+
 // Redirect to https login if forced to use SSL
 if ( force_ssl_admin() && ! is_ssl() ) {
 	if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
@@ -309,7 +310,6 @@ function retrieve_password() {
 //
 // Main
 //
-
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : 'login';
 $errors = new WP_Error();
 
@@ -344,7 +344,8 @@ if ( SITECOOKIEPATH != COOKIEPATH )
  *
  * @since 3.2.0
  */
-do_action( 'login_init' );
+
+ do_action( 'login_init' ); 
 /**
  * Fires before a specified login form action.
  *
@@ -354,7 +355,7 @@ do_action( 'login_init' );
  *
  * @since 2.8.0
  */
-do_action( 'login_form_' . $action );
+do_action( 'login_form_' . $action ); 
 
 $http_post = ('POST' == $_SERVER['REQUEST_METHOD']);
 $interim_login = isset($_REQUEST['interim-login']);
@@ -661,7 +662,9 @@ case 'register' :
 				 */
 				do_action( 'register_form' );
 				?>
-				<p id="reg_passmail"><?php _e('A password will be e-mailed to you.','swgeulatr') ?></p>
+				<p>					
+					<input type="password" name="user_password" id="user_password" placeholder="<?php _e('Password','swgeulatr') ?>" value="" />
+				</p>
 				<br class="clear" />
 				<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 				<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register','swgeulatr'); ?>" /></p>
