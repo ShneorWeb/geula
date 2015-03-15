@@ -12,6 +12,7 @@
 
 }
 
+
 [data-icon]:before {
   font-family: "geualsw" !important;
   content: attr(data-icon);
@@ -40,4 +41,7 @@
 
 .icon-library-icon:before {
   content: "a";
+}
+.icon-type-of-lesson-icon-1:before {
+  content: "b";
 }

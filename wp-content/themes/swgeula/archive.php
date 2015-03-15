@@ -122,7 +122,7 @@
 							?>
 
                            
-							<div class="col-md-4 col-sm-12 col-xs-12 ">
+							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
 
 
 							<?php $color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category'));
@@ -130,29 +130,48 @@
 													?>
 
 									<li class="category_square"> 
+                                        
 										<div class="category_top_square" style="background:<?php echo $color; ?>">
-											<p><span class="category_top_time">12 שעות</span>
-											<span class="glyphicon glyphicon-folder-open" style="padding-right:20px;"></span></p>
+                                            <span class="category_top_time">
+                                                
+                                                <!-- 
+                                                    TODO: get the time of category dynamcly
+                                                -->
+                                                
+                                                12 שעות
+                                            </span>
+											<i class="icon-type-of-lesson-icon-1"></i>
 										</div>
-										<div class="category_square_content"><h5>
-											<div class="category_square-format">
+                                        
+										<div class="category_square_content">
+                                            
+											<h3 class="category_square-format">
 												<?php $values =  get_category_meta('type', get_term_by('slug', $cat->cat_name, 'category'));
 												foreach ($values as $value => $label) {
-												    echo '<p><span>' . $value .'</span>' ;
+												    echo '' . $value .'' ;
 												}
 												$values = get_category_meta('format', get_term_by('slug', $cat->cat_name, 'category'));
 												foreach ($values as $value => $label) {
-												    echo  '&nbsp; <span>' . $value . '</span></p>';
+												    echo  '&nbsp;' . $value . '';
 												}?>
-											</div></h5>
+											</h3>
+                                            
 										
 
-											<h3><a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->cat_name; ?></a></h3>
+											<h2>
+                                                <a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->cat_name; ?></a>
+                                            </h2>
+                                            
 											<div class="category_square_description">
-													<!--<?php echo category_description($cat->term_id); ?>-->
-													<p><?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
-														echo $short_description;
-														?></p>
+													<?php
+                                                    /*echo category_description($cat->term_id); */
+                                                    ?>
+												<p>
+                                                <?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
+                                                    echo substr( $short_description, 0,180); 
+                                                    echo "...";
+                                                    ?>
+                                                </p>
 											</div>
 
 											<div class="category_square_author">
@@ -163,20 +182,22 @@
 												    $the_user = get_user_by('id', $user_id);
 												    echo '<div class="category_square_avatar">'. get_avatar( $the_user, 60 ) . '</div>'; 
 
-												    echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->user_login . '</h4></div></br>';
+												    echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->user_login . '</h4></div>';
 												    
-												    echo '<div class="category_square_author_subject"><h4><small>' .get_the_author_meta('subject', $user_id ). '</small></h4></div>';?>
+												    echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';?>
 											    	<div class="category_square_number">
-														<h5><small>38 שיעורים בספריה</small></h5>
+														 <!-- 
+                                                        TODO: get the number of posts dynamcly
+                                                        -->
+                                                        38 שיעורים בספריה
 													</div><?php } ?>
 											</div>
 													
 
-												
-											
-											
-											</div><div style="clear:both;"></div>
-											<div class="category_square_oval"><h4>
+											</div>
+                                        
+											<div class="category_square_oval">
+                                               
 											<?php
 												
 											   			 echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';
@@ -190,7 +211,7 @@
 											   			 echo '<span class="oval" style="border:1px solid #b2bac2; color:#b2bac2;">' . $value . '</span>';
 													}
 
-											?></h4>
+											?>
 											</div>
 										</div>
 									</li>
@@ -215,12 +236,6 @@
 			</div>
 			
 				
-			<div class="col-md-3">	
-				
-				
-				<?php get_sidebar(); ?>
-			<!-- .sidebar -->			
-			</div>
 			<?php 
 /*end page category*/
 
