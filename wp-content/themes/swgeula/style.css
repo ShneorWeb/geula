@@ -78,26 +78,24 @@ Tags:
   src: url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.eot);
   src: url(fonts/opensanshebrew-extrabold-webfont.eot?#iefix) format("embedded-opentype"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.woff2) format("woff2"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.woff) format("woff"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.ttf) format("truetype");
 }
-#div-login {
-  margin-top: 100px;
-  width: 600px;
+.div-login {   
   margin: 100px auto 60px auto;
   padding: 30px;
   background-color: #FFF;
-  text-align: center;
+  text-align: center;  
 }
 
-#div-login h1 {
+.div-login h1 {
   font-size: 40px;
   font-weight: normal;
 }
 
-#div-login h2 {
+.div-login h2 {
   font-size: 22px;
   font-weight: normal;
 }
 
-#div-login .forgetmenot {
+.div-login .forgetmenot {
   direction: rtl;
   /* CHANGE ACCORDING TO LANGUAGE!!! */
 }
@@ -114,7 +112,7 @@ Tags:
   direction: rtl;
 }
 
-#div-login .button-primary {
+.div-login .button-primary {
   background-color: #50b46e;
   color: #FFF;
   width: 335px;
@@ -123,15 +121,15 @@ Tags:
   font-family: 'Open Sans Hebrew';
 }
 
-#div-login input[type="text"] {
+.div-login input[type="text"] {
   width: 335px;
 }
 
-#div-login input[type="password"] {
+.div-login input[type="password"] {
   width: 335px;
 }
 
-#div-login .login-remember label {
+.div-login .login-remember label {
   font-size: 20px !important;
   margin-top: 20px;
 }
@@ -142,10 +140,6 @@ Tags:
   text-align: center;
   margin-top: -20px;
   font-size: 18px;
-}
-
-body {
-  background-color: #ccc;
 }
 
 body {

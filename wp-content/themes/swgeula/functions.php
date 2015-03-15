@@ -424,11 +424,13 @@ function get_user_profile() {
 		    $avtr_220 = get_user_meta( $uid, 'custom_avatar_220', true );
 		    $lang = get_user_meta( $uid, 'user_lang', true );
 		    $country = get_user_meta( $uid, 'user_country', true );
-		    $city = get_user_meta( $uid, 'user_city', true );
+		    $city = get_user_meta( $uid, 'user_city', true );		    
+		    $position = get_user_meta( $uid, 'position', true );		    
+		    $about = get_user_meta( $uid, 'about', true );		    
 		    $timezone = get_user_meta( $uid, 'user_timezone', true );
 		    
-		    $response = '{"firstName":"'.$current_user->user_firstname.
-		    	'", "lastName":"'.$current_user->user_lastname.
+		    $response = '{"firstname":"'.$current_user->user_firstname.
+		    	'", "lastname":"'.$current_user->user_lastname.
 		    	'", "email":"'.$current_user->user_email.
 		    	'","avatar":"'.$avtr.
 		    	'","avatar_220":"'.$avtr_220.
@@ -436,6 +438,8 @@ function get_user_profile() {
 		    	'","country":"'.$country.
 		    	'","city":"'.$city.
 		    	'","timezone":"'.$timezone.
+		    	'","position":"'.$position.
+		    	'","about":"'.$about.
 		    	'"}'; 
 		    
 		    header( "Content-Type: application/json" );    
