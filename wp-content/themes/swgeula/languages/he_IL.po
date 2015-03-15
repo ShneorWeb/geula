@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
-"POT-Creation-Date: 2015-03-02 23:42+0200\n"
-"PO-Revision-Date: 2015-03-02 23:43+0200\n"
+"POT-Creation-Date: 2015-03-15 09:50+0200\n"
+"PO-Revision-Date: 2015-03-15 10:04+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -16,12 +16,89 @@ msgstr ""
 "X-Poedit-KeywordsList: _e;__;esc_attr_e\n"
 "X-Poedit-SearchPath-0: C:\\wamp\\www\\geula\\wp-content\\themes\\swgeula\n"
 
+#: C:\wamp\www\geula\wp-content\themes\swgeula/404.php:15
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/404.php:19
+msgid ""
+"It looks like nothing was found at this location. Maybe try one of the links "
+"below or a search?"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/404.php:27
+msgid "Most Used Categories"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/404.php:44
+#, php-format
+msgid "Try looking in the monthly archives. %1$s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:35
+#: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:56
+msgid "Comment navigation"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:38
+#: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:59
+msgid "Older Comments"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:39
+#: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:60
+msgid "Newer Comments"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:72
+msgid "Comments are closed."
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/content-none.php:13
+msgid "Nothing Found"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/content-none.php:19
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/content-none.php:23
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/content-none.php:28
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/content-page.php:18
+#: C:\wamp\www\geula\wp-content\themes\swgeula/content-single.php:20
+#: C:\wamp\www\geula\wp-content\themes\swgeula/content.php:29
+msgid "Pages:"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/content-page.php:25
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:126
+msgid "Edit"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/content.php:22
+#, php-format
+msgid "Continue reading %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:29
 msgid "Email"
 msgstr "אימייל"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:30
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:819
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:666
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:834
 msgid "Password"
 msgstr "סיסמא"
 
@@ -56,13 +133,13 @@ msgid "Registration complete. Please check your e-mail and login."
 msgstr "ההרשמה הושלמה. אנא בדקו את האימייל שלכם והיכנסו למערכת."
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:67
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:830
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:845
 msgid "Remember Me"
 msgstr "תשאיר אותי מחובר"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/custom-login.php:68
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:806
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:832
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:821
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:847
 msgid "Log In"
 msgstr "היכנס"
 
@@ -82,169 +159,167 @@ msgstr "זאת הפעם הראשונה שלך?"
 msgid "Create a new account"
 msgstr "צור חשבון חדש"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:183
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:184
 msgid "<strong>ERROR</strong>: Enter a username or e-mail address."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:187
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:188
 msgid ""
 "<strong>ERROR</strong>: There is no user registered with that email address."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:204
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:205
 msgid "<strong>ERROR</strong>: Invalid username or e-mail."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:242
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:243
 msgid "Password reset is not allowed for this user"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:267
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:268
 msgid "Someone requested that the password be reset for the following account:"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:269
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:270
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:300
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:315
 #, php-format
 msgid "Username: %s"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:270
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:271
 msgid "If this was a mistake, just ignore this email and nothing will happen."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:271
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:272
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:283
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:284
 #, php-format
 msgid "[%s] Password Reset"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:304
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:305
 msgid "The e-mail could not be sent."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:304
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:305
 msgid "Possible reason: your host may have disabled the mail() function."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:407
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:408
 msgid "Sorry, that key does not appear to be valid."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:409
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:410
 msgid "Sorry, that key has expired. Please try again."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:429
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:430
 msgid "Lost Password"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:429
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:430
 msgid ""
 "Please enter your username or email address. You will receive a link to "
 "create a new password via email."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:437
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:438
 msgid "Username or E-mail:"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:448
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:449
 msgid "Get New Password"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:452
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:515
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:558
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:453
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:516
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:559
 msgid "Log in"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:455
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:561
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:655
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:849
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:456
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:562
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:670
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:864
 msgid "Register"
 msgstr "צור חשבון"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:500
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:501
 msgid "The passwords do not match."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:515
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:516
 msgid "Password Reset"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:515
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:516
 msgid "Your password has been reset."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:523
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:554
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:524
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:555
 msgid "Reset Password"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:523
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:524
 msgid "Enter your new password below."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:530
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:531
 msgid "New password"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:534
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:535
 msgid "Confirm new password"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:538
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:539
 msgid "Strength indicator"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:539
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:540
 msgid ""
 "Hint: The password should be at least seven characters long. To make it "
 "stronger, use upper and lower case letters, numbers, and symbols like ! \" ? "
 "$ % ^ &amp; )."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:620
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:633
 msgid "Creating a new account"
 msgstr "יצירת חשבון חדש"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:621
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:634
 msgid "enter your full name and email address"
 msgstr "הזן את שמך המלא ואת כתובת האימייל שלך"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:625
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:638
 msgid "Registration Form"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:639
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:652
 msgid "Name"
 msgstr "שם"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:642
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:655
 msgid "E-mail"
 msgstr "אימייל"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:652
-msgid "A password will be e-mailed to you."
-msgstr "סיסמה תשלח אליך"
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:660
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:675
 msgid "Or register with your Google account"
 msgstr "או צור חשבון באמצעות חשבון גוגל"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:677
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:692
 msgid "Already have an account? "
 msgstr "כבר יש לך חשבון?"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:677
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:692
 msgid "Enter with your existing account"
 msgstr "היכנס באמצעות חשבון קיים"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:718
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:733
 #, php-format
 msgid ""
 "<strong>ERROR</strong>: Cookies are blocked due to unexpected output. For "
@@ -252,83 +327,218 @@ msgid ""
 "\"%2$s\">support forums</a>."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:719
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:723
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:734
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:738
 msgid "http://codex.wordpress.org/Cookies"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:719
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:734
 msgid "https://wordpress.org/support/"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:722
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:737
 #, php-format
 msgid ""
 "<strong>ERROR</strong>: Cookies are blocked or not supported by your "
 "browser. You must <a href=\"%s\">enable cookies</a> to use WordPress."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:741
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:756
 msgid "You have logged in successfully."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:775
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:790
 msgid ""
 "Session expired. Please log in again. You will not move away from this page."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:779
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:794
 msgid "You are now logged out."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:781
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:796
 msgid "User registration is currently not allowed."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:783
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:798
 msgid "Check your e-mail for the confirmation link."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:785
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:800
 msgid "Check your e-mail for your new password."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:787
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:802
 msgid "Registration complete. Please check your e-mail."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:789
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:804
 msgid ""
 "<strong>You have successfully updated WordPress!</strong> Please log back in "
 "to see what&#8217;s new."
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:815
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:830
 msgid "Username"
 msgstr "שם משתמש"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:855
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:870
 msgid "Password Lost and Found"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:855
+#: C:\wamp\www\geula\wp-content\themes\swgeula/custom-register.php:870
 msgid "Lost your password?"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:73
-msgid "<strong>ERROR</strong>: Please type your first name."
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:54
+msgid "Primary Menu"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:76
-msgid "<strong>ERROR</strong>: Please type your last name."
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:260
+msgid "<strong>ERROR</strong>: Please type your full name."
+msgstr "שגיאה: אנא מלא את שמך המלא"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:299
+#, php-format
+msgid "New user registration on %s:"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:155
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:301
+#, php-format
+msgid "E-mail: %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:305
+#, php-format
+msgid "[%s] New User Registration"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:312
+msgid "Hi there,"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:313
+#, php-format
+msgid "Welcome to %s! Here's how to log in:"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:316
+#, php-format
+msgid "Password: %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:317
+#, php-format
+msgid "If you have any problems, please contact me at %s."
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:318
+msgid "Adios!"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:322
+#, php-format
+msgid "[%s] Your username and password"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:336
 msgid "Header Menu"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:156
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:337
 msgid "Right Menu"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/extras.php:52
+#, php-format
+msgid "Page %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:23
+msgid "Posts navigation"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:27
+msgid "Older posts"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:31
+msgid "Newer posts"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:56
+msgid "Post navigation"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:108
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:114
+msgid ", "
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:110
+#, php-format
+msgid "Posted in %1$s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:116
+#, php-format
+msgid "Tagged %1$s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:122
+msgid "Leave a comment"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:122
+msgid "1 Comment"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:122
+msgid "% Comments"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:143
+#, php-format
+msgid "Category: %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:145
+#, php-format
+msgid "Tag: %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:147
+#, php-format
+msgid "Author: %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:149
+#, php-format
+msgid "Year: %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:151
+#, php-format
+msgid "Month: %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:153
+#, php-format
+msgid "Day: %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:175
+#, php-format
+msgid "Archives: %s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:179
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/template-tags.php:181
+msgid "Archives"
 msgstr ""
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/index.php:6
@@ -339,17 +549,13 @@ msgstr "שלום עולם"
 msgid "Web site"
 msgstr "אתר אינטרנט"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/partials/profile1.php:16
-msgid "The passwords you entered do not match.  Your password was not updated."
+#: C:\wamp\www\geula\wp-content\themes\swgeula/search.php:16
+#, php-format
+msgid "Search Results for: %s"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/partials/profile1.php:24
-msgid "The Email you entered is not valid.  please try again."
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/partials/profile1.php:26
-msgid "This email is already used by another user.  try a different one."
-msgstr ""
+#~ msgid "A password will be e-mailed to you."
+#~ msgstr "סיסמה תשלח אליך"
 
 #~ msgid "First Name"
 #~ msgstr "שם פרטי"

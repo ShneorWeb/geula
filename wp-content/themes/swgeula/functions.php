@@ -256,12 +256,9 @@ add_action('after_setup_theme', 'lang_setup');
 /************************** user registration stuff: ************************************/
 function swgeula_registration_errors( $errors, $sanitized_user_login, $user_email ) {
         
-        if ( empty( $_POST['first_name'] ) || ! empty( $_POST['first_name'] ) && trim( $_POST['first_name'] ) == '' ) {
-            $errors->add( 'first_name_error', __( '<strong>ERROR</strong>: Please type your first name.', 'mydomain' ) );
-        }
-         if ( empty( $_POST['last_name'] ) || ! empty( $_POST['last_name'] ) && trim( $_POST['last_name'] ) == '' ) {
-            $errors->add( 'last_name_error', __( '<strong>ERROR</strong>: Please type your last name.', 'mydomain' ) );
-        }
+        if ( empty( $_POST['fullname'] ) || ! empty( $_POST['fullname'] ) && trim( $_POST['fullname'] ) == '' ) {
+            $errors->add( 'full_name_error', __( '<strong>ERROR</strong>: Please type your full name.', 'mydomain' ) );
+        }         
 
         return $errors;
 }
@@ -287,6 +284,46 @@ function verify_username_password( $user, $username, $password ) {
     }  
 }  
 add_filter( 'authenticate', 'verify_username_password', 1, 3);  
+
+
+// Redefine user notification function
+if ( !function_exists('wp_new_user_notification') ) {
+
+	function wp_new_user_notification( $user_id, $plaintext_pass = '' ) {
+
+		$user = new WP_User( $user_id );
+
+		$user_login = stripslashes( $user->user_login );
+		$user_email = stripslashes( $user->user_email );
+
+		$message  = sprintf( __('New user registration on %s:'), get_option('blogname') ) . "\r\n\r\n";
+		$message .= sprintf( __('Username: %s'), $user_login ) . "\r\n\r\n";
+		$message .= sprintf( __('E-mail: %s'), $user_email ) . "\r\n";
+
+		@wp_mail(
+			get_option('admin_email'),
+			sprintf(__('[%s] New User Registration'), get_option('blogname') ),
+			$message
+		);
+
+		if ( empty( $plaintext_pass ) )
+			return;
+
+		$message  = __('Hi there,') . "\r\n\r\n";
+		$message .= sprintf( __("Welcome to %s! Here's how to log in:"), get_option('blogname')) . "\r\n\r\n";
+		$message .= wp_login_url() . "\r\n";
+		$message .= sprintf( __('Username: %s'), $user_login ) . "\r\n";
+		$message .= sprintf( __('Password: %s'), $plaintext_pass ) . "\r\n\r\n";
+		$message .= sprintf( __('If you have any problems, please contact me at %s.'), get_option('admin_email') ) . "\r\n\r\n";
+		$message .= __('Adios!');
+
+		wp_mail(
+			$user_email,
+			sprintf( __('[%s] Your username and password'), get_option('blogname') ),
+			$message
+		);
+	}
+}
 
 /************************** end user registration stuff: ************************************/
 
@@ -380,6 +417,7 @@ function get_user_profile() {
 		    
 
 		    $avtr = get_user_meta( $uid, 'custom_avatar', true );
+		    $avtr_220 = get_user_meta( $uid, 'custom_avatar_220', true );
 		    $lang = get_user_meta( $uid, 'user_lang', true );
 		    $country = get_user_meta( $uid, 'user_country', true );
 		    $city = get_user_meta( $uid, 'user_city', true );
@@ -389,6 +427,7 @@ function get_user_profile() {
 		    	'", "lastName":"'.$current_user->user_lastname.
 		    	'", "email":"'.$current_user->user_email.
 		    	'","avatar":"'.$avtr.
+		    	'","avatar_220":"'.$avtr_220.
 		    	'","lang":"'.$lang.
 		    	'","country":"'.$country.
 		    	'","city":"'.$city.
@@ -620,14 +659,26 @@ function set_user_profile3(){
 				'gif'          => 'image/gif',
 			  );	
 			  $status = wp_handle_upload($_FILES['file'], array('mimes' => $allowed_image_types, 'test_form' => FALSE));	    	  
+
+			  $path = pathinfo($status['url']);
+			  $imgBaseName = $path['dirname'] . "/";
+
+
+			  $image_editor1 = wp_get_image_editor($status['file']);
+			  $image_editor2 = wp_get_image_editor($status['file']);
 			  
 			  if(empty($status['error'])){	
 				//resize
-				$resized = image_resize($status['file'], 96, 96, $crop = true);	 
+				//$resized = image_resize($status['file'], 96, 96, $crop = true);	 
+				$image_editor1->resize( 96, 96, true );
+				$image_editor2->resize( 220, 220, true );				
+				$img1 = $image_editor1->save();				
+				$img2 = $image_editor2->save();
 			
 				if(!is_wp_error($resized)) { //resize successful		
-					$uploads = wp_upload_dir();		
-					$_POST['resized_url'] = $uploads['url'].'/'.basename($resized); 					
+					//$uploads = wp_upload_dir();												
+					$_POST['resized_url'] = $imgBaseName . $img1["file"];
+					$_POST['resized_url_220'] = $imgBaseName . $img2["file"];										
 				}
 			  }
 			  else {
@@ -635,12 +686,18 @@ function set_user_profile3(){
 			  	exit;
 			  }	 
 			}
-			elseif ($_POST) $_POST['resized_url']='';
+			elseif ($_POST) {
+				$_POST['resized_url']='';
+				$_POST['resized_url_220']='';
+			}
 
 
 		 	$userdata['resized_url'] = $_POST['resized_url'];		
+		 	$userdata['resized_url_220'] = $_POST['resized_url_220'];		
 			
 			if (!empty($userdata['resized_url'])) update_usermeta($uid, 'custom_avatar', $userdata['resized_url']);
+			else $error .= '<p class="error">File not found</p>';	
+			if (!empty($userdata['resized_url_220'])) update_usermeta($uid, 'custom_avatar_220', $userdata['resized_url_220']);
 			else $error .= '<p class="error">File not found</p>';	
 
 			if( !empty( $error ) ) {			 
