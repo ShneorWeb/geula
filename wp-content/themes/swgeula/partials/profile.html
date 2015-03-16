@@ -96,34 +96,10 @@
             <tab-heading>
               {{'Picture' | translate}}              
             </tab-heading>
-
-            <style>
-            .button {
-    -moz-appearance: button;
-    /* Firefox */
-    -webkit-appearance: button;
-    /* Safari and Chrome */
-    padding: 10px;
-    margin: 10px;
-    width: 70px;
-}
-.drop-box {
-    background: #F8F8F8;
-    border: 5px dashed #DDD;
-    width: 200px;
-    height: 100px;
-    text-align: center;
-    padding-top: 25px;
-    margin: 10px;
-}
-.dragover {
-    border: 5px dashed blue;
-}
-          </style>
            
-              <div style="float:right; width:240px; height:240px; background-color:#e8e8e8; -moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px; -khtml-border-radius: 10px;"><img ng-src={{user.avatar_220}} /></div>
+              <div class="col-sm-5" style="margin-top:20px; background-color:#e8e8e8; -moz-border-radius: 10px;-webkit-border-radius: 10px;border-radius: 10px; -khtml-border-radius: 10px;"><img ng-src={{user.avatar_220}} /></div>
               
-              <div style="float:left;">                                   
+              <div class="col-sm-4 col-sm-offset-1" style="margin-top:20px;">                                   
 
                   <div name="userpic" id="userpic" ng-file-drop ng-file-select ng-model="files" class="drop-box" 
                     drag-over-class="dragover" 
@@ -134,9 +110,11 @@
                       <li ng-repeat="f in files" style="font:smaller">{{f.name}}</li>
                   </ul>             
 
-              </div>                                
+              </div>                              
 
-              <div class="frm-button" style="clear:both; float:left; margin-top:30px;"><input type="button" id="register-me" value="{{'Save_Details' | translate}}" ng-click="upload(files)" /></div>     
+              <div class="col-sm-2"  ></div>
+
+              <div class="frm-button" style="clear:both; float:left; margin-top:30px;"><input type="button" id="register-me" class="btn btn-success"  value="{{'Save_Details' | translate}}" ng-click="upload(files)" /></div>     
          
           </tab>
 
