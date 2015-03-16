@@ -178,10 +178,18 @@ function my_scripts() {
 		get_stylesheet_directory_uri() . '/js/jstz-1.0.4.min.js	'			
 	);			
 	wp_enqueue_script(
+		'password-strength',
+		get_stylesheet_directory_uri() . '/js/ng-password-strength.min.js'			
+	);
+	wp_enqueue_script(
+		'vendor',
+		get_stylesheet_directory_uri() . '/js/vendor.js'			
+	);
+	wp_enqueue_script(
 		'my-scripts',
 		get_stylesheet_directory_uri() . '/js/angular_main.js',
 		array( 'angularjs', 'angularjs-route' )
-	);		
+	);	
 
 	wp_localize_script(
 		'my-scripts',

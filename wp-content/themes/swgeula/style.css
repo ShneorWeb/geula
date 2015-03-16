@@ -79,9 +79,8 @@ Tags:
   src: url(fonts/opensanshebrew-extrabold-webfont.eot?#iefix) format("embedded-opentype"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.woff2) format("woff2"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.woff) format("woff"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.ttf) format("truetype");
 }
 .div-login {   
-  margin: 100px auto 60px auto;
-  padding: 30px;
-  background-color: #FFF;
+  margin: 0 auto 60px auto;
+  padding: 30px;  
   text-align: center;  
 }
 
@@ -93,11 +92,6 @@ Tags:
 .div-login h2 {
   font-size: 22px;
   font-weight: normal;
-}
-
-.div-login .forgetmenot {
-  direction: rtl;
-  /* CHANGE ACCORDING TO LANGUAGE!!! */
 }
 
 .login-error-msg {
@@ -132,6 +126,13 @@ Tags:
   margin-top: 20px;
 }
 
+.div-login hr {
+  margin-top: 6px !important;  
+}
+.div-login div {
+  margin-bottom: 10px !important;  
+}
+
 #login-bottom-text {
   margin-right: auto;
   margin-left: auto;
@@ -150,6 +151,14 @@ Tags:
 }
 .dragover {
     border: 5px dashed blue;
+}
+
+.messages {
+  padding-top:10px;
+}
+
+.glyphicon-user {
+  color: green;
 }
 
 body {

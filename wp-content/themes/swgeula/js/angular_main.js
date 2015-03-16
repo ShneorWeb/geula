@@ -1,4 +1,4 @@
-var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.translate','countrySelect','angularFileUpload']).config(function($routeProvider, $locationProvider,$translateProvider) {		 
+var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.translate','countrySelect','angularFileUpload','ngPasswordStrength']).config(function($routeProvider, $locationProvider,$translateProvider) {		 
     
 	$locationProvider.html5Mode(true);	
 
@@ -28,7 +28,10 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    Drop_Not_Supported : 'File Drag/Drop is not supported for this browser',
 	    Select_Country : 'Select Country',
 	    Select_City : 'Select City',
-	    Select_Timezone : 'Select Timezone'
+	    Select_Timezone : 'Select Timezone',
+	    Data_Saved_Successfully : 'Data Saved Successfully!',
+	    Forgot_Password : 'forgot password',
+	    Strength : 'Strength'
 	  });
 	  $translateProvider.translations('he_IL', {
 	    Your_Account: 'החשבון שלך',
@@ -56,7 +59,10 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    Drop_Not_Supported : 'גרירה אינה נתמכת לדפדפן זה',
 		Select_Country : 'בחר מדינה',
 		Select_City : 'בחר עיר',
-		Select_Timezone : 'בחר אזור זמן'
+		Select_Timezone : 'בחר אזור זמן',
+		Data_Saved_Successfully : 'הנתונים נשמרו בהצלחה!',
+		Forgot_Password : 'שכחתי את הסיסמה',
+		Strength : 'חוזק'
 	  });
 	$translateProvider.preferredLanguage('he_IL');
  	
@@ -87,6 +93,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.user.password2 = '';
 	$scope.countries = [];
 	$scope.cities = [];	
+	$scope.User_Success=false;
+	$scope.strength = 'fff';
 
 	$scope.tabs = [
   		{active: true, disabled: false},
@@ -204,6 +212,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 					   	$scope.tabs[1].disabled = false;
 					   	$scope.tabs[0].active = false;		
 					   	$scope.tabs[1].active = true;							   						   	
+					   	$scope.User_Success=true;
 
                 }
             }).error(function (data, status, headers, config) {
@@ -233,7 +242,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 					   	$scope.tabs[2].disabled = false;
 					   	$scope.tabs[3].disabled = false;
 					   	$scope.tabs[1].active = false;		
-					   	$scope.tabs[2].active = true;							   						   	
+					   	$scope.tabs[2].active = true;	
+					   	$scope.User_Success=true;						   						   	
 
                 }
             }).error(function (data, status, headers, config) {
@@ -259,8 +269,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
                     console.log('progress: ' + progressPercentage + '% ' +
                                 evt.config.file.name);
                 }).success(function (data, status, headers, config) {
-                    console.log('file ' + config.file.name + ' uploaded. Response: ' +
-                                JSON.stringify(data));
+                    //console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
+                    $scope.User_Success=true;
                 });
 
             }
@@ -269,3 +279,24 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	
 }]);
 
+/*
+myApp.directive("passwordStrength", function(){	
+    return {        
+        restrict: 'A',
+        link: function(scope, element, attrs){                    
+            scope.$watch(attrs.passwordStrength, function(value) {
+                console.log(checkStrength());
+                if(angular.isDefined(value) && (value.length>0) ){                	
+                    if (value.length > 8) {
+                        scope.strength = '123123';
+                    } else if (value.length > 3) {
+                        scope.strength = '567654';
+                    } else {
+                        scope.strength = '459876';
+                    }                    
+                }
+            });
+        }
+    };
+});
+*/
