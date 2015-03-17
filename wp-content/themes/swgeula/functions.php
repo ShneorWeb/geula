@@ -268,7 +268,7 @@ add_action('after_setup_theme', 'lang_setup');
 /************************** user registration stuff: ************************************/
 function swgeula_registration_errors( $errors, $sanitized_user_login, $user_email ) {
         
-        if ( empty( $_POST['fullname'] ) || ! empty( $_POST['fullname'] ) && trim( $_POST['fullname'] ) == '' ) {
+        if ( empty( $_POST['full_name'] ) || !empty( $_POST['full_name'] ) && trim( $_POST['full_name'] ) == '' ) {
             $errors->add( 'full_name_error', __( '<strong>ERROR</strong>: Please type your full name.', 'mydomain' ) );
         }         
 

@@ -1,6 +1,14 @@
+<script>
+(function($) {
+        $(window).load(function() {                                          
+            $('.div-login ul').addClass('panel');                       
+        })        
+})(jQuery);
+</script>
+
 <div class="row">
 
-<div class="col-sm-8 col-sm-offset-4"  ng-controller="Profile">  
+<div class="col-sm-9 col-sm-offset-2"  ng-controller="Profile">  
   <div class="div-login">
 
     <h1 id="ttl1" class="pull-right" style="margin-bottom:30px;"><span class="glyphicon glyphicon-user"></span> {{"Your_Account" | translate}}</h1>
@@ -27,7 +35,7 @@
                     <div class="col-sm-4 col-sm-offset-1"><input type="password" class="form-control" name="password2" id="st-psw2" ng-model="user.password2" placeholder="{{'New_Password' | translate}}" /></div>
                    </div> 
 
-                  <div class="col-sm-4 col-sm-offset-3" style="margin-top:0.5em"><a href="">{{'Forgot_Password' | translate}}</a></div><div class="col-sm-4 col-sm-offset-1">
+                  <div class="col-sm-4 col-sm-offset-3" style="margin-top:0.5em; text-align: right;"><a href="">{{'Forgot_Password' | translate}}</a></div><div class="col-sm-4 col-sm-offset-1">
                     <div class="progress-label">{{'Strength' | translate}}:</div><div ng-password-strength="user.password2" strength="passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-"></div>
                   </div>
                    
@@ -153,7 +161,7 @@
                 <div class="col-sm-2"></div>
 
                 <div class="span12">
-                  <div class="btn btn-lg pull-left" style="clear:both; margin-top:30px;"><input type="button" id="register-me" class="btn btn-success"  value="{{'Save_Details' | translate}}" ng-click="upload(files)" /></div>     
+                  <div class="btn-lg pull-left" style="clear:both; margin-top:30px;"><input type="button" id="register-me" class="btn btn-success"  value="{{'Save_Details' | translate}}" ng-click="upload(files)" /></div>     
                 </div>                  
               
               </div>
@@ -182,4 +190,4 @@
   </div> <!-- of class="div-login" -->
 
 </div>
-</div>
+</div><div class="col-sm-1"></div>

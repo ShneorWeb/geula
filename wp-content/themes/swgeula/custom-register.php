@@ -650,7 +650,7 @@ case 'register' :
 					<input type="hidden" name="last_name" id="last_name" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" />
 				</p>
 				<p>					
-					<input type="text" class="form-control" name="full_name" id="full_name" placeholder="<?php _e('Name','swgeulatr'); ?>" value="<?php echo esc_attr( wp_unslash( $first_name ) ) . '' . esc_attr( wp_unslash( $last_name ) ); ?>" />
+					<input type="text" class="form-control" name="full_name" id="full_name" placeholder="<?php _e('Name','swgeulatr'); ?>" value="<?php echo trim(esc_attr( wp_unslash( $first_name ) ) . ' ' . esc_attr( wp_unslash( $last_name )) ); ?>" />
 				</p>
 				<p>					
 					<input type="email" class="form-control" name="user_email" id="user_email" placeholder="<?php _e('E-mail','swgeulatr') ?>" value="<?php echo esc_attr( wp_unslash( $user_email ) ); ?>" />
