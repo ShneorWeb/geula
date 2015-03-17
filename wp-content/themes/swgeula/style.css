@@ -107,10 +107,8 @@ Tags:
 }
 
 .div-login .button-primary {
-  background-color: #50b46e;
-  color: #FFF;    
-  font-size: 22px;
-  font-family: 'Open Sans Hebrew';
+  width:100%;
+  height:auto;
 }
 
 .div-login input[type="text"] {  
@@ -118,6 +116,9 @@ Tags:
 }
 
 .div-login input[type="password"] {  
+  height:auto;
+}
+.div-login input[type="email"] {  
   height:auto;
 }
 
@@ -131,6 +132,12 @@ Tags:
 }
 .div-login div {
   margin-bottom: 10px !important;  
+}
+
+.progress-label {
+    float: right;
+    margin-left: 1em;
+    margin-top: 0.5em;
 }
 
 #login-bottom-text {

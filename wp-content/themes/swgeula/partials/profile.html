@@ -8,7 +8,7 @@
     
    <tabset type ="pills" style="clear:both;">
           
-          <tab heading="{{'Settings' | translate}}" disabled="tabs[0].disabled" active="tabs[0].active" class="panel">                
+          <tab heading="{{'Settings' | translate}}" disabled="tabs[0].disabled" active="tabs[0].active">                
                
 
                 <div class="messages">
@@ -27,8 +27,8 @@
                     <div class="col-sm-4 col-sm-offset-1"><input type="password" class="form-control" name="password2" id="st-psw2" ng-model="user.password2" placeholder="{{'New_Password' | translate}}" /></div>
                    </div> 
 
-                  <div class="col-sm-4 col-sm-offset-2"><a href="">{{'Forgot_Password' | translate}}</a></div><div class="col-sm-4 col-sm-offset-2">
-                    <div style="display:inline;">{{'Strength' | translate}}:<div style="display:inline;" ng-password-strength="user.password2" strength="passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-"></div></div>
+                  <div class="col-sm-4 col-sm-offset-3" style="margin-top:0.5em"><a href="">{{'Forgot_Password' | translate}}</a></div><div class="col-sm-4 col-sm-offset-1">
+                    <div class="progress-label">{{'Strength' | translate}}:</div><div ng-password-strength="user.password2" strength="passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-"></div>
                   </div>
                    
                   <div class="span12"><hr /></div>

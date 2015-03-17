@@ -615,8 +615,9 @@ case 'register' :
 	 */	
 ?>
 
-<div class="col-md-12"> 
-    <div id="div-login">   		
+<div class="col-sm-5 col-sm-offset-4"> 
+	<div class="panel" style="text-align:center;">
+    	<div class="div-login">   		
 
     		<script>
     		function RegSetFields(f)  {
@@ -649,10 +650,10 @@ case 'register' :
 					<input type="hidden" name="last_name" id="last_name" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" />
 				</p>
 				<p>					
-					<input type="text" name="full_name" id="full_name" placeholder="<?php _e('Name','swgeulatr'); ?>" value="<?php echo esc_attr( wp_unslash( $first_name ) ) . '' . esc_attr( wp_unslash( $last_name ) ); ?>" />
+					<input type="text" class="form-control" name="full_name" id="full_name" placeholder="<?php _e('Name','swgeulatr'); ?>" value="<?php echo esc_attr( wp_unslash( $first_name ) ) . '' . esc_attr( wp_unslash( $last_name ) ); ?>" />
 				</p>
 				<p>					
-					<input type="email" name="user_email" id="user_email" placeholder="<?php _e('E-mail','swgeulatr') ?>" value="<?php echo esc_attr( wp_unslash( $user_email ) ); ?>" />
+					<input type="email" class="form-control" name="user_email" id="user_email" placeholder="<?php _e('E-mail','swgeulatr') ?>" value="<?php echo esc_attr( wp_unslash( $user_email ) ); ?>" />
 				</p>
 				<?php
 				/**
@@ -663,11 +664,11 @@ case 'register' :
 				do_action( 'register_form' );
 				?>
 				<p>					
-					<input type="password" name="user_password" id="user_password" placeholder="<?php _e('Password','swgeulatr') ?>" value="" />
+					<input type="password" class="form-control" name="user_password" id="user_password" placeholder="<?php _e('Password','swgeulatr') ?>" value="" />
 				</p>
 				<br class="clear" />
 				<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
-				<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Register','swgeulatr'); ?>" /></p>
+				<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="btn btn-success" value="<?php esc_attr_e('Register','swgeulatr'); ?>" /></p>
 			</form>
 
 			<hr/>
@@ -686,12 +687,13 @@ case 'register' :
 		      </span>
 		    </span>
 		    </p>					
+		</div>		    
 	</div>
 
 
 	<div id="login-bottom-text"><span><?php echo _e("Already have an account? ","swgeulatr"); ?></span> <span><a href="<?php echo esc_url( site_url() ."/custom-login-page/" ); ?>"><?php echo _e("Enter with your existing account","swgeulatr"); ?></a></span></div>
-	
-</div>
+		
+</div><div class="col-sm-3"></div>
 
 <?php
 login_footer('user_login');
