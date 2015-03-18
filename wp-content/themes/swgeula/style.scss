@@ -638,11 +638,17 @@ line-height: 30px;
 }
 
 .menu-menu-right-container a {
-width: 100%;
+width: calc(100% - 38px);
 float: right;
-background:#0f1d28;
 }
 
+
+.menu i{
+    float: right;
+     padding-right: 22px;
+  padding-top: 17px;
+    color: #fff;
+}
 
 .menu-menu-right-container{
    ul{
@@ -651,7 +657,7 @@ background:#0f1d28;
               @extend %trans;
           }
           &.current-menu-item a, &.current-category-ancestor a,& a:hover{
-            background:#57bfb8;
+            /*background:#57bfb8;*/
            }  
       }
    } 
@@ -668,6 +674,11 @@ background:#0f1d28;
 
 .menu-menu-right-container ul li {
   padding-left: 0;
+  float: right;
+    @extend %trans;
+    &:hover,&.current-category-ancestor, &.current-menu-item{
+        background-color:#57bfb8;
+    }
     
 }
 
@@ -877,6 +888,8 @@ footer .site-info{
 }
 
 
+
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
 responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
@@ -901,6 +914,13 @@ responsive styles
       padding-right: 30%;
       padding-left: 7%;
       padding-top: 4.3%;
+    }
+    .menu-menu-right-container ul li a{
+        display: none;
+    }
+    
+    .menu-menu-right-container ul li {
+       height: 50px;
     }
 }
 
