@@ -217,13 +217,7 @@
 									</li>
 							</div>
 
-							<?php $count = $count + 1;
-						 ?>
-							<?php if( $count % 3 == 0): ?>
-
-							<div class="rows"></div>
 							
-							<?php endif; ?>
 
 							
 
