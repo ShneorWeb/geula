@@ -605,6 +605,7 @@ h1.site-title a {
 .menu-menu-right-container ul li {
   padding-left: 0;
   float: right;
+  cursor: pointer;
 }
 .menu-menu-right-container ul li:hover, .menu-menu-right-container ul li.current-category-ancestor, .menu-menu-right-container ul li.current-menu-item {
   background-color: #57bfb8;

@@ -24,6 +24,7 @@ function profile_to_mob(){
      $('.cog').prepend('<i class="fa fa-cog"></i>');
      $('.question').prepend('<i class="fa fa-question-circle"></i>');
      
+     
      //mobile side menu
      $('.navbar-collapse.collapse').css('visibility','visible');
      $('.navbar-collapse.collapse').css('display','block');
@@ -52,6 +53,12 @@ function profile_to_mob(){
      
      //
      profile_to_mob();
+     
+     //clickble li in sidebar
+     $(".drop .menu li").click(function(){
+     window.location=$(this).find("a").attr("href");
+     return false;
+     });
     
   //end of document).ready function
  });  
