@@ -96,6 +96,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.User_Success=false;
 	$scope.strength = 'fff';
 	$scope.user.timezone = '';
+	$scope.lostPassURL = myLocalized.home_url + 'custom-register-page/?action=lostpassword';
 
 	$scope.tabs = [
   		{active: true, disabled: false},

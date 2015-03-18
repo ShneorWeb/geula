@@ -441,7 +441,7 @@ case 'retrievepassword' :
 
 ?>
 
-<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ); ?>" method="post">
+<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( '/custom-register-page/?action=lostpassword', 'login_post' ) ); ?>" method="post">
 	<p>
 		<label for="user_login" class="control-label" ><?php _e('Username or E-mail:') ?><br />
 		<input type="text" name="user_login" id="user_login" class="form-control" value="<?php echo esc_attr($user_login); ?>" size="20" /></label>

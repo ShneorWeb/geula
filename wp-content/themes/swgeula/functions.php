@@ -189,7 +189,8 @@ function swgeula_scripts() {
 		'myLocalized',
 		array(
 			'theme_dir' => trailingslashit( get_template_directory_uri() ), 
-			'wpadmin_dir' => trailingslashit( admin_url() )
+			'wpadmin_dir' => trailingslashit( admin_url() ),
+			'home_url' => trailingslashit( home_url() )
 			)
 	);
     
@@ -251,6 +252,15 @@ add_action( 'wp_enqueue_scripts', 'swgeula_manual_scripts' );
 
 
 /************************** user registration stuff: ************************************/
+function swgeula_login_logo() { ?>
+    <style type="text/css">
+        body.login div#login h1 a {            
+        	display:none;
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'swgeula_login_logo' );
+
 function swgeula_login_page( $login_url, $redirect ) {
     return home_url( '/custom-login-page/?action=login&redirecr='.$redirect);
 }
