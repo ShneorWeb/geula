@@ -87,21 +87,6 @@ add_action( 'after_setup_theme', 'swgeula_setup' );
 
 
 /**
- * Enqueue scripts and styles.
- */
-function swgeula_scripts() {
-
-	wp_enqueue_script( 'swgeula-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-
-	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'swgeula_scripts' );
-
-/**
  * Implement the Custom Header feature.
  */
 //require get_template_directory() . '/inc/custom-header.php';
@@ -126,7 +111,15 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
-function my_scripts() {	
+function swgeula_scripts() {	
+
+	wp_enqueue_script( 'swgeula-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+
+	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
 	
 	wp_enqueue_script(
 		'angularjs',
@@ -202,7 +195,7 @@ function my_scripts() {
     
 }
 
-add_action( 'wp_enqueue_scripts', 'my_scripts' );
+add_action( 'wp_enqueue_scripts', 'swgeula_scripts' );
 
 
 /************************************************************************
@@ -257,15 +250,23 @@ function swgeula_manual_scripts(){
 add_action( 'wp_enqueue_scripts', 'swgeula_manual_scripts' );
 
 
-/***************************LANGUAGE SETTINGS********************************************/
-function lang_setup(){
-    load_theme_textdomain('swgeulatr', get_template_directory() . '/languages');    
-}
-add_action('after_setup_theme', 'lang_setup');
-/***************************END LANGUAGE SETTINGS********************************************/
-
-
 /************************** user registration stuff: ************************************/
+function swgeula_login_page( $login_url, $redirect ) {
+    return home_url( '/custom-login-page/?action=login&redirecr='.$redirect);
+}
+add_filter( 'login_url', 'swgeula_login_page', 10, 2 );
+
+function swgeula_reg_page( $register_url ) {
+    return home_url( '/custom-register-page/?action=register' );
+}
+add_filter( 'register_url', 'swgeula_reg_page', 10, 2 );
+
+function swgeula_lost_pass_page( $lostpassword_url, $redirect ) {
+    return home_url( '/custom-register-page/?action=lostpassword&redirecr='.$redirect );
+}
+add_filter( 'lostpassword_url', 'swgeula_lost_pass_page', 10, 2 );
+
+
 function swgeula_registration_errors( $errors, $sanitized_user_login, $user_email ) {
         
         if ( empty( $_POST['full_name'] ) || !empty( $_POST['full_name'] ) && trim( $_POST['full_name'] ) == '' ) {

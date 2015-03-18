@@ -322,7 +322,7 @@ if ( !in_array( $action, array( 'postpass', 'logout', 'lostpassword', 'retrievep
 
 nocache_headers();
 
-header('Content-Type: '.get_bloginfo('html_type').'; charset='.get_bloginfo('charset'));
+//header('Content-Type: '.get_bloginfo('html_type').'; charset='.get_bloginfo('charset'));
 
 if ( defined( 'RELOCATE' ) && RELOCATE ) { // Move flag is set
 	if ( isset( $_SERVER['PATH_INFO'] ) && ($_SERVER['PATH_INFO'] != $_SERVER['PHP_SELF']) )
@@ -335,9 +335,10 @@ if ( defined( 'RELOCATE' ) && RELOCATE ) { // Move flag is set
 
 //Set a cookie now to see if they are supported by the browser.
 $secure = ( 'https' === parse_url( site_url(), PHP_URL_SCHEME ) && 'https' === parse_url( home_url(), PHP_URL_SCHEME ) );
-setcookie( TEST_COOKIE, 'WP Cookie check', 0, COOKIEPATH, COOKIE_DOMAIN, $secure );
+/*setcookie( TEST_COOKIE, 'WP Cookie check', 0, COOKIEPATH, COOKIE_DOMAIN, $secure );
 if ( SITECOOKIEPATH != COOKIEPATH )
 	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN, $secure );
+	*/
 
 /**
  * Fires when the login form is initialized.
@@ -393,6 +394,13 @@ case 'logout' :
 
 case 'lostpassword' :
 case 'retrievepassword' :
+?>
+
+<div class="col-sm-5 col-sm-offset-4"> 
+	<div class="panel" style="text-align:center;">
+    	<div class="div-login">
+
+<?php
 
 	if ( $http_post ) {
 		$errors = retrieve_password();
@@ -435,8 +443,8 @@ case 'retrievepassword' :
 
 <form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ); ?>" method="post">
 	<p>
-		<label for="user_login" ><?php _e('Username or E-mail:') ?><br />
-		<input type="text" name="user_login" id="user_login" class="input" value="<?php echo esc_attr($user_login); ?>" size="20" /></label>
+		<label for="user_login" class="control-label" ><?php _e('Username or E-mail:') ?><br />
+		<input type="text" name="user_login" id="user_login" class="form-control" value="<?php echo esc_attr($user_login); ?>" size="20" /></label>
 	</p>
 	<?php
 	/**
@@ -446,7 +454,7 @@ case 'retrievepassword' :
 	 */
 	do_action( 'lostpassword_form' ); ?>
 	<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
-	<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Get New Password'); ?>" /></p>
+	<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="btn btn-success" value="<?php esc_attr_e('Get New Password'); ?>" /></p>
 </form>
 
 <p id="nav">
@@ -461,9 +469,14 @@ endif;
 ?>
 </p>
 
+		</div>
+	</div>
+</div>
+
 <?php
 login_footer('user_login');
 break;
+
 
 case 'resetpass' :
 case 'rp' :
