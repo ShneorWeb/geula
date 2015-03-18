@@ -12,7 +12,7 @@ Author URI:
 
 Tags: 
 */
-.menu-menu-right-container ul li a, .back_to_libary a {
+.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -78,20 +78,28 @@ Tags:
   src: url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.eot);
   src: url(fonts/opensanshebrew-extrabold-webfont.eot?#iefix) format("embedded-opentype"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.woff2) format("woff2"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.woff) format("woff"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.ttf) format("truetype");
 }
-.div-login {   
-  margin: 0 auto 60px auto;
-  padding: 30px;  
-  text-align: center;  
+#div-login {
+  margin-top: 100px;
+  width: 600px;
+  margin: 100px auto 60px auto;
+  padding: 30px;
+  background-color: #FFF;
+  text-align: center;
 }
 
-.div-login h1 {
+#div-login h1 {
   font-size: 40px;
   font-weight: normal;
 }
 
-.div-login h2 {
+#div-login h2 {
   font-size: 22px;
   font-weight: normal;
+}
+
+#div-login .forgetmenot {
+  direction: rtl;
+  /* CHANGE ACCORDING TO LANGUAGE!!! */
 }
 
 .login-error-msg {
@@ -106,38 +114,26 @@ Tags:
   direction: rtl;
 }
 
-.div-login .button-primary {
-  width:100%;
-  height:auto;
+#div-login .button-primary {
+  background-color: #50b46e;
+  color: #FFF;
+  width: 335px;
+  height: 43px;
+  font-size: 22px;
+  font-family: 'Open Sans Hebrew';
 }
 
-.div-login input[type="text"] {  
-  height:auto;
+#div-login input[type="text"] {
+  width: 335px;
 }
 
-.div-login input[type="password"] {  
-  height:auto;
-}
-.div-login input[type="email"] {  
-  height:auto;
+#div-login input[type="password"] {
+  width: 335px;
 }
 
-.div-login .login-remember label {
+#div-login .login-remember label {
   font-size: 20px !important;
   margin-top: 20px;
-}
-
-.div-login hr {
-  margin-top: 6px !important;  
-}
-.div-login div {
-  margin-bottom: 10px !important;  
-}
-
-.progress-label {
-    float: right;
-    margin-left: 1em;
-    margin-top: 0.5em;
 }
 
 #login-bottom-text {
@@ -147,25 +143,9 @@ Tags:
   margin-top: -20px;
   font-size: 18px;
 }
-.drop-box {
-    background: #F8F8F8;
-    border: 5px dashed #DDD;
-    width: 200px;
-    height: 100px;
-    text-align: center;
-    padding-top: 25px;
-    margin: 10px;
-}
-.dragover {
-    border: 5px dashed blue;
-}
 
-.messages {
-  padding-top:10px;
-}
-
-.glyphicon-user {
-  color: green;
+body {
+  background-color: #ccc;
 }
 
 body {
@@ -603,13 +583,19 @@ h1.site-title a {
 }
 
 .menu-menu-right-container a {
-  width: 100%;
+  width: calc(100% - 38px);
   float: right;
-  background: #0f1d28;
+}
+
+.menu i {
+  float: right;
+  padding-right: 22px;
+  padding-top: 17px;
+  color: #fff;
 }
 
 .menu-menu-right-container ul li.current-menu-item a, .menu-menu-right-container ul li.current-category-ancestor a, .menu-menu-right-container ul li a:hover {
-  background: #57bfb8;
+  /*background:#57bfb8;*/
 }
 
 .sidebar ul li a i, .sidebar ul li a span {
@@ -618,6 +604,10 @@ h1.site-title a {
 
 .menu-menu-right-container ul li {
   padding-left: 0;
+  float: right;
+}
+.menu-menu-right-container ul li:hover, .menu-menu-right-container ul li.current-category-ancestor, .menu-menu-right-container ul li.current-menu-item {
+  background-color: #57bfb8;
 }
 
 .menu-menu-right-container ul {
@@ -848,6 +838,14 @@ responsive styles
     padding-right: 30%;
     padding-left: 7%;
     padding-top: 4.3%;
+  }
+
+  .menu-menu-right-container ul li a {
+    display: none;
+  }
+
+  .menu-menu-right-container ul li {
+    height: 50px;
   }
 }
 /* 1200 and less ----------- */
