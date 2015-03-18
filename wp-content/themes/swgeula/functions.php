@@ -250,6 +250,12 @@ function swgeula_manual_scripts(){
 
 add_action( 'wp_enqueue_scripts', 'swgeula_manual_scripts' );
 
+/***************************LANGUAGE SETTINGS********************************************/
+function lang_setup(){
+    load_theme_textdomain('swgeulatr', get_template_directory() . '/languages');    
+}
+add_action('after_setup_theme', 'lang_setup');
+/***************************END LANGUAGE SETTINGS********************************************/
 
 /************************** user registration stuff: ************************************/
 function swgeula_login_logo() { ?>
