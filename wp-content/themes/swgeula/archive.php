@@ -1,5 +1,5 @@
 <?php get_header(); ?>	
-    <div class="col-lg-12 col-md-12">	
+    <div class="col-lg-12 col-md-12 archive_cont">	
     <?php
 
       $child = get_category($cat); 
@@ -87,8 +87,8 @@
                             <option value="tag"<?php selected( $_POST['select'],'tag', 1 ); ?>>Tag</option>
                             <option value="title"<?php selected( $_POST['select'],'title', 1 ); ?>>Title</option>
                             <option value="oldest"<?php selected( $_POST['select'], 'oldest', 1 ); ?>>Oldest</option>
-                            <option value="mcommented"<?php selected( $_POST['select'],'mcommented', 1 ); ?>>Most commented</option>
-                            <option value="lcommented"<?php selected( $_POST['select'],'lcommented' , 1 ); ?>>least commented</option>
+                            <option value="mcommented"<?php selected( $_POST['select'],'mcommented', 1 ); ?>>Most c</option>
+                            <option value="lcommented"<?php selected( $_POST['select'],'lcommented' , 1 ); ?>>least c</option>
                         </select>
                     </form>
 													
