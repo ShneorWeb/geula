@@ -8,7 +8,7 @@
 
 <div class="row">
 
-<div class="col-sm-9 col-sm-offset-2"  ng-controller="Profile">  
+<div class="col-sm-8 col-sm-offset-2"  ng-controller="Profile">  
   <div class="div-login">
 
     <h1 id="ttl1" class="pull-right" style="margin-bottom:30px;"><span class="glyphicon glyphicon-user"></span> {{"Your_Account" | translate}}</h1>
@@ -35,48 +35,48 @@
                     <div class="col-sm-4 col-sm-offset-1"><input type="password" class="form-control" name="password2" id="st-psw2" ng-model="user.password2" placeholder="{{'New_Password' | translate}}" /></div>
                    </div> 
 
-                  <div class="col-sm-4 col-sm-offset-3" style="margin-top:0.5em; text-align: right;"><a href="">{{'Forgot_Password' | translate}}</a></div><div class="col-sm-4 col-sm-offset-1">
+                  <div class="col-sm-4" style="margin-top:0.5em; text-align: right;"><a href="">{{'Forgot_Password' | translate}}</a></div><div class="col-sm-4 col-sm-offset-1">
                     <div class="progress-label">{{'Strength' | translate}}:</div><div ng-password-strength="user.password2" strength="passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-"></div>
                   </div>
                    
-                  <div class="span12"><hr /></div>
+                  <div class="span12 clearfix"><hr /></div>
 
                   <div class="form-group">
                       <label for="st-email" style="text-align:right;"  class="col-sm-3 control-label">{{'Email' | translate}}</label>
                       <div class="col-sm-9"><input  type="text" class="form-control" autocomplete="off" name="email" id="st-email" required ng-model="user.email" disabled /></div>
                    </div>                              
                   
-                  <div class="span12"><hr/></div>
+                  <div class="span12 clearfix"><hr/></div>
                    
                    <div class="form-group">
                       <label for="st-country" style="text-align:right;"  class="col-sm-3 control-label">{{'Country' | translate}}</label>
                       <div class="col-sm-9"><select class="form-control" id="st-country" ng-model="user.chosenCountry" ng-options="country.name for country in countries track by country.id" ng-change="getCitiesForCountry(user.chosenCountry);"><option value="">{{'Select_Country' | translate}}</option></select></div> 
                     </div>
 
-                   <div class="span12"><hr/></div> 
+                   <div class="span12 clearfix"><hr/></div> 
                    
                    <div class="form-group">
                       <label for="st-city" style="text-align:right;"  class="col-sm-3 control-label">{{'City' | translate}}</label>
                       <div class="col-sm-9"><select class="form-control" id="st-city" ng-model="user.chosenCity" ng-options="city.name for city in cities track by city.name"><option value="">{{'Select_City' | translate}}</option></select></div>
                     </div>
 
-                  <div class="span12"><hr/></div>  
+                  <div class="span12 clearfix"><hr/></div>  
 
                   <div class="form-group">
                       <label for="st-timezone" style="text-align:right;"  class="col-sm-3 control-label">{{'Time_Zone' | translate}}</label>
                       <div class="col-sm-9"><select class="form-control" id="st-timezone" style="direction:ltr;" ng-model="user.chosenTtimeZ" ng-options="timez.name group by timez.zonegroup for timez in timezones track by timez.id" ng-change="zoneChanged();"></select></div>
                     </div>
 
-                  <div class="span12"><hr/></div>  
+                  <div class="span12 clearfix"><hr/></div>  
                    
                   <div class="form-group">
                     <label for="st-language" style="text-align:right;"  class="col-sm-3 control-label">{{'Language_UI' | translate}}</label>
                     <div class="col-sm-9"><select class="form-control" name="sel_lang" id="st-language" ng-model="user.lang"><option value="he_IL">{{'Hebrew' | translate}}</option><option value="en_US">{{'English' | translate}}</option></select></div>  
                   </div>
 
-                  <div class="span12"><hr/></div>  
+                  <div class="span12 clearfix"><hr/></div>  
                    
-                  <div class="span12">
+                  <div class="span12 clearfix">
                     <div style="text-align: left;"><input type="submit" id="register-me" class="btn btn-success" value="{{'Save_Details' | translate}}" /></div>
                   </div>  
                  
@@ -100,28 +100,28 @@
                     <div class="col-sm-9"><input type="text" class="form-control" autocomplete="off" name="firstname" id="st_firstname" ng-model="user.firstname" placeholder="{{'First_Name' | translate}}" /></div>
                   </div>
 
-                  <div class="span12"><hr/></div>  
+                  <div class="span12 clearfix"><hr/></div>  
 
                   <div class="form-group">
                     <label for="st-lastname" style="text-align:right;" class="col-sm-3 control-label">{{'Last_Name' | translate}}</label>
                     <div class="col-sm-9"><input type="text" class="form-control" autocomplete="off" name="lastname" id="st_lastname" ng-model="user.lastname" placeholder="{{'Last_Name' | translate}}"  /></div>
                   </div>  
 
-                  <div class="span12"><hr/></div>  
+                  <div class="span12 clearfix"><hr/></div>  
 
                   <div class="form-group">
                     <label for="st-position" style="text-align:right;" class="col-sm-3 control-label">{{'Position' | translate}}</label>
                     <div class="col-sm-9"><input type="text" class="form-control" autocomplete="off" name="position" id="st_position" ng-model="user.position" placeholder="{{'Position' | translate}}" /></div>
                   </div>  
 
-                  <div class="span12"><hr/></div>  
+                  <div class="span12 clearfix"><hr/></div>  
 
                   <div class="form-group">
                     <label for="st-about" style="text-align:right;" class="col-sm-3 control-label">{{'About' | translate}}</label>
                     <div class="col-sm-9"><textarea  rows="6" name="about" id="st_about" ng-model="user.about" class="form-control">{{user.about}}</textarea></div>
                   </div>  
 
-                  <div class="span12"><hr/></div>  
+                  <div class="span12 clearfix"><hr/></div>  
 
                   <div class="span12">
                     <div style="margin-left: 15px; text-align: left;"><input type="submit" id="register-me" class="btn btn-success" value="{{'Save_Details' | translate}}" /></div>
@@ -160,8 +160,8 @@
 
                 <div class="col-sm-2"></div>
 
-                <div class="span12">
-                  <div class="btn-lg pull-left" style="clear:both; margin-top:30px;"><input type="button" id="register-me" class="btn btn-success"  value="{{'Save_Details' | translate}}" ng-click="upload(files)" /></div>     
+                <div class="span12" style="clear:both;">
+                  <div class="btn-lg pull-left" style="clearfix margin-top:30px;"><input type="button" id="register-me" class="btn btn-success"  value="{{'Save_Details' | translate}}" ng-click="upload(files)" /></div>     
                 </div>                  
               
               </div>
@@ -190,4 +190,4 @@
   </div> <!-- of class="div-login" -->
 
 </div>
-</div><div class="col-sm-1"></div>
+</div><div class="col-sm-2"></div>

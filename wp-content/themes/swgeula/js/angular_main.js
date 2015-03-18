@@ -95,6 +95,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.cities = [];	
 	$scope.User_Success=false;
 	$scope.strength = 'fff';
+	$scope.user.timezone = '';
 
 	$scope.tabs = [
   		{active: true, disabled: false},
@@ -121,19 +122,21 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 			if (sLocalTZ == 'Asia/Beirut') sLocalTZ = 'Asia/Jerusalem';//fix Israel TZ
 			if (sLocalTZ =="United Kingdom") sLocalTZ = 'Europe/London';//fix UK TZ
 
-			if ($scope.user.timezone.length>0) $scope.user.chosenTtimeZ =  {id:$scope.user.timezone};    		 
+			if ($scope.user.timezone && $scope.user.timezone.length>0) $scope.user.chosenTtimeZ =  {id:$scope.user.timezone};    		 
 			else $scope.user.chosenTtimeZ = {id:sLocalTZ};			
 		});		
 	}
 
 	$scope.getCitiesForCountry = function(cntry) {		
-		ctry = cntry.id + 236;				
-		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getcities&ctry='+ctry).success(function(res){		
-			//console.log(res);
-			$scope.cities = [];
-			$scope.cities = eval(res);								
-			$scope.user.chosenCity = {name:$scope.user.city}; 	
-		});
+		if (typeof cntry.name != 'undefined') {
+			ctry = cntry.id + 236;				
+			$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getcities&ctry='+ctry).success(function(res){		
+				//console.log(res);
+				$scope.cities = [];
+				$scope.cities = eval(res);								
+				$scope.user.chosenCity = {name:$scope.user.city}; 	
+			});
+		}
 	}		
 	
 	
