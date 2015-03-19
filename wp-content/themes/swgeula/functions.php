@@ -423,6 +423,16 @@ function add_contact_fields($profile_fields) {
 // Adding the filter
 add_filter('user_contactmethods', 'add_contact_fields');
 /*****************************AJAX/ANGUALR FUNCTIONS******************/
+function getSWGeulaAvatar($size=96)  {
+	global $current_user;
+	$current_user = wp_get_current_user();
+	$uid = $current_user->ID;
+	if ($size==96) $avtr = get_user_meta( $uid, 'custom_avatar', true );
+
+	if ( empty($avtr) || (is_array($avtr) && size($avtr)==0) ) $avtr = "";
+
+	return $avtr;	
+}
 function get_user_id() {
 	if ( is_user_logged_in() ) {
 		$current_user = wp_get_current_user();
@@ -743,7 +753,7 @@ function set_user_profile3(){
 		 
 		 	}
 		 	else {	 
-					$msg = '1';	 
+					$msg = $userdata['resized_url_220'];	 
 			 		echo $msg;
 			 		exit;
 			 }
