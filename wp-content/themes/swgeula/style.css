@@ -143,6 +143,11 @@ Tags:
   margin-top: -20px;
   font-size: 18px;
 }
+.progress-label {
+  float:right;
+  margin-top:0.3em;
+  margin-left: 4px;
+}
 
 body {
   background-color: #ccc;
