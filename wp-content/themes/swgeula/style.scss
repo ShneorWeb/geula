@@ -676,6 +676,7 @@ float: right;
   padding-left: 0;
   float: right;
     @extend %trans;
+    cursor: pointer;
     &:hover,&.current-category-ancestor, &.current-menu-item{
         background-color:#57bfb8;
     }
@@ -836,7 +837,7 @@ span.category_top_time {
 }
 
 .category_square_description{
-    min-height: 36px;
+    min-height: 40px;
     margin-bottom: 25px;
 }
 
@@ -950,5 +951,93 @@ responsive styles
       margin-right: 0px;
     }   
     
+    .search_by .search_text {
+      width: 100%;
+    }
+    
+    .search_by .search_text input[type=search] {
+      width: calc(100% - 35px);
+    }
+    
+    .selects {
+      float: right;
+      width: 100%;
+        form{
+              width: 100%;
+              margin-top: 9px;
+              padding-top: 7px;
+              border-top: 1px solid #E6E6E6;
+        }
+    }
+    
+    .search_by {
+      height: auto;
+      float: right;
+      width: 100%;
+    }
+    
+    .selects select {
+      width: 100%;
+    }
+    
+    .drop {
+      width: 220px;
+      left: -220px;
+      right: auto !important;
+      top: -61px;    
+      @include trans;
+    }
+    
+    .navbar-toggle{
+    @include trans;    
+    }
+    
+    .navbar.navbar-inverse.navbar-fixed-top{
+        border-bottom: none;
+    }
+    
+    .navbar-nav {
+      margin-bottom: 2px;
+    }
+    
+      .archive_cont{
+        @include  trans;
+    }
+    
+    
+    .archive_cont.left_to_right_archive_cont{
+       right:-220px;
+        @include trans;  
+    }
+    
+    .menu-menu-right-container ul li a {
+      display: block;
+    }
+    
+    .navbar-collapse{
+        left:-220px;
+        @include trans;
+        border: none;
+    }
+    
+    .navbar-collapse.left_to_right{
+       visibility:visible;
+        display: block;
+        left:0;
+    }
+    
+    .navbar-toggle{
+      background-color: #333;
+    }
+    
+    .menu-top {
+      float: right;
+      margin-right: 15px;
+        width: 100%;
+    }
+    
+    .menu-menu-right-container ul {
+      padding-bottom: 0;
+    }
 }
 
