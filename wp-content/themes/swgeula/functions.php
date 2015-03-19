@@ -223,6 +223,9 @@ function swgeula_styles() {
     wp_enqueue_style(
         'swgeula_style', get_template_directory_uri() . '/style.css'
     );
+     wp_enqueue_style(
+        'swgeula_profile_style', get_template_directory_uri() . '/css/profile.css'
+    );
 }
 
 add_action( 'wp_enqueue_scripts', 'swgeula_styles' );

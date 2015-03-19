@@ -1,0 +1,178 @@
+.div-login {   
+  margin: 0 auto 60px auto;
+  padding: 30px;  
+  text-align: center;  
+}
+
+.div-login h1 {
+  font-size: 40px;
+  font-weight: normal;
+}
+
+.div-login h2 {
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.login-error-msg {
+  color: red;
+}
+
+.login-msg {
+  color: blue;
+}
+
+.login-remember {
+  direction: rtl;
+}
+
+.div-login .button-primary {
+  width:100%;
+  height:auto;
+}
+
+.div-login input[type="text"] {  
+  height:auto;
+}
+
+.div-login input[type="password"] {  
+  height:auto;
+}
+.div-login input[type="email"] {  
+  height:auto;
+}
+
+.div-login .login-remember label {
+  font-size: 20px !important;
+  margin-top: 20px;
+}
+
+.div-login hr {
+  margin-top: 6px !important;  
+}
+.div-login div {
+  margin-bottom: 10px !important;  
+}
+
+.progress-label {
+    float: right;
+    margin-left: 1em;
+    margin-top: 0.5em;
+}
+
+#login-bottom-text {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  margin-top: -20px;
+  font-size: 18px;
+}
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+
+.messages {
+  padding-top:10px;
+}
+
+.glyphicon-user {
+  color: green;
+}
+.div-login {   
+  margin: 0 auto 60px auto;
+  padding: 30px;  
+  text-align: center;  
+}
+
+.div-login h1 {
+  font-size: 40px;
+  font-weight: normal;
+}
+
+.div-login h2 {
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.login-error-msg {
+  color: red;
+}
+
+.login-msg {
+  color: blue;
+}
+
+.login-remember {
+  direction: rtl;
+}
+
+.div-login .button-primary {
+  width:100%;
+  height:auto;
+}
+
+.div-login input[type="text"] {  
+  height:auto;
+}
+
+.div-login input[type="password"] {  
+  height:auto;
+}
+.div-login input[type="email"] {  
+  height:auto;
+}
+
+.div-login .login-remember label {
+  font-size: 20px !important;
+  margin-top: 20px;
+}
+
+.div-login hr {
+  margin-top: 6px !important;  
+}
+.div-login div {
+  margin-bottom: 10px !important;  
+}
+
+.progress-label {
+    float: right;
+    margin-left: 1em;
+    margin-top: 0.5em;
+}
+
+#login-bottom-text {
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  margin-top: -20px;
+  font-size: 18px;
+}
+.drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px;
+}
+.dragover {
+    border: 5px dashed blue;
+}
+
+.messages {
+  padding-top:10px;
+}
+
+.glyphicon-user {
+  color: green;
+}
