@@ -154,7 +154,7 @@
                   <div class="dtls_cont">
                     
                     <div class="profile_dtls avatar_image">
-                        <?php if ( !empty(getSWGeulaAvatar()) ) : ?>
+                        <?php if ( getSWGeulaAvatar() != "" ) : ?>
                             <img src="<?php echo getSWGeulaAvatar(); ?>"/>
                         <?php else : ?>
                             <img src="<?php echo get_template_directory_uri(); ?>/images/user_light.svg"/>
