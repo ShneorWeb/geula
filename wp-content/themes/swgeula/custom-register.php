@@ -441,7 +441,7 @@ case 'retrievepassword' :
 
 ?>
 
-<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( '/custom-register-page/?action=lostpassword', 'login_post' ) ); ?>" method="post">
+<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ); ?>" method="post">
 	<p>
 		<label for="user_login" class="control-label" ><?php _e('Username or E-mail:') ?><br />
 		<input type="text" name="user_login" id="user_login" class="form-control" value="<?php echo esc_attr($user_login); ?>" size="20" /></label>
@@ -480,6 +480,11 @@ break;
 
 case 'resetpass' :
 case 'rp' :
+?>
+<div class="col-sm-5 col-sm-offset-4"> 
+	<div class="panel" style="text-align:center;">
+    	<div class="div-login">
+<?php
 	list( $rp_path ) = explode( '?', wp_unslash( $_SERVER['REQUEST_URI'] ) );
 	$rp_cookie = 'wp-resetpass-' . COOKIEHASH;
 	if ( isset( $_GET['key'] ) ) {
@@ -499,6 +504,7 @@ case 'rp' :
 		$user = false;
 	}
 
+/*
 	if ( ! $user || is_wp_error( $user ) ) {
 		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
 		if ( $user && $user->get_error_code() === 'expired_key' )
@@ -507,7 +513,7 @@ case 'rp' :
 			wp_redirect( site_url( 'wp-login.php?action=lostpassword&error=invalidkey' ) );
 		exit;
 	}
-
+*/
 	$errors = new WP_Error();
 
 	if ( isset($_POST['pass1']) && $_POST['pass1'] != $_POST['pass2'] )
@@ -542,11 +548,11 @@ case 'rp' :
 
 	<p>
 		<label for="pass1"><?php _e('New password') ?><br />
-		<input type="password" name="pass1" id="pass1" class="input" size="20" value="" autocomplete="off" /></label>
+		<input type="password" name="pass1" id="pass1" class="form-control" value="" autocomplete="off" /></label>
 	</p>
 	<p>
 		<label for="pass2"><?php _e('Confirm new password') ?><br />
-		<input type="password" name="pass2" id="pass2" class="input" size="20" value="" autocomplete="off" /></label>
+		<input type="password" name="pass2" id="pass2" class="form-control" value="" autocomplete="off" /></label>
 	</p>
 
 	<div id="pass-strength-result" class="hide-if-no-js"><?php _e('Strength indicator'); ?></div>
@@ -565,11 +571,11 @@ case 'rp' :
 	do_action( 'resetpass_form', $user );
 	?>
 	<input type="hidden" name="rp_key" value="<?php echo esc_attr( $rp_key ); ?>" />
-	<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e('Reset Password'); ?>" /></p>
+	<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="btn btn-success" value="<?php esc_attr_e('Reset Password'); ?>" /></p>
 </form>
-
-<p id="nav">
-<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>
+		</div>
+	<p id="nav">
+<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>		
 <?php
 if ( get_option( 'users_can_register' ) ) :
 	$registration_url = sprintf( '<a href="%s">%s</a>', esc_url( wp_registration_url() ), __( 'Register' ) );
@@ -580,6 +586,8 @@ endif;
 ?>
 </p>
 
+</div>
+</div>	
 <?php
 login_footer('user_pass');
 break;
@@ -839,7 +847,6 @@ default:
 		$user_login = ( 'incorrect_password' == $errors->get_error_code() || 'empty_password' == $errors->get_error_code() ) ? esc_attr(wp_unslash($_POST['log'])) : '';
 	$rememberme = ! empty( $_POST['rememberme'] );
 ?>
-
 <form name="loginform" id="loginform" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
 	<p>
 		<label for="user_login"><?php _e('Username') ?><br />

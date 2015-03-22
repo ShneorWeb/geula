@@ -428,9 +428,20 @@ function getSWGeulaAvatar($size=96)  {
 	$current_user = wp_get_current_user();
 	$uid = $current_user->ID;
 	if ($size==96) $avtr = get_user_meta( $uid, 'custom_avatar', true );
+	else $avtr = get_user_meta( $uid, 'custom_avatar_'.$size, true );
 
 	if ( empty($avtr) || (is_array($avtr) && size($avtr)==0) ) $avtr = "";
 
+	return $avtr;	
+}
+function getSWGeulaAvatarUID($uid,$size=96)  {
+	$avtr = "";
+
+	if ( !empty($uid) && is_numeric($uid) ) {
+		if ($size==96) $avtr = get_user_meta( $uid, 'custom_avatar', true );
+		else $avtr = get_user_meta( $uid, 'custom_avatar_'.$size, true );
+		if ( empty($avtr) || (is_array($avtr) && size($avtr)==0) ) $avtr = "";
+	}
 	return $avtr;	
 }
 function get_user_id() {

@@ -88,7 +88,7 @@
             );
             wp_nav_menu( $args );
           ?></div>
-        </div>
+        </div>        
 
         <div class="navbar-collapse collapse">
 
