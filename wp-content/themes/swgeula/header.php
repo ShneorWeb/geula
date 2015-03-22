@@ -80,14 +80,48 @@
           </div><!-- .site-branding -->
 
             
-         <div class="menu-top" ><?php 
-            $args = array(
-              'menu'        => 'header-menu',
-              'menu_class'  => 'nav navbar-nav',
-              'container'   => 'false'
-            );
-            wp_nav_menu( $args );
-          ?></div>
+         <div class="menu-top" >
+                <div class="profile">
+                    
+                    <div class="points profile_dtls">
+                        <i class="fa fa-trophy"></i>
+                        <div class="text">
+                            <!-- TODO: get the points from user profile -->
+                            31
+                        </div>    
+                    </div>
+                    
+                    <div class="timer profile_dtls">
+                        <i class="icon-timer"></i>
+                        <!-- TODO: get the timer from user profile -->
+                    </div>
+                    
+                    <div class="profile_dtls">
+                        <i class="fa fa-bell-o"></i>
+                        <!-- TODO: get the color(class) of notification_point from user profile -->
+                        <div class="notification_point green"></div>
+                    </div>
+                    <div class="profile_dtls avatar_image">
+                    <?php if ( !empty(getSWGeulaAvatar()) ) : ?>
+                        <img src="<?php echo getSWGeulaAvatar(); ?>"/>
+                        <?php else : ?>
+                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="color:#9d9d9d ;"></span>
+                        <?php endif; ?>
+                    </div>
+                    
+                </div>
+                <div class="menu-top" >
+                  <?php 
+                    $args = array(
+                      'menu'        => 'header-menu',
+                      'menu_class'  => 'nav navbar-nav',
+                      'container'   => 'false'
+                    );
+                    //wp_nav_menu( $args );
+                  ?>
+                </div>
+            </div>
+            
         </div>
 
         <div class="navbar-collapse collapse">

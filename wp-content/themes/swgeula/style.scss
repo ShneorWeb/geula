@@ -257,6 +257,7 @@ text-decoration:none;
 .navbar-header{
 	float:right;
   width:100%;
+    min-height: 59px;
 }
 .col-md-9{
 	margin-top:30px;
@@ -833,6 +834,51 @@ footer .site-info{
   margin-bottom: 30px;
 }
 
+.navbar-header{
+    .profile_dtls{
+      float: right;  
+      margin-left: 30px;
+    }
+   .points{
+    color: #A6A8AB;
+    font-size: 15px;
+    font-weight: 700;
+    
+       
+       *{
+           float: right;
+       }
+   } 
+   .timer{
+       
+    }
+    i{
+          font-size: 23px;
+    }
+    
+    .notification_point{
+        position: absolute;
+        top: 0;
+        width: 10px;
+        height: 10px;
+        border: 2px solid #FFF;
+        @include border-radius(50%);
+        &.green{
+            background-color: #39B54A;
+        }
+        &.red{
+            background-color: red;
+        }
+    }
+    
+    .avatar_image{
+        
+    }
+}
+
+.icon-timer:before {
+  content: "c";
+}
 
 
 
@@ -985,4 +1031,5 @@ responsive styles
       padding-bottom: 0;
     }
 }
+
 

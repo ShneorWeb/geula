@@ -78,77 +78,6 @@ Tags:
   src: url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.eot);
   src: url(fonts/opensanshebrew-extrabold-webfont.eot?#iefix) format("embedded-opentype"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.woff2) format("woff2"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.woff) format("woff"), url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.ttf) format("truetype");
 }
-#div-login {
-  margin-top: 100px;
-  width: 600px;
-  margin: 100px auto 60px auto;
-  padding: 30px;
-  background-color: #FFF;
-  text-align: center;
-}
-
-#div-login h1 {
-  font-size: 40px;
-  font-weight: normal;
-}
-
-#div-login h2 {
-  font-size: 22px;
-  font-weight: normal;
-}
-
-#div-login .forgetmenot {
-  direction: rtl;
-  /* CHANGE ACCORDING TO LANGUAGE!!! */
-}
-
-.login-error-msg {
-  color: red;
-}
-
-.login-msg {
-  color: blue;
-}
-
-.login-remember {
-  direction: rtl;
-}
-
-#div-login .button-primary {
-  background-color: #50b46e;
-  color: #FFF;
-  width: 335px;
-  height: 43px;
-  font-size: 22px;
-  font-family: 'Open Sans Hebrew';
-}
-
-#div-login input[type="text"] {
-  width: 335px;
-}
-
-#div-login input[type="password"] {
-  width: 335px;
-}
-
-#div-login .login-remember label {
-  font-size: 20px !important;
-  margin-top: 20px;
-}
-
-#login-bottom-text {
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-  margin-top: -20px;
-  font-size: 18px;
-}
-.progress-label {
-  float:right;
-  margin-top:0.3em;
-  margin-left: 4px;
-}
-
 body {
   background-color: #ccc;
 }
@@ -264,6 +193,7 @@ a {
 .navbar-header {
   float: right;
   width: 100%;
+  min-height: 59px;
 }
 
 .col-md-9 {
@@ -821,6 +751,42 @@ footer .site-info {
 
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   margin-bottom: 30px;
+}
+
+.navbar-header .profile_dtls {
+  float: right;
+  margin-left: 30px;
+}
+.navbar-header .points {
+  color: #A6A8AB;
+  font-size: 15px;
+  font-weight: 700;
+}
+.navbar-header .points * {
+  float: right;
+}
+.navbar-header i {
+  font-size: 23px;
+}
+.navbar-header .notification_point {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #FFF;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.navbar-header .notification_point.green {
+  background-color: #39B54A;
+}
+.navbar-header .notification_point.red {
+  background-color: red;
+}
+
+.icon-timer:before {
+  content: "c";
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
