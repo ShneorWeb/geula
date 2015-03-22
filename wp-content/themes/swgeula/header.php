@@ -90,7 +90,7 @@
           ?></div>
         </div>        
 
-         <div class="menu-top" >
+        <div class="menu-top" >
                 <div class="profile hidden-xs">
                     
                     <div class="points profile_dtls">
@@ -221,7 +221,7 @@
 
         <div class="navbar-collapse collapse">
 
-           	<nav id="site-navigation" class="main-navigation" role="navigation">
+            <nav id="site-navigation" class="main-navigation" role="navigation">
                 <ul class="drop"  style="padding-right:0px; right:0;">
                     <?php get_sidebar(); ?>
                     
@@ -240,3 +240,5 @@
 			<div class="container">
                 <div class="row">
     
+
+        
