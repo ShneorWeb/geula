@@ -81,7 +81,7 @@
 
             
          <div class="menu-top" >
-                <div class="profile">
+                <div class="profile hidden-xs">
                     
                     <div class="points profile_dtls">
                         <i class="fa fa-trophy"></i>
@@ -106,7 +106,7 @@
                     <?php if ( !empty(getSWGeulaAvatar()) ) : ?>
                         <img src="<?php echo getSWGeulaAvatar(); ?>"/>
                     <?php else : ?>
-                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="color:#9d9d9d ;"></span>
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg"/ width="38">
                     <?php endif; ?>
                     </div>
                     
@@ -139,6 +139,71 @@
                     </div>
                     
                 </div>
+             
+              <div class="profile mob visible-xs">
+                  <div class="dtls_cont">
+                    
+                    <div class="profile_dtls avatar_image">
+                        <?php if ( !empty(getSWGeulaAvatar()) ) : ?>
+                            <img src="<?php echo getSWGeulaAvatar(); ?>"/>
+                        <?php else : ?>
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/user_light.svg"/>
+                        <?php endif; ?>
+                    </div>
+                  
+                <div class="name_and_points">
+                    
+                      <div class="profile_dtls">
+                             <div class="avatar_name">
+                               <?php
+                                   $current_user = wp_get_current_user();
+                                   /*
+                                   echo 'Username: ' . $current_user->user_login . '<br />';
+                                   echo 'User email: ' . $current_user->user_email . '<br />';
+                                   echo 'User first name: ' . $current_user->user_firstname . '<br />';
+                                   echo 'User last name: ' . $current_user->user_lastname . '<br />';
+                                   */
+                                   echo $current_user->display_name;
+                                   /*echo 'User ID: ' . $current_user->ID . '<br />';*/
+                               ?>
+                            </div>
+
+                        </div>
+
+                        <div class="points profile_dtls">
+                            <div class="text">
+                                <!-- TODO: get the points from user profile -->
+                                31
+                            </div>    
+                        </div>
+                    
+                    </div>      
+                      
+                  </div>
+                   
+                  <div class="icons_cont">
+                    <div class="profile_dtls notification_icon">
+                        <i class="fa fa-bell-o"></i>
+                        <!-- TODO: get the color(class) of notification_point from user profile -->
+                        <div class="notification_point green"></div>
+                    </div>
+                    <div class="timer profile_dtls">
+                        <i class="icon-timer"></i>
+                        <!-- TODO: get the timer from user profile -->
+                    </div>
+                  </div>
+                  <?php 
+                 //mob settings - ???
+                         $args = array(
+                          'menu'        => 'header-menu',
+                           'menu_class'  => '',
+                           'container'   => 'false'
+                         );
+                      //wp_nav_menu( $args );
+                    ?>
+                    
+                </div>
+             
             </div>
             
         </div>
@@ -146,8 +211,10 @@
         <div class="navbar-collapse collapse">
 
            	<nav id="site-navigation" class="main-navigation" role="navigation">
-            <ul class="drop"  style="padding-right:0px; right:0;">
-          <?php get_sidebar(); ?></ul>
+                <ul class="drop"  style="padding-right:0px; right:0;">
+                    <?php get_sidebar(); ?>
+                    
+                 </ul>
             </nav>
           </div><!--/.navbar-collapse -->
         

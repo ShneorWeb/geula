@@ -6,7 +6,7 @@
 //global functions    
     
 function profile_to_mob(){
-    if($(window).width() < 768){
+    if($(window).width() < 768-17){
         $('.drop .menu').prepend($('.menu-top'));
     }else{
         $('.site-header .navbar-header').append($('.menu-top'));
@@ -34,6 +34,11 @@ function profile_to_mob(){
          $('.navbar-toggle').css('margin-left','235px');
          $('.drop').css('left','0');
          $('.archive_cont').css('right','-220px');
+             
+            if($(window).width() < 500-17){
+                 $('.site-branding').toggle();
+             }
+         
          $(this).one("click", handler2);
     }
     function handler2() {
@@ -41,6 +46,11 @@ function profile_to_mob(){
          $('.navbar-toggle').css('margin-left','15px');
          $('.drop').css('left','-220px');
          $('.archive_cont').css('right','0px');
+        
+            if($(window).width() < 500-17){
+                 $('.site-branding').toggle();
+             }
+        
          $(this).one("click", handler1);
     }
      

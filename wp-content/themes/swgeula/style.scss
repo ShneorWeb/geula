@@ -269,7 +269,7 @@ text-decoration:none;
 	/*color:black !important;*/
 }
 /*
-@media (min-width: 770px){
+@media (min-width: 767px){
 .container {
 width: 400px;}
 }
@@ -283,7 +283,7 @@ width: 700px;}
 }
 @media (min-width: 1200px){
 .container {
-width: 770px;}
+width: 767px;}
 }
 
 
@@ -292,10 +292,10 @@ width: 770px;}
 width: 1000px;}
 }
 */
-@media (min-width: 770px){
+@media (min-width: 767px){
   
 }
-@media (max-width: 770px){
+@media (max-width: 767px){
     
     .navbar-header {
     float: none;
@@ -419,7 +419,7 @@ box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
 .navbar-nav>li>a, .navbar-brand{
   line-height: 34px;
 }
-@media (min-width: 770px){
+@media (min-width: 767px){
   .container-fluid {
   padding-right: 200px;
   padding-left: 200px;
@@ -427,7 +427,7 @@ box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
  
 }
 
-@media (max-width: 1300px) and (min-width:770px){
+@media (max-width: 1300px) and (min-width:767px){
   .container-fluid {
   padding-right: 200px;
   padding-left: 20px;
@@ -834,13 +834,16 @@ footer .site-info{
   margin-bottom: 30px;
 }
 
-.navbar-header{
+.navbar-header,.navbar-collapse {
     .profile_dtls{
       float: right;  
       margin-left: 30px;
       color: #A6A8AB;
       font-size: 15px;
       position: relative;   
+        i{
+          font-size: 23px;
+        }
     }
    .points{
    font-weight: 700;
@@ -854,9 +857,7 @@ footer .site-info{
    .timer{
        
     }
-    i{
-          font-size: 23px;
-    }
+    
     
     .notification_point{
         position: absolute;
@@ -878,8 +879,10 @@ footer .site-info{
         height: 38px;
         margin-left: 10px;
         margin-top: -8px;
+        
         img{
             @include border-radius(50%);
+            border: #A6A8AB 1px solid;
         }
         
     }
@@ -917,6 +920,9 @@ footer .site-info{
   content: "c";
 }
 
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+  color: inherit;
+}
 
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
@@ -1060,13 +1066,74 @@ responsive styles
     
     .menu-top {
       float: right;
-      margin-right: 15px;
-        width: 100%;
+      padding: 0 15px 10px;    
+      margin-bottom: 0px;    
+      width: calc(100%);
+      border-bottom: 1px solid #2C3237;
     }
     
     .menu-menu-right-container ul {
       padding-bottom: 0;
     }
+    
+    .navbar-collapse {
+         .avatar_image,.avatar_name,.points{
+             float: right;
+         }
+        .profile_dtls {
+        margin-left: 0;
+        }
+        .avatar_image{
+         margin-left: 10px;
+        margin-top: 0;
+        }
+        .avatar_name {
+         background-image: none;
+          padding-left: 0;
+          cursor: default;
+            &:hover{
+            @include opacity(1);
+            }    
+        }
+        .points profile_dtls:hover{
+             @include opacity(1);
+        }
+        .dtls_cont{
+            float: right;
+            width: calc(100% - 23px);
+            margin-top: 7px;
+        }
+        .icons_cont{
+            float: left;
+            width: 23px;
+        }
+         .notification_icon{
+             margin-bottom: 7px;
+         }
+        .notification_icon,.timer{
+         float: left;
+          margin-left: 0;
+          width: 30;
+            i{
+                padding: 0;
+            }
+        }
+        .name_and_points{
+            float: right;
+            .profile_dtls{
+                clear: both;
+            }
+            .points .text {
+              margin-right: 0;
+            }
+        }
+    }
 }
 
+/* 500 and less ----------- */
+@media screen and (max-width: 500px) {
+    .site-branding{
+        
+    }
+}
 

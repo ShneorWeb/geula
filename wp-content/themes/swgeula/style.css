@@ -12,7 +12,7 @@ Author URI:
 
 Tags: 
 */
-.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points {
+.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -205,7 +205,7 @@ a {
 }
 
 /*
-@media (min-width: 770px){
+@media (min-width: 767px){
 .container {
 width: 400px;}
 }
@@ -219,7 +219,7 @@ width: 700px;}
 }
 @media (min-width: 1200px){
 .container {
-width: 770px;}
+width: 767px;}
 }
 
 
@@ -228,7 +228,7 @@ width: 770px;}
 width: 1000px;}
 }
 */
-@media (max-width: 770px) {
+@media (max-width: 767px) {
   .navbar-header {
     float: none;
   }
@@ -364,13 +364,13 @@ span.oval {
   line-height: 34px;
 }
 
-@media (min-width: 770px) {
+@media (min-width: 767px) {
   .container-fluid {
     padding-right: 200px;
     padding-left: 200px;
   }
 }
-@media (max-width: 1300px) and (min-width: 770px) {
+@media (max-width: 1300px) and (min-width: 767px) {
   .container-fluid {
     padding-right: 200px;
     padding-left: 20px;
@@ -753,26 +753,26 @@ footer .site-info {
   margin-bottom: 30px;
 }
 
-.navbar-header .profile_dtls {
+.navbar-header .profile_dtls, .navbar-collapse .profile_dtls {
   float: right;
   margin-left: 30px;
   color: #A6A8AB;
   font-size: 15px;
   position: relative;
 }
-.navbar-header .points {
-  font-weight: 700;
-}
-.navbar-header .points * {
-  float: right;
-}
-.navbar-header .points .text {
-  margin-right: 10px;
-}
-.navbar-header i {
+.navbar-header .profile_dtls i, .navbar-collapse .profile_dtls i {
   font-size: 23px;
 }
-.navbar-header .notification_point {
+.navbar-header .points, .navbar-collapse .points {
+  font-weight: 700;
+}
+.navbar-header .points *, .navbar-collapse .points * {
+  float: right;
+}
+.navbar-header .points .text, .navbar-collapse .points .text {
+  margin-right: 10px;
+}
+.navbar-header .notification_point, .navbar-collapse .notification_point {
   position: absolute;
   top: 0;
   width: 10px;
@@ -782,24 +782,25 @@ footer .site-info {
   -webkit-border-radius: 50%;
   border-radius: 50%;
 }
-.navbar-header .notification_point.green {
+.navbar-header .notification_point.green, .navbar-collapse .notification_point.green {
   background-color: #39B54A;
 }
-.navbar-header .notification_point.red {
+.navbar-header .notification_point.red, .navbar-collapse .notification_point.red {
   background-color: red;
 }
-.navbar-header .avatar_image {
+.navbar-header .avatar_image, .navbar-collapse .avatar_image {
   width: 38px;
   height: 38px;
   margin-left: 10px;
   margin-top: -8px;
 }
-.navbar-header .avatar_image img {
+.navbar-header .avatar_image img, .navbar-collapse .avatar_image img {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+  border: #A6A8AB 1px solid;
 }
-.navbar-header .avatar_name {
+.navbar-header .avatar_name, .navbar-collapse .avatar_name {
   border: none !important;
   -webkit-appearance: none;
   background-image: url(images/select_arr.png);
@@ -809,23 +810,27 @@ footer .site-info {
   outline: none;
   cursor: pointer;
 }
-.navbar-header .dropdown-menu {
+.navbar-header .dropdown-menu, .navbar-collapse .dropdown-menu {
   margin-top: 10px;
 }
-.navbar-header .menu-top {
+.navbar-header .menu-top, .navbar-collapse .menu-top {
   margin-top: 18px;
 }
-.navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points {
+.navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-.navbar-header .avatar_name:hover, .navbar-header .notification_icon:hover, .navbar-header .timer:hover, .navbar-header .points:hover {
+.navbar-header .avatar_name:hover, .navbar-header .notification_icon:hover, .navbar-header .timer:hover, .navbar-header .points:hover, .navbar-collapse .avatar_name:hover, .navbar-collapse .notification_icon:hover, .navbar-collapse .timer:hover, .navbar-collapse .points:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   opacity: 0.75;
 }
 
 .icon-timer:before {
   content: "c";
+}
+
+.navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
+  color: inherit;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
@@ -988,13 +993,69 @@ responsive styles
 
   .menu-top {
     float: right;
-    margin-right: 15px;
-    width: 100%;
+    padding: 0 15px 10px;
+    margin-bottom: 0px;
+    width: calc(100%);
+    border-bottom: 1px solid #2C3237;
   }
 
   .menu-menu-right-container ul {
     padding-bottom: 0;
   }
+
+  .navbar-collapse .avatar_image, .navbar-collapse .avatar_name, .navbar-collapse .points {
+    float: right;
+  }
+  .navbar-collapse .profile_dtls {
+    margin-left: 0;
+  }
+  .navbar-collapse .avatar_image {
+    margin-left: 10px;
+    margin-top: 0;
+  }
+  .navbar-collapse .avatar_name {
+    background-image: none;
+    padding-left: 0;
+    cursor: default;
+  }
+  .navbar-collapse .avatar_name:hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+  }
+  .navbar-collapse .points profile_dtls:hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+    opacity: 1;
+  }
+  .navbar-collapse .dtls_cont {
+    float: right;
+    width: calc(100% - 23px);
+    margin-top: 7px;
+  }
+  .navbar-collapse .icons_cont {
+    float: left;
+    width: 23px;
+  }
+  .navbar-collapse .notification_icon {
+    margin-bottom: 7px;
+  }
+  .navbar-collapse .notification_icon, .navbar-collapse .timer {
+    float: left;
+    margin-left: 0;
+    width: 30;
+  }
+  .navbar-collapse .notification_icon i, .navbar-collapse .timer i {
+    padding: 0;
+  }
+  .navbar-collapse .name_and_points {
+    float: right;
+  }
+  .navbar-collapse .name_and_points .profile_dtls {
+    clear: both;
+  }
+  .navbar-collapse .name_and_points .points .text {
+    margin-right: 0;
+  }
 }
+/* 500 and less ----------- */
 
 /*# sourceMappingURL=style.css.map */
