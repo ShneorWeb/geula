@@ -80,7 +80,6 @@
           </div><!-- .site-branding -->
 
             
-<<<<<<< HEAD
          <div class="menu-top" ><?php 
             $args = array(
               'menu'        => 'header-menu',
@@ -90,7 +89,7 @@
             wp_nav_menu( $args );
           ?></div>
         </div>        
-=======
+
          <div class="menu-top" >
                 <div class="profile hidden-xs">
                     
@@ -218,7 +217,7 @@
             </div>
             
         </div>
->>>>>>> 46e599358de15af7235a17691f8f1c5ecc341a6d
+
 
         <div class="navbar-collapse collapse">
 
