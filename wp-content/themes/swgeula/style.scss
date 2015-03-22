@@ -838,15 +838,17 @@ footer .site-info{
     .profile_dtls{
       float: right;  
       margin-left: 30px;
+      color: #A6A8AB;
+      font-size: 15px;
+      position: relative;   
     }
    .points{
-    color: #A6A8AB;
-    font-size: 15px;
-    font-weight: 700;
-    
-       
+   font-weight: 700;
        *{
            float: right;
+       }
+       .text{
+             margin-right: 10px;
        }
    } 
    .timer{
@@ -872,7 +874,42 @@ footer .site-info{
     }
     
     .avatar_image{
+        width: 38px;
+        height: 38px;
+        margin-left: 10px;
+        margin-top: -8px;
+        img{
+            @include border-radius(50%);
+        }
         
+    }
+    
+    .avatar_name{
+         border: none !important;
+          -webkit-appearance: none;
+          background-image: url(images/select_arr.png);
+          background-position: left center;
+          background-repeat: no-repeat;
+          padding-left: 25px;
+          outline: none;
+          cursor: pointer;
+    }
+    
+    .dropdown-menu{
+          margin-top: 10px;
+        
+    }
+    
+    .menu-top{
+        margin-top: 18px;
+    }
+    
+    .avatar_name,.notification_icon,.timer,.points{
+        @include opacity(1);
+        @extend %trans;
+            &:hover{
+                @include opacity(0.75);
+            }
     }
 }
 

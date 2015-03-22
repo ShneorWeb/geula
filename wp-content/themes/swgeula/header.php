@@ -96,29 +96,48 @@
                         <!-- TODO: get the timer from user profile -->
                     </div>
                     
-                    <div class="profile_dtls">
+                    <div class="profile_dtls notification_icon">
                         <i class="fa fa-bell-o"></i>
                         <!-- TODO: get the color(class) of notification_point from user profile -->
                         <div class="notification_point green"></div>
                     </div>
+                    
                     <div class="profile_dtls avatar_image">
                     <?php if ( !empty(getSWGeulaAvatar()) ) : ?>
                         <img src="<?php echo getSWGeulaAvatar(); ?>"/>
-                        <?php else : ?>
+                    <?php else : ?>
                         <span class="glyphicon glyphicon-user" aria-hidden="true" style="color:#9d9d9d ;"></span>
-                        <?php endif; ?>
+                    <?php endif; ?>
                     </div>
                     
-                </div>
-                <div class="menu-top" >
-                  <?php 
-                    $args = array(
-                      'menu'        => 'header-menu',
-                      'menu_class'  => 'nav navbar-nav',
-                      'container'   => 'false'
-                    );
-                    //wp_nav_menu( $args );
-                  ?>
+                    
+                    
+                    <div class="profile_dtls dropdown">
+                         <div class="avatar_name" data-toggle="dropdown">
+                       <?php
+                           $current_user = wp_get_current_user();
+                           /*
+                           echo 'Username: ' . $current_user->user_login . '<br />';
+                           echo 'User email: ' . $current_user->user_email . '<br />';
+                           echo 'User first name: ' . $current_user->user_firstname . '<br />';
+                           echo 'User last name: ' . $current_user->user_lastname . '<br />';
+                           */
+                           echo $current_user->display_name;
+                           /*echo 'User ID: ' . $current_user->ID . '<br />';*/
+                       ?>
+                    </div>
+                        
+                        <?php 
+                            $args = array(
+                              'menu'        => 'header-menu',
+                              'menu_class'  => 'dropdown-menu',
+                              'container'   => 'false'
+                            );
+                            wp_nav_menu( $args );
+                         ?>
+                        
+                    </div>
+                    
                 </div>
             </div>
             
