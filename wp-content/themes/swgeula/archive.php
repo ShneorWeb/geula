@@ -107,27 +107,22 @@
 
 
 					<?php
+      
 					if (is_category()|| is_single()) {
-						$this_category = get_category($cat);
-						
-					$id = get_query_var('cat');
-					$args = array(	 'parent' => $this_category->cat_ID, 'hide_empty' => 0 );
-
-
- 
-					$count = 0;
+                        
+                        $this_category = get_category($cat);
+                        $id = get_query_var('cat');
+                        $args = array(	 'parent' => $this_category->cat_ID, 'hide_empty' => 0 );
 					
-						foreach (get_categories($args) as $cat) : 
-
-							?>
+				        foreach (get_categories($args) as $cat) : 
+                        
+                    ?>
 
                            
 							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
 
 
-							<?php $color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category'));
-													
-													?>
+							<?php $color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category')); ?>
 
 									<li class="category_square"> 
                                         
