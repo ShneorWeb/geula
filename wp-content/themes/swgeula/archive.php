@@ -87,7 +87,7 @@
                     
                      <form method="post" id="order">                            
                          <select name="select" onchange='this.form.submit()' > 
-                             <option value="<?php echo $this_category->cat_ID; ?>"><?php echo esc_attr(__('נושא')); ?></option> 
+                             <option value="<?php echo $this_category->cat_ID; ?>"<?php selected($_POST['select'],$category->cat_ID, 1) ?>><?php echo esc_attr(__('נושא')); ?></option> 
                              <?php 
                               $this_cat = get_query_var('cat');
                               $categories = get_categories(array(
@@ -101,12 +101,18 @@
                                 $option .= '</option>';
                                 echo $option;
                               }
+                                
                                 $parent_cat = $_POST['select'];
                                 
                              ?>
                              
                         </select>
                     </form>
+                    
+                    <?php
+                        /* before filters chnges */
+                       
+                    ?>
                     
                     <?php
                       $orderby = "ID";
@@ -132,6 +138,11 @@
 				<ul class="product_list" style="padding:0px;">
 
 					<?php
+      
+                    //if is second level category make the parent to itself
+                     if($parent_cat==""){
+                        $parent_cat = $this_category->cat_ID;
+                      }
       
 					if (is_category()|| is_single()) {
                         
