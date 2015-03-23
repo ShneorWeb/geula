@@ -62,6 +62,7 @@
                 </div>
                 
 				<div class="selects">
+                    
                     <!-- TODO: http://pastebin.com/LCFS945E -->
                     
                      <form method="post" id="order">
@@ -86,7 +87,7 @@
                     
                      <form method="post" id="order">                            
                          <select name="select" onchange='this.form.submit()' > 
-                             <option value=""><?php echo esc_attr(__('נושא')); ?></option> 
+                             <option value="<?php echo $this_category->cat_ID; ?>"><?php echo esc_attr(__('נושא')); ?></option> 
                              <?php 
                               $this_cat = get_query_var('cat');
                               $categories = get_categories(array(
@@ -96,12 +97,14 @@
                               foreach ($categories as $category) {
                                 $option = '<option value="'.$category->cat_ID.'" '.selected($_POST['select'],$category->cat_ID, 1).'>';
                                 $option .= $category->cat_name;
-                                $option .= ' ('.$category->category_count.')';
+                                /*$option .= ' ('.$category->category_count.')';*/
                                 $option .= '</option>';
                                 echo $option;
                               }
-                                $included_cats = $_POST['select'];
+                                $parent_cat = $_POST['select'];
+                                
                              ?>
+                             
                         </select>
                     </form>
                     
@@ -132,14 +135,11 @@
       
 					if (is_category()|| is_single()) {
                         
-                        $this_category = get_category($cat);
-                        $id = get_query_var('cat');
                         $args = array(	 
-                            'parent' => $this_category->cat_ID,
+                            'parent' => $parent_cat,
                             'hide_empty' => 0,
                             'orderby' => $orderby,
                             'order' => $order,
-                            'include' => $included_cats
                         );
 					
 				        foreach (get_categories($args) as $cat) : 
