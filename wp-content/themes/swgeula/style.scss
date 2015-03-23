@@ -567,6 +567,7 @@ a:hover{
 .drop {
 position: fixed;
 width: 220px;
+top:60px;
 }
 
 h1.site-title a{
@@ -924,6 +925,20 @@ footer .site-info{
   color: inherit;
 }
 
+.categories.row{
+@include opacity(0);
+@extend %trans;    
+    &.on{
+        @include opacity(1);
+    }
+}
+
+#spinner{
+    width: 24px;
+    height: 24px;
+    margin: -24px auto 0;
+    background-image: url(images/ajax-loader.gif);
+}
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
 responsive styles

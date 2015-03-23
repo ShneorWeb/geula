@@ -1,7 +1,8 @@
 (function($) {
     
 //global vars
-    
+var highestBox1;
+var highestBox2;    
     
 //global functions    
     
@@ -12,6 +13,37 @@ function profile_to_mob(){
         $('.site-header .navbar-header').append($('.menu-top'));
     }
 }
+    
+ //equal heights for div's http://stackoverflow.com/a/11688385/2721050
+function equal_heights(){
+        $('.product_list').each(function(){  
+         highestBox1 = 0;
+           $('.category_square_content', this).each(function(){
+               if($(this).height() > highestBox1){
+                    highestBox1 = $(this).height(); 
+               } else{
+                   $(this).css('height','auto');
+               }
+                 
+           });  
+            
+            $(this).find('.category_square_content').height(highestBox1);
+            console.log(highestBox1);
+        
+          highestBox2 = 0;
+            $('.category_single', this).each(function(){
+
+               if($(this).height() > highestBox2) {
+                   highestBox2 = $(this).height();
+               }else{
+                   $(this).css('height','auto');
+               }
+                   
+           });  
+           $(this).find('.category_single').height(highestBox2);
+             console.log(highestBox2);
+       });  
+}    
     
  
  $(document).ready(function(){
@@ -69,19 +101,29 @@ function profile_to_mob(){
      window.location=$(this).find("a").attr("href");
      return false;
      });
+     
+    
+
     
   //end of document).ready function
  });  
  
  $( window ).load( function(){
  	
+    equal_heights();
+     
+    //
+    $('.categories').addClass('on');
+    $('#spinner') .fadeOut();
+     
  	//end of window.load function
+     
  });
     
  $( window ).resize(function() {
      
-      //
      profile_to_mob();
+     equal_heights();
      
    //end of window.resize function
  });    

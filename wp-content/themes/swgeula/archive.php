@@ -54,8 +54,6 @@
                 
 			</div>
         
-
-			
 			<div class="search_by">
                     
                 <div class="search_text">
@@ -68,43 +66,67 @@
                     
                      <form method="post" id="order">
                         <select name="select" onchange='this.form.submit()'>
-                            <option value="newest"<?php selected( $_POST['select'],'newest', 1 ); ?>>מוסר שיעור</option>
-                            <option value="tag"<?php selected( $_POST['select'],'tag', 1 ); ?>>Tag</option>
+                            <option>מוסר שיעור</option>
+                            <?php 
+                               /*TODO: query categories by author */
+                                  $args = array(
+                                /* https://codex.wordpress.org/Function_Reference/get_users */
+                                    'blog_id'      => 1,
+                                    'role'         => 'Administrator',
+                                 );
+                                $blogusers = get_users( $args );
+                                // Array of stdClass objects.
+                                foreach ( $blogusers as $user ) {
+                                    echo '<option>' . esc_html( $user->display_name ) . '</option>';
+                                }
+                            ?>
+                            
                         </select>
                     </form>
+                    
+                     <form method="post" id="order">                            
+                         <select name="select" onchange='this.form.submit()' > 
+                             <option value=""><?php echo esc_attr(__('נושא')); ?></option> 
+                             <?php 
+                              $this_cat = get_query_var('cat');
+                              $categories = get_categories(array(
+                                        'hide_empty' => 0,
+                                        'child_of' => $this_cat,
+                                     )); 
+                              foreach ($categories as $category) {
+                                $option = '<option value="'.$category->cat_ID.'" '.selected($_POST['select'],$category->cat_ID, 1).'>';
+                                $option .= $category->cat_name;
+                                $option .= ' ('.$category->category_count.')';
+                                $option .= '</option>';
+                                echo $option;
+                              }
+                                $included_cats = $_POST['select'];
+                             ?>
+                        </select>
+                    </form>
+                    
+                    <?php
+                      $orderby = "ID";
+                      if ($_POST['select'] == 'new_to_old') { $order = "desc";  }
+                      if ($_POST['select'] == 'old_to_new') { $order = "asc";  } 
+                    ?>
                     
                      <form method="post" id="order">
-                        <select name="select" onchange='this.form.submit()'>
-                            <option value="newest"<?php selected( $_POST['select'],'newest', 1 ); ?>>נושא</option>
-                            <option value="tag"<?php selected( $_POST['select'],'tag', 1 ); ?>>Tag</option>
-                        </select>
-                    </form>
-                    
-                    
-                      <form method="post" id="order">
-                        <select name="select" onchange='this.form.submit()'>
-                            <option value="newest"<?php selected( $_POST['select'],'newest', 1 ); ?>>חדש לישן</option>
-                            <option value="tag"<?php selected( $_POST['select'],'tag', 1 ); ?>>Tag</option>
-                            <option value="title"<?php selected( $_POST['select'],'title', 1 ); ?>>Title</option>
-                            <option value="oldest"<?php selected( $_POST['select'], 'oldest', 1 ); ?>>Oldest</option>
-                            <option value="mcommented"<?php selected( $_POST['select'],'mcommented', 1 ); ?>>Most c</option>
-                            <option value="lcommented"<?php selected( $_POST['select'],'lcommented' , 1 ); ?>>least c</option>
-                        </select>
+                          <select name="select" onchange='this.form.submit()'>
+                            <option value="new_to_old"<?php selected( $_POST['select'],'new_to_old', 1 ); ?>>חדש לישן</option>
+                            <option value="old_to_new"<?php selected( $_POST['select'],'old_to_new', 1 ); ?>>ישן לחדש</option>
+                          </select>
                     </form>
 													
 				</div>
 
 			</div>
 
-				
-				    	
-			   	
-
+            <div id="spinner"></div>				    	   	
 		
 			<div class="categories row">
 
 				<ul class="product_list" style="padding:0px;">
-
 
 					<?php
       
@@ -112,14 +134,20 @@
                         
                         $this_category = get_category($cat);
                         $id = get_query_var('cat');
-                        $args = array(	 'parent' => $this_category->cat_ID, 'hide_empty' => 0 );
+                        $args = array(	 
+                            'parent' => $this_category->cat_ID,
+                            'hide_empty' => 0,
+                            'orderby' => $orderby,
+                            'order' => $order,
+                            'include' => $included_cats
+                        );
 					
 				        foreach (get_categories($args) as $cat) : 
                         
                     ?>
 
                            
-							<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
+							<div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
 
 
 							<?php $color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category')); ?>

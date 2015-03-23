@@ -12,7 +12,7 @@ Author URI:
 
 Tags: 
 */
-.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points {
+.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -501,6 +501,7 @@ a:hover {
 .drop {
   position: fixed;
   width: 220px;
+  top: 60px;
 }
 
 h1.site-title a {
@@ -831,6 +832,22 @@ footer .site-info {
 
 .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:focus {
   color: inherit;
+}
+
+.categories.row {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+}
+.categories.row.on {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+
+#spinner {
+  width: 24px;
+  height: 24px;
+  margin: -24px auto 0;
+  background-image: url(images/ajax-loader.gif);
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
