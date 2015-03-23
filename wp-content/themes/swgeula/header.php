@@ -86,7 +86,7 @@
               'menu_class'  => 'nav navbar-nav',
               'container'   => 'false'
             );
-            wp_nav_menu( $args );
+            //wp_nav_menu( $args );
           ?></div>
         </div>        
 

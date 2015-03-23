@@ -1128,6 +1128,11 @@ responsive styles
             }
         }
     }
+    
+    .navbar-collapse.collapse{
+        position: absolute;
+        z-index: 9999;
+    }
 }
 
 /* 500 and less ----------- */

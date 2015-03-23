@@ -1055,6 +1055,11 @@ responsive styles
   .navbar-collapse .name_and_points .points .text {
     margin-right: 0;
   }
+
+  .navbar-collapse.collapse {
+    position: absolute;
+    z-index: 9999;
+  }
 }
 /* 500 and less ----------- */
 
