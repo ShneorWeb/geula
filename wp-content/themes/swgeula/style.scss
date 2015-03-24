@@ -940,6 +940,43 @@ footer .site-info{
     background-image: url(images/ajax-loader.gif);
 }
 
+.dropdown-menu .check-mark{
+ display: none;
+}
+
+.dropdown-menu.open{
+    border: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+span.oval.subject{
+    border:1px solid #b2bac2; 
+}
+
+.category_square_oval_submit,span.oval{
+border: 2px solid #EAEDEF;
+@include border-radius(17px);
+    background-image: none;
+    background-color: transparent;
+font-size: 16px;
+font-weight: 700;
+    float: right;
+    margin-left: 10px;
+    padding: 7px 15px;
+    color:#b2bac2;
+}
+
+.category_square_oval_submit{
+    @include opacity(1);
+@extend %trans;
+    &:hover{
+        @include opacity(0.75);
+    }
+}
+
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
 responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */

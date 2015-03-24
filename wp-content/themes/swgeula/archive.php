@@ -65,8 +65,8 @@
                     
                     <!-- TODO: http://pastebin.com/LCFS945E -->
                     
-                     <form method="post" id="order">
-                        <select name="select" onchange='this.form.submit()'>
+                     <form method="post" id="select_author">
+                        <select name="select" onchange='this.form.submit()' class="selectpicker">
                             <option>מוסר שיעור</option>
                             <?php 
                                /*TODO: query categories by author */
@@ -85,45 +85,50 @@
                         </select>
                     </form>
                     
-                     <form method="post" id="order">                            
-                         <select name="select" onchange='this.form.submit()' > 
-                             <option value="<?php echo $this_category->cat_ID; ?>"<?php selected($_POST['select'],$category->cat_ID, 1) ?>><?php echo esc_attr(__('נושא')); ?></option> 
+                     <form method="post" id="select_parent">                            
+                         <select name="select_parent" onchange='this.form.submit()' class="selectpicker show-tick"> 
+                             <option value="<?php echo $this_category->cat_ID; ?>"<?php selected($_POST['select_parent'],$category->cat_ID, 1) ?>><?php echo esc_attr(__('נושא')); ?></option> 
                              <?php 
                               $this_cat = get_query_var('cat');
                               $categories = get_categories(array(
                                         'hide_empty' => 0,
                                         'child_of' => $this_cat,
-                                     )); 
+                                        'parent' => $this_cat,
+                              )); 
+      
                               foreach ($categories as $category) {
-                                $option = '<option value="'.$category->cat_ID.'" '.selected($_POST['select'],$category->cat_ID, 1).'>';
+                                $option = '<option value="'.$category->cat_ID.'" '.selected($_POST['select_parent'],$category->cat_ID, 1).'>';
                                 $option .= $category->cat_name;
                                 /*$option .= ' ('.$category->category_count.')';*/
+                                  /*$option .= $category->parent;*/
                                 $option .= '</option>';
                                 echo $option;
                               }
                                 
-                                $parent_cat = $_POST['select'];
+                                if($_POST['select_parent'] == ""){
+                                    $parent_cat = $_POST['select_parent_oval'];
+                                }else{
+                                     $parent_cat = $_POST['select_parent'];
+                                }
+                                
+     
                                 
                              ?>
                              
                         </select>
                     </form>
                     
-                    <?php
-                        /* before filters chnges */
-                       
-                    ?>
                     
                     <?php
                       $orderby = "ID";
-                      if ($_POST['select'] == 'new_to_old') { $order = "desc";  }
-                      if ($_POST['select'] == 'old_to_new') { $order = "asc";  } 
+                      if ($_POST['select_order'] == 'new_to_old') { $order = "desc";  }
+                      if ($_POST['select_order'] == 'old_to_new') { $order = "asc";  } 
                     ?>
                     
-                     <form method="post" id="order">
-                          <select name="select" onchange='this.form.submit()'>
-                            <option value="new_to_old"<?php selected( $_POST['select'],'new_to_old', 1 ); ?>>חדש לישן</option>
-                            <option value="old_to_new"<?php selected( $_POST['select'],'old_to_new', 1 ); ?>>ישן לחדש</option>
+                     <form method="post" id="select_order">
+                          <select name="select_order" onchange='this.form.submit()'>
+                            <option value="new_to_old"<?php selected( $_POST['select_order'],'new_to_old', 1 ); ?>>חדש לישן</option>
+                            <option value="old_to_new"<?php selected( $_POST['select_order'],'old_to_new', 1 ); ?>>ישן לחדש</option>
                           </select>
                     </form>
 													
@@ -138,16 +143,18 @@
 				<ul class="product_list" style="padding:0px;">
 
 					<?php
-      
-                    //if is second level category make the parent to itself
-                     if($parent_cat==""){
+                    
+                    //if parent cat is empty
+                     if($parent_cat == ""){
                         $parent_cat = $this_category->cat_ID;
                       }
+      
+                   /*echo "parent_cat is:".$parent_cat;*/
       
 					if (is_category()|| is_single()) {
                         
                         $args = array(	 
-                            'parent' => $parent_cat,
+                            'child_of' => $parent_cat,
                             'hide_empty' => 0,
                             'orderby' => $orderby,
                             'order' => $order,
@@ -155,7 +162,15 @@
 					
 				        foreach (get_categories($args) as $cat) : 
                         
-                    ?>
+                        //get depth of category from - http://www.devdevote.com/cms/wordpress-hacks/get_depth
+                        $cats_str = get_category_parents($cat, false, '%#%');
+                        $cats_array = explode('%#%', $cats_str);
+                        $cat_depth = sizeof($cats_array)-2;
+                        
+                        //remove level 2(subject) categories
+                        if($cat_depth == 3) :
+                        
+                   ?>
 
                            
 							<div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
@@ -230,24 +245,40 @@
 
 											</div>
                                         
-											<div class="category_square_oval">
+		<div class="category_square_oval">
                                                
-											<?php
-												
-											   			 echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';
-													
-													$values = get_category_meta('subject', get_term_by('slug', $cat->cat_name, 'category'));
-													foreach ($values as $value => $label) {
-											   			 echo '<span class="oval" style="border:1px solid #b2bac2; color:'. $color .';">' . $value . '</span>';
-													}
-													$values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
-													foreach ($values as $value => $label) {
-											   			 echo '<span class="oval" style="border:1px solid #b2bac2; color:#b2bac2;">' . $value . '</span>';
-													}
+             <?php
+                $cat_parent = $cat->parent;
+                $cat_parent;
+                $cat_parent_name = get_cat_name( $cat_parent );
+                        
+                     /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
+?>
+               
+                <form method="post" >
 
-											?>
-											</div>
-										</div>
+                    <input type="hidden" name="select_parent_oval"  value="<?php echo $cat_parent; $_POST['select_parent_oval']; ?>" />
+                    <input type="submit" style="color:<?php echo $color; ?>" value="<?php echo $cat_parent_name; ?>" class="category_square_oval_submit"/>
+                     
+                    <?php 
+                       $parent_cat = $_POST['select_parent_oval'];
+                    ?>
+            </form>
+              
+  
+
+          <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
+                foreach ($values as $value => $label) {
+                    echo '<span class="oval">' . $value . '</span>';
+                                                        }
+
+                                                    ?>
+            
+        </div>
+		
+                    
+                    
+                    </div>
 									</li>
 							</div>
 
@@ -257,7 +288,10 @@
 
 					
 
-						<?php endforeach; } ?>
+						<?php 
+                        endif;
+                        endforeach; } 
+        ?>
 				</ul>
 				</div>
 				
