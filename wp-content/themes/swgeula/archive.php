@@ -63,11 +63,11 @@
                 </div>
                 
 				<div class="selects">
-                    
+                   
                     <!-- filter by author -->
-                     <form method="post" id="select_author">
-                        <select name="select" onchange='this.form.submit()' class="selectpicker">
-                            <option>מוסר שיעור</option>
+                     <form method="get" id="select_author">
+                        <select name="select_author" onchange='this.form.submit()' >
+                            <option value="0" >מוסר שיעור</option>
                             <?php 
                                /*TODO: query categories by author */
                                   $args = array(
@@ -77,12 +77,18 @@
                                  );
                                 $blogusers = get_users( $args );
                                 // Array of stdClass objects.
-                                foreach ( $blogusers as $user ) {
-                                    echo '<option>' . esc_html( $user->display_name ) . '</option>';
-                                }
-                            ?>
+                                foreach ( $blogusers as $user ) {?>
+                                    <option value="<?php echo $user->id ?>" <?php selected( $_GET['select_author'],$user->id); ?> ><?php echo esc_html( $user->display_name ); ?></option>
+                              <?php  } ?>
                             
                         </select>
+                         
+                         <?php $select_order = $_GET['select_order']; ?>
+                         <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
+                         
+                         <?php $parent_cat  = $_GET['select_parent']; ?>
+                         <input name="select_parent" type="hidden" value="<?php echo $parent_cat ?>"/>
+                         
                     </form>
                     
                     <!-- filter by subject -->
@@ -123,9 +129,12 @@
                              ?>
                              
                         </select>
+                         
                          <?php $select_order = $_GET['select_order']; ?>
                          <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
-                      
+                         
+                         <?php $moser_id  = $_GET['select_author']; ?>
+                         <input name="select_author" type="hidden" value="<?php echo $moser_id ?>"/>
                          
                     </form>
                     
@@ -150,7 +159,10 @@
                     ?>
                
            </select>
+         
                 <input name="select_parent" type="hidden" value="<?php echo $parent_cat ?>"/>
+                <?php $moser_id  = $_GET['select_author']; ?>
+                <input name="select_author" type="hidden" value="<?php echo $moser_id ?>"/>
      </form>
 													
 				</div>
@@ -160,6 +172,8 @@
             <div id="spinner"></div>				    	   	
 		
 			<div class="categories row">
+                
+                
 
 				<ul class="product_list" style="padding:0px;">
 
@@ -186,10 +200,28 @@
                         $cats_array = explode('%#%', $cats_str);
                         $cat_depth = sizeof($cats_array)-2;
                         
-                        //remove level 2(subject) categories
-                        if($cat_depth == 3) :
+                      
+                        //
+				        $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
+                        if (is_array($values) && $_GET['select_author'] != 0)
+                            {
+                                foreach ($values as $user_id) 
+                                    {
+                                    $the_user = get_user_by('id', $user_id);
+                                    $moser_id = get_the_author_meta('id', $user_id );     
+                                  } 
+                        }else{
+                           $moser_id = 0; 
+                        }
+                                  
                         
-                   ?>
+                        //remove level 2(subject) categories
+                        if($cat_depth == 3  ) :
+                        
+                        //filter by authors
+                        if($_GET['select_author'] == $moser_id):
+                        
+                        ?>
 
                            
 							<div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
@@ -248,11 +280,13 @@
 												 $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
 												foreach ($values as $user_id) {
 												    $the_user = get_user_by('id', $user_id);
+                                                    //TODO : image from ofer function
 												    echo '<div class="category_square_avatar">'. get_avatar( $the_user, 60 ) . '</div>'; 
 
-												    echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->user_login . '</h4></div>';
+												    echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->display_name . '</h4></div>';
 												    
 												    echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';?>
+                                                
 											    	<div class="category_square_number">
 														 <!-- 
                                                         TODO: get the number of posts dynamcly
@@ -281,10 +315,12 @@
                      
                     <?php 
                        $parent_cat = $_GET['select_parent'];
-                        $select_order = $_GET['select_order'];
+                       $select_order = $_GET['select_order'];
+                       $moser_id  = $_GET['select_author'];
                     ?>
                     
                    <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
+                   <input name="select_author" type="hidden" value="<?php echo $moser_id ?>"/>
                     
             </form>
               
@@ -312,6 +348,7 @@
 					
 
 						<?php 
+                        endif;
                         endif;
                         endforeach; } 
         ?>
