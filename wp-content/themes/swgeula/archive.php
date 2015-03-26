@@ -16,6 +16,7 @@
 
 
 /*page category*/
+      
   	?>
 
   
@@ -63,8 +64,7 @@
                 
 				<div class="selects">
                     
-                    <!-- TODO: http://pastebin.com/LCFS945E -->
-                    
+                    <!-- filter by author -->
                      <form method="post" id="select_author">
                         <select name="select" onchange='this.form.submit()' class="selectpicker">
                             <option>מוסר שיעור</option>
@@ -85,9 +85,15 @@
                         </select>
                     </form>
                     
-                     <form method="post" id="select_parent">                            
-                         <select name="select_parent" onchange='this.form.submit()' class="selectpicker show-tick"> 
-                             <option value="<?php echo $this_category->cat_ID; ?>"<?php selected($_POST['select_parent'],$category->cat_ID, 1) ?>><?php echo esc_attr(__('נושא')); ?></option> 
+                    <!-- filter by subject -->
+                     <form method="get" id="select_parent">      
+                         
+                         <select name="select_parent" onchange='this.form.submit()' > 
+                             
+                             <option value="<?php echo $this_category->cat_ID; ?>">
+                                <?php echo esc_attr(__('נושא')); ?>
+                             </option> 
+                             
                              <?php 
                               $this_cat = get_query_var('cat');
                               $categories = get_categories(array(
@@ -97,7 +103,7 @@
                               )); 
       
                               foreach ($categories as $category) {
-                                $option = '<option value="'.$category->cat_ID.'" '.selected($_POST['select_parent'],$category->cat_ID, 1).'>';
+                                $option = '<option value="'.$category->cat_ID.'" '.selected($_GET['select_parent'],$category->cat_ID, 1).'>';
                                 $option .= $category->cat_name;
                                 /*$option .= ' ('.$category->category_count.')';*/
                                   /*$option .= $category->parent;*/
@@ -105,32 +111,47 @@
                                 echo $option;
                               }
                                 
-                                if($_POST['select_parent'] == ""){
-                                    $parent_cat = $_POST['select_parent_oval'];
+                                
+                                if($_GET['select_parent'] == ""){
+                                    $parent_cat = $_GET['select_parent_oval'];
                                 }else{
-                                     $parent_cat = $_POST['select_parent'];
+                                     $parent_cat = $_GET['select_parent'];
                                 }
-                                
-     
-                                
+      
+      
+                               
                              ?>
                              
                         </select>
+                         <?php $select_order = $_GET['select_order']; ?>
+                         <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
+                      
+                         
                     </form>
                     
+                   
                     
-                    <?php
-                      $orderby = "ID";
-                      if ($_POST['select_order'] == 'new_to_old') { $order = "desc";  }
-                      if ($_POST['select_order'] == 'old_to_new') { $order = "asc";  } 
+     <form method="get" id="select_order">
+          
+           <!-- filter by order -->
+                   
+         
+           <select name="select_order" onchange='this.form.submit()'>
+               <option value="new_to_old" <?php selected( $_GET['select_order'],'new_to_old'); ?> >חדש לישן</option>
+               <option value="old_to_new" <?php selected( $_GET['select_order'],'old_to_new' ); ?>>ישן לחדש</option>
+                
+               
+                
+                <?php
+                      
+                      /*$orderby = "ID";*/
+                      if ($_GET['select_order'] == 'new_to_old') { $order = "desc";  }
+                      if ($_GET['select_order'] == 'old_to_new') { $order = "asc";  }  
                     ?>
-                    
-                     <form method="post" id="select_order">
-                          <select name="select_order" onchange='this.form.submit()'>
-                            <option value="new_to_old"<?php selected( $_POST['select_order'],'new_to_old', 1 ); ?>>חדש לישן</option>
-                            <option value="old_to_new"<?php selected( $_POST['select_order'],'old_to_new', 1 ); ?>>ישן לחדש</option>
-                          </select>
-                    </form>
+               
+           </select>
+                <input name="select_parent" type="hidden" value="<?php echo $parent_cat ?>"/>
+     </form>
 													
 				</div>
 
@@ -148,8 +169,6 @@
                      if($parent_cat == ""){
                         $parent_cat = $this_category->cat_ID;
                       }
-      
-                   /*echo "parent_cat is:".$parent_cat;*/
       
 					if (is_category()|| is_single()) {
                         
@@ -255,14 +274,18 @@
                      /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
 ?>
                
-                <form method="post" >
+                <form method="get" >
 
-                    <input type="hidden" name="select_parent_oval"  value="<?php echo $cat_parent; $_POST['select_parent_oval']; ?>" />
+                    <input type="hidden" name="select_parent"  value="<?php echo $cat_parent; $_GET['select_parent']; ?>" />
                     <input type="submit" style="color:<?php echo $color; ?>" value="<?php echo $cat_parent_name; ?>" class="category_square_oval_submit"/>
                      
                     <?php 
-                       $parent_cat = $_POST['select_parent_oval'];
+                       $parent_cat = $_GET['select_parent'];
+                        $select_order = $_GET['select_order'];
                     ?>
+                    
+                   <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
+                    
             </form>
               
   
