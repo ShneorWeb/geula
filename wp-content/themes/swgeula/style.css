@@ -635,6 +635,7 @@ h1.site-title a {
 
 .selects {
   float: left;
+  display: none;
 }
 .selects form {
   float: left;
@@ -887,6 +888,46 @@ span.oval.subject {
 .category_square_oval_submit:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   opacity: 0.75;
+}
+
+.btn-group.bootstrap-select.show-tick button {
+  border: none !important;
+  -webkit-appearance: none;
+  background-image: url(images/select_arr.png);
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding: 0 0 0 25px;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Open Sans Hebrew', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  color: #686969;
+}
+.btn-group.bootstrap-select.show-tick button .caret {
+  display: none;
+}
+.btn-group.bootstrap-select.show-tick button:hover, .btn-group.bootstrap-select.show-tick button:focus, .btn-group.bootstrap-select.show-tick button.focus, .btn-group.bootstrap-select.show-tick button:active, .btn-group.bootstrap-select.show-tick button.active {
+  color: #686969;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  outline: none;
+}
+
+.btn-group.open .dropdown-toggle {
+  color: #686969;
+  background-color: transparent;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+}
+
+ul.dropdown-menu.inner li {
+  box-shadow: none !important;
+  cursor: pointer;
+  outline: none;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 

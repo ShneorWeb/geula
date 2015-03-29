@@ -133,7 +133,8 @@ function equal_heights(){
         });
      });
      */
-     
+      
+     //
      
      
      
@@ -156,6 +157,9 @@ function equal_heights(){
       size: false,
       showIcon:false
   });
+     
+    // 
+    $('.selects').fadeIn('slow'); 
      
  });
     

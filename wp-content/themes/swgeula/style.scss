@@ -722,6 +722,7 @@ line-height: 1.1;
 
 .selects{
     float: left;
+    display: none;
     form{
         float: left;
         margin-right: 30px;
@@ -976,6 +977,49 @@ font-weight: 700;
     }
 }
 
+
+
+.btn-group.bootstrap-select.show-tick button{
+      border: none !important;
+  -webkit-appearance: none;
+  background-image: url(images/select_arr.png);
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding: 0 0 0 25px;
+  outline: none;
+  cursor: pointer;
+    font-family: 'Open Sans Hebrew', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+    color: rgb(104, 105, 105);
+    .caret{
+        display: none;
+    }
+    &:hover, &:focus, &.focus, &:active, &.active{
+      color: rgb(104, 105, 105);
+      background-color: transparent;
+      border-color: transparent;
+    box-shadow: none;
+          -webkit-box-shadow: none;
+        outline: none;
+
+    }
+}
+
+.btn-group.open .dropdown-toggle{
+    color: rgb(104, 105, 105);
+      background-color: transparent;
+      border-color: transparent;
+    -webkit-box-shadow: none;
+  box-shadow: none;
+    outline: none;
+
+}
+
+ul.dropdown-menu.inner li{
+    box-shadow: none !important;
+    cursor: pointer;
+      outline: none;
+}
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
 responsive styles

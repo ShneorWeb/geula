@@ -66,7 +66,7 @@
                    
                     <!-- filter by author -->
                      <form method="get" id="select_author">
-                        <select name="select_author" onchange='this.form.submit()' >
+                        <select name="select_author" onchange='this.form.submit()' class="selectpicker show-tick">
                             <option value="0" >מוסר שיעור</option>
                             <?php 
                                /*TODO: query categories by author */
@@ -94,7 +94,7 @@
                     <!-- filter by subject -->
                      <form method="get" id="select_parent">      
                          
-                         <select name="select_parent" onchange='this.form.submit()' > 
+                         <select name="select_parent" onchange='this.form.submit()' class="selectpicker show-tick"> 
                              
                              <option value="<?php echo $this_category->cat_ID; ?>">
                                 <?php echo esc_attr(__('נושא')); ?>
@@ -145,17 +145,19 @@
            <!-- filter by order -->
                    
          
-           <select name="select_order" onchange='this.form.submit()'>
+           <select name="select_order" onchange='this.form.submit()' class="selectpicker show-tick">
                <option value="new_to_old" <?php selected( $_GET['select_order'],'new_to_old'); ?> >חדש לישן</option>
                <option value="old_to_new" <?php selected( $_GET['select_order'],'old_to_new' ); ?>>ישן לחדש</option>
+               <option value="name" <?php selected( $_GET['select_order'],'name' ); ?>>אלף בתי</option>
                 
                
                 
                 <?php
                       
-                      /*$orderby = "ID";*/
+                      $orderby = "ID";
                       if ($_GET['select_order'] == 'new_to_old') { $order = "desc";  }
                       if ($_GET['select_order'] == 'old_to_new') { $order = "asc";  }  
+                      if ($_GET['select_order'] == 'name') { $orderby = "name";$order = "asc";  }  
                     ?>
                
            </select>
