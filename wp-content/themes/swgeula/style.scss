@@ -401,14 +401,20 @@ padding-bottom: 0px;
 .category_square_content h3{
   margin-top:0px;
 }
-.container li, .search_by, .image_category, li.category_square, .single_category_list .top_container, .box{
+
+/*
+.container li, 
+*/
+.search_by, .image_category, li.category_square, .single_category_list .top_container, .box{
 border-radius: 3px;
 box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
 
 }
-.container li, .search_by, .box{
+/*.container li, */
+.search_by, .box{
   background:#ffffff;
 }
+
 .category_top_square{
   border-top-right-radius:3px;
   border-top-left-radius: 3px;
@@ -1020,6 +1026,71 @@ ul.dropdown-menu.inner li{
     cursor: pointer;
       outline: none;
 }
+
+.categories.row{
+    float: right;
+}
+/* ----------- ----------- ----------- ----------- -
+main library page
+------ ----------- ----------- -----------  */
+.page-header.library-page{
+    width: 1567px;
+}
+
+.library-page{
+    .image_category{
+          padding: 56px 65px 0 0;
+    }
+    .texts{  
+        width: 70%;
+        i{
+            @include border-radius(50%);
+            background-color: #39add1;
+              font-size: 80px;
+              color: #fff;
+              padding: 28px 40px 18px;
+              float: right;
+              margin-left: 65px;
+              margin-top: 9px;
+        }
+    }
+   .current_category_name h1 {
+      color: #39ADD1;
+        line-height: 1.05;
+    } 
+    .current_category_description{
+        font-size: 1.125rem;
+          line-height: 1.3;
+    }
+    .current_category_description,.current_category_name,.texts {
+        float: right,
+    }
+    .stages{
+        width:30%;
+        float: left;
+        margin-top: 25px;
+        li{
+           font-size: 1.125rem;
+            list-style: inherit;
+            margin-bottom: 25px;
+        }
+        ol {
+            list-style-type: none;
+            counter-reset: ol-counter;
+        }
+        ol > li:before {
+            content: counter(ol-counter);
+            counter-increment: ol-counter;
+            border: 1px solid #39ADD1;
+            @include border-radius(50%);
+            padding: 4px 11px;
+            margin-left: 5px;
+        }
+    }
+}
+
+
+
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
 responsive styles
