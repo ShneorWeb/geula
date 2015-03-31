@@ -29,53 +29,58 @@
                             </div>
 
                         </div>
-				</div>
-    
-			<div class="col-md-12 header_category">	
-
-			</div>
-		</div>
-	</div>
-	<div style="clear:both;"></div>
-	</div></div>
+				</div><!-- header_category -->
+		      </div><!-- page-header -->
+	       </div><!-- archive_cont -->
+        </div><!-- row -->
+    </div><!-- container -->
+</div><!-- content -->
 
 
 		<?php $this_category = get_category($cat);
   if (get_category_children($this_category->cat_ID) != "") {?>
-			<div class="categories sub_categories">
-
-				<ul class="product_list" style="padding:0px;">
+			
 
 
 					<?php
 					if (is_category()|| is_single()) {
 						$this_category = get_category($cat);
 						
-					$id = get_query_var('cat');
-					$args = array(	 'parent' => $this_category->cat_ID, 'hide_empty' => 0 );
+                        $id = get_query_var('cat');
+                        $args = array(	 'parent' => $this_category->cat_ID, 'hide_empty' => 0 );
 
-
- 
-					$count = 0;
+					    $count = 0;
 					
-						foreach (get_categories($args) as $cat) : 
-
-							?>
-							<div class="container-fluid">
-							<div class="row">
-							<div class="col-sm-12 ">
-							<div class="col-sm-12 ">
-								<h3><a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->cat_name; ?></a></h3>
-								<div ><h6><div style="display:inline-block;"><a href="<?php echo get_category_link($cat->term_id); ?>"><?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
-														echo $short_description;
-														?></a></div>
-														<div class="show_more" style="display:inline-block; float:left"><a href="<?php echo get_category_link($cat->term_id); ?>"><button type="button" class="btn btn-default btn-xs" aria-label="Left Align">הצג הכל</button></a></div></h6></div>
-
+						foreach (get_categories($args) as $cat) : ?>
 							
-
-									
-							</div></div></div></div>
-							<div><?php
+                            <div class="cat_sing">
+                                
+                                <div class="header_part">
+                                    <a href="<?php echo get_category_link($cat->term_id); ?>" class="texts_cont">
+                                        <div>
+                                             <h2>
+                                               <?php echo $cat->cat_name; ?>
+                                              </h2>
+                                              <p>        
+                                                <?php
+                                                    $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
+                                                    echo $short_description;
+                                                  ?>
+                                               </p>
+                                        </div>
+                                    </a>
+                                
+                                    <a href="<?php echo get_category_link($cat->term_id); ?>" class="btn_cont">
+                                       <button type="button">הצג הכל</button>
+                                    </a>
+                                  
+                                    
+                                
+                                </div>
+                              
+                              
+	
+                    <div class="bottom_part"><?php
 							$cat_image =  get_category_meta('image', get_term_by('slug', $cat->cat_name, 'category'));
 				    				$page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
 				    				$page_bg_image_url = $page_bg_image[0];
@@ -83,9 +88,9 @@
 				    				<div class="image_category" style="background-image:url(<?php echo $cat_image ?>); background-repeat:no-repeat; background-size:contain; background-position:right;">
 
 
-										<div class="container-fluid">
-							<div class="row">
-							<div class="col-sm-12 ">
+										
+							
+							<div>
 									
 									<?php 
 						
@@ -168,9 +173,10 @@
 											</div></li></div><?php endforeach;  ?>
 										</div>
 
-							</div></div>
+							
 				    		</div>
 				    		</div>
+                            </div><!-- cat_sing -->
 							
 							
 
@@ -179,8 +185,7 @@
 					
 
 						<?php endforeach; } ?>
-				</ul>
-				</div>
+				
 				<div class="container-fluid">
 							<div class="row">
 							<div class="col-sm-12 ">

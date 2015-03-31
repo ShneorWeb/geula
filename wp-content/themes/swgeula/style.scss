@@ -164,6 +164,11 @@ a{
   text-decoration:none;
 }
 
+a:hover, a:focus {
+  color: #686969;
+  text-decoration: none;
+}
+
 #wrap {
 	/*width:1024px;*/
 	margin-right: auto;
@@ -1030,6 +1035,7 @@ ul.dropdown-menu.inner li{
 .categories.row{
     float: right;
 }
+
 /* ----------- ----------- ----------- ----------- -
 main library page
 ------ ----------- ----------- -----------  */
@@ -1086,6 +1092,70 @@ main library page
             padding: 4px 11px;
             margin-left: 5px;
         }
+    }
+    
+    .menu-menu-right-container ul {
+      height: auto !important;
+    }
+    
+    .cat_sing{
+        float: right;
+        width: 100%;
+    }
+    
+    .header_part{
+      float: right;
+      width: 100%;
+      padding:0 270px 0 65px;
+      position: relative;
+        
+        
+        a.texts_cont{
+            float: right;
+            @include opacity(1);
+            @extend %trans;
+                &:hover{
+                    @include opacity(0.75);
+                }
+        }
+        
+        h2{
+            color: #686969;
+            font-size: 2.25rem;
+            font-weight: 400;
+            margin: 13px 0 0 0;
+        }
+        
+        p{
+            color: #686969;
+            font-size: 1.125rem;
+            font-weight: 400;
+            margin: 1px 0 0 0;
+        }
+        
+        a.btn_cont{
+            float: left;
+           margin-top: 38px;
+            @include opacity(1);
+            @extend %trans;
+                &:hover{
+                    @include opacity(0.75);
+                }
+            button{
+                color: #FFF;
+                font-size: 16px;
+                font-weight: 400;
+                 padding: 6px 23px;
+                background-color: #8D9AA5;
+                @include border-radius(4px);
+                border: none;
+            }
+        }
+    }
+    
+    .bottom_part{
+        float: right;
+        width: 100%;
     }
 }
 

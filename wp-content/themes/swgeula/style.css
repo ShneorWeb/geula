@@ -12,7 +12,7 @@ Author URI:
 
 Tags: 
 */
-.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit {
+.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -103,6 +103,11 @@ ul {
 }
 
 a {
+  color: #686969;
+  text-decoration: none;
+}
+
+a:hover, a:focus {
   color: #686969;
   text-decoration: none;
 }
@@ -997,6 +1002,65 @@ main library page
   border-radius: 50%;
   padding: 4px 11px;
   margin-left: 5px;
+}
+.library-page .menu-menu-right-container ul {
+  height: auto !important;
+}
+.library-page .cat_sing {
+  float: right;
+  width: 100%;
+}
+.library-page .header_part {
+  float: right;
+  width: 100%;
+  padding: 0 270px 0 65px;
+  position: relative;
+}
+.library-page .header_part a.texts_cont {
+  float: right;
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+.library-page .header_part a.texts_cont:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75;
+}
+.library-page .header_part h2 {
+  color: #686969;
+  font-size: 2.25rem;
+  font-weight: 400;
+  margin: 13px 0 0 0;
+}
+.library-page .header_part p {
+  color: #686969;
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin: 1px 0 0 0;
+}
+.library-page .header_part a.btn_cont {
+  float: left;
+  margin-top: 38px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+.library-page .header_part a.btn_cont:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75;
+}
+.library-page .header_part a.btn_cont button {
+  color: #FFF;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px 23px;
+  background-color: #8D9AA5;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border: none;
+}
+.library-page .bottom_part {
+  float: right;
+  width: 100%;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 

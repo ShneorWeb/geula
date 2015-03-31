@@ -137,7 +137,10 @@ function equal_heights(){
      //
      
      
-     
+     //add body classes
+     if($('.library-page').length > 0){
+         $('body').addClass('library-page');
+     }
     
     
   //end of document).ready function
