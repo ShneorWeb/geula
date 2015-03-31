@@ -138,6 +138,9 @@ $elements: elementOne;
        url(//fonts.gstatic.com/ea/opensanshebrew/v3/OpenSansHebrew-ExtraBold.ttf) format('truetype');
 }
 
+
+    
+
 body {
 	background-color: #ccc;
 }
@@ -182,6 +185,12 @@ a:hover, a:focus {
 
 }
 
+
+//fadein and loading styles need to be in top of css ======================================================
+
+
+
+//======================================================
 
 .menu-menu-right-container ul li{
 	background:#0f1d28 ;
@@ -579,6 +588,7 @@ a:hover{
 position: fixed;
 width: 220px;
 top:60px;
+z-index: 1;    
 }
 
 h1.site-title a{
@@ -1033,7 +1043,10 @@ ul.dropdown-menu.inner li{
 }
 
 .categories.row{
+    /*
     float: right;
+    width: 100%;
+    */
 }
 
 /* ----------- ----------- ----------- ----------- -
@@ -1044,6 +1057,7 @@ main library page
 }
 
 .library-page{
+   
     .image_category{
           padding: 56px 65px 0 0;
     }
@@ -1146,6 +1160,7 @@ main library page
                 font-size: 16px;
                 font-weight: 400;
                  padding: 6px 23px;
+                
                 background-color: #8D9AA5;
                 @include border-radius(4px);
                 border: none;
@@ -1156,7 +1171,37 @@ main library page
     .bottom_part{
         float: right;
         width: 100%;
+        margin-top: 25px;
+        
+        .library_image_category{
+            background-repeat:no-repeat;
+            background-size:contain;
+            background-position:right;
+            float: right;
+            padding: 40px 450px 0 50px;
+            background-color: #dfdfdf;
+            width: 100%;
+        }
     }
+    
+    .cat_sing{
+    opacity:0;
+    @extend %trans;
+    margin-bottom: 55px;
+        &.on{
+            opacity:1 !important;
+        }
+    }
+    
+    #spinner{
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto;
+    }
+
 }
 
 

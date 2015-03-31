@@ -150,20 +150,22 @@ function equal_heights(){
  	
     equal_heights();
      
-    //
+    //fade in stuff
+    $('.cat_sing ').addClass('on');
     $('.categories').addClass('on');
-    $('#spinner') .fadeOut();
+    $('#spinner').fadeOut();
      
- 	//end of window.load function
+ 	
      $('.selectpicker').selectpicker({
       style: 'null',
       size: false,
       showIcon:false
-  });
+    });
      
     // 
-    $('.selects').fadeIn('slow'); 
+    $('.selects').fadeIn('slow');
      
+//end of window.load function
  });
     
  $( window ).resize(function() {
