@@ -15,14 +15,16 @@
                             
                             <div class="texts">
                                 <i class="icon-library-icon"></i>
-                                <div class="current_category_name">
-                                         <h1><?php the_field('library_title', 'option'); ?></h1>
-                                        
-                                </div>
+                                <div class="name_and_sedc">
+                                    <div class="current_category_name">
+                                             <h1><?php the_field('library_title', 'option'); ?></h1>
 
-                                <div class="current_category_description">
-                                    <p><?php the_field('library_sub_title', 'option'); ?></p>
+                                    </div>
+                                    <div class="current_category_description">
+                                        <p><?php the_field('library_sub_title', 'option'); ?></p>
+                                    </div>
                                 </div>
+                                
                             </div>
                              <div class="stages">
                                 <?php the_field('stages', 'option'); ?>
@@ -80,7 +82,7 @@
                 $page_bg_image_url = $page_bg_image[0];
                 $cat_name = get_category(get_query_var('cat'))->name;?>
 				<div class="library_image_category" style="background-image:url(<?php echo $cat_image ?>);">
-
+                    <ul class="product_list">
 							
 									
 					<?php 
@@ -100,6 +102,7 @@
         			  $is_subject_category = get_category_meta('subject_category', get_term_by('slug', $cat->cat_name, 'category'));
                         if(!$is_subject_category) : 		
 					?>
+                 
 					   <div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
 
                                 <li class="category_square"> 
@@ -203,40 +206,19 @@
                     
                                 </li>
                     </div><!-- category_single -->
-                                <?php endif;endforeach  ?>
+                
+            <?php endif;endforeach  ?>
 										
 
+					</ul>		
+	    		</div>
+    		</div><!-- bootm part -->
+        </div><!-- cat_sing -->
 							
-				    		</div>
-				    		</div><!-- bootm part -->
-                            </div><!-- cat_sing -->
-							
-							
-
-												
-
-					
-
-						<?php endforeach; } ?>
-				
-				<div class="container-fluid">
-							<div class="row">
-							<div class="col-sm-12 ">
-				<?php } 
-
-					else{
-						if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-				<article>
-
-				    <div class="page-header">	
-				    	<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-				    	<p>By <?php the_author(); ?> on <?php echo the_time('l, F jS, Y'); ?> in <?php the_category( ', ' );?>.  <a href="<?php comments_link(); ?>"><?php comments_number(); ?></a></p>
-				    </div>				
-
-					<?php the_excerpt(); ?>
-
-				</article>
-				<?php endwhile; endif; 
-					}
-				?>
-			</div>
+    <?php
+      endforeach; } 
+        }else{
+      if ( have_posts() ) : while ( have_posts() ) : the_post(); 
+     endwhile; endif; }
+    ?>
+</div>

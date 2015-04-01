@@ -153,6 +153,7 @@ function equal_heights(){
     //fade in stuff
     $('.cat_sing ').addClass('on');
     $('.categories').addClass('on');
+    $('.navbar .menu-top').addClass('on')
     $('#spinner').fadeOut();
      
  	
