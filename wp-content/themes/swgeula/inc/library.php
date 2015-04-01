@@ -11,7 +11,7 @@
 
                         ?>
 
-                        <div class="image_category" style="background-image:url(<?php echo $cat_image ?>);">
+                        <div class="image_category">
                             
                             <div class="texts">
                                 <i class="icon-library-icon"></i>
