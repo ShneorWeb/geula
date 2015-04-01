@@ -12,7 +12,7 @@ Author URI:
 
 Tags: 
 */
-.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .library-page .cat_sing, .navbar .menu-top {
+.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -1018,6 +1018,7 @@ main library page
 .library-page .cat_sing {
   float: right;
   width: 100%;
+  position: relative;
 }
 .library-page .header_part {
   float: right;
@@ -1392,7 +1393,7 @@ responsive styles
   }
 
   .navbar-collapse.collapse {
-    position: absolute;
+    position: fixed;
     z-index: 9999;
   }
 

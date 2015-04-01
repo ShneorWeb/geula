@@ -66,6 +66,8 @@ function equal_heights(){
          $('.navbar-toggle').css('margin-left','235px');
          $('.drop').css('left','0');
          $('.archive_cont').css('right','-220px');
+         $('.cat_sing').css('right','-235px');
+         
              
             if($(window).width() < 500-17){
                  $('.site-branding').toggle();
@@ -78,6 +80,7 @@ function equal_heights(){
          $('.navbar-toggle').css('margin-left','15px');
          $('.drop').css('left','-220px');
          $('.archive_cont').css('right','0px');
+         $('.cat_sing').css('right','0');
         
             if($(window).width() < 500-17){
                  $('.site-branding').toggle();

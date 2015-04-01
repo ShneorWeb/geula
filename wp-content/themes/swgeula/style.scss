@@ -1122,6 +1122,8 @@ main library page
     .cat_sing{
         float: right;
         width: 100%;
+        position: relative;
+        @extend %trans;
     }
     
     .header_part{
@@ -1498,7 +1500,7 @@ responsive styles
     }
     
     .navbar-collapse.collapse{
-        position: absolute;
+        position: fixed;
         z-index: 9999;
     }  
     
