@@ -38,7 +38,7 @@
     </div><!-- container -->
 </div><!-- content -->
 
-<div id="spinner"></div>
+
 <?php
  $this_category = get_category($cat);
  if (get_category_children($this_category->cat_ID) != "") {
@@ -56,7 +56,7 @@
 		foreach (get_categories($args) as $cat) : ?>
 							
           <div class="cat_sing" style="opacity:0">
-                                
+            <div id="spinner"></div>
             <div class="header_part">
                <a href="<?php echo get_category_link($cat->term_id); ?>" class="texts_cont">
                  <div>
@@ -82,7 +82,7 @@
                 $page_bg_image_url = $page_bg_image[0];
                 $cat_name = get_category(get_query_var('cat'))->name;?>
 				<div class="library_image_category" style="background-image:url(<?php echo $cat_image ?>);">
-                    <ul class="product_list">
+                    <ul class="product_list row">
 							
 									
 					<?php 
@@ -103,7 +103,7 @@
                         if(!$is_subject_category) : 		
 					?>
                  
-					   <div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
+					   <div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
 
                                 <li class="category_square"> 
                                         

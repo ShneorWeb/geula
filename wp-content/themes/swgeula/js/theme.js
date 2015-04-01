@@ -154,6 +154,7 @@ function equal_heights(){
     $('.cat_sing ').addClass('on');
     $('.categories').addClass('on');
     $('.navbar .menu-top').addClass('on')
+    $('.cat_sing ').find('#spinner').fadeOut();
     $('#spinner').fadeOut();
      
  	
