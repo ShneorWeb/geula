@@ -1237,6 +1237,15 @@ main library page
 }
 
 .page-template-page-authors-php{
+    .category_single a{
+        float: right;
+        width: 100%;
+        @include opacity(1);
+        @extend %trans;
+            &:hover{
+                @include opacity(0.75);
+            }
+    }
     
     .back_to_libary h1{
         font-size: inherit;
@@ -1280,6 +1289,13 @@ main library page
     
     .category_square_author {
       padding-bottom: 0px;
+    }
+}
+
+
+.archive.author{
+    .menu-menu-right-container ul li.microphone{
+          background-color: #57bfb8;
     }
 }
 

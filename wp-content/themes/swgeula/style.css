@@ -12,7 +12,7 @@ Author URI:
 
 Tags: 
 */
-.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top {
+.menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -1126,6 +1126,16 @@ main library page
   border-radius: 50%;
 }
 
+.page-template-page-authors-php .category_single a {
+  float: right;
+  width: 100%;
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+.page-template-page-authors-php .category_single a:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75;
+}
 .page-template-page-authors-php .back_to_libary h1 {
   font-size: inherit;
   margin: inherit;
@@ -1158,6 +1168,10 @@ main library page
 }
 .page-template-page-authors-php .category_square_author {
   padding-bottom: 0px;
+}
+
+.archive.author .menu-menu-right-container ul li.microphone {
+  background-color: #57bfb8;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 

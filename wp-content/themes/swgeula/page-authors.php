@@ -40,7 +40,7 @@ get_header(); ?>
 					<?php
                     
       
-					if (!is_category() || is_single()) {
+					
                         
                         $args = array(
                                 /* https://codex.wordpress.org/Function_Reference/get_users */
@@ -55,9 +55,8 @@ get_header(); ?>
 
                            
 							<div class="category_single col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
-
+                                <a href="<?php echo get_author_posts_url( $user->id ); ?>">
 									<li class="category_square"> 
-                                        
 										
 										<div class="category_square_content">                                         
 
@@ -86,11 +85,12 @@ get_header(); ?>
 
                                         </div>
 									</li>
+                                </a>
 							</div>
 
 						<?php 
                        
-                        endforeach; } 
+                        endforeach; 
         ?>
 				</ul>
 				</div>
