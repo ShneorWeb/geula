@@ -658,6 +658,9 @@ background-color: #0F1D28;
 }
 
 .back_to_libary{
+     color: #7F8A94;
+        font-size: 18px;
+        font-weight: 700;
     i{
         margin-left: 5px;
     }
@@ -1227,6 +1230,57 @@ main library page
 .product_list{
     padding: 0;
     margin: 0;
+}
+
+.category_square_avatar img {
+  @include border-radius(50%);
+}
+
+.page-template-page-authors-php{
+    
+    .back_to_libary h1{
+        font-size: inherit;
+          margin: inherit;
+          font-weight: inherit;
+          line-height: inherit;
+    }
+    
+    .author_des{
+        h2{
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+    }
+    
+    .author_des {
+      clear: both;
+    }
+    
+    .page-header {
+      margin: 5px 0 25px;
+    }
+    
+    .category_square_content {
+    padding: 17px 21px;
+    }
+    
+    .category_square_avatar{
+      margin-bottom: 16px;
+    }
+    
+    .category_square_author_name {
+      margin-bottom: 1px;
+    }
+    
+    .category_square_author_subject.desc{
+        margin-top: 13px;
+        margin-bottom: 14px;
+    }
+    
+    .category_square_author {
+      padding-bottom: 0px;
+    }
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
