@@ -47,7 +47,6 @@
 								             ?>
                                          </h2>
 				    			</div>
-                                    
 				    			<div class="category_square_oval">
 								    <?php
 								        //TODO: get the 'new' tag dynamclay from site
@@ -58,15 +57,18 @@
 								       		 echo '<span class="oval">' . $value . '</span>';
 								    	}
                                                
-                                        $cat = get_queried_object();
-                                        $cat_slug =  $cat->slug;
-                                        $cat_parent_id = $cat->p
-                                        $cat_parent_object = get_category($cat_parent_id);
-                                        $cat_parent_slug = $cat_parent_object->slug;
-                                        $cat_parent_name = get_cat_name( $cat_parent
-                                        $cat_grandparent_id = $cat_parent_object->parent;
-                                        $cat_grandparent_object = get_category($cat_grandparent_id);
-                                        $cat_grandparent_slug = $cat_grandparent_object-
+                                               $cat = get_queried_object();
+                                               $cat_slug =  $cat->slug;
+                                               $cat_parent_id = $cat->parent;
+
+                                               $cat_parent_object = get_category($cat_parent_id);
+                                               $cat_parent_slug = $cat_parent_object->slug;
+                                               $cat_parent_name = get_cat_name( $cat_parent_id );
+
+                                               $cat_grandparent_id = $cat_parent_object->parent;
+                                               $cat_grandparent_object = get_category($cat_grandparent_id);
+                                               $cat_grandparent_slug = $cat_grandparent_object->slug;
+
                                     ?>
                     
                                     <a href="<?php echo site_url() . '/category/' . $cat_grandparent_slug.'?select_parent='.$cat_parent_id; ?>" class="category_square_oval_submit">
@@ -74,7 +76,7 @@
                                     </a>
 
 											
-								</div>
+											</div>
                                     
                                     
 				    			</div>
