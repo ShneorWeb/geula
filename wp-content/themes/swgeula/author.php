@@ -2,6 +2,7 @@
 
     <div class="col-lg-12 col-md-12 archive_cont">	
         <?php
+          $author =  get_the_author_meta( 'ID'); 
 
           $child = get_category($cat); 
           $parent = $child->parent;
@@ -32,14 +33,30 @@
 
                         ?>
 
-                        <div class="image_category" style="background-image:url(<?php echo $cat_image ?>);">
-
-                             <div class="current_category_name">
-                                     <h1><?php echo $cat_name; ?></h1>
+                        <div class="image_category">
+                            <!--TODO : image from ofer function -->
+				            <div class="category_square_avatar in_header">
+                                <?php echo get_avatar( $author, 160 ); ?>
                             </div>
+                            <div class="dtls">
+                                <div class="current_category_name">
+                                         <h1><?php echo get_the_author_meta( 'display_name'); ?></h1>
+                                </div>
 
-                            <div class="current_category_description">
-                                <?php echo category_description($cat->term_id);  ?>
+                                <div class="current_category_description">
+                                    <?php echo get_the_author_meta( 'subject'); ?>
+                                </div>
+
+                                <div class="current_category_description">
+                                    <?php echo get_the_author_meta( 'description'); ?>
+                                </div>
+
+                                <div class="number_of_posts_in_header">
+                                     <!-- 
+                                         TODO: get the number of posts dynamcly
+                                     -->
+                                   38 שיעורים בספריה
+                                </div>
                             </div>
 
                         </div>
@@ -56,32 +73,6 @@
                 
 				<div class="selects">
                    
-                    <!-- filter by author -->
-                     <form method="get" id="select_author">
-                        <select name="select_author" onchange='this.form.submit()' class="selectpicker show-tick">
-                            <option value="0" >מוסר שיעור</option>
-                            <?php 
-                               
-                                  $args = array(
-                                /* https://codex.wordpress.org/Function_Reference/get_users */
-                                    'blog_id'      => 1,
-                                    'role'         => 'Administrator',
-                                 );
-                                $blogusers = get_users( $args );
-                                // Array of stdClass objects.
-                                foreach ( $blogusers as $user ) {?>
-                                    <option value="<?php echo $user->id ?>" <?php selected( $_GET['select_author'],$user->id); ?> ><?php echo esc_html( $user->display_name ); ?></option>
-                              <?php  } ?>
-                            
-                        </select>
-                         
-                         <?php $select_order = $_GET['select_order']; ?>
-                         <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
-                         
-                         <?php $parent_cat  = $_GET['select_parent']; ?>
-                         <input name="select_parent" type="hidden" value="<?php echo $parent_cat ?>"/>
-                         
-                    </form>
                     
                     <!-- filter by subject -->
                      <form method="get" id="select_parent">      
@@ -93,20 +84,22 @@
                              </option> 
                              
                              <?php 
-                              $this_cat = get_query_var('cat');
                               $categories = get_categories(array(
                                         'hide_empty' => 0,
-                                        'child_of' => $this_cat,
-                                        'parent' => $this_cat,
                               )); 
       
                               foreach ($categories as $category) {
-                                $option = '<option value="'.$category->cat_ID.'" '.selected($_GET['select_parent'],$category->cat_ID, 1).'>';
-                                $option .= $category->cat_name;
-                                /*$option .= ' ('.$category->category_count.')';*/
-                                  /*$option .= $category->parent;*/
-                                $option .= '</option>';
-                                echo $option;
+                                $is_subject_category = get_category_meta('subject_category', get_term_by('slug', $category->cat_name, 'category'));
+                                $cat_authors = get_category_meta('authors', get_term_by('slug', $category->cat_name, 'category'));
+                                
+                                
+                                if($is_subject_category && in_array($author, $cat_authors)) : 
+                                    $option = '<option value="'.$category->cat_ID.'" '.selected($_GET['select_parent'],$category->cat_ID, 1).'>';
+                                    $option .= $category->cat_name;
+                                    $option .= '</option>';
+                                    echo $option;
+                                    echo $cat_authors[0];
+                                  endif;
                               }
                                 
                                 
@@ -186,8 +179,6 @@
                             'orderby' => $orderby,
                             'order' => $order,
                         );
-
-                        $author =  get_the_author_meta( 'ID'); 
 					
 				        foreach (get_categories($args) as $cat) : 
                         
@@ -296,30 +287,22 @@
 		<div class="category_square_oval">
                                                
              <?php
-                $cat_parent = $cat->parent;
-                $cat_parent;
-                $cat_parent_name = get_cat_name( $cat_parent );
+                $cat_slug =  $cat->slug;
+                $cat_parent_id = $cat->parent;
+                
+                $cat_parent_object = get_category($cat_parent_id);
+                $cat_parent_slug = $cat_parent_object->slug;
+                $cat_parent_name = get_cat_name( $cat_parent_id );
+                
+                $cat_grandparent_id = $cat_parent_object->parent;
+                $cat_grandparent_object = get_category($cat_grandparent_id);
+                $cat_grandparent_slug = $cat_grandparent_object->slug;
                         
-                     /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
+                /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
 ?>
-               
-                <form method="get" >
-
-                    <input type="hidden" name="select_parent"  value="<?php echo $cat_parent; $_GET['select_parent']; ?>" />
-                    <input type="submit" style="color:<?php echo $color; ?>" value="<?php echo $cat_parent_name; ?>" class="category_square_oval_submit"/>
+                    
+       <a href="<?php echo site_url() . '/category/' . $cat_grandparent_slug.'?select_parent='.$cat_parent_id; ?>" style="color:<?php echo $color; ?>" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
                      
-                    <?php 
-                       $parent_cat = $_GET['select_parent'];
-                       $select_order = $_GET['select_order'];
-                       $moser_id  = $_GET['select_author'];
-                    ?>
-                    
-                   <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
-                   <input name="select_author" type="hidden" value="<?php echo $moser_id ?>"/>
-                    
-            </form>
-              
-  
 
           <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
                 foreach ($values as $value => $label) {
