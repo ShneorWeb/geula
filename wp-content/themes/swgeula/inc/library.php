@@ -116,6 +116,9 @@
                                                 
                                                 12 שעות
                                             </span>
+                                            <!-- 
+                                                    TODO: get the icon of category dynamcly
+                                                -->
 											<i class="icon-type-of-lesson-icon-1"></i>
 										</div>
                                         

@@ -1,65 +1,85 @@
 <div class="page-header single_category_list">	
 				
- 
-				<div class="col-md-12 header_category">	
+    <div class="header_category">	
 					
 					
 					  
-						<?php 
-					 
-						
-						
-						echo '<span class="glyphicon glyphicon-arrow-right" aria-hidden="true" style="color:#7f8a94;"></span> <a href="'.  esc_url( $category_link ) .'" style="font-size:18px; color:#7f8a94;">'.$parent_name .'</a>';
-						?>
+						<div class="back_to_libary">
+                          <a href="<?php echo esc_url( $category_link ); ?>">
+                              <i class="fa fa-arrow-right"></i>
+                              <?php echo $parent_name; ?>
+                          </a>
+                        </div>
 							
-
-								<?php 
-				    				$cat_image =  get_category_meta('image');
-				    				$page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
-				    				$page_bg_image_url = $page_bg_image[0];
-				    				$cat_name = get_category(get_query_var('cat'))->name;?>
-				    				<?php $color =  get_category_meta('color'); ?>
-				    	<div class="top_container">
+                            <?php 
+                                $cat_image =  get_category_meta('image');
+                                $page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
+                                $page_bg_image_url = $page_bg_image[0];
+                                $cat_name = get_category(get_query_var('cat'))->name;   
+                                $color =  get_category_meta('color'); 
+                            ?>
 
 				    		<div class="image_category" style=" background-color:<?php echo $color; ?>; ">
 								
-								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 right-content" style="float:none;">
-								
-										
-										<h5>
-											<div class="category_square-format">
-												<p><span class="glyphicon glyphicon-folder-open" style="padding-left:20px;"></span>
-												<?php $values =  get_category_meta('type');
+								<div class="right-content">
+                                    
+								    <div class="category_square-format">
+                                                <i class="icon-type-of-lesson-icon-1"></i>
+                                        
+                                                <?php $values =  get_category_meta('type');
 												foreach ($values as $value => $label) {
 												    echo '<span>' . $value .'</span>' ;
 												}
 												$values = get_category_meta('format');
 												foreach ($values as $value => $label) {
-												    echo  '&nbsp; <span>' . $value . '</span>';
+												    echo  '<span>' . $value . '</span>';
 												}?>
-											</p></div></h5>
-				    			<?php
-				    				echo '<div class="current_category_name":inline-block; style="padding-right:0px;"><h1 style="padding-top:20px; color:#ffffff;">'. $cat_name.'</h1></div>';
-				    				 ?>
-				    				 <div class="current_category_description" style="padding-right:0px; "><h4 style="color:#ffffff;"><?php $short_description = get_category_meta('short_description');
-														echo $short_description;
-														?></h4>
+                                    </div>
+				    			     <div class="current_category_name">
+                                        <h1><?php echo $cat_name; ?></h1>
+                                    </div>
+				    				 
+				    				 <div class="current_category_description">
+                                         <h2>
+                                             <?php
+                                                $short_description = get_category_meta('short_description');
+												echo $short_description;
+								             ?>
+                                         </h2>
 				    			</div>
-				    			<div class="category_square_oval"><h4>
-											<?php
-												
-											   			 echo '<span class="oval" style="color:#ffffff; border:1px solid #ffffff">חדש</span>';
-													
-													
-													$values = get_category_meta('level');
-													foreach ($values as $value => $label) {
-											   			 echo '<span class="oval" style="border:1px solid #ffffff; color:#ffffff;">' . $value . '</span>';
-													}
+                                    
+				    			<div class="category_square_oval">
+								    <?php
+								        //TODO: get the 'new' tag dynamclay from site
+								       	echo '<span class="oval">חדש</span>';
+								    	
+								    	$values = get_category_meta('level');
+								    	foreach ($values as $value => $label) {
+								       		 echo '<span class="oval">' . $value . '</span>';
+								    	}
+                                               
+                                        $cat = get_queried_object();
+                                        $cat_slug =  $cat->slug;
+                                        $cat_parent_id = $cat->p
+                                        $cat_parent_object = get_category($cat_parent_id);
+                                        $cat_parent_slug = $cat_parent_object->slug;
+                                        $cat_parent_name = get_cat_name( $cat_parent
+                                        $cat_grandparent_id = $cat_parent_object->parent;
+                                        $cat_grandparent_object = get_category($cat_grandparent_id);
+                                        $cat_grandparent_slug = $cat_grandparent_object-
+                                    ?>
+                    
+                                    <a href="<?php echo site_url() . '/category/' . $cat_grandparent_slug.'?select_parent='.$cat_parent_id; ?>" class="category_square_oval_submit">
+                                        <?php echo $cat_parent_name; ?>
+                                    </a>
 
-											?></h4>
-											</div>
+											
+								</div>
+                                    
+                                    
 				    			</div>
-				    			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 left-content" style="float:none;">
+                                
+				    			<div class="left-content">
 									<h5>
 											<div class="category_square-format">
 												<ul style="display:inline-block; padding-right:20px; border-right:1px solid #ffffff;">
@@ -97,7 +117,7 @@
 				    			</div>
 				    			
 				    		</div>
-				    	</div>
+				    
 				    		</div>
 				    		
 				    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 " style="margin-top:20px;">
