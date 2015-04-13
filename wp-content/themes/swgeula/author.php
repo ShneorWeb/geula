@@ -3,16 +3,7 @@
     <div class="col-lg-12 col-md-12 archive_cont">	
         <?php
           $author =  get_the_author_meta( 'ID'); 
-
-          $child = get_category($cat); 
-          $parent = $child->parent;
-          $parent_name = get_category($parent);
-          $parent_name = $parent_name->name;
-          $category_id = get_cat_ID( $parent_name );
-          $category_link = get_category_link( $category_id );
-          $this_category = get_category($cat);
-
-          ?>
+        ?>
              <div class="page-header">	
 				
 
@@ -24,14 +15,6 @@
                               <?php echo get_the_title( '68' ); ?>
                           </a>
                         </div>
-
-                        <?php 
-                                    $cat_image =  get_category_meta('image');
-                                    $page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
-                                    $page_bg_image_url = $page_bg_image[0];
-                                    $cat_name = get_category(get_query_var('cat'))->name;
-
-                        ?>
 
                         <div class="image_category">
                             <!--TODO : image from ofer function -->
