@@ -815,7 +815,7 @@ span.category_top_time {
     margin-bottom: 25px;
 }
 
- .category_square_author_subject{
+ .category_square_author_subject,.category_square_author_desc{
         color: #7F8A94;
         font-size: 14px;
 }
@@ -1360,6 +1360,8 @@ main library page
 .single_category_list .image_category {
  padding: 1.5% 2.18978102189781%;
  position: relative;
+ @include border-radius(4px 4px 0 0);
+ box-shadow: none;
 }
 
 
@@ -1395,6 +1397,7 @@ main library page
      .current_category_description h2{
          color: #fff;
          font-size: 1.125rem;
+           margin-top: 11px;
     }
     
     .category_square_oval{
@@ -1406,8 +1409,171 @@ main library page
            font-size: 1.125rem;
             color: #fff;
         }
+    }
+    .right-content{
+        float: right;
+        width:69%;
+    }
+    .left-content{
+        float: left;
+        width:31%;
+        margin-top: 45px;
         
+        ul.single_cat_dtls{
+            padding-right:30px;
+            border-right:1px solid #ffffff;
+            padding-top: 7px;
+            line-height: 1.2;
+        }
+    }
+    
+    .rail{
+      margin-top: 0;
+      margin-bottom: 0;
+      border-radius: 0 0 4px 4px;        
+       -moz-box-shadow: 0 2px 0 rgba(56, 64, 71, 0.2);
+  -webkit-box-shadow: 0 2px 0 rgba(56, 64, 71, 0.2);
+  box-shadow: 0 2px 0 rgba(56, 64, 71, 0.2);    
         
+        .rail--timeline{
+            width: 72%;
+            float: left;
+            margin-top: 13px;
+            
+            
+            .start_number{
+                float:left;
+                padding-right:20px;
+            }
+            
+            .end_number{
+                float:right;
+                padding-left:20px;
+            }
+            
+            span{
+                color: #686969;
+                font-size: 1.25rem;
+                font-weight: 700;
+            }
+            
+            .progress {
+                margin-top: 4px;
+                margin-bottom: 0;
+            }
+        }
+        
+        .rail--btns{
+            width: 28%;
+            float: right;
+           
+            
+            .btn{
+                color: #FFF;
+                font-size: 1.25rem;
+                font-weight: 700;
+                border: none;
+                padding: 11px 24px;
+                @include opacity(1);
+                @extend %trans;
+                    &:hover{
+                        @include opacity(0.75);
+                    }
+            }
+            
+            .playBtn{
+                background-color:#5fcf80;
+                margin-left: 15px;
+            }
+            
+            .getAfter{
+               background-color:#e15258;
+            }
+        }
+    }
+    
+    .header_category{
+        margin-bottom: 41px;
+    }
+    
+    h3{
+        color: #7F8A94;
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 17px;
+    }
+    
+    .box {
+    padding:25px 30px;
+    margin-bottom: 30px;
+    display: inline-block;
+    width: 100%;
+    }
+    
+    .box.contOfSingPosts{
+        padding:0; 
+    }
+    
+    .single_lesson_cont{
+        border-bottom:1px solid #e1e1e1;
+        padding: 13px 30px 5px;
+        &:last-child{
+          border-bottom: none;  
+        }
+        
+        a{
+            color: #7F8A94;
+            font-size: 1.25rem;
+            display: inline-block;
+            width: 100%;
+            @include opacity(1);
+            @extend %trans;
+                &:hover{
+                    @include opacity(0.75);
+                }
+        }
+        
+        .fa{
+            color: #e1e1e1;
+            margin-left: 30px;
+        }
+        
+        .fa-check-circle{
+            color: #5fcf80;
+        }
+        
+        .name{
+            float: right;
+        }
+        
+        .time{
+            float: left;
+            color: #b2bac2;
+            font-size: 1rem;
+            padding-top: 5px;
+        }
+        
+    }
+    
+    .userdtls{
+        
+        .dtls{
+            float: right;
+            width: 67%;
+            .category_square_author_subject.desc{
+                margin-top: 13px;
+                margin-bottom: 14px;
+            }
+        }
+        .category_square_avatar{
+            float: left;
+            width: 33%;
+            margin: 0;
+        }
+        .category_square_author_name{
+            margin-bottom: 0;
+        }
     }
 }
 

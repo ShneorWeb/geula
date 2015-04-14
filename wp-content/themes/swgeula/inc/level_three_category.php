@@ -1,3 +1,12 @@
+<?php
+  $cat_id = get_query_var('cat');
+  $args = array(
+      'category'         => $cat_id
+  );
+  $posts = get_posts($args); 
+  $count = count($posts); 
+?>
+
 <div class="page-header single_category_list">	
 				
     <div class="header_category">	
@@ -24,6 +33,7 @@
 								<div class="right-content">
                                     
 								    <div class="category_square-format">
+                                                <!--TODO: GET the icon dunamly -->
                                                 <i class="icon-type-of-lesson-icon-1"></i>
                                         
                                                 <?php $values =  get_category_meta('type');
@@ -82,73 +92,142 @@
 				    			</div>
                                 
 				    			<div class="left-content">
-									<h5>
+									
 											<div class="category_square-format">
-												<ul style="display:inline-block; padding-right:20px; border-right:1px solid #ffffff;">
+												<ul class="single_cat_dtls">
+                                                    <!-- TODO: get the length of corses need to come dynamclay -->
 													<li>12 שעות</br></br></li>
 													<li><?php $values =  get_category_meta('level');
 																	foreach ($values as $value => $label) {
 																	    echo '<span>' . $value .'</span>' ;
 																	}?></br></br>
 													</li>
-													<li>32 שיעורים</br></br></li>
-													<li>32 לומדים</li>
+													<li><?php echo $count . ' ' . __('שיעורים', 'swgeula'); ?></br></br></li>
+                                                    <!-- TODO: get the number of users need to come dynamclay -->	
+                                                    <li>32 לומדים</li>
 												</ul>
 											</div>
-									</h5>		
+											
 
 				    			</div>
 				    			
 				    		</div>
 
 				    		<div class="rail">
-				    			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 " style="margin-top:0px;">
-				    			<div><span style="float:left; padding-right:20px;">367</span>
-				    				<span style="float:right; padding-left:20px;">24</span>
-				    			<div class="progress"> 
-									 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-									     <span class="sr-only">40% Complete (success)</span>
-								</div>
-								</div>
-									
-								</div>
-								</div>
-				    			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-				    			<a href="<?php echo get_category_link($cat->term_id); ?>"><button type="button" class="btn btn-default " style="background-color:#5fcf80; color:#ffffff;" aria-label="Left Align"><span class="glyphicon glyphicon-chevron-left" style="color:#ffffff;"></span> התחל </button></a>	
-				    			<a href="<?php echo get_category_link($cat->term_id); ?>"><button type="button" class="btn btn-default " style="background-color:#e15258; color:#ffffff;" aria-label="Left Align"><span class="glyphicon glyphicon-dashboard" style="color:#ffffff;"></span> תזמן למעל </button></a>	
+                                
+                                <div class="rail--btns">
+                                    <!--TODO: what link is need to go to? -->
+                                    <a href="#">
+                                        <button type="button" class="btn btn-default playBtn">
+                                            <i class="fa fa-play fa-flip-horizontal"></i> 
+                                                <?php echo __('התחל', 'swgeula'); ?>
+                                        </button>
+                                    </a>	
+                                    <!--TODO: what link is need to go to? -->
+                                    <a href="#">
+                                        <button type="button" class="btn btn-default getAfter" >
+                                            <i class="fa fa-clock-o"></i>  
+                                                <?php echo __('תזמן למעגל', 'swgeula'); ?>
+                                        </button>
+                                    </a>	
 				    			</div>
+                                
+				    			<div class="rail--timeline">
+                                    
+                                        <span class="start_number" >367</span>
+                                        <span class="end_number" >24</span>
+                                    
+                                        <div class="progress"> 
+                                            <!--TODO: get the status of progress dynamclay -->
+                                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                                 <span class="sr-only">40% Complete (success)</span>
+                                             </div>
+                                        </div>
+
+								</div>
+				    			
 				    			
 				    		</div>
 				    
-				    		</div>
+	</div><!-- header_category -->
+    
+    <div class="row">
+        
+        <div class="col-lg-8 col-md-8">
+            <h3>
+                <?php echo __('אודות הסדרה', 'swgeula'); ?>
+            </h3>
+			<div class="box">
+			    <?php echo category_description($cat->term_id);  ?>
+			</div>
+            
+            <h3>
+                <?php echo $count . ' ' . __('שיעורים בסדרה זו', 'swgeula'); ?>
+            </h3>
+			<div class="box contOfSingPosts">
+			 <?php
+                $counter = 0;
+                if ( have_posts() ) : while ( have_posts() ) : the_post();
+                $counter +=1;
+                ?>
+						
+							<div class="single_lesson_cont">
+								    
+								    <a href="<?php the_permalink(); ?>">
+                                        <div class="name">
+                                            <!-- TODO:
+                                    put the v icon if this post was seen and not just for the first post like now...
+                                            -->
+                                            <?php if($counter == 1) { ?>
+                                            <i class="fa fa-check-circle"></i>
+                                            <?php }else{ ?>
+                                            <i class="fa fa-chevron-left"></i>
+                                            <?php } ?>
+                                            <?php the_title(); ?>
+                                        </div>
+                                        <div class="time">
+                                            <!--TODO: get the time of posts from cf ? -->
+                                            18:23
+                                        </div>
+                                    </a>
+								</div>
+                
+				    <?php endwhile; endif; ?>
+                                
 				    		
-				    		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 " style="margin-top:20px;">
-				    		<h4>מוסר שיעור</h4>
-				    		<div class="box">
+		  </div>
+        
+        </div>
+        
+	   <div class="col-lg-4 col-md-4">
+			<h3>
+                <?php echo __('מוסר שיעור', 'swgeula'); ?>
+            </h3>
+			<div class="box userdtls">
+                   <?php
+				    $values = get_category_meta('authors');
+						foreach ($values as $user_id) {
+							$the_user = get_user_by('id', $user_id);
+                            //TODO : image from ofer function
+							echo '<div class="category_square_avatar">'. get_avatar( $the_user, 100 ) . '</div>'; 
+                             ?>
+                            <div class="dtls">
+                                <?php
+                                echo '<div class="author_des"><div class="category_square_author_name">' . $the_user->display_name . '</div>';
+                                echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';
 
-				    				
-												<?php
-													
-												 $values = get_category_meta('authors');
-												foreach ($values as $user_id) {
-												    $the_user = get_user_by('id', $user_id);
-												   
+                    echo '<div class="category_square_author_subject desc">' .get_the_author_meta('description', $user_id ). '</div>';
+                    ?>
 
-												    echo '<div class="author_des"><div class="category_square_author_name"><h4  style="margin-bottom:0px;">' . $the_user->user_login . '</h4></div></br>';
-												    
-												    echo '<div class="category_square_author_subject"><h4  style="margin-top:0px; padding-top:0px;"><small>' .get_the_author_meta('subject', $user_id ). '</small></h4></div>';
 
-												    echo '<div class="category_square_author_subject"><h4><small>' .get_the_author_meta('description', $user_id ). '</small></h4></div>';	
-												    ?>
-											    	
-
-											    	<div class="category_square_number">
-														<h5><small>38 שיעורים בספריה</small></h5>
-													</div>
-													</div><?php 
-
-													echo '<div class="category_square_avatar" style="vertical-align:top;">'. get_avatar( $the_user, 60 ) . '</div>'; 
-													} ?>
+                                <div class="category_square_number">
+                                    <!-- 
+                                     TODO: get the number of posts dynamcly
+                                      -->
+                                    38 שיעורים בספריה
+                                </div>
+                            </div>
+                        <?php }?>
 							
 											
 
@@ -156,37 +235,7 @@
 
 				    		</div>
 				    		</div>
-				    		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 " style="margin-top:20px; ">
-				    		<h4>אודות הסדרה</h4>
-				    		<div class="box">
-				    		<h4><?php echo category_description($cat->term_id);  ?></h4>
-				    		</div>
-				    		<h4 style="margin-top:40px;">32 שיעורים בסדרה זו</h4>
-				    		<div class="box" style="padding:0px;">
-				    		<h4>
-                                <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-						
-							
-
-								
-
-								  		<div style="border-bottom:1px solid #ccc; padding:10px;">
-								  		<div style="display:inline-block; width:100%;">
-								    	 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="padding-left:10px;"></span>
-								    	 <span><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>
-								    	 <span style="float:left;">18:23</span>
-								    	<!--<p>By <?php the_author(); ?> on <?php echo the_time('l, F jS, Y'); ?> in <?php the_category( ', ' );?>.  <a href="<?php comments_link(); ?>"><?php comments_number(); ?></a></p>-->
-								    			
-								    		</div></div>
-									<!--<?php the_excerpt(); ?>-->
-
-								
-							
-
-						
-				<?php endwhile; endif; ?>
-                                </h4></div>
 				    		
-				    		</div>
+                    </div><!-- row -->
 				</div>
 			</div>
