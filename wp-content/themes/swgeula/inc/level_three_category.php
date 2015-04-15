@@ -96,13 +96,13 @@
 											<div class="category_square-format">
 												<ul class="single_cat_dtls">
                                                     <!-- TODO: get the length of corses need to come dynamclay -->
-													<li>12 שעות</br></br></li>
+													<li>12 שעות</li>
 													<li><?php $values =  get_category_meta('level');
 																	foreach ($values as $value => $label) {
 																	    echo '<span>' . $value .'</span>' ;
-																	}?></br></br>
+																	}?>
 													</li>
-													<li><?php echo $count . ' ' . __('שיעורים', 'swgeula'); ?></br></br></li>
+													<li><?php echo $count . ' ' . __('שיעורים', 'swgeula'); ?></li>
                                                     <!-- TODO: get the number of users need to come dynamclay -->	
                                                     <li>32 לומדים</li>
 												</ul>
@@ -117,7 +117,7 @@
                                 
                                 <div class="rail--btns">
                                     <!--TODO: what link is need to go to? -->
-                                    <a href="#">
+                                    <a href="#" id="playBtnCont">
                                         <button type="button" class="btn btn-default playBtn">
                                             <i class="fa fa-play fa-flip-horizontal"></i> 
                                                 <?php echo __('התחל', 'swgeula'); ?>
