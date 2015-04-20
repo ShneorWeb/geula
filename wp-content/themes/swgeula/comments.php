@@ -44,9 +44,12 @@ if ( post_password_required() ) {
 
 		<ol class="comment-list">
 			<?php
+                //TODO: take the avatar image from ofer function
 				wp_list_comments( array(
 					'style'      => 'ol',
 					'short_ping' => true,
+                    'avatar_size'       => 49,
+                    'reply_text'        => __( 'השב לתגובה זו', 'swgeula' ),
 				) );
 			?>
 		</ol><!-- .comment-list -->
@@ -72,6 +75,11 @@ if ( post_password_required() ) {
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'swgeula' ); ?></p>
 	<?php endif; ?>
 
-	<?php comment_form(); ?>
+	<?php
+        $args = array(
+            'label_submit'      => __( 'הגב', 'swgeula' )
+        );
+        comment_form($args); 
+    ?>
 
 </div><!-- #comments -->
