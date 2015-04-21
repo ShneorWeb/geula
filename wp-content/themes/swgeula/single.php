@@ -128,23 +128,45 @@ $parent_cat_count = $parent_cat->count;
                     <div class="lessonNumber">
                           <?php 
 
-                            $args = array(
-                                'cat' => 22,
-                            );
-                            $query = new WP_Query( $args );
+                            class MY_Post_Numbers {
 
-                            echo $query->current_post;
-                            echo $query->post_count;
+                                private $count = 0;
+                                private $posts = array();
 
-                            /*echo "<pre>";
-                            print_r($query);
-                            echo "</pre>";*/
+                                public function display_count() {
+                                    $this->init(); // prevent unnecessary queries
+                                    $id = get_the_ID();
+                                    echo __('שיעור', 'swgeula') . ' ' . $this->posts[$id] . ' ' . __('מתוך', 'swgeula') . ' ' . $this->count;
+                                }
 
-                            //TODO: fix the current post number:http://wordpress.stackexchange.com/q/184880/39259
+                                private function init() {
+                                    if ( $this->count )
+                                    return;
+                                    $parent_cat = get_the_category()[0];
+                                    $parent_cat_id = $parent_cat->cat_ID;
+                                    global $wpdb;  
+                                    $posts = $wpdb->get_col( "SELECT ID FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'post' AND ID IN ( SELECT object_id FROM {$wpdb->term_relationships} WHERE term_taxonomy_id = '"  . $parent_cat_id . "' ) ORDER BY post_date " ); 
+                           
+                                    // can add or change order if you want 
+                                    $this->count = count($posts);
+                      
 
+                                    foreach ( $posts as $key => $value ) {
+                                        $this->posts[$value] = $key + 1;
+                                    }
+                                    unset($posts);
+                                }
 
-           
-            echo __('שיעור', 'swgeula') . ' ' . $query ->current_post . ' ' . __('מתוך', 'swgeula') . ' ' . $parent_cat_count;
+                            }
+
+                            $GLOBALS['my_post_numbers'] = new MY_Post_Numbers;
+
+                            function my_post_number() {
+                                $GLOBALS['my_post_numbers']->display_count();
+                            }
+
+                            my_post_number(); 
+
                         ?>
                     </div>  
                     <h2 class="name_of_single"><?php the_title(); ?></h2>  
