@@ -31,9 +31,17 @@ Tags:
 -o-transition: all 0.2s ease-in-out;
 -ms-transition: all 0.2s ease-in-out;
 transition: all 0.2s ease-in-out;
--webkit-transform: translateZ(0);
 }
- 
+
+@mixin clickbleElement{
+    cursor: pointer;
+    @include opacity(1);
+    @extend %trans;
+        &:hover{
+            @include opacity(0.75);
+        }
+}
+
 //------------------------------- placeholders ------------------------------
  
 %trans{
@@ -42,7 +50,6 @@ transition: all 0.2s ease-in-out;
 -o-transition: all 0.2s ease-in-out;
 -ms-transition: all 0.2s ease-in-out;
 transition: all 0.2s ease-in-out;
--webkit-transform: translateZ(0);
 }
  
 %vertical-align {
@@ -51,6 +58,15 @@ transition: all 0.2s ease-in-out;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+%clickbleElement{
+    cursor: pointer;
+    @include opacity(1);
+    @extend %trans;
+        &:hover{
+            @include opacity(0.75);
+        }
 }
  
 /*z-index stufs*/
@@ -645,7 +661,7 @@ float: right;
   float: right;
     @extend %trans;
     cursor: pointer;
-    &:hover,&.current-category-ancestor, &.current-menu-item{
+    &:hover,&.current-category-ancestor, &.current-menu-item,&.current-post-ancestor{
         background-color:#57bfb8;
     }
     
@@ -1626,6 +1642,10 @@ main library page
     }
 }
 
+.tab-content > .active {
+  padding: 20px;
+}
+
 .nav-tabs {
   border-bottom-color: #8d9aa5;
 }
@@ -1685,7 +1705,6 @@ main library page
     
     #respond{
         padding-top:25px;
-        padding-right: 25px;
         textarea#comment{
             width: 92%;
             padding: 10px 15px;
@@ -1730,14 +1749,72 @@ main library page
 
 ol.comment-list{
     -webkit-padding-start: 0;
-    padding: 0 25px 20px 0;
 }
 
 li.comment{
     margin-top: 20px;
     display: inline-block;
+    
 }
 
+ol.comment-list > li.comment:first-child{
+      margin-top: 0px;
+}
+
+#references{
+    ul,ol{
+        list-style: inherit;
+        padding-right: 20px;
+        li{
+            list-style: inherit;
+            font-size: 1.125rem; 
+        }
+    }
+}
+
+.single_dwnld_file{
+    a{
+        font-size: 1.125rem;
+        @extend %clickbleElement;
+        .fa{
+            margin-left: 10px;
+        }
+    }
+    border-bottom: 1px solid #e1e1e1;
+    padding:10px 0;
+    &:last-child{
+        border-bottom: none;
+    }
+}
+
+.lessonNumber{
+    color: #8D9AA5;
+    font-weight: 700;
+}
+
+h2{
+color: #7F8A94;
+font-weight: 700; 
+}
+
+h2.name_of_single{
+color: #7F8A94;
+font-size: 1.25rem;
+font-weight: 700;
+margin: 5px 0;
+}
+
+.navigation.post-navigation{
+    h2{
+        display: none;
+    }
+    .nav-previous{
+        width: 118px;
+        height: 50px;
+        background-color: #EDEFF0;
+        @include border-radius(4px 0px 0px 4px);
+    }
+} 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
 responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */

@@ -9,7 +9,9 @@ get_header(); ?>
 
 <?php 
 $parent_cat = get_the_category()[0];
-
+$parent_cat_id = $parent_cat->cat_ID;
+$parent_cat_name = $parent_cat->name;
+$parent_cat_count = $parent_cat->count;
 ?>
 
 	<div id="primary" class="content-area">
@@ -25,17 +27,9 @@ $parent_cat = get_the_category()[0];
                             <div class="back_to_libary">
                               <a href="<?php echo get_category_link($parent_cat->term_id ) ?>">
                                   <i class="fa fa-arrow-right"></i>
-                                  <?php echo $parent_cat->name ?>
+                                  <?php echo $parent_cat_name ?>
                               </a>
                             </div>
-
-                            <?php 
-                                        $cat_image =  get_category_meta('image');
-                                        $page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
-                                        $page_bg_image_url = $page_bg_image[0];
-                                        $cat_name = get_category(get_query_var('cat'))->name;
-
-                            ?>
 
                     </div>
 			     </div>
@@ -82,8 +76,40 @@ $parent_cat = get_the_category()[0];
                                                 endif;
                                             ?>
                                           </div>
-                                        <div role="tabpanel" class="tab-pane fade" id="references">...</div>
-                                        <div role="tabpanel" class="tab-pane fade" id="downloads">...</div>
+                                        <div role="tabpanel" class="tab-pane fade" id="references">
+                                          <?php the_field('CROSS_REFERENCES'); ?>
+                                          </div>
+                                        <div role="tabpanel" class="tab-pane fade" id="downloads">
+                                          <?php
+
+                                            // check if the repeater field has rows of data
+                                            if( have_rows('downloads') ):
+
+                                                // loop through the rows of data
+                                                while ( have_rows('downloads') ) : the_row();
+
+                                                    if( get_sub_field('dwnld_file') ):
+                                                        ?>
+                                            
+                                                        <div class="single_dwnld_file">
+                                                             <a href="<?php echo get_sub_field('dwnld_file'); ?>" download>                                                          <i class="fa fa-download"></i><?php echo get_sub_field('dwnld_file_name_and_desc'); ?>
+                                                             </a>
+                                                        </div>
+                                                       
+
+                                                        <?php
+                                                                endif;
+
+                                                            endwhile;
+
+                                                        else :
+
+                                                            // no rows found
+
+                                                        endif;
+
+                                                        ?>
+                                          </div>
                                       </div>
 
                                 </div>
@@ -98,7 +124,33 @@ $parent_cat = get_the_category()[0];
               </div>
                 
               <div class="col-md-3">
-               <?php the_post_navigation(); ?>
+                  <div class="box sidebox">
+                    <div class="lessonNumber">
+                          <?php 
+
+                            $args = array(
+                                'cat' => 22,
+                            );
+                            $query = new WP_Query( $args );
+
+                            echo $query->current_post;
+                            echo $query->post_count;
+
+                            /*echo "<pre>";
+                            print_r($query);
+                            echo "</pre>";*/
+
+                            //TODO: fix the current post number:http://wordpress.stackexchange.com/q/184880/39259
+
+
+           
+            echo __('שיעור', 'swgeula') . ' ' . $query ->current_post . ' ' . __('מתוך', 'swgeula') . ' ' . $parent_cat_count;
+                        ?>
+                    </div>  
+                    <h2 class="name_of_single"><?php the_title(); ?></h2>  
+                   <?php the_post_navigation(); ?>
+                  </div>
+              
               </div>
 
         </div>
