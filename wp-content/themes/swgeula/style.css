@@ -1,6 +1,6 @@
 /*Theme Name: swgeula
 
-Theme URI: 
+Theme URI:
 
 Description: A Theme for Geula website
 
@@ -8,11 +8,11 @@ Version: 1.0
 
 Author: Shneor Web team
 
-Author URI: 
+Author URI:
 
-Tags: 
+Tags:
 */
-.single_dwnld_file a, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_category_list .single_lesson_cont a, .nav-tabs > li > a {
+.single_dwnld_file a, .previous_post_link, .next_post_link, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_category_list .single_lesson_cont a, .nav-tabs > li > a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -20,12 +20,12 @@ Tags:
   transition: all 0.2s ease-in-out;
 }
 
-.single_dwnld_file a {
+.single_dwnld_file a, .previous_post_link, .next_post_link {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-.single_dwnld_file a:hover {
+.single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   opacity: 0.75;
 }
@@ -357,7 +357,7 @@ span.oval {
 }
 
 /*
-.container li, 
+.container li,
 */
 .search_by, .image_category, li.category_square, .box {
   border-radius: 3px;
@@ -479,7 +479,7 @@ img.avatar {
 }
 
 /*
-erez styles start from here - - - - - - - - - - - - - - - - - - - - - 
+erez styles start from here - - - - - - - - - - - - - - - - - - - - -
 */
 html, body {
   font-size: 16px;
@@ -1428,6 +1428,7 @@ main library page
 .single-post .box {
   padding: 25px;
   display: inline-block;
+  width: 100%;
 }
 .single-post .top, .single-post .bottom {
   float: right;
@@ -1598,22 +1599,70 @@ h2.name_of_single {
   color: #7F8A94;
   font-size: 1.25rem;
   font-weight: 700;
-  margin: 5px 0;
+  margin: 5px 0 45px;
 }
 
 .navigation.post-navigation h2 {
   display: none;
 }
-.navigation.post-navigation .nav-previous {
-  width: 118px;
-  height: 50px;
+
+.previous_post_link, .next_post_link {
+  width: 48%;
   background-color: #EDEFF0;
+  text-align: center;
+  font-size: 30px;
+}
+.previous_post_link a, .next_post_link a {
+  color: #7f8a94;
+}
+.previous_post_link i, .next_post_link i {
+  padding: 10px;
+}
+
+.previous_post_link {
+  -moz-border-radius: 0px 4px 4px 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px 4px 4px 0px;
+  float: right;
+}
+
+.next_post_link {
   -moz-border-radius: 4px 0px 0px 4px;
   -webkit-border-radius: 4px;
   border-radius: 4px 0px 0px 4px;
+  float: left;
 }
 
-/* ----------- ----------- ----------- ----------- ----------- ----------- ----------- ----------- 
+.single-post h3 {
+  color: #7F8A94;
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-top: 20;
+  margin-bottom: 25px;
+}
+.single-post .userdtls .dtls .category_square_author_subject.desc {
+  margin-top: 13px;
+  margin-bottom: 14px;
+}
+.single-post .category_square_avatar {
+  margin-bottom: 15px;
+}
+.single-post .author_des {
+  clear: both;
+}
+.single-post .box.sidebox.mob {
+  margin-bottom: 20px;
+}
+
+.single-post .box.sidebox.reg {
+  display: inline-block !important;
+}
+
+.single-post .box.sidebox.mob {
+  display: none !important;
+}
+
+/* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
 /* 1856 and more ----------- */
@@ -1767,6 +1816,18 @@ responsive styles
   .single_category_list .category_square_oval {
     position: relative;
     right: 0;
+  }
+
+  .single-post .box.sidebox.reg {
+    display: none !important;
+  }
+
+  .single-post .box.sidebox.mob {
+    display: inline-block !important;
+  }
+
+  .single-post .container {
+    max-width: 100%;
   }
 }
 /* 768 and more ----------- */
@@ -2021,6 +2082,16 @@ responsive styles
   .single_category_list .single_lesson_cont .time {
     width: 65px;
     text-align: left;
+  }
+
+  .single-post .length {
+    width: 75px;
+    text-align: left;
+    line-height: 1.1;
+  }
+
+  .single-post .dtls h1 {
+    width: calc(100% - 75px);
   }
 }
 /* 500 and less ----------- */

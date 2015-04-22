@@ -99,8 +99,14 @@ function equal_heights(){
      //
      profile_to_mob();
      
-     //clickble li in sidebar
+     //clickble divs - - - - - - - - - - - -
      $(".drop .menu li").click(function(){
+     window.location=$(this).find("a").attr("href");
+     return false;
+     });
+     
+     
+     $(".previous_post_link,.next_post_link").click(function(){
      window.location=$(this).find("a").attr("href");
      return false;
      });
