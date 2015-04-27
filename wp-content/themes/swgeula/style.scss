@@ -1728,11 +1728,12 @@ main library page
 }
 
 .comment-content{
-     width: 92%;
+    width: 92%;
     background-color: #F1F1F1;
     padding: 10px 15px;
     @include border-radius(4px);
     position: relative;
+    float: left;
 }
 
 .comment-content:before {
@@ -1876,6 +1877,7 @@ margin: 5px 0 45px;
 
 
 
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
@@ -1921,6 +1923,10 @@ responsive styles
     .container {
     width:100%;
     max-width: calc(100% - 30px);
+    }
+    
+    .comment-content{
+    width: calc(92% - 20px);
     }
 }
 
@@ -1995,6 +2001,10 @@ responsive styles
       font-size: 3rem;
       padding: 22px 28px;
     }
+    
+    .comment-content{
+    width: calc(92% - 30px);
+    }
 }
 
 /* 991 and less ----------- */
@@ -2060,8 +2070,13 @@ responsive styles
     
     .single-post .container {
       max-width: 100%;
-        
     }
+    
+    .comment-content {
+      width: calc(92% - 30px);
+     
+    }
+  
 
 }
 
@@ -2309,8 +2324,22 @@ responsive styles
       line-height: 1.1;
     }
     
+    
     .single-post .dtls h1 {
       width: calc(100% - 75px);
+    }
+    
+    .comment-content:before {
+      display: none;
+    }
+    
+    .comment-content {
+      width: 88%;
+      margin-right: 4%;
+    }
+    
+    .comment-meta img.avatar {
+      max-width: 100%;
     }
 
 }
@@ -2332,5 +2361,16 @@ responsive styles
             margin-bottom: 10px;
         }
     }
+    
+    .comment-content {
+      width: 80%;
+      margin-right: 7%;
+    }
+    
+    .comment-meta {
+      width: 13%;
+    }
+    
+    
 
 }

@@ -151,7 +151,9 @@ function equal_heights(){
          $('body').addClass('library-page');
      }
     
-    
+     //Bootstrap Tab Collapse
+     $('.nav.nav-tabs').tabCollapse();
+     
   //end of document).ready function
  });  
  

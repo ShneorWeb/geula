@@ -137,7 +137,7 @@ class MY_Post_Numbers {
                                  <div role="tabpanel">
 
                                       <!-- Nav tabs -->
-                                      <ul class="nav nav-tabs" role="tablist">
+                                      <ul class="nav nav-tabs" role="tablist" id="singleTabs">
                                         <li role="presentation" class="active"><a href="#discussion" aria-controls="discussion" role="tab" data-toggle="tab"><?php echo __('דיון', 'swgeula'); ?></a></li>
                                         <li role="presentation"><a href="#references" aria-controls="references" role="tab" data-toggle="tab"><?php echo __('מראה מקומות', 'swgeula'); ?></a></li>
                                         <li role="presentation"><a href="#downloads" aria-controls="downloads" role="tab" data-toggle="tab"><?php echo __('קבצים להורדה', 'swgeula'); ?></a></li>
