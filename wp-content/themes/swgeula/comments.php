@@ -77,7 +77,15 @@ if ( post_password_required() ) {
 
 	<?php
         $args = array(
-            'label_submit'      => __( 'הגב', 'swgeula' )
+            'label_submit'      => __( 'הגב', 'swgeula' ),
+            'comment_field' =>  '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) .
+            '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="'.  __( 'תגובה', 'swgeula' ) .'">' .
+            '</textarea></p>',
+            'must_log_in' => '<p class="must-log-in">' .
+            sprintf(
+              __( 'אתה חייב <a href="%s">להתחבר</a> כדי להגיב.' , 'swgeula' ),
+              wp_login_url( apply_filters( 'the_permalink', get_permalink() ) )
+            ) . '</p>',
         );
         comment_form($args); 
     ?>

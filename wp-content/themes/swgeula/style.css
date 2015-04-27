@@ -1663,6 +1663,14 @@ h2.name_of_single {
   display: none !important;
 }
 
+.comment-notes {
+  display: none;
+}
+
+.comment-reply-login {
+  display: none;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */

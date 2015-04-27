@@ -81,35 +81,34 @@ class MY_Post_Numbers {
                     </div>
                     <h2 class="name_of_single"><?php the_title(); ?></h2>
 
-											<div class="previous_post_link">
+								<div class="previous_post_link">
+                                    <?php previous_post_link_plus(array(
+                                    'order_by' => 'post_date',
 
-												<?php previous_post_link_plus(array(
-													'order_by' => 'post_date',
+                                    'format' => '%link',
 
-			                    'format' => '%link',
+                                    'link' => '<i class="fa fa-long-arrow-right"></i>',
 
-			                    'link' => '<i class="fa fa-long-arrow-right"></i>',
+                                    'in_same_cat' => true,
 
-			                    'in_same_cat' => true,
+                                    ) ); ?>
 
-			                    ) ); ?>
+								</div>
 
-											</div>
+								<div class="next_post_link">
 
-											<div class="next_post_link">
+                                    <?php next_post_link_plus(array(
+                                    'order_by' => 'post_date',
 
-											<?php next_post_link_plus(array(
-												'order_by' => 'post_date',
+                                    'format' => '%link',
 
-												'format' => '%link',
+                                    'link' => '<i class="fa fa-long-arrow-left"></i>',
 
-												'link' => '<i class="fa fa-long-arrow-left"></i>',
+                                    'in_same_cat' => true,
 
-												'in_same_cat' => true,
+                                    ) ); ?>
 
-												) ); ?>
-
-										</div>
+								</div>
 
                   </div>
             
