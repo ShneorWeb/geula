@@ -8,10 +8,12 @@
 get_header(); ?>
 
 <?php
-$parent_cat = get_the_category()[0];
+$parent_cat = get_the_category();
+$parent_cat = $parent_cat[0];
 $parent_cat_id = $parent_cat->cat_ID;
 $parent_cat_name = $parent_cat->name;
 $parent_cat_count = $parent_cat->count;
+
 
 class MY_Post_Numbers {
 
@@ -27,7 +29,8 @@ class MY_Post_Numbers {
                                 private function init() {
                                     if ( $this->count )
                                     return;
-                                    $parent_cat = get_the_category()[0];
+                                    $parent_cat = get_the_category();
+                                    $parent_cat = $parent_cat[0];
                                     $parent_cat_id = $parent_cat->cat_ID;
                                     global $wpdb;
                                     $posts = $wpdb->get_col( "SELECT ID FROM $wpdb->posts WHERE post_status = 'publish' AND post_type = 'post' AND ID IN ( SELECT object_id FROM {$wpdb->term_relationships} WHERE term_taxonomy_id = '"  . $parent_cat_id . "' ) ORDER BY post_date " );
