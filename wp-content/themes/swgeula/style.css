@@ -1534,6 +1534,7 @@ main library page
   -webkit-border-radius: 4px;
   border-radius: 4px;
   position: relative;
+  float: left;
 }
 
 .comment-content:before {
@@ -1662,6 +1663,14 @@ h2.name_of_single {
   display: none !important;
 }
 
+.comment-notes {
+  display: none;
+}
+
+.comment-reply-login {
+  display: none;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
@@ -1697,6 +1706,10 @@ responsive styles
   .container {
     width: 100%;
     max-width: calc(100% - 30px);
+  }
+
+  .comment-content {
+    width: calc(92% - 20px);
   }
 }
 /* 1300 and less ----------- */
@@ -1767,6 +1780,10 @@ responsive styles
     font-size: 3rem;
     padding: 22px 28px;
   }
+
+  .comment-content {
+    width: calc(92% - 30px);
+  }
 }
 /* 991 and less ----------- */
 @media screen and (max-width: 991px) {
@@ -1828,6 +1845,10 @@ responsive styles
 
   .single-post .container {
     max-width: 100%;
+  }
+
+  .comment-content {
+    width: calc(92% - 30px);
   }
 }
 /* 768 and more ----------- */
@@ -2093,6 +2114,19 @@ responsive styles
   .single-post .dtls h1 {
     width: calc(100% - 75px);
   }
+
+  .comment-content:before {
+    display: none;
+  }
+
+  .comment-content {
+    width: 88%;
+    margin-right: 4%;
+  }
+
+  .comment-meta img.avatar {
+    max-width: 100%;
+  }
 }
 /* 500 and less ----------- */
 @media screen and (max-width: 500px) {
@@ -2108,6 +2142,15 @@ responsive styles
     float: right;
     width: 100%;
     margin-bottom: 10px;
+  }
+
+  .comment-content {
+    width: 80%;
+    margin-right: 7%;
+  }
+
+  .comment-meta {
+    width: 13%;
   }
 }
 

@@ -246,6 +246,10 @@ function swgeula_manual_scripts(){
      wp_enqueue_script(
         'bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array(), '1.0.0'
     );
+    wp_enqueue_script(
+        'bootstrap-tabcollapse', get_template_directory_uri() . '/js/bootstrap-tabcollapse.js', array(), '1.0.0'
+    );
+    
     
     /* theme js have to be last */
      wp_register_script(
