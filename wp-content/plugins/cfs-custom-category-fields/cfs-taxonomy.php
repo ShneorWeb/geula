@@ -1,7 +1,7 @@
 <?php
 /**
  * @package CFS Custom Category Fields
- * @version 1.2.1
+ * @version 1.3
  */
 /*
 Plugin Name: CFS Custom Category Fields
@@ -9,7 +9,7 @@ Plugin URI: http://wordpress.org/plugins/cfs-custom-category-fields/
 Description: CFS Addon for category meta data. Apply custom fields to categories and custom taxonomies. Requires Custom Field Suite.
 Author: GatorDev
 Author URI: http://gatordev.com/
-Version: 1.2.1
+Version: 1.3
 */
 class CfsTaxonomy
 {
@@ -17,12 +17,13 @@ class CfsTaxonomy
     protected static $fieldGroup;
     protected static $taxonomies;
     protected static $termCache;
+    protected static $options;
     private static $isCfs = false;
     private static $initGet = false;
     const ID = 'cfs-taxonomy';
     const POST_TYPE = 'cfs_virtual';
     const TAXONOMY = 'cfs_bridget';
-    const VERSION = '1.2.1';
+    const VERSION = '1.3';
 
 /**
  * showForm
@@ -75,6 +76,22 @@ class CfsTaxonomy
         return $matches;
     }
 
+    public static function matchPosts($matches)
+    {
+        if (isset(self::$fieldGroup)) {
+            // taxonomy matches are set
+            return $matches;
+        }
+        // filter out field groups applied to posts that are for taxonomies only
+        foreach ($matches as $id => $group) {
+            if (self::isTaxonomyOnly($id)) {
+                unset($matches[$id]);
+            }
+        }
+
+        return $matches;
+    }
+
     public static function postBoxClasses($classes)
     {
         //cfs_postbox_classes
@@ -102,6 +119,8 @@ class CfsTaxonomy
             'options' => array('multiple' => '1', 'choices' => $choices),
             'value' => wp_get_object_terms($post->ID, 'cfs_taxonomy', array('fields' => 'slugs'))
         ));
+
+        echo '<label for="' . self::ID . '_only"><input id="' . self::ID . '_only" name="cfs[' . self::ID . '_only]" type="checkbox"' . (self::isTaxonomyOnly($post->ID) ? ' checked="checked"' : '') . ' value="1"> Apply only to selected taxonomies</label>';
     }
 
     public static function saveCfsPost($post_id, $post)
@@ -113,6 +132,10 @@ class CfsTaxonomy
             //|| !wp_verify_nonce( $_POST['cfs']['save'], 'cfs_save_fields' )){
             return;
         }
+
+        // only apply to taxonomies and not posts if checked
+        self::setTaxonomyOnly($post->ID, isset($_POST['cfs'][$key = self::ID . '_only']) && '1' == $_POST['cfs'][$key]);
+
         if (!isset($_POST['cfs'][self::ID])) {
             wp_delete_object_term_relationships($post->ID, 'cfs_taxonomy');
             return;
@@ -299,6 +322,38 @@ class CfsTaxonomy
         }
         return $post;
     }
+
+    /**
+ * isTaxonomyOnly
+ *
+ * Instead of saving this to the field group post meta, store as options and check here
+ *
+ * @param $id int ID of the field group
+ * @see setTaxonomyOnly
+ */
+    protected static function isTaxonomyOnly($id)
+    {
+        if (!isset(self::$options) && false === (self::$options = get_option(self::ID))) {
+            self::$options = array();
+        }
+        return isset(self::$options[$id]);
+    }
+
+    protected static function setTaxonomyOnly($id, $on)
+    {
+        if (self::isTaxonomyOnly($id)) {
+            if ($on) {
+                return;
+            }
+            unset(self::$options[$id]);
+        } elseif ($on) {
+            self::$options[$id] = true;
+        } else {
+            return; // it is off and not set
+        }
+        // update
+        update_option(self::ID, self::$options);
+    }
 }
 /**
  * Hooks
@@ -309,6 +364,7 @@ add_action('cfs_init', 'CfsTaxonomy::cfsInit');
 add_action('add_meta_boxes', 'CfsTaxonomy::cfsMetaBox');
 add_action('admin_enqueue_scripts', 'CfsTaxonomy::loadJs');
 add_action('save_post_cfs', 'CfsTaxonomy::saveCfsPost', 9, 2);
+add_filter('cfs_matching_groups', 'CfsTaxonomy::matchPosts', 11);
 /**
  * get_category_meta
  *

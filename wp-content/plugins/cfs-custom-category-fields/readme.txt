@@ -4,7 +4,7 @@ Donate link: http://gatordev.com/
 Tags: category meta data, category custom fields, custom field suite addon
 Requires at least: 3.6
 Tested up to: 4.1
-Stable tag: 1.2.1
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,8 @@ Use the function get_category_form(). If used on a category or archive page it t
 
 == Changelog ==
 
+= 1.3 =
+* Adds an option apply a field group only to a category or taxonomy. When enabled, field groups that are only needed for categories or taxonomies will not show up in post, custom post type or page edit screens.
 = 1.2.1 =
 * Fixes bug with calling get_category_meta() in a loop, ie more than once.
 = 1.2 =

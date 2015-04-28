@@ -431,6 +431,79 @@ function add_contact_fields($profile_fields) {
 }
 // Adding the filter
 add_filter('user_contactmethods', 'add_contact_fields');
+/****************Lessons Ajax ****************************************/
+function set_video_loc() {
+	global $wpdb;	
+	
+	$lessonID = (int)$_POST['lesson_id'];
+	$vidLoc = (float)$_POST['video_loc'];
+	$userID = (int)$_POST['user_id'];
+
+	if ( is_int($userID) && is_numeric($vidLoc) && is_int($lessonID) ) :
+			
+		$results = $wpdb->get_results("SELECT * FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lessonID  ORDER BY id DESC LIMIT 1;",ARRAY_A);		
+		
+		if (count($results)>0) {
+
+			foreach($results as $row) {								
+				
+				$rowid = $row['id']; 				
+			
+				$wpdb->update( 
+					'wp_sw_user_lesson', 
+					array( 
+					  'video_pos' => $vidLoc,
+
+					), 
+					array( 'id' =>  $rowid)					
+				); 			
+			}
+			echo("success");
+			exit;
+		}
+		else {				
+			$wpdb->insert("wp_sw_user_lesson", array( 		
+				'user_id' => $userID, 
+				'lesson_id' => $lessonID, 
+				'video_pos' => $vidLoc,
+				'date' => date_create()->format('Y-m-d H:i:s')
+			));
+			echo("success");
+			exit;
+		} 		
+	endif;
+	echo("fail");			
+	exit;
+}
+add_action('wp_ajax_video_played', 'set_video_loc');
+add_action('wp_ajax_nopriv_video_played', 'set_video_loc');
+
+function getVideoLoc() {
+	global $wpdb;	
+	
+	$lessonID = (int)$_POST['lesson_id'];
+	$userID = (int)$_POST['user_id'];
+
+	if ( is_int($userID) && is_int($lessonID) ) :
+
+		$results = $wpdb->get_results("SELECT video_pos FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lessonID  ORDER BY id DESC LIMIT 1;",ARRAY_A);		
+		
+			if (count($results)>0) {
+
+			foreach($results as $row) {																
+				echo($row['video_pos']);				
+				exit;
+			}
+		}		
+	
+	endif;
+	echo(0);			
+	exit;
+}
+add_action('wp_ajax_get_video_loc', 'getVideoLoc');
+add_action('wp_ajax_nopriv_get_video_loc', 'getVideoLoc');
+/****************End Lessons Ajax ****************************************/
+
 /*****************************AJAX/ANGUALR FUNCTIONS******************/
 function getSWGeulaAvatar($size=96)  {
 	global $current_user;
