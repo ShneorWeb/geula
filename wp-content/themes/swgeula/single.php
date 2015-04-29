@@ -124,6 +124,7 @@ class MY_Post_Numbers {
                     var tag = document.createElement('script');
                     var userID = <?php echo get_current_user_id(); ?>;
                     var lessonID = <?php echo get_the_ID();?>
+                    var ajaxurl = '/wp-admin/admin-ajax.php'; 
 
                     tag.src = "https://www.youtube.com/iframe_api";
                     var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -136,8 +137,7 @@ class MY_Post_Numbers {
                         lesson_id: lessonID,
                         video_loc: pos,
                         user_id: userID
-                      };                                                      
-                      var ajaxurl = '/geula/wp-admin/admin-ajax.php';                 
+                      };                                                                                            
                       console.log( data );
                       jQuery.post(ajaxurl, data, function(data) {                    
                         //bDoNotPost[playerID]=true;                                                                                                                                                        
@@ -151,7 +151,6 @@ class MY_Post_Numbers {
                         lesson_id: lessonID,                        
                         user_id: userID
                       };                                                      
-                      var ajaxurl = '/geula/wp-admin/admin-ajax.php';                 
                       console.log( data );
                       jQuery.post(ajaxurl, data, function(data) {                    
                         //bDoNotPost[playerID]=true;                                                                                                                                                        
