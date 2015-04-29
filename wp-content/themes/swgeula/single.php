@@ -5,15 +5,17 @@
  * @package swgeula
  */
 
-get_header(); ?>
+get_header(); 
 
-<?php
 $parent_cat = get_the_category();
 $parent_cat = $parent_cat[0];
 $parent_cat_id = $parent_cat->cat_ID;
 $parent_cat_name = $parent_cat->name;
 $parent_cat_count = $parent_cat->count;
 
+$user_id = get_the_author_meta('ID');                                     
+$the_user = get_user_by('id', $user_id);
+$user_post_count = count_user_posts( $user_id );
 
 class MY_Post_Numbers {
 
@@ -341,13 +343,10 @@ class MY_Post_Numbers {
 
                     <div class="box userdtls">
                            <?php
-                            /*$values = get_category_meta('authors',22);*/
-                            $values = get_category_meta('authors', get_term_by('id', $parent_cat_id , 'category'));
-                                foreach ($values as $user_id) {
-                                    $the_user = get_user_by('id', $user_id);
-                                    //TODO : image from ofer function
-                                    echo '<div class="category_square_avatar">'. get_avatar( $the_user, 100 ) . '</div>'; 
-                                     ?>
+                                //TODO : image from ofer function
+                                echo '<div class="category_square_avatar">'. get_avatar( $the_user, 100 ) . '</div>'; 
+                            ?>
+                                   
                                     <div class="dtls">
                                         <?php
                                         echo '<div class="author_des"><div class="category_square_author_name">' . $the_user->display_name . '</div>';
@@ -358,13 +357,10 @@ class MY_Post_Numbers {
 
 
                                         <div class="category_square_number">
-                                            <!-- 
-                                             TODO: get the number of posts dynamcly
-                                              -->
-                                            38 שיעורים בספריה
+                                            <?php echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');  ?>
                                         </div>
                                     </div>
-                                <?php }?>
+                                
 
 
 

@@ -35,10 +35,12 @@
                                 </div>
 
                                 <div class="number_of_posts_in_header">
-                                     <!-- 
-                                         TODO: get the number of posts dynamcly
-                                     -->
-                                   38 שיעורים בספריה
+                                    <?php
+                                        $user_id = get_the_author_meta('ID');                                     
+                                        $user_post_count = count_user_posts( $user_id );
+                                                   
+                                        echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');  
+                                    ?>
                                 </div>
                             </div>
 
@@ -257,10 +259,12 @@
 												    echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';?>
                                                 
 											    	<div class="category_square_number">
-														 <!-- 
-                                                        TODO: get the number of posts dynamcly
-                                                        -->
-                                                        38 שיעורים בספריה
+														 <?php
+                                                            $user_id = get_the_author_meta('ID');                                     
+                                                            $user_post_count = count_user_posts( $user_id );
+
+                                                            echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');  
+                                                        ?>
 													</div><?php } ?>
 											</div>
 													

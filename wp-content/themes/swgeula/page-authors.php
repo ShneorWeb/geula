@@ -73,10 +73,11 @@ get_header(); ?>
                                                   <?php echo '<div class="category_square_author_subject desc">' .$user->description. '</div>';?>
                                                 
 											    	<div class="category_square_number">
-														 <!-- 
-                                                        TODO: get the number of posts dynamcly
-                                                        -->
-                                                        38 שיעורים בספריה
+														<?php 
+                                                              
+                                                            $user_post_count = count_user_posts( $user->id );
+                                                            echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');  
+                                                        ?>
 													</div>
 											</div>
 													
