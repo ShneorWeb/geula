@@ -42,6 +42,15 @@ transition: all 0.2s ease-in-out;
         }
 }
 
+@mixin hover_effect{
+    @include opacity(1);
+    @extend %trans;
+        &:hover{
+            @include opacity(0.75);
+        }
+}
+
+
 //------------------------------- placeholders ------------------------------
 
 %trans{
@@ -62,6 +71,14 @@ transition: all 0.2s ease-in-out;
 
 %clickbleElement{
     cursor: pointer;
+    @include opacity(1);
+    @extend %trans;
+        &:hover{
+            @include opacity(0.75);
+        }
+}
+
+%hover_effect{
     @include opacity(1);
     @extend %trans;
         &:hover{
@@ -1883,6 +1900,87 @@ margin: 5px 0 45px;
     display: none;
 }
 
+.page-template-page-dashboard-php{
+    
+     .menu-menu-right-container ul li.microphone {
+          background-color: inherit;
+     }
+    
+    .back_to_libary h1{
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin-top: 3px;
+        margin-bottom: 4px;
+    }
+    
+    .current_category_description.sub{
+        font-weight: 300;
+    }
+    
+    @extend .archive.author;
+    
+    .nextstage_block{
+        background-color: #fff;
+          padding-right: 4.8%;
+          padding-left: 4.8%;
+          padding-top: 3.3%;
+        display: inline-block;
+        width: 100%;
+        
+        p{
+            font-size: 1.5rem;
+            color: #686969;
+            
+            &.rabbi_quote{
+                font-style: italic;
+                margin-top: 50px;
+            }
+            
+            &.rabbi_quote_source{
+                font-size: 0.875rem;
+            }
+        }
+        
+        .progress {
+          margin-top: 40px;
+        }
+        
+        .current_level{
+            font-family: 'Open Sans Hebrew', Helvetica, Arial, Sans-Serif;
+            text-align: center;
+            font-size: 1.125rem;
+        }
+    }
+    
+    .first_title,.second_title{
+       color: #686969;
+       font-size: 2.25rem;
+       line-height: 1.3;
+    }
+    
+    .big_icon{
+          width: 16%;
+          margin-left: 2%;
+          float: right;
+          display: block;
+        i{
+            font-size: 10.31rem;
+            margin-top: 50%;
+            color: #384047;
+        }
+    }
+}
+
+button.edit_profile{
+    background-color: #FFF;
+    border: 1px solid #686969;
+    border-radius: 4px;
+    color: #384047;
+    float: right;
+    padding: 13px 43px;
+    margin-top: 20px;
+    @extend %hover_effect;
+}
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 responsive styles
