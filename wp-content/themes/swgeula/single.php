@@ -125,8 +125,8 @@ class MY_Post_Numbers {
                     // 2. This code loads the IFrame Player API code asynchronously.
                     var tag = document.createElement('script');
                     var userID = <?php echo get_current_user_id(); ?>;
-                    var lessonID = <?php echo get_the_ID();?>
-                    var ajaxurl = '/wp-admin/admin-ajax.php'; 
+                    var lessonID = <?php echo get_the_ID();?>;
+                    var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php'; 
 
                     tag.src = "https://www.youtube.com/iframe_api";
                     var firstScriptTag = document.getElementsByTagName('script')[0];
