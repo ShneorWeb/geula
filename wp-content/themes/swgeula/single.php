@@ -64,6 +64,12 @@ class MY_Post_Numbers {
 
 		<?php while ( have_posts() ) : the_post(); ?>
 
+        <?php
+        $vidURL = sanitize_text_field( get_field('video_url') );
+        $vidArray = explode("/", $vidURL);
+        $vidID = $vidArray[count($vidArray)-1];      
+        ?>
+
 				<div class="page-header">
                     <div class="header_category">
 
@@ -177,7 +183,7 @@ class MY_Post_Numbers {
                       player = new YT.Player('vid_player', {                        
                         width: '1020',
                         height: '573',
-                        videoId: 'eNKzDlhbxmg',
+                        videoId: '<?php echo $vidID;?>',
                         events: {
                           'onReady': onPlayerReady,
                           'onStateChange': onPlayerStateChange
@@ -222,7 +228,7 @@ class MY_Post_Numbers {
                     <div class="dtls box">
                         <div class="top">
                             <h1><?php the_title(); ?></h1>
-                            <div class="length"><?php the_field('length'); ?></div>
+                            <div class="length"><?php echo gmdate("H:i:s", getVideoDuration($vidID));?></div>
                         </div>
                          <div class="bottom">
 

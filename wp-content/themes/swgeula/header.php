@@ -12,7 +12,7 @@
 		newBase.setAttribute("href", document.location);
 		document.getElementsByTagName("head")[0].appendChild(newBase);		
 
-    var gbLocal = document.location.href.indexOf("127.0.0.1")!=-1;
+    var gbLocal = (document.location.href.indexOf("127.0.0.1")!=-1);
 	</script>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

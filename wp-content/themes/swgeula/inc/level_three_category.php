@@ -165,8 +165,8 @@
                 <?php echo $count . ' ' . __('שיעורים בסדרה זו', 'swgeula'); ?>
             </h3>
 			<div class="box contOfSingPosts">
-         <script> 
-
+            <script> 
+            /*
                 var userID = <?php echo get_current_user_id(); ?>;
                 var arrLessonIDs = new Array();
 
@@ -179,8 +179,7 @@
                         action: 'get_lesson_started',
                         lesson_ids: arrLessonIDs.join(),                        
                         user_id: userID
-                      };                                                      
-                      var ajaxurl = '/wp-admin/admin-ajax.php';                 
+                      };                                                                            
                       console.log( data );
                       jQuery.post(ajaxurl, data, function(data) {                                            
                         console.log(data);
@@ -200,23 +199,28 @@
 
               })(jQuery);
 
-
-              function secondsToTimeString(seconds) {
+              */
+              /*function secondsToTimeString(seconds) {
                 return (new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
-              }
+              }*/
               </script>  
 
-			 <?php
+			         <?php
+                $userID = get_current_user_id();
                 $counter = 0;
                 if ( have_posts() ) : while ( have_posts() ) : the_post();
                 $counter +=1;
-                ?>
 
-                <script> 
+                $vidURL = sanitize_text_field( get_field('video_url') );
+                $vidArray = explode("/", $vidURL);
+                $vidID = $vidArray[count($vidArray)-1];
+               ?>
+
+                <script>
                                       
                   arrLessonIDs.push(<?php the_ID(); ?>);
 
-                  (function($) {
+                  /*(function($) {
 
                   $(document).ready(function() { 
 
@@ -238,7 +242,7 @@
 
                     });    
 
-                  })(jQuery);    
+                  })(jQuery);*/    
               
                 </script>  
 						
@@ -246,11 +250,11 @@
 								    
 								    <a href="<?php the_permalink(); ?>">
                                         <div class="name">                                            
-                                            <i id="<?php the_ID();?>" class="fa fa-chevron-left"></i>                                            
+                                            <i id="<?php the_ID();?>" class="fa <?php if (getLessonStarted(get_the_ID(),$userID)) echo('fa-check-circle'); else echo('fa-chevron-left');?>"></i>                                            
                                             <?php the_title(); ?>
                                         </div>
-                                        <div class="time" id="time-<?php the_ID();?>">                                            
-                                            
+                                        <div class="time">                                            
+                                            <?php echo gmdate("H:i:s", getVideoDuration($vidID));?>
                                         </div>
                                     </a>
 								</div>
