@@ -180,7 +180,7 @@
                         lesson_ids: arrLessonIDs.join(),                        
                         user_id: userID
                       };                                                      
-                      var ajaxurl = '/geula/wp-admin/admin-ajax.php';                 
+                      var ajaxurl = '/wp-admin/admin-ajax.php';                 
                       console.log( data );
                       jQuery.post(ajaxurl, data, function(data) {                                            
                         console.log(data);
