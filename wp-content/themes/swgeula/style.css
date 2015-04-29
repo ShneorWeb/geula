@@ -12,7 +12,7 @@ Author URI:
 
 Tags:
 */
-.single_dwnld_file a, .previous_post_link, .next_post_link, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_category_list .single_lesson_cont a, .nav-tabs > li > a {
+.single_dwnld_file a, .previous_post_link, .next_post_link, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_category_list .single_lesson_cont a, .nav-tabs > li > a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -26,6 +26,15 @@ Tags:
   opacity: 1;
 }
 .single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75;
+}
+
+button.edit_profile {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  opacity: 1;
+}
+button.edit_profile:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   opacity: 0.75;
 }
@@ -1179,28 +1188,28 @@ main library page
   padding-bottom: 0px;
 }
 
-.archive.author .menu-menu-right-container ul li.microphone {
+.archive.author .menu-menu-right-container ul li.microphone, .page-template-page-dashboard-php .menu-menu-right-container ul li.microphone {
   background-color: #57bfb8;
 }
-.archive.author .image_category {
+.archive.author .image_category, .page-template-page-dashboard-php .image_category {
   background-color: #fff;
   padding-right: 4.8%;
   padding-left: 4.8%;
   padding-top: 4.8%;
 }
-.archive.author .current_category_name h1 {
+.archive.author .current_category_name h1, .page-template-page-dashboard-php .current_category_name h1 {
   color: #39add1;
   font-size: 2.25rem;
 }
-.archive.author .category_square_avatar.in_header {
+.archive.author .category_square_avatar.in_header, .page-template-page-dashboard-php .category_square_avatar.in_header {
   width: 16%;
   margin-left: 2%;
 }
-.archive.author .current_category_description, .archive.author .number_of_posts_in_header, .archive.author .current_category_name {
+.archive.author .current_category_description, .page-template-page-dashboard-php .current_category_description, .archive.author .number_of_posts_in_header, .page-template-page-dashboard-php .number_of_posts_in_header, .archive.author .current_category_name, .page-template-page-dashboard-php .current_category_name {
   float: right;
   clear: both;
 }
-.archive.author .dtls {
+.archive.author .dtls, .page-template-page-dashboard-php .dtls {
   float: right;
   width: 60%;
   margin-top: 10px;
@@ -1671,6 +1680,72 @@ h2.name_of_single {
   display: none;
 }
 
+.page-template-page-dashboard-php .menu-menu-right-container ul li.microphone {
+  background-color: inherit;
+}
+.page-template-page-dashboard-php .back_to_libary h1 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-top: 3px;
+  margin-bottom: 4px;
+}
+.page-template-page-dashboard-php .current_category_description.sub {
+  font-weight: 300;
+}
+.page-template-page-dashboard-php .nextstage_block {
+  background-color: #fff;
+  padding-right: 4.8%;
+  padding-left: 4.8%;
+  padding-top: 3.3%;
+  display: inline-block;
+  width: 100%;
+}
+.page-template-page-dashboard-php .nextstage_block p {
+  font-size: 1.5rem;
+  color: #686969;
+}
+.page-template-page-dashboard-php .nextstage_block p.rabbi_quote {
+  font-style: italic;
+  margin-top: 50px;
+}
+.page-template-page-dashboard-php .nextstage_block p.rabbi_quote_source {
+  font-size: 0.875rem;
+}
+.page-template-page-dashboard-php .nextstage_block .progress {
+  margin-top: 40px;
+}
+.page-template-page-dashboard-php .nextstage_block .current_level {
+  font-family: 'Open Sans Hebrew', Helvetica, Arial, Sans-Serif;
+  text-align: center;
+  font-size: 1.125rem;
+}
+.page-template-page-dashboard-php .first_title, .page-template-page-dashboard-php .second_title {
+  color: #686969;
+  font-size: 2.25rem;
+  line-height: 1.3;
+}
+.page-template-page-dashboard-php .big_icon {
+  width: 16%;
+  margin-left: 2%;
+  float: right;
+  display: block;
+}
+.page-template-page-dashboard-php .big_icon i {
+  font-size: 10.31rem;
+  margin-top: 50%;
+  color: #384047;
+}
+
+button.edit_profile {
+  background-color: #FFF;
+  border: 1px solid #686969;
+  border-radius: 4px;
+  color: #384047;
+  float: right;
+  padding: 13px 43px;
+  margin-top: 20px;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
@@ -1762,7 +1837,7 @@ responsive styles
     display: none;
   }
 
-  .archive.author .dtls {
+  .archive.author .dtls, .page-template-page-dashboard-php .dtls {
     margin-top: 0;
   }
 }
