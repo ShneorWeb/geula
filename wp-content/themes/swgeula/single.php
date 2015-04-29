@@ -118,12 +118,106 @@ class MY_Post_Numbers {
             <div class="row">
 
                 <div class="col-md-9">
-                    <div class="player">
-                        <!-- 16:9 aspect ratio -->
-                        <div class="embed-responsive embed-responsive-16by9">
-                          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/eNKzDlhbxmg?rel=0&amp;showinfo=0" frameborder="1"></iframe>
-                        </div>
 
+
+
+                    <script>                    
+                    // 2. This code loads the IFrame Player API code asynchronously.
+                    var tag = document.createElement('script');
+                    var userID = <?php echo get_current_user_id(); ?>;
+                    var lessonID = <?php echo get_the_ID();?>
+
+                    tag.src = "https://www.youtube.com/iframe_api";
+                    var firstScriptTag = document.getElementsByTagName('script')[0];
+                    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+
+                    function setVideoPos(pos) {
+                      var data = {        
+                        action: 'video_played',
+                        lesson_id: lessonID,
+                        video_loc: pos,
+                        user_id: userID
+                      };                                                      
+                      var ajaxurl = '/geula/wp-admin/admin-ajax.php';                 
+                      console.log( data );
+                      jQuery.post(ajaxurl, data, function(data) {                    
+                        //bDoNotPost[playerID]=true;                                                                                                                                                        
+                        //jQuery("#jwplayer-"+playerID+"-views").text(data);                                    
+                        console.log(data);
+                      });
+                    }
+                    function getVideoPos(event) {
+                      var data = {        
+                        action: 'get_video_loc',
+                        lesson_id: lessonID,                        
+                        user_id: userID
+                      };                                                      
+                      var ajaxurl = '/geula/wp-admin/admin-ajax.php';                 
+                      console.log( data );
+                      jQuery.post(ajaxurl, data, function(data) {                    
+                        //bDoNotPost[playerID]=true;                                                                                                                                                        
+                        //jQuery("#jwplayer-"+playerID+"-views").text(data);                                    
+                        console.log(data);
+                        if (jQuery.isNumeric( data )) {
+                          curVidPos = data;                        
+                          event.target.seekTo(curVidPos,true);
+                          event.target.playVideo();
+                          //update db that lesson has begun:
+                          //var strid = jQuery(this).attr("id");
+                          //var playerID = strid.substr(strid.indexOf("jwplayer-")+9);                                            
+                          //if (curVidPos>0) setVideoPos(0);
+                        }
+                      });
+                    }
+
+                    // 3. This function creates an <iframe> (and YouTube player)
+                    //    after the API code downloads.
+                    var player;
+                    function onYouTubeIframeAPIReady() {
+                      player = new YT.Player('vid_player', {                        
+                        width: '1020',
+                        height: '573',
+                        videoId: 'eNKzDlhbxmg',
+                        events: {
+                          'onReady': onPlayerReady,
+                          'onStateChange': onPlayerStateChange
+                        }
+                      });
+                    }
+
+                    // 4. The API will call this function when the video player is ready.
+                    function onPlayerReady(event) {                      
+                      getVideoPos(event);                      
+                    }
+
+                    
+                    //var done = false;
+                    function onPlayerStateChange(event) {
+                      //if (event.data == YT.PlayerState.PLAYING && !done) {
+                        //setTimeout(stopVideo, 6000);
+                        //done = true;
+                      //}
+                      if (event.data == YT.PlayerState.ENDED) setVideoPos(0);
+                      else if (event.data == YT.PlayerState.PAUSED) setVideoPos(event.target.getCurrentTime());
+                    }
+                    function stopVideo() {
+                      player.stopVideo();
+                    }
+
+
+                    jQuery( window ).unload(function() {
+                      setVideoPos(player.getCurrentTime());
+                      console.log("time="+player.getCurrentTime());
+                      return false;
+                    });
+                  </script>
+
+                    <div id="vid_player">
+                        <!-- 16:9 aspect ratio -->
+                        <!--<div class="embed-responsive embed-responsive-16by9">
+                          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/eNKzDlhbxmg?rel=0&amp;showinfo=0" frameborder="1"></iframe>
+                        </div>-->
                     </div>
 
                     <div class="dtls box">

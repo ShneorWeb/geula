@@ -165,29 +165,92 @@
                 <?php echo $count . ' ' . __('שיעורים בסדרה זו', 'swgeula'); ?>
             </h3>
 			<div class="box contOfSingPosts">
+         <script> 
+
+                var userID = <?php echo get_current_user_id(); ?>;
+                var arrLessonIDs = new Array();
+
+                (function($) {
+
+                $(document).ready(function() {                   
+                    
+                     function getLessonStarted() {
+                      var data = {        
+                        action: 'get_lesson_started',
+                        lesson_ids: arrLessonIDs.join(),                        
+                        user_id: userID
+                      };                                                      
+                      var ajaxurl = '/geula/wp-admin/admin-ajax.php';                 
+                      console.log( data );
+                      jQuery.post(ajaxurl, data, function(data) {                                            
+                        console.log(data);
+                        var arrLessonStarted = eval(data);
+                        for (var i=0;i<arrLessonStarted.length;i++) {
+                          if (arrLessonStarted[i][1]=="1") {
+                            $("i#"+arrLessonStarted[i][0]).removeClass('fa-chevron-left');
+                            $("i#"+arrLessonStarted[i][0]).addClass('fa-check-circle');
+                          }
+                        }
+                      });
+                    }
+
+                    getLessonStarted();
+
+                });                        
+
+              })(jQuery);
+
+
+              function secondsToTimeString(seconds) {
+                return (new Date(seconds * 1000)).toUTCString().match(/(\d\d:\d\d:\d\d)/)[0];
+              }
+              </script>  
+
 			 <?php
                 $counter = 0;
                 if ( have_posts() ) : while ( have_posts() ) : the_post();
                 $counter +=1;
                 ?>
+
+                <script> 
+                                      
+                  arrLessonIDs.push(<?php the_ID(); ?>);
+
+                  (function($) {
+
+                  $(document).ready(function() { 
+
+                      var youTubeURL = 'http://gdata.youtube.com/feeds/api/videos/eNKzDlhbxmg?v=2&alt=json';
+                      var json = (function () {
+                          $.ajax({
+                              'async': false,
+                              'global': false,
+                              'url': youTubeURL,
+                              'dataType': "jsonp", // necessary for IE9
+                              crossDomain: true,
+                              'success': function (data) {
+                                  var duration = data.entry.media$group.yt$duration.seconds;
+                                  console.log(duration);
+                                  $("#time-<?php the_ID();?>").text(secondsToTimeString(duration));
+                              }
+                          });
+                      })();
+
+                    });    
+
+                  })(jQuery);    
+              
+                </script>  
 						
 							<div class="single_lesson_cont">
 								    
 								    <a href="<?php the_permalink(); ?>">
-                                        <div class="name">
-                                            <!-- TODO:
-                                    put the v icon if this post was seen and not just for the first post like now...
-                                            -->
-                                            <?php if($counter == 1) { ?>
-                                            <i class="fa fa-check-circle"></i>
-                                            <?php }else{ ?>
-                                            <i class="fa fa-chevron-left"></i>
-                                            <?php } ?>
+                                        <div class="name">                                            
+                                            <i id="<?php the_ID();?>" class="fa fa-chevron-left"></i>                                            
                                             <?php the_title(); ?>
                                         </div>
-                                        <div class="time">
-                                            <!--TODO: get the time of posts from cf ? -->
-                                            18:23
+                                        <div class="time" id="time-<?php the_ID();?>">                                            
+                                            
                                         </div>
                                     </a>
 								</div>

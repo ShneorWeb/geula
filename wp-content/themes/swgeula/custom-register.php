@@ -620,9 +620,19 @@ case 'register' :
 
 		$errors = register_new_user($user_login, $user_email);
 		if ( !is_wp_error($errors) ) {
-			$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url().'/custom-login-page/?checkemail=registered';
-			wp_safe_redirect( $redirect_to );
-			exit();
+
+			$userdata = array( 'ID' => $errors, 'first_name' => $first_name, 'last_name' => $last_name );		 
+			$status = wp_update_user( $userdata );			 
+			if( !is_wp_error($status) ){
+				$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url().'/custom-login-page/?checkemail=registered';
+				//wp_safe_redirect( $redirect_to );
+				?>
+				<script>
+				window.location.href = '<?php echo home_url(); ?>/custom-login-page/?checkemail=registered';
+				</script>
+				<?php
+				exit();
+			}
 		}
 	}
 
@@ -641,12 +651,11 @@ case 'register' :
     	<div class="div-login">   		
 
     		<script>
-    		function RegSetFields(f)  {
+    		function regSetFields(f)  {
     			f.user_login.value=f.user_email.value;
-    			var arrName = f.full_name.value.split(" ");    			
+    			var arrName = f.full_name.value.split(" ");    			    			
     			f.first_name.value = arrName[0];
     			f.last_name.value = arrName[1];
-
     			return true;
 
     		}
@@ -660,16 +669,10 @@ case 'register' :
 				login_header(__('Registration Form'), '', $errors);
 			?>
 
-			<form name="registerform" id="registerform" action="<?php echo esc_url( site_url('/custom-register-page/?action=register', 'login_post') ); ?>" method="post" novalidate="novalidate" onsubmit="RegSetFields(this)">
-				<p>		
-					<input type="hidden" name="user_login" id="user_login" value="<?php echo esc_attr(wp_unslash($user_login)); ?>" />
-				</p>
-				<p>					
-					<input type="hidden" name="first_name" id="first_name" value="<?php echo esc_attr( wp_unslash( $first_name ) ); ?>" />
-				</p>
-				<p>					
-					<input type="hidden" name="last_name" id="last_name" value="<?php echo esc_attr( wp_unslash( $last_name ) ); ?>" />
-				</p>
+			<form name="registerform" id="registerform" action="<?php echo esc_url( site_url('/custom-register-page/?action=register', 'login_post') ); ?>" method="post" novalidate="novalidate" onsubmit="return regSetFields(this)">				
+					<input type="hidden" name="user_login" id="user_login" value="" />				
+					<input type="hidden" name="first_name" id="first_name" value="" />				
+					<input type="hidden" name="last_name" id="last_name" value="" />				
 				<p>					
 					<input type="text" class="form-control" name="full_name" id="full_name" placeholder="<?php _e('Name','swgeulatr'); ?>" value="<?php echo trim(esc_attr( wp_unslash( $first_name ) ) . ' ' . esc_attr( wp_unslash( $last_name )) ); ?>" />
 				</p>
@@ -684,9 +687,9 @@ case 'register' :
 				 */
 				do_action( 'register_form' );
 				?>
-				<p>					
+				<!--<p>					
 					<input type="password" class="form-control" name="user_password" id="user_password" placeholder="<?php _e('Password','swgeulatr') ?>" value="" />
-				</p>
+				</p>-->
 				<br class="clear" />
 				<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 				<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="btn btn-success" value="<?php esc_attr_e('Register','swgeulatr'); ?>" /></p>
