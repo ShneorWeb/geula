@@ -585,10 +585,16 @@ add_action('wp_ajax_nopriv_get_lesson_started', 'getLessonStarted');
 
 function getYoutubeDuration($video_id){
         
-        $data=@file_get_contents('http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
-        if (false===$data) return false;
+        //$data=@file_get_contents(filename)('http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
+        //if (false===$data) return 0;
 
-        $obj=json_decode($data);
+		$curlSession = curl_init();
+	    curl_setopt($curlSession, CURLOPT_URL, 'http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
+	    curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+	    curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+	    $obj = json_decode(curl_exec($curlSession));
+	    curl_close($curlSession);       
 
         return $obj->data->duration;
  }
