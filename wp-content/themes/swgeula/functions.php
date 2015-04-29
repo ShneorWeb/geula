@@ -113,6 +113,8 @@ require get_template_directory() . '/inc/jetpack.php';
 
 function swgeula_scripts() {	
 
+	global $post;
+
 	wp_enqueue_script( 'swgeula-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
 	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
@@ -121,69 +123,70 @@ function swgeula_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 	
-	wp_enqueue_script(
-		'angularjs',
-		get_stylesheet_directory_uri() . '/angular/angular.min.js'
-	);
+	if($post->post_name == "custom-profile-page") {
+		wp_enqueue_script(
+			'angularjs',
+			get_stylesheet_directory_uri() . '/angular/angular.min.js'
+		);
 
-	wp_enqueue_script(
-		'angularjs-route',
-		get_stylesheet_directory_uri() . '/angular/angular-route.min.js',
-		array( 'angularjs')
-	);
-	wp_enqueue_script(
-		'ui-bootstrap',
-		get_stylesheet_directory_uri() . '/angular/ui-bootstrap-tpls-0.12.1.min.js',
-		array( 'angularjs')
-	);
-	wp_enqueue_script(
-		'angular-translate',
-		get_stylesheet_directory_uri() . '/angular/angular-translate.min.js',
-		array( 'angularjs')
-	);
-	wp_enqueue_script(
-		'angular.country-select',
-		get_stylesheet_directory_uri() . '/angular/angular.country-select.js	',
-		array( 'angularjs')
-	);
-	wp_enqueue_script(
-		'angular-timezones',
-		get_stylesheet_directory_uri() . '/angular/angular-timezones.js	',
-		array( 'angularjs')
-	);		
-	wp_enqueue_script(
-		'angular-translate-loader-partial',
-		get_stylesheet_directory_uri() . '/angular/angular-translate-loader-partial.min.js',
-		array( 'angularjs')
-	);
-	wp_enqueue_script(
-		'angular-file-upload',
-		get_stylesheet_directory_uri() . '/angular/angular-file-upload.min.js	',
-		array( 'angularjs')
-	);
-	wp_enqueue_script(
-		'angular-file-upload-shim',
-		get_stylesheet_directory_uri() . '/angular/angular-file-upload-shim.min.js	',
-		array( 'angularjs')
-	);	
-	wp_enqueue_script(
-		'detect-zone',
-		get_stylesheet_directory_uri() . '/js/jstz-1.0.4.min.js	'			
-	);			
-	wp_enqueue_script(
-		'password-strength',
-		get_stylesheet_directory_uri() . '/js/ng-password-strength.min.js'			
-	);
-	wp_enqueue_script(
-		'vendor',
-		get_stylesheet_directory_uri() . '/js/vendor.js'			
-	);
-	wp_enqueue_script(
-		'my-scripts',
-		get_stylesheet_directory_uri() . '/js/angular_main.js',
-		array( 'angularjs', 'angularjs-route' )
-	);	
-
+		wp_enqueue_script(
+			'angularjs-route',
+			get_stylesheet_directory_uri() . '/angular/angular-route.min.js',
+			array( 'angularjs')
+		);
+		wp_enqueue_script(
+			'ui-bootstrap',
+			get_stylesheet_directory_uri() . '/angular/ui-bootstrap-tpls-0.12.1.min.js',
+			array( 'angularjs')
+		);
+		wp_enqueue_script(
+			'angular-translate',
+			get_stylesheet_directory_uri() . '/angular/angular-translate.min.js',
+			array( 'angularjs')
+		);
+		wp_enqueue_script(
+			'angular.country-select',
+			get_stylesheet_directory_uri() . '/angular/angular.country-select.js	',
+			array( 'angularjs')
+		);
+		wp_enqueue_script(
+			'angular-timezones',
+			get_stylesheet_directory_uri() . '/angular/angular-timezones.js	',
+			array( 'angularjs')
+		);		
+		wp_enqueue_script(
+			'angular-translate-loader-partial',
+			get_stylesheet_directory_uri() . '/angular/angular-translate-loader-partial.min.js',
+			array( 'angularjs')
+		);
+		wp_enqueue_script(
+			'angular-file-upload',
+			get_stylesheet_directory_uri() . '/angular/angular-file-upload.min.js	',
+			array( 'angularjs')
+		);
+		wp_enqueue_script(
+			'angular-file-upload-shim',
+			get_stylesheet_directory_uri() . '/angular/angular-file-upload-shim.min.js	',
+			array( 'angularjs')
+		);	
+		wp_enqueue_script(
+			'detect-zone',
+			get_stylesheet_directory_uri() . '/js/jstz-1.0.4.min.js	'			
+		);			
+		wp_enqueue_script(
+			'password-strength',
+			get_stylesheet_directory_uri() . '/js/ng-password-strength.min.js'			
+		);
+		wp_enqueue_script(
+			'vendor',
+			get_stylesheet_directory_uri() . '/js/vendor.js'			
+		);
+		wp_enqueue_script(
+			'my-scripts',
+			get_stylesheet_directory_uri() . '/js/angular_main.js',
+			array( 'angularjs', 'angularjs-route' )
+		);	
+	}	
 	wp_localize_script(
 		'my-scripts',
 		'myLocalized',
@@ -492,7 +495,7 @@ function getVideoLoc() {
 
 		$results = $wpdb->get_results("SELECT video_pos FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lessonID  ORDER BY id DESC LIMIT 1;",ARRAY_A);		
 		
-			if (count($results)>0) {
+		if (count($results)>0) {
 
 			foreach($results as $row) {																
 				echo($row['video_pos']);				
@@ -506,6 +509,54 @@ function getVideoLoc() {
 }
 add_action('wp_ajax_get_video_loc', 'getVideoLoc');
 add_action('wp_ajax_nopriv_get_video_loc', 'getVideoLoc');
+
+
+function getLessonStarted() {
+	global $wpdb;	
+	
+	$lessonIDs = $_POST['lesson_ids'];
+	$arrLessonIDs = explode(",", $lessonIDs);
+	$userID = (int)$_POST['user_id'];
+	$arrLessonsBegan = array();
+
+	if ( is_int($userID) && is_array($arrLessonIDs) ) :
+
+		$results = $wpdb->get_results("SELECT lesson_id,video_pos FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id IN ($lessonIDs) ORDER BY id DESC;",ARRAY_A);		
+		
+		if (count($results)>0) {
+
+			$retStr = "[";
+			$bFirst = true;
+
+			foreach($results as $row) {																
+
+				if ($bFirst) $bFirst=false;
+				else $retStr .= ",";
+
+				$retStr .= "[".$row['lesson_id'].",";
+				
+				if ($row['video_pos']==0 || $row['video_pos']>0) $retStr .= "1";								
+				else $retStr .= "0";																
+				
+				$retStr .= "]";
+			}
+
+			$retStr .= "]";
+
+			echo $retStr;
+			exit; 
+		}
+
+		echo(0);			
+		exit;
+
+	endif;	
+
+	echo(0);			
+	exit;
+}
+add_action('wp_ajax_get_lesson_started', 'getLessonStarted');
+add_action('wp_ajax_nopriv_get_lesson_started', 'getLessonStarted');
 /****************End Lessons Ajax ****************************************/
 
 /*****************************AJAX/ANGUALR FUNCTIONS******************/

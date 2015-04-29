@@ -164,7 +164,7 @@ class MY_Post_Numbers {
                           //update db that lesson has begun:
                           //var strid = jQuery(this).attr("id");
                           //var playerID = strid.substr(strid.indexOf("jwplayer-")+9);                                            
-                          if (curVidPos>0) setVideoPos(0);
+                          //if (curVidPos>0) setVideoPos(0);
                         }
                       });
                     }
@@ -174,8 +174,8 @@ class MY_Post_Numbers {
                     var player;
                     function onYouTubeIframeAPIReady() {
                       player = new YT.Player('vid_player', {                        
-                        width: '560',
-                        height: '315',
+                        width: '1020',
+                        height: '573',
                         videoId: 'eNKzDlhbxmg',
                         events: {
                           'onReady': onPlayerReady,
@@ -202,6 +202,13 @@ class MY_Post_Numbers {
                     function stopVideo() {
                       player.stopVideo();
                     }
+
+
+                    jQuery( window ).unload(function() {
+                      setVideoPos(player.getCurrentTime());
+                      console.log("time="+player.getCurrentTime());
+                      return false;
+                    });
                   </script>
 
                     <div id="vid_player">
