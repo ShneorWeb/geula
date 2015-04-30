@@ -223,6 +223,9 @@ function swgeula_styles() {
      wp_enqueue_style(
         'geulasw_font', get_template_directory_uri() . '/css/geulasw_font.css' 
     );
+     wp_enqueue_style(
+        'moris', get_template_directory_uri() . '/css/morris.css' 
+    );
     
     /* theme css have to be last */
     wp_enqueue_style(
@@ -251,6 +254,12 @@ function swgeula_manual_scripts(){
     );
     wp_enqueue_script(
         'bootstrap-tabcollapse', get_template_directory_uri() . '/js/bootstrap-tabcollapse.js', array(), '1.0.0'
+    );
+     wp_enqueue_script(
+        'raphael', get_template_directory_uri() . '/js/raphael-min.js', array(), '1.0.0'
+    );
+     wp_enqueue_script(
+        'morris', get_template_directory_uri() . '/js/morris.min.js', array(), '1.0.0'
     );
     
     

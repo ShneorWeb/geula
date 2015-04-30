@@ -178,6 +178,10 @@ function equal_heights(){
     // 
     $('.selects').fadeIn('slow');
      
+     //
+     var achievements_height = $('.achievements_singles').height();
+     $('#donut-chart svg').height(achievements_height);
+     
 //end of window.load function
  });
     

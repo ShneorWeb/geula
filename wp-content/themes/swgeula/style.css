@@ -1699,6 +1699,7 @@ h2.name_of_single {
   padding-top: 3.3%;
   display: inline-block;
   width: 100%;
+  margin: 5px 0px 25px;
 }
 .page-template-page-dashboard-php .nextstage_block p {
   font-size: 1.5rem;
@@ -1746,8 +1747,71 @@ button.edit_profile {
   margin-top: 20px;
 }
 
+.achievements_block {
+  padding: 50px 50px 20px 50px;
+  display: inline-block;
+  width: 100%;
+}
+.achievements_block .col-md-2 {
+  /*margin-bottom: 0;*/
+}
+.achievements_block .achievements_singles {
+  float: right;
+  width: 83%;
+}
+.achievements_block .achievements_singles .achievements_single {
+  color: #686969;
+  font-size: 1.125rem;
+}
+.achievements_block .achievements_singles .achievements_single b {
+  font-size: 1.25rem;
+}
+.achievements_block .achievements_singles .achievements_single .elipse {
+  width: 16px;
+  height: 16px;
+  background-color: #838CC7;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  float: right;
+  margin-top: 5px;
+  margin-left: 15px;
+}
+.achievements_block .achievements_singles .achievements_single .number_and_sub {
+  float: right;
+  margin-bottom: 7px;
+}
+.achievements_block #donut-chart {
+  width: 17%;
+  float: right;
+  position: relative;
+}
+.achievements_block #donut-chart svg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.achievements_block #donut-chart svg path {
+  stroke-width: 0px;
+}
+.achievements_block #donut-chart svg tspan, .achievements_block #donut-chart svg text {
+  -webkit-tap-highlight-color: #686969 !important;
+  color: #686969 !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  font-family: 'Open Sans Hebrew', Helvetica, Arial, Sans-Serif !important;
+  transform: none !important;
+}
+
+.page-template-page-dashboard-php .site-content > .container {
+  max-width: 100%;
+}
+.page-template-page-dashboard-php .dtls {
+  width: 80%;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
-responsive styles
+_responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
 /* 1856 and more ----------- */
 @media screen and (min-width: 1856px) {
@@ -1840,6 +1904,18 @@ responsive styles
   .archive.author .dtls, .page-template-page-dashboard-php .dtls {
     margin-top: 0;
   }
+
+  .achievements_block .achievements_singles {
+    width: 100%;
+  }
+
+  .achievements_block #donut-chart {
+    width: 100%;
+  }
+
+  .page-template-page-dashboard-php .big_icon i {
+    font-size: 7.5rem;
+  }
 }
 /* 1024 and less ----------- */
 @media screen and (max-width: 1024px) {
@@ -1924,6 +2000,10 @@ responsive styles
 
   .comment-content {
     width: calc(92% - 30px);
+  }
+
+  .page-template-page-dashboard-php .big_icon i {
+    font-size: 6.5rem;
   }
 }
 /* 768 and more ----------- */
@@ -2201,6 +2281,18 @@ responsive styles
 
   .comment-meta img.avatar {
     max-width: 100%;
+  }
+
+  .page-template-page-dashboard-php .nextstage_block .dtls, .page-template-page-dashboard-php .big_icon {
+    width: 100%;
+  }
+  .page-template-page-dashboard-php .big_icon {
+    text-align: center;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+  .page-template-page-dashboard-php .big_icon i {
+    margin-top: 0;
   }
 }
 /* 500 and less ----------- */

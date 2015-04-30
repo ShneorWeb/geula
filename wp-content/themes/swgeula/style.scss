@@ -1926,6 +1926,7 @@ margin: 5px 0 45px;
           padding-top: 3.3%;
         display: inline-block;
         width: 100%;
+        margin: 5px 0px 25px;
         
         p{
             font-size: 1.5rem;
@@ -1982,8 +1983,78 @@ button.edit_profile{
     @extend %hover_effect;
 }
 
+.achievements_block{
+    padding: 50px 50px 20px 50px;
+    display: inline-block;
+    width: 100%;
+    
+    .col-md-2{
+     /*margin-bottom: 0;*/
+    }
+    .achievements_singles{
+        float: right;
+        width: 83%;
+        .achievements_single{
+            color: #686969;
+            font-size: 1.125rem;
+            b{
+                font-size: 1.25rem;
+            }
+            .elipse{
+                width: 16px;
+                height: 16px;
+                background-color: #838CC7;
+                @include border-radius(50%);
+                  float: right;
+                  margin-top: 5px;
+                  margin-left: 15px;
+            }
+            
+            .number_and_sub{
+                float: right;
+                margin-bottom: 7px;
+            }
+        }
+    }
+    #donut-chart {
+      width: 17%;
+      float: right;
+      position: relative;
+        svg{
+            position: absolute;
+            top:0;
+            bottom: 0;
+        }
+        svg path
+        {
+          stroke-width : 0px;
+        }
+        
+       svg tspan,svg text{
+          -webkit-tap-highlight-color: #686969 !important;
+          color: #686969 !important;
+            font-weight: 400 !important;
+          font-size: 1rem !important;
+          font-family: 'Open Sans Hebrew', Helvetica, Arial, Sans-Serif !important;
+            transform: none !important;
+        }
+
+    }
+}
+
+.page-template-page-dashboard-php{
+    .site-content > .container {
+      max-width: 100%;
+    }
+    .dtls {
+      width: 80%;
+    }
+} 
+
+
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
-responsive styles
+_responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
 /* 1856 and more ----------- */
 @media screen and (min-width: 1856px) {
@@ -2086,6 +2157,18 @@ responsive styles
     .archive.author .dtls {
       margin-top: 0;
     }
+    
+    .achievements_block .achievements_singles{
+         width: 100%;
+    }
+    
+    .achievements_block #donut-chart {
+      width: 100%;
+    }
+    
+    .page-template-page-dashboard-php .big_icon i {
+      font-size: 7.5rem;
+    }
 
 }
 
@@ -2179,6 +2262,10 @@ responsive styles
     .comment-content {
       width: calc(92% - 30px);
      
+    }
+    
+    .page-template-page-dashboard-php .big_icon i {
+      font-size: 6.5rem;
     }
   
 
@@ -2445,6 +2532,21 @@ responsive styles
     .comment-meta img.avatar {
       max-width: 100%;
     }
+    
+    .page-template-page-dashboard-php{
+        .nextstage_block .dtls,.big_icon {
+          width: 100%;
+        }
+        .big_icon {
+            text-align: center;
+            margin-left:0;
+            margin-bottom: 20px;
+            i {
+              margin-top: 0;
+            }
+        }
+    }
+    
 
 }
 

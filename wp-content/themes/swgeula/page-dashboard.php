@@ -107,6 +107,43 @@ get_header(); ?>
 
         
     </div>
+                     
+    <div class="box achievements_block">
+       
+        <div class="achievements_singles">
+            <div class="row">
+               <?php 
+                for ($x = 0; $x <= 22; $x++) { ?>
+                <div class="col-md-2 col-sm-2 col-xs-6">
+                    <div class="achievements_single">
+                       <div class="elipse"></div>
+                       <div class="number_and_sub">
+                            <b>8</b>
+                            <p>נושא</p>
+                        </div>
+                    </div>
+                </div>
+                <?php }  ?>
+            </div>
+        </div>
+        
+        <div id="donut-chart"></div>
+        <script>
+        Morris.Donut({
+          element: 'donut-chart',
+          resize: 'true',
+          colors: ['#7d669e','#8FB28F'],
+          data: [
+            {label: "בית המקדש", value: 10 ,color:"#f9845b"},
+            {label: "גאולה", value: 20,color:"#7d669e"},
+            {label: "הלווים", value: 15},
+            {label: "הכהנים", value: 12},
+            {label: "משיח", value: 20},
+            {label: "הרבי", value: 20}
+          ]
+        });
+        </script>
+    </div>
                       
                       		
     	    	   	
