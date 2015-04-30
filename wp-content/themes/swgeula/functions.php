@@ -21,6 +21,7 @@ if ( ! function_exists( 'swgeula_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
+
 function swgeula_setup() {
 
 	/*
@@ -74,7 +75,12 @@ function swgeula_setup() {
 	add_theme_support( 'custom-background', apply_filters( 'swgeula_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
-	) ) );
+	) ) );	
+
+	global $IS_LOCAL;
+	$pos1 = strpos(get_bloginfo('wpurl'), "127.0.0.1"); //dev	
+	if ($pos1 === false) $IS_LOCAL=false;
+	else $IS_LOCAL = true;
 }
 endif; // swgeula_setup
 add_action( 'after_setup_theme', 'swgeula_setup' );
@@ -597,21 +603,60 @@ function getYoutubeDuration($video_id){
 	    curl_close($curlSession);       
 
         return $obj->data->duration;
- }
+}
+function formatHoursMinutes($secs) {
+	$retVal = "";
+	$hrs = intval(gmdate("H",$secs));
+	$mins = intval(gmdate("i",$secs));
 
- function sw_update_video_table( $post_id, $post, $update) {	
- 	global $wpdb;
-	$vidURL = "";
-	$vidID = -1;			
+	if ($hrs>1) $retVal .= (_e($hrs) . _e (" ") . _e("hours","swgeula"));
+	elseif ($hrs>0) $retVal .= (_e("hour","swgeula"));
+	if ($hrs>0 && $mins>0) $retVal .= _e(" ") . _e("and","swgeula") . _e(" ");
+	if ($mins>0) $retVal .= ( _e($mins). _e(" ") . _e("minutes","swgeula"));
+
+	return $retVal;
+
+}
+function getTotalVideoDuration($arrLessonIDs) {
+	global $wpdb;
+	$retVal = 0;
+
+	$results = $wpdb->get_results("SELECT duration FROM wp_sw_videos WHERE lesson_id IN (".implode(",", $arrLessonIDs).") ORDER BY id DESC;",ARRAY_A);		
+		
+	if (count($results)>0) {
+			
+			foreach($results as $row) {	
+				$retVal += (int)$row['duration'];
+			}
+	}
+	return $retVal;	
+}
+
+function getNumStudents($arrPostIDs) {
+	global $wpdb;
+
+	$results = $wpdb->get_results("SELECT DISTINCT user_id FROM wp_sw_user_lesson WHERE lesson_id IN (".implode(",", $arrPostIDs).") ORDER BY id DESC;",ARRAY_A);				
 	
-	if (isset( $_REQUEST['fields']['field_5540c9a078b69'] )) {
-		$vidURL = sanitize_text_field( $_REQUEST['fields']['field_5540c9a078b69'] );
+	return count($results);	
+}
+
+ function sw_update_video_table( $post_id, $post, $update) {	 	
+ 	global $wpdb;
+ 	global $IS_LOCAL;
+
+	$vidURL = "";
+	$vidID = -1;	
+
+	$fieldID = $IS_LOCAL?'field_5540c9a078b69':'field_554136579a911';	
+	
+	if (isset( $_REQUEST['fields'][$fieldID] )) {
+		$vidURL = sanitize_text_field( $_REQUEST['fields'][$fieldID] );
 		$vidArray = explode("/", $vidURL);
 		$vidID = $vidArray[count($vidArray)-1];		
 	}
 	
 	if ( ($vidID!=-1)  && ($post->post_status=="publish") ) {		
-		$wpdb->delete( 'wp_sw_videos', array( 'video_id' => $vidID, 'lesson_id' => $post_id ) );
+		$wpdb->delete( 'wp_sw_videos', array( 'lesson_id' => $post_id ) );
 
 		$wpdb->insert("wp_sw_videos", array( 		
 				'video_id' => $vidID,

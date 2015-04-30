@@ -5,6 +5,10 @@
   );
   $posts = get_posts($args); 
   $count = count($posts); 
+  $arrPostIDs = array();
+  foreach ( $posts as $post ) :    
+      $arrPostIDs[] = $post->ID;
+  endforeach;  
 ?>
 
 <div class="page-header single_category_list">	
@@ -96,7 +100,7 @@
 											<div class="category_square-format">
 												<ul class="single_cat_dtls">
                                                     <!-- TODO: get the length of corses need to come dynamclay -->
-													<li>12 שעות</li>
+													<li><?php echo formatHoursMinutes(getTotalVideoDuration($arrPostIDs));?></li>
 													<li><?php $values =  get_category_meta('level');
 																	foreach ($values as $value => $label) {
 																	    echo '<span>' . $value .'</span>' ;
@@ -104,7 +108,7 @@
 													</li>
 													<li><?php echo $count . ' ' . __('שיעורים', 'swgeula'); ?></li>
                                                     <!-- TODO: get the number of users need to come dynamclay -->	
-                                                    <li>32 לומדים</li>
+                                                    <li><?php echo(getNumStudents($arrPostIDs));?> לומדים</li>
 												</ul>
 											</div>
 											
