@@ -21,6 +21,7 @@ if ( ! function_exists( 'swgeula_setup' ) ) :
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
+
 function swgeula_setup() {
 
 	/*
@@ -74,7 +75,12 @@ function swgeula_setup() {
 	add_theme_support( 'custom-background', apply_filters( 'swgeula_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
-	) ) );
+	) ) );	
+
+	global $IS_LOCAL;
+	$pos1 = strpos(get_bloginfo('wpurl'), "127.0.0.1"); //dev	
+	if ($pos1 === false) $IS_LOCAL=false;
+	else $IS_LOCAL = true;
 }
 endif; // swgeula_setup
 add_action( 'after_setup_theme', 'swgeula_setup' );
@@ -177,10 +183,10 @@ function swgeula_scripts() {
 			'password-strength',
 			get_stylesheet_directory_uri() . '/js/ng-password-strength.min.js'			
 		);
-		wp_enqueue_script(
+		/*wp_enqueue_script(
 			'vendor',
 			get_stylesheet_directory_uri() . '/js/vendor.js'			
-		);
+		);*/
 		wp_enqueue_script(
 			'my-scripts',
 			get_stylesheet_directory_uri() . '/js/angular_main.js',
@@ -520,6 +526,30 @@ add_action('wp_ajax_get_video_loc', 'getVideoLoc');
 add_action('wp_ajax_nopriv_get_video_loc', 'getVideoLoc');
 
 
+function getLessonStarted($lessonID,$userID) {
+	global $wpdb;		
+	
+
+	if ( is_int($userID) && is_int($lessonID) ) :
+
+		$results = $wpdb->get_results("SELECT lesson_id,video_pos FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lessonID ORDER BY id DESC LIMIT 1;",ARRAY_A);		
+		
+		if (count($results)>0) {			
+
+			foreach($results as $row) {																
+								
+				if ($row['video_pos']==0 || $row['video_pos']>0) return 1;											
+			}
+			
+		}
+
+	endif;	
+
+	return 0;		
+}
+
+/*
+used for ajax - maybe can be deleted
 function getLessonStarted() {
 	global $wpdb;	
 	
@@ -566,6 +596,100 @@ function getLessonStarted() {
 }
 add_action('wp_ajax_get_lesson_started', 'getLessonStarted');
 add_action('wp_ajax_nopriv_get_lesson_started', 'getLessonStarted');
+*/
+
+function getYoutubeDuration($video_id){
+        
+        //$data=@file_get_contents(filename)('http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
+        //if (false===$data) return 0;
+
+		$curlSession = curl_init();
+	    curl_setopt($curlSession, CURLOPT_URL, 'http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
+	    curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
+	    curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
+
+	    $obj = json_decode(curl_exec($curlSession));
+	    curl_close($curlSession);       
+
+        return $obj->data->duration;
+}
+function formatHoursMinutes($secs) {
+	$retVal = "";
+	$hrs = intval(gmdate("H",$secs));
+	$mins = intval(gmdate("i",$secs));
+
+	if ($hrs>1) $retVal .= (_e($hrs) . _e (" ") . _e("hours","swgeula"));
+	elseif ($hrs>0) $retVal .= (_e("hour","swgeula"));
+	if ($hrs>0 && $mins>0) $retVal .= _e(" ") . _e("and","swgeula") . _e(" ");
+	if ($mins>0) $retVal .= ( _e($mins). _e(" ") . _e("minutes","swgeula"));
+
+	return $retVal;
+
+}
+function getTotalVideoDuration($arrLessonIDs) {
+	global $wpdb;
+	$retVal = 0;
+
+	$results = $wpdb->get_results("SELECT duration FROM wp_sw_videos WHERE lesson_id IN (".implode(",", $arrLessonIDs).") ORDER BY id DESC;",ARRAY_A);		
+		
+	if (count($results)>0) {
+			
+			foreach($results as $row) {	
+				$retVal += (int)$row['duration'];
+			}
+	}
+	return $retVal;	
+}
+
+function getNumStudents($arrPostIDs) {
+	global $wpdb;
+
+	$results = $wpdb->get_results("SELECT DISTINCT user_id FROM wp_sw_user_lesson WHERE lesson_id IN (".implode(",", $arrPostIDs).") ORDER BY id DESC;",ARRAY_A);				
+	
+	return count($results);	
+}
+
+ function sw_update_video_table( $post_id, $post, $update) {	 	
+ 	global $wpdb;
+ 	global $IS_LOCAL;
+
+	$vidURL = "";
+	$vidID = -1;	
+
+	$fieldID = $IS_LOCAL?'field_5540c9a078b69':'field_554136579a911';	
+	
+	if (isset( $_REQUEST['fields'][$fieldID] )) {
+		$vidURL = sanitize_text_field( $_REQUEST['fields'][$fieldID] );
+		$vidArray = explode("/", $vidURL);
+		$vidID = $vidArray[count($vidArray)-1];		
+	}
+	
+	if ( ($vidID!=-1)  && ($post->post_status=="publish") ) {		
+		$wpdb->delete( 'wp_sw_videos', array( 'lesson_id' => $post_id ) );
+
+		$wpdb->insert("wp_sw_videos", array( 		
+				'video_id' => $vidID,
+				'lesson_id' => $post_id, 				
+				'duration' => getYoutubeDuration($vidID),
+				'date_added' => date('Y-m-d H:i:s')
+		));
+	}	
+}
+add_action( 'save_post', 'sw_update_video_table', 10, 3 );
+
+ function getVideoDuration($vidID) {
+	global $wpdb;	
+
+	$results = $wpdb->get_results("SELECT duration FROM wp_sw_videos WHERE video_id = '$vidID' ORDER BY id DESC LIMIT 1;",ARRAY_A);		
+		
+	if (count($results)>0) {
+			
+			foreach($results as $row) {	
+				return $row['duration'];				
+			}
+	}
+	return 0;	
+}
 /****************End Lessons Ajax ****************************************/
 
 /*****************************AJAX/ANGUALR FUNCTIONS******************/

@@ -1,37 +1,5 @@
 <div class="page-header library-page">
-    		<div class="header_category">	
-
-					   
-
-                        <?php 
-                                    $cat_image =  get_category_meta('image');
-                                    $page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
-                                    $page_bg_image_url = $page_bg_image[0];
-                                    $cat_name = get_category(get_query_var('cat'))->name;
-
-                        ?>
-
-                        <div class="image_category">
-                            
-                            <div class="texts">
-                                <i class="icon-library-icon"></i>
-                                <div class="name_and_sedc">
-                                    <div class="current_category_name">
-                                             <h1><?php the_field('library_title', 'option'); ?></h1>
-
-                                    </div>
-                                    <div class="current_category_description">
-                                        <p><?php the_field('library_sub_title', 'option'); ?></p>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                             <div class="stages">
-                                <?php the_field('stages', 'option'); ?>
-                            </div>
-
-                        </div>
-				</div><!-- header_category -->
+    		
 		      </div><!-- page-header -->
 	       </div><!-- archive_cont -->
         </div><!-- row -->
@@ -52,8 +20,9 @@
         );
          
         $count = 0;
+        $cats1 = get_categories($args);
 					
-		foreach (get_categories($args) as $cat) : ?>
+		foreach ($cats1 as $cat) : ?>
 							
           <div class="cat_sing" style="opacity:0">
             <div id="spinner"></div>
@@ -95,8 +64,10 @@
                     );
 
 					$count = 0;
-					
-					foreach (get_categories($args) as $cat) : 
+					$cats = get_categories($args);
+
+
+					foreach ($cats as $cat) : 
 
                       $color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category'));
         			  $is_subject_category = get_category_meta('subject_category', get_term_by('slug', $cat->cat_name, 'category'));
