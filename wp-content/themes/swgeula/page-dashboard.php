@@ -2,7 +2,10 @@
 /*
 Template Name: Dashboard
 */
-get_header(); ?>	
+get_header(); 
+
+$current_user = wp_get_current_user();
+?>	
 
 <div class="col-lg-12 col-md-12 archive_cont">	
 
@@ -23,15 +26,15 @@ get_header(); ?>
                                 </div>
                                 <div class="dtls">
                                     <div class="current_category_name">
-                                             <h1><?php echo get_the_author_meta( 'display_name'); ?></h1>
+                                             <h1><?php echo $current_user->display_name; ?></h1>
                                     </div>
 
                                     <div class="current_category_description">
-                                        <?php echo get_the_author_meta( 'subject'); ?>
+                                        <?php echo $current_user->subject; ?>
                                     </div>
 
                                     <div class="current_category_description sub">
-                                        <?php echo get_the_author_meta( 'description'); ?>
+                                        <?php echo $current_user->description; ?>
                                     </div>
 
                                     <a href="<?php echo get_the_permalink('47'); ?>">
@@ -62,7 +65,7 @@ get_header(); ?>
            
             <div class="first_title">
             <?php
-                the_field('dashboard_first_title');echo ' ' . get_the_author_meta( 'display_name'); 
+                the_field('dashboard_first_title');echo ' ' . $current_user->display_name; 
             ?>
             </div>
             
