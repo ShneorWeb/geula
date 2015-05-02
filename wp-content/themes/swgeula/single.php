@@ -363,7 +363,7 @@ class MY_Post_Numbers {
 
 
                                         <div class="category_square_number">
-                                            <?php echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');  ?>
+                                            <?php echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');  ?>
                                         </div>
                                     </div>
                                 

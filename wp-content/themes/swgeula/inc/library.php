@@ -140,8 +140,8 @@
 											    	<div class="category_square_number">
 														<?php 
                                                             $user_post_count = count_user_posts( $user_id );
-                                                            echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');
-                                                        ?>
+                                                            echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');
+                                                        ?>                                                        
 													</div><?php } ?>
 											</div>
 													
@@ -175,7 +175,7 @@
 
                                                     ?>
             
-        </div>
+        <!--<a href="javascript:void(0);" onclick="addToMyLessons('cat',$cat->cat_ID);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>">+</a>--></div>
 		
                     
                                 </li>

@@ -5,6 +5,33 @@ var highestBox1;
 var highestBox2;    
     
 //global functions    
+
+/*
+function addToMyLessons(sType,id) {
+
+}
+
+function loadCategoryBoxes() {  
+  $.ajax({
+          type : "post",
+          data : {order: "asc"},
+          dataType : "html",     
+          url: ourPhpVariables.ajaxurl,
+          beforeSend : function(){
+          },
+          success    : function(data){
+             
+               $data = $(data);
+                $data.hide();
+               console.log($data);
+                $content.append($data);
+                 $data.fadeIn(500);
+          },
+          error     : function(jqXHR, textStatus, errorThrown) {
+              alert(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+          }            
+}
+*/
     
 function profile_to_mob(){
     if($(window).width() < 768-17){

@@ -76,7 +76,7 @@ get_header(); ?>
 														<?php 
                                                               
                                                             $user_post_count = count_user_posts( $user->id );
-                                                            echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');  
+                                                            echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');  
                                                         ?>
 													</div>
 											</div>
