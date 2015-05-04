@@ -690,6 +690,29 @@ add_action( 'save_post', 'sw_update_video_table', 10, 3 );
 	}
 	return 0;	
 }
+
+function getCatBoxes() {		
+
+	$parent_cat = (int)$_POST['parent_cat'];
+	$order = $_POST['order'];
+	$orderby = $_POST['order_by'];
+	$iAuthorID = (int)$_POST['author_id'];
+	$cat = get_queried_object();	
+	$this_category = get_category(4);
+
+	//if ( is_int($userID) && is_int($lessonID) ) :
+
+	$bIsAjax = true;
+
+	include_once("inc/category_boxes.php");
+
+	
+	//endif;
+	exit;
+}
+
+add_action('wp_ajax_get_cat_boxes', 'getCatBoxes');
+add_action('wp_ajax_nopriv_get_cat_boxes', 'getCatBoxes');
 /****************End Lessons Ajax ****************************************/
 
 /*****************************AJAX/ANGUALR FUNCTIONS******************/

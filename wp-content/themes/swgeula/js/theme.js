@@ -1,36 +1,54 @@
+var filterBoxes;
+
 (function($) {
     
 //global vars
 var highestBox1;
 var highestBox2;    
+var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
     
 //global functions    
+
+filterBoxes = function(iAuthorID,parentCat,sSort) {    
+  
+  sOrderby = "ID";
+  if (sSort == 'new_to_old') sOrder = "desc";  
+  else if (sSort == 'old_to_new') sOrder = "asc"; 
+  if (sSort == "name") { 
+    sOrderby = "name";
+    sOrder = "asc";  
+  }  
+
+  $.ajax({
+          type : "post",
+          data : {
+              'action': 'get_cat_boxes',
+              'order_by': sOrderby,
+              'order': sOrder,
+              'parent_cat': parentCat,
+              'author_id': iAuthorID 
+          },          
+          url: ajaxurl,          
+          success    : function(data){
+             
+               //$data = $(data);
+               //$data.hide();
+               //console.log(data);
+               //$content.append($data);
+               //$data.fadeIn(500);
+               $("#div-cat-boxes").html(data);
+          },
+          error     : function(jqXHR, textStatus, errorThrown) {
+              console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+          }      
+  });
+}
 
 /*
 function addToMyLessons(sType,id) {
 
 }
 
-function loadCategoryBoxes() {  
-  $.ajax({
-          type : "post",
-          data : {order: "asc"},
-          dataType : "html",     
-          url: ourPhpVariables.ajaxurl,
-          beforeSend : function(){
-          },
-          success    : function(data){
-             
-               $data = $(data);
-                $data.hide();
-               console.log($data);
-                $content.append($data);
-                 $data.fadeIn(500);
-          },
-          error     : function(jqXHR, textStatus, errorThrown) {
-              alert(jqXHR + " :: " + textStatus + " :: " + errorThrown);
-          }            
-}
 */
     
 function profile_to_mob(){

@@ -1,13 +1,11 @@
-<ul class="product_list" style="padding:0px;">
+					<?php                   
 
-					<?php
-                    
                     //if parent cat is empty
                      if($parent_cat == ""){
                         $parent_cat = $this_category->cat_ID;
                       }
       
-					if (is_category()|| is_single()) {
+					if (is_category() || is_single() || $bIsAjax) {
                         
                         $args = array(	 
                             'child_of' => $parent_cat,
@@ -16,6 +14,7 @@
                             'order' => $order,
                         );
 					    $cats = get_categories($args);
+                        
                         
 				        foreach ($cats as $cat) : 
                         
@@ -27,15 +26,15 @@
                           
                             //
     				        $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
-                            if (is_array($values) && $_GET['select_author'] != 0)
+                            if (is_array($values))
                                 {
-                                    foreach ($values as $user_id) 
-                                        {
-                                        $the_user = get_user_by('id', $user_id);
+                                    foreach ($values as $user_id) {
+                                        $the_user = get_user_by('id', $user_id);                                        
                                         $moser_id = get_the_author_meta('id', $user_id );     
                                       } 
-                            }else{
-                               $moser_id = 0; 
+                            }
+                            else{                               
+                               $moser_id = 0;                                                               
                             }
                                       
                             
@@ -43,7 +42,7 @@
                             if($cat_depth == 3  ) :
                             
                             //filter by authors
-                            if($_GET['select_author'] == $moser_id):
+                            if( empty($iAuthorID) || ($iAuthorID==0) || (isset($the_user) && is_object($the_user) && $iAuthorID == $the_user->ID) ):
                             
                             ?>
 
@@ -98,12 +97,12 @@
                                                     </p>
     											</div>
 
-    											<div class="category_square_author">
-    												<?php
-    													
+    											<div class="category_square_author">                                                       
+    												<?php    						                                                     					
     												 $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
     												foreach ($values as $user_id) {
-    												    $the_user = get_user_by('id', $user_id);
+    												    $the_user = get_user_by('id', $user_id);                                                                                                                
+
                                                         //TODO : image from ofer function
     												    echo '<div class="category_square_avatar">'. get_avatar( $the_user, 60 ) . '</div>'; 
 
@@ -132,22 +131,7 @@
                          /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
     ?>
                    
-                    <form method="get" >
-
-                        <input type="hidden" name="select_parent"  value="<?php echo $cat_parent; $_GET['select_parent']; ?>" />
-                        <input type="submit" style="color:<?php echo $color; ?>" value="<?php echo $cat_parent_name; ?>" class="category_square_oval_submit"/>
-                         
-                        <?php 
-                           $parent_cat = $_GET['select_parent'];
-                           $select_order = $_GET['select_order'];
-                           $moser_id  = $_GET['select_author'];
-                        ?>
-                        
-                       <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
-                       <input name="select_author" type="hidden" value="<?php echo $moser_id ?>"/>
-                        
-                </form>
-                  
+                                    
       
 
               <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
@@ -174,6 +158,6 @@
     						<?php 
                             endif;
                             endif;
-                        endforeach; } 
+                        endforeach; 
+                        } 
         ?>
-</ul>

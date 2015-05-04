@@ -43,36 +43,45 @@
 				<div class="selects">
                    
                     <!-- filter by author -->
-                     <form method="get" id="select_author">
-                        <select name="select_author" onchange='this.form.submit()' class="selectpicker show-tick">
+                     <form>
+                        <select id="select_author" name="select_author" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_parent').val(),jQuery('#select_order').val())" class="selectpicker show-tick">
                             <option value="0" >מוסר שיעור</option>
                             <?php 
                                
-                                  $args = array(
-                                /* https://codex.wordpress.org/Function_Reference/get_users */
-                                    'blog_id'      => 1,
-                                    'role'         => 'Administrator',
+                                  $args = array(                                                                  
+                                    'orderby'       => 'name', 
+                                    'order'         => 'ASC', 
+                                    'exclude_admin' => false,                                   
+                                    'echo' => false,
+                                    'hide_empty' => false,
+                                    'style'  => 'none'
                                  );
-                                $blogusers = get_users( $args );
-                                // Array of stdClass objects.
-                                foreach ( $blogusers as $user ) {?>
-                                    <option value="<?php echo $user->id ?>" <?php selected( $_GET['select_author'],$user->id); ?> ><?php echo esc_html( $user->display_name ); ?></option>
-                              <?php  } ?>
-                            
-                        </select>
+                                $authors = wp_list_authors( $args );
+                                $arrAuthors = explode(",", $authors);                               
+                                $arrCurrentName = array();
+                                foreach($arrAuthors as $at) {                                 
+                                  $sName = trim(strip_tags($at));                                  
+                                     if (!in_array($sName,$arrCurrentName)) {
+                                      //$objUser = get_user_by('slug',addslashes($sName));
+                                      $user_query = new WP_User_Query( array( 'search_columns' => array( 'display_name', $sName )  ) );
+                                      if ( ! empty( $user_query->results ) ) {
+                                        foreach ( $user_query->results as $qUser ) {
+                                          echo("<option value='".$qUser->ID."'>".addslashes($qUser->display_name)."</option>");
+                                          $arrCurrentName[] = $qUser->display_name;
+                                        }
+                                      }                                  
+                                    }
+                                }
+                                ?>                                                          
+                        </select>                     
                          
-                         <?php $select_order = $_GET['select_order']; ?>
-                         <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
-                         
-                         <?php $parent_cat  = $_GET['select_parent']; ?>
-                         <input name="select_parent" type="hidden" value="<?php echo $parent_cat ?>"/>
                          
                     </form>
                     
                     <!-- filter by subject -->
-                     <form method="get" id="select_parent">      
+                     <form>      
                          
-                         <select name="select_parent" onchange='this.form.submit()' class="selectpicker show-tick"> 
+                         <select id="select_parent" name="select_parent" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_parent').val(),jQuery('#select_order').val())" class="selectpicker show-tick"> 
                              
                              <option value="<?php echo $this_category->cat_ID; ?>">
                                 <?php echo esc_attr(__('נושא')); ?>
@@ -96,53 +105,29 @@
                               }
                                 
                                 
-                                if($_GET['select_parent'] == ""){
+                               /* if($_GET['select_parent'] == ""){
                                     $parent_cat = $_GET['select_parent_oval'];
                                 }else{
                                      $parent_cat = $_GET['select_parent'];
-                                }
+                                }*/
       
       
                                
                              ?>
                              
-                        </select>
-                         
-                         <?php $select_order = $_GET['select_order']; ?>
-                         <input name="select_order" type="hidden" value="<?php echo $select_order ?>"/>
-                         
-                         <?php $moser_id  = $_GET['select_author']; ?>
-                         <input name="select_author" type="hidden" value="<?php echo $moser_id ?>"/>
+                        </select>                                               
                          
                     </form>
                     
                    
                     
-     <form method="get" id="select_order">
-          
-           <!-- filter by order -->
-                   
-         
-           <select name="select_order" onchange='this.form.submit()' class="selectpicker show-tick">
-               <option value="new_to_old" <?php selected( $_GET['select_order'],'new_to_old'); ?> >חדש לישן</option>
-               <option value="old_to_new" <?php selected( $_GET['select_order'],'old_to_new' ); ?>>ישן לחדש</option>
-               <option value="name" <?php selected( $_GET['select_order'],'name' ); ?>>אלף בתי</option>
-                
-               
-                
-                <?php
-                      
-                      $orderby = "ID";
-                      if ($_GET['select_order'] == 'new_to_old') { $order = "desc";  }
-                      if ($_GET['select_order'] == 'old_to_new') { $order = "asc";  }  
-                      if ($_GET['select_order'] == 'name') { $orderby = "name";$order = "asc";  }  
-                    ?>
-               
-           </select>
-         
-                <input name="select_parent" type="hidden" value="<?php echo $parent_cat ?>"/>
-                <?php $moser_id  = $_GET['select_author']; ?>
-                <input name="select_author" type="hidden" value="<?php echo $moser_id ?>"/>
+     <form>          
+           <!-- filter by order -->                          
+           <select id="select_order" name="select_order" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_parent').val(),jQuery('#select_order').val())" class="selectpicker show-tick">
+               <option value="new_to_old">חדש לישן</option>
+               <option value="old_to_new">ישן לחדש</option>
+               <option value="name">אלף בתי</option>                                                                          
+           </select>    
      </form>
 													
 				</div>
@@ -151,9 +136,10 @@
 
           <div id="spinner"></div>				    	   	
 		
-			 <div class="categories row">                
-                
-                <?php include_once("category_boxes.php");?>
+			 <div class="categories row" id="div-cat-boxes">                
+            <ul class="product_list" style="padding:0px;">
+                <?php $bIsAjax=false; include_once("category_boxes.php");?>
+            </ul>
 				
 			 </div>
 				
