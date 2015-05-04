@@ -156,7 +156,7 @@
                 
                 $cat_parent_object = get_category($cat_parent_id);
                 $cat_parent_slug = $cat_parent_object->slug;
-                $cat_parent_name = get_cat_name( $cat_parent_id );
+                $cat_parent_name = $cat_parent_object->name;
                 
                 $cat_grandparent_id = $cat_parent_object->parent;
                 $cat_grandparent_object = get_category($cat_grandparent_id);
@@ -165,7 +165,7 @@
                 /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
 ?>
                     
-       <a href="<?php echo $cat_grandparent_slug.'?select_parent='.$cat_parent_id; ?>" style="color:<?php echo $color; ?>" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
+       <a href="<?php echo $cat_grandparent_slug; ?>/<?php echo $cat_parent_slug;?>" style="color:<?php echo $color; ?>" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
                      
 
           <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));

@@ -696,13 +696,13 @@ function getCatBoxes() {
 	$parent_cat = (int)$_POST['parent_cat'];
 	$order = $_POST['order'];
 	$orderby = $_POST['order_by'];
-	$iAuthorID = (int)$_POST['author_id'];
-	$cat = get_queried_object();	
-	$this_category = get_category(4);
+	$iAuthorID = (int)$_POST['author_id'];		
+	$cat = (int)$_POST['cat'];		
+	$this_category = get_category($cat);    	
+    $parent = $this_category->parent;
+    $parentcat = get_category($parent);    
 
 	//if ( is_int($userID) && is_int($lessonID) ) :
-
-	$bIsAjax = true;
 
 	include_once("inc/category_boxes.php");
 
@@ -714,6 +714,10 @@ function getCatBoxes() {
 add_action('wp_ajax_get_cat_boxes', 'getCatBoxes');
 add_action('wp_ajax_nopriv_get_cat_boxes', 'getCatBoxes');
 /****************End Lessons Ajax ****************************************/
+
+function getCatIDOfLibrary() {
+	return 3;
+}
 
 /*****************************AJAX/ANGUALR FUNCTIONS******************/
 function getSWGeulaAvatar($size=96)  {
