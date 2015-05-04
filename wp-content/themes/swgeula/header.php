@@ -238,7 +238,14 @@
      
 
    
-		<div id="content" class="site-content">			
+		<div id="content" class="site-content">
+
+            <?php if(is_page_template( 'custom-profile.php' )){?>
+            <div class="container-fluid">					
+                <?php }else{?>
 			<div class="container">
+                <?php } ?>
+            
+               
                 <div class="row">
     

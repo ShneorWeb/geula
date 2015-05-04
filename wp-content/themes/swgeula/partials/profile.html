@@ -5,16 +5,19 @@
         })        
 })(jQuery);
 </script>
-
+<div class="col-lg-6 col-md-6 page_cont">	
 <div class="row">
 
-<div class="col-sm-8 col-sm-offset-2"  ng-controller="Profile">  
+<div ng-controller="Profile">  
   <div class="div-login">
 
-    <h1 id="ttl1" class="pull-right" style="margin-bottom:30px;"><span class="glyphicon glyphicon-user"></span> {{"Your_Account" | translate}}</h1>
+    <h1 id="ttl1"  class="settings_page_title">
+       <i class="fa fa-user"></i>
+        {{"Your_Account" | translate}}
+    </h1>
         
     
-   <tabset type ="pills" style="clear:both;">
+   <tabset type ="pills" >
           
           <tab heading="{{'Settings' | translate}}" disabled="tabs[0].disabled" active="tabs[0].active">                
                
@@ -190,4 +193,5 @@
   </div> <!-- of class="div-login" -->
 
 </div>
-</div><div class="col-sm-2"></div>
+</div>
+</div>

@@ -2,13 +2,11 @@
 /*
 Template Name: Custom_Profile
 */
+get_header(); 
 ?>
 
-<?php include_once("header.php");?>
-
-
 	<div ng-controller="Profile">					
-					<div ng-include="template.url"></div>
+        <div ng-include="template.url"></div>
 	</div>
 	
 

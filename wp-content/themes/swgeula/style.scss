@@ -474,23 +474,23 @@ box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
 }
 @media (min-width: 767px){
   .container-fluid {
-  padding-right: 200px;
-  padding-left: 200px;
+  /*padding-right: 200px;
+  padding-left: 200px;*/
   }
 
 }
 
 @media (max-width: 1300px) and (min-width:767px){
   .container-fluid {
-  padding-right: 200px;
-  padding-left: 20px;
+  /*padding-right: 200px;
+  padding-left: 20px;*/
   }
 
 }
 
 @media (min-width: 1600px){
 .container-fluid {
-max-width:1600px;
+/*max-width:1600px;*/
 }
 }
 .navbar-brand{
@@ -2051,6 +2051,68 @@ button.edit_profile{
     }
 } 
 
+
+.page-template-custom-profile-php{
+    .drop{
+    display: none;
+    }
+    .div-login{
+        padding: 30px 0 0 ;
+    }
+    .site-content {
+      margin-right: 0;
+      float: right;
+      width: 100%;
+    }
+    .page_cont{
+        float: none;
+        margin: 0 auto;
+    }
+    
+    h1.settings_page_title{
+        color: #555459;
+        font-size: 2.25rem;
+        font-weight: 400;
+        text-align: right;
+        margin-top: 11px;
+        margin-bottom: 30px;
+        i{
+            color:#51b46d;
+        }
+    }
+    
+    .nav-pills{
+          border-radius: 3px;
+          box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+        background-color: #fff;
+    }
+    
+    .nav-pills > li > a {
+      color: #555459;
+        font-size: 1.25rem;
+        background-color: transparent;
+        @extend %trans;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+    
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: #555459;
+        font-weight: 700;
+        background-color: transparent;
+    }
+    
+    .tab-content > .active {
+      padding: 0;
+    }
+    
+    .div-login div {
+      margin-bottom: 20px !important;
+    }
+    
+    
+    
+}
 
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------

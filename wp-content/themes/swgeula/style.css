@@ -12,7 +12,7 @@ Author URI:
 
 Tags:
 */
-.single_dwnld_file a, .previous_post_link, .next_post_link, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_category_list .single_lesson_cont a, .nav-tabs > li > a {
+.single_dwnld_file a, .previous_post_link, .next_post_link, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_category_list .single_lesson_cont a, .nav-tabs > li > a, .page-template-custom-profile-php .nav-pills > li > a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -393,19 +393,19 @@ span.oval {
 
 @media (min-width: 767px) {
   .container-fluid {
-    padding-right: 200px;
-    padding-left: 200px;
+    /*padding-right: 200px;
+    padding-left: 200px;*/
   }
 }
 @media (max-width: 1300px) and (min-width: 767px) {
   .container-fluid {
-    padding-right: 200px;
-    padding-left: 20px;
+    /*padding-right: 200px;
+    padding-left: 20px;*/
   }
 }
 @media (min-width: 1600px) {
   .container-fluid {
-    max-width: 1600px;
+    /*max-width:1600px;*/
   }
 }
 .navbar-brand {
@@ -1808,6 +1808,56 @@ button.edit_profile {
 }
 .page-template-page-dashboard-php .dtls {
   width: 80%;
+}
+
+.page-template-custom-profile-php .drop {
+  display: none;
+}
+.page-template-custom-profile-php .div-login {
+  padding: 30px 0 0;
+}
+.page-template-custom-profile-php .site-content {
+  margin-right: 0;
+  float: right;
+  width: 100%;
+}
+.page-template-custom-profile-php .page_cont {
+  float: none;
+  margin: 0 auto;
+}
+.page-template-custom-profile-php h1.settings_page_title {
+  color: #555459;
+  font-size: 2.25rem;
+  font-weight: 400;
+  text-align: right;
+  margin-top: 11px;
+  margin-bottom: 30px;
+}
+.page-template-custom-profile-php h1.settings_page_title i {
+  color: #51b46d;
+}
+.page-template-custom-profile-php .nav-pills {
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+}
+.page-template-custom-profile-php .nav-pills > li > a {
+  color: #555459;
+  font-size: 1.25rem;
+  background-color: transparent;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.page-template-custom-profile-php .nav-pills > li.active > a, .page-template-custom-profile-php .nav-pills > li.active > a:hover, .page-template-custom-profile-php .nav-pills > li.active > a:focus {
+  color: #555459;
+  font-weight: 700;
+  background-color: transparent;
+}
+.page-template-custom-profile-php .tab-content > .active {
+  padding: 0;
+}
+.page-template-custom-profile-php .div-login div {
+  margin-bottom: 20px !important;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
