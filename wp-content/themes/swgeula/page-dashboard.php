@@ -96,15 +96,20 @@ $current_user = wp_get_current_user();
                 ?>
             </p>
             
-            <p class="rabbi_quote">
-                <?php the_field('rabbi_quote'); ?>
-            </p>
+            <?php
+                        
+            $rows = get_field('rabbi_quote_rep' ); // get all the rows
+            $rand_row = $rows[ array_rand( $rows ) ]; // get a random row
             
-            <p class="rabbi_quote_source">
-                <?php the_field('rabbi_quote_source'); ?>
-            </p>
-            
-            
+            ?>
+                    
+                    <p class="rabbi_quote">
+                        <?php echo $rand_row['rabbi_quote']; ?>
+                    </p>
+
+                    <p class="rabbi_quote_source">
+                        <?php echo $rand_row['rabbi_quote_source']; ?>
+                    </p>
             
         </div>
 
