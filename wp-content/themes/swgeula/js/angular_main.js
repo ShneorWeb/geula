@@ -266,7 +266,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
             data: dataStr,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
         }).success(function (data, status, headers, config) {
-                //console.log(data);
+                console.log(data);
                 if (data==1) {                	    				    					
 					   	$scope.tabs[2].disabled = false;
 					   	$scope.tabs[3].disabled = false;

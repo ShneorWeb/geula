@@ -774,9 +774,11 @@ function get_user_profile() {
 		    $lang = get_user_meta( $uid, 'user_lang', true );
 		    $country = get_user_meta( $uid, 'user_country', true );
 		    $city = get_user_meta( $uid, 'user_city', true );		    
-		    $position = get_user_meta( $uid, 'position', true );		    
-		    $about = get_user_meta( $uid, 'about', true );		    
+		    $position = addslashes(get_user_meta( $uid, 'subject', true ));		    
+		    $about = addslashes(get_user_meta( $uid, 'description', true ));		    
 		    $timezone = get_user_meta( $uid, 'user_timezone', true );
+
+
 		    
 		    $response = '{"firstname":"'.$current_user->user_firstname.
 		    	'", "lastname":"'.$current_user->user_lastname.
@@ -906,8 +908,8 @@ function set_user_profile2(){
 
 		 $fname = trim($_POST['firstname']);
 		 $lname = trim($_POST['lastname']);
-		 $position = trim($_POST['position']);
-		 $about = trim($_POST['about']);		 
+		 $position = addslashes(trim($_POST['position']));
+		 $about = addslashes(trim($_POST['about']));		 
 		 
 		if( empty( $uid ) )
 		 $error .= '<p class="error">Enter UserID</p>';						 
@@ -921,7 +923,7 @@ function set_user_profile2(){
 		 
 		if( empty( $error ) ){
 
-			$userdata = array( 'ID' => $uid, 'first_name' => $fname, 'last_name' => $lname );
+			$userdata = array( 'ID' => $uid, 'first_name' => $fname, 'last_name' => $lname, 'user_nicename' => $fname.' '.$lname );
 		 
 			$status = wp_update_user( $userdata );
 			 
@@ -943,8 +945,8 @@ function set_user_profile2(){
 		 	}
 		 	else {	 
 				//now update meta data:
-		 		update_user_meta( $uid, 'position', $position );
-		 		if (!is_wp_error($status)) update_user_meta( $uid, 'about', $about );
+		 		update_user_meta( $uid, 'subject', $position );
+		 		if (!is_wp_error($status)) update_user_meta( $uid, 'description', $about );
 
 		 		if( is_wp_error($status) ){				 
 					$msg = '';				 
