@@ -590,6 +590,21 @@ a:hover{
     text-decoration: none;
 }
 
+button{
+  border: none;
+  @include border-radius(4px);
+}
+
+
+h3{
+    margin-top: 25px;
+}
+
+.ltl_title{
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
 .site-branding{
     h1{
         margin: 0;
@@ -1551,7 +1566,31 @@ main library page
         padding:0;
     }
 
-    .single_lesson_cont{
+
+
+    .userdtls{
+
+        .dtls{
+            float: right;
+            width: 67%;
+            .category_square_author_subject.desc{
+                margin-top: 13px;
+                margin-bottom: 14px;
+            }
+        }
+        .category_square_avatar{
+            float: left;
+            width: 33%;
+            margin: 0;
+        }
+        .category_square_author_name{
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+.single_lesson_cont{
         border-bottom:1px solid #e1e1e1;
         padding: 13px 30px 5px;
         &:last-child{
@@ -1590,28 +1629,8 @@ main library page
             padding-top: 5px;
         }
 
-    }
-
-    .userdtls{
-
-        .dtls{
-            float: right;
-            width: 67%;
-            .category_square_author_subject.desc{
-                margin-top: 13px;
-                margin-bottom: 14px;
-            }
-        }
-        .category_square_avatar{
-            float: left;
-            width: 33%;
-            margin: 0;
-        }
-        .category_square_author_name{
-            margin-bottom: 0;
-        }
-    }
 }
+
 
 .single-post{
     p{
@@ -1900,7 +1919,7 @@ margin: 5px 0 45px;
     display: none;
 }
 
-.page-template-page-dashboard-php{
+.page-template-page-dashboard-php,.page-template-page-my_lessons-php{
     
      .menu-menu-right-container ul li.microphone {
           background-color: inherit;
@@ -2110,8 +2129,95 @@ button.edit_profile{
       margin-bottom: 20px !important;
     }
     
+}
+
+
+
+.page-template-page-my_lessons-php{
+    .image_category {      
+      padding-top: 8px;
+      padding-bottom: 40px;
+        
+    }
+    .box.menu{
+      float: right;
+      width: 100%;
+      margin-top: 23px;
+      padding: 16px 20px;
+        
+        a{
+            color: #555459;
+            font-size: 1.25rem;
+            margin-left: 50px;
+            
+            &.current{
+                font-weight: 700;
+            }
+            
+            &.last-child{
+                margin-left: 0;
+            }
+        }
+    }
     
+    .big_icon{
+      width: 16%;
+      margin-left: 2%;
+        position: relative;
+        i{
+            margin-top: 75px;
+        }
+        
+        .status{
+            position: absolute;
+              top: 70px;
+              bottom: 0;
+              right: 0;
+              left: 0;
+              text-align: center;
+              max-width: 155px;
+            
+            i{
+            font-size: 80px;
+            margin-top: 70px;
+            }
+            
+            &.x i{
+                     color: #e15258;
+                }
+            
+            &.v i{
+                     color: #51b46d;
+                }
+        }
+    }
     
+    .dtls{
+        h2{
+            color: #555459;
+            font-size: 2.25rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+    }
+    
+    .schedule_btn{
+        background-color: #51b46d;
+        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 700;
+        padding: 11px 25px;
+        @extend %clickbleElement;
+        
+        i{
+            margin-left: 10px;
+        }
+    }
+    
+    .single_lesson_cont{
+    background-color: rgba(131,140,199,0.15);
+    border: #E1E1E1 1px solid;
+    }
 }
 
 
