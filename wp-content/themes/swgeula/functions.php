@@ -908,8 +908,8 @@ function set_user_profile2(){
 
 		 $fname = trim($_POST['firstname']);
 		 $lname = trim($_POST['lastname']);
-		 $position = addslashes(trim($_POST['position']));
-		 $about = addslashes(trim($_POST['about']));		 
+		 $position = trim($_POST['position']);
+		 $about = trim($_POST['about']);		 
 		 
 		if( empty( $uid ) )
 		 $error .= '<p class="error">Enter UserID</p>';						 
