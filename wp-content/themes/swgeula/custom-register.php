@@ -617,8 +617,10 @@ case 'register' :
 		$user_email = $_POST['user_email'];
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
-
-		$errors = register_new_user($user_login, $user_email);
+		$user_password = $_POST['user_password'];
+		
+		//$random_password = wp_generate_password( $length=8, $include_standard_special_chars=false );
+		$errors = wp_create_user($user_login,$user_password,$user_email); 
 		if ( !is_wp_error($errors) ) {
 
 			$userdata = array( 'ID' => $errors, 'first_name' => $first_name, 'last_name' => $last_name );		 
@@ -687,9 +689,9 @@ case 'register' :
 				 */
 				do_action( 'register_form' );
 				?>
-				<!--<p>					
+				<p>					
 					<input type="password" class="form-control" name="user_password" id="user_password" placeholder="<?php _e('Password','swgeulatr') ?>" value="" />
-				</p>-->
+				</p>
 				<br class="clear" />
 				<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 				<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="btn btn-success" value="<?php esc_attr_e('Register','swgeulatr'); ?>" /></p>
