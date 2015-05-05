@@ -83,9 +83,11 @@
                                                $cat_grandparent_object = get_category($cat_grandparent_id);
                                                $cat_grandparent_slug = $cat_grandparent_object->slug;
 
+                                               $tempParent2 = get_category($cat_parent_id);
+
                                     ?>
                     
-                                    <a href="<?php echo site_url() . '/category/' . $cat_grandparent_slug.'?select_parent='.$cat_parent_id; ?>" class="category_square_oval_submit">
+                                    <a href="<?php echo ($tempParent2->parent == getCatIDOfLibrary()?'':$tempParent2->slug);?>" class="category_square_oval_submit">
                                         <?php echo $cat_parent_name; ?>
                                     </a>
 

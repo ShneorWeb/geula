@@ -5,7 +5,7 @@
                         $parent_cat = $this_category->cat_ID;
                       }
       
-					if (is_category() || is_single() || $bIsAjax) {
+					//if (is_category() || is_single() || $bIsAjax) {
                         
                         $args = array(	 
                             'child_of' => $parent_cat,
@@ -123,19 +123,20 @@
                                             
     		<div class="category_square_oval">
                                                    
-                 <?php
-                    $cat_parent = $cat->parent;
-                    $cat_parent;
-                    $cat_parent_name = get_cat_name( $cat_parent );
+                 <?php                    
+                    $cat_parent = $cat->parent;                                                                               
+                    $tempParent = get_category($cat_parent);                                        
+                    
+                    //if ($parentcat->parent == getCatIDOfLibrary()) $cat_parent_link = "";
+                    //else $cat_parent_link = 
                             
-                         /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
-    ?>
-                   
-                                    
-      
+                         /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/    ?>                   
+                     <?php //echo "cat="   . $tempParent2->parent; ?>
+
+              <?php echo '<a href="'.((isset($bInNosse) && $bInNosse)?'../'.$tempParent->slug:$tempParent->slug).'" style="color:'.$color.'" class="category_square_oval_submit">'.$tempParent->name.'</a>';  ?>
 
               <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
-                    foreach ($values as $value => $label) {
+                    foreach ($values as $value => $label) {                        
                         echo '<span class="oval">' . $value . '</span>';
                                                             }
 
@@ -159,5 +160,5 @@
                             endif;
                             endif;
                         endforeach; 
-                        } 
+                        //} 
         ?>

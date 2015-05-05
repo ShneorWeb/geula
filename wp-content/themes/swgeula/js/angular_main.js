@@ -84,7 +84,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		$scope.post = res;
 	});
 })
-.controller('Profile', ['$scope', '$http', '$routeParams','$translate','$upload', function($scope, $http, $routeParams,$translate,$upload) {	
+.controller('Profile', ['$scope', '$http', '$routeParams','$translate','$upload','$location', function($scope, $http, $routeParams,$translate,$upload,$location) {	
 	//console.log($location.url());	
 	
 	$scope.user = {};
@@ -106,10 +106,35 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	];
 
 		
-	console.log("lang="+$translate.preferredLanguage());		
+	//console.log("lang="+$translate.preferredLanguage());		
 
-	$scope.template = {name: "edit profile 1",url: myLocalized.theme_dir + 'partials/profile.html'};
+	$scope.template = {name: "edit profile 1",url: myLocalized.theme_dir + 'partials/profile.html'};	
 	
+
+	function changeTabs(sLocHash) {		
+		if (sLocHash.indexOf("profile")!=-1) {		
+			$scope.tabs[1].active = true;				
+		}
+		else if (sLocHash.indexOf("pic")!=-1) {		
+			$scope.tabs[2].active = true;				
+		}
+		else if (sLocHash.indexOf("alerts")!=-1) {		
+			$scope.tabs[3].active = true;				
+		}
+		else {
+			$scope.tabs[0].active = true;	
+		}
+	}
+
+	var sLocHash = $location.hash();
+	changeTabs(sLocHash);		
+
+	$scope.$on('$locationChangeSuccess', function(event) {
+		var sLocHash = $location.hash();		
+		changeTabs(sLocHash);
+	});
+	
+		
 	
 	$scope.getTimeZones = function(cntry) {				
 		//console.log("IN getTimeZones");
@@ -143,7 +168,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	
 	//get user data and init ui elemnts:
 	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser').success(function(res){	
-		console.log(res);
+		//console.log(res);
 		$scope.user = res;
 		
 		//get countries:
@@ -171,7 +196,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 
 	
 	$scope.checkError = function()  {
-		console.log("IN checkError");		
+		//console.log("IN checkError");		
 		/*if ($scope.user.password.length && $scope.user.password2.length) {
 			if ($scope.user.password != $scope.user.password2) {				
 				$scope.PSWRD_MATCH_ERROR = true;				
@@ -192,7 +217,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	   if ($scope.checkError()) return false;
 	   var sPswrd = (typeof $scope.user.password === 'undefined')?'':$scope.user.password;
 	   var sPswrd2 = (typeof $scope.user.password2 === 'undefined')?'':$scope.user.password2;
-       console.log("--> Submitting form");
+       //console.log("--> Submitting form");
        var dataStr = 'action=setuser' +        					
        					'&password=' + sPswrd +
        					'&password2=' + sPswrd2+
@@ -203,7 +228,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
        
         
 
-       console.log("dataStr="+dataStr);
+       //console.log("dataStr="+dataStr);
       
 	   $http({
             url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser',
@@ -211,7 +236,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
             data: dataStr,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
         }).success(function (data, status, headers, config) {
-                console.log(data);
+                //console.log(data);
                 if (data==1) {                	    				    					
 					   	$scope.tabs[1].disabled = false;
 					   	$scope.tabs[0].active = false;		
@@ -220,20 +245,20 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 
                 }
             }).error(function (data, status, headers, config) {
-                console.log(data);
+                //console.log(data);
             });
      }
 
      $scope.submitTheForm2 = function(item, event) {
 	    if ($scope.checkError()) return false;
-       console.log("--> Submitting form");
+       //console.log("--> Submitting form");
        var dataStr = 'action=setuser2' +        					
        					'&firstname=' + $scope.user.firstname +
        					'&lastname=' + $scope.user.lastname+
        					'&position=' + $scope.user.position+
        					'&about=' + $scope.user.about;                         
 
-       console.log(dataStr);
+       //console.log(dataStr);
       
 	   $http({
             url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser2',
@@ -241,7 +266,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
             data: dataStr,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
         }).success(function (data, status, headers, config) {
-                console.log(data);
+                //console.log(data);
                 if (data==1) {                	    				    					
 					   	$scope.tabs[2].disabled = false;
 					   	$scope.tabs[3].disabled = false;
@@ -251,7 +276,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 
                 }
             }).error(function (data, status, headers, config) {
-                console.log(data);
+                //console.log(data);
             });
      }
      
@@ -270,8 +295,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
             		data: file,            		         		
                 }).progress(function (evt) {
                     var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    console.log('progress: ' + progressPercentage + '% ' +
-                                evt.config.file.name);
+                    //console.log('progress: ' + progressPercentage + '% ' +  evt.config.file.name);
                 }).success(function (data, status, headers, config) {
                     //console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
                     $scope.User_Success=true;

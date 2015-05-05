@@ -9,7 +9,7 @@ var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php
     
 //global functions    
 
-filterBoxes = function(iAuthorID,parentCat,sSort) {    
+filterBoxes = function(iAuthorID,parentCat,sSort,iCatID,bInNosse) {    
   
   sOrderby = "ID";
   if (sSort == 'new_to_old') sOrder = "desc";  
@@ -26,7 +26,9 @@ filterBoxes = function(iAuthorID,parentCat,sSort) {
               'order_by': sOrderby,
               'order': sOrder,
               'parent_cat': parentCat,
-              'author_id': iAuthorID 
+              'author_id': iAuthorID,
+              'cat' : iCatID,
+              'in_nosse' : bInNosse
           },          
           url: ajaxurl,          
           success    : function(data){
