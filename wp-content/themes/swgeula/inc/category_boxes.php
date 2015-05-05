@@ -125,17 +125,15 @@
                                                    
                  <?php                    
                     $cat_parent = $cat->parent;                                                                               
-                    $tempParent2 = get_category($cat_parent);
+                    $tempParent = get_category($cat_parent);                                        
                     
                     //if ($parentcat->parent == getCatIDOfLibrary()) $cat_parent_link = "";
                     //else $cat_parent_link = 
                             
-                         /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
-    ?>
-                   
-                                    
+                         /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/    ?>                   
+                     <?php //echo "cat="   . $tempParent2->parent; ?>
 
-              <?php echo '<a href="'.($tempParent->parent == getCatIDOfLibrary()?'':$tempParent2->slug).'" style="color:'.$color.'" class="category_square_oval_submit">'.$tempParent2->name.'</a>';  ?>
+              <?php echo '<a href="'.((isset($bInNosse) && $bInNosse)?'../'.$tempParent->slug:$tempParent->slug).'" style="color:'.$color.'" class="category_square_oval_submit">'.$tempParent->name.'</a>';  ?>
 
               <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
                     foreach ($values as $value => $label) {                        

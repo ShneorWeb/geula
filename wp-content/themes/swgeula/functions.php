@@ -693,7 +693,7 @@ add_action( 'save_post', 'sw_update_video_table', 10, 3 );
 
 function getCatBoxes() {		
 
-	$parent_cat = (int)$_POST['parent_cat'];
+	$parent_cat = (int)$_POST['parent_cat'];	
 	$order = $_POST['order'];
 	$orderby = $_POST['order_by'];
 	$iAuthorID = (int)$_POST['author_id'];		
@@ -701,6 +701,7 @@ function getCatBoxes() {
 	$this_category = get_category($cat);    	
     $parent = $this_category->parent;
     $parentcat = get_category($parent);    
+    $bInNosse = (int)$_POST['in_nosse'];
 
 	//if ( is_int($userID) && is_int($lessonID) ) :
 

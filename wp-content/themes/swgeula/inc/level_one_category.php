@@ -49,7 +49,7 @@
                    
                     <!-- filter by author -->
                      <form>
-                        <select id="select_author" name="select_author" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>)" class="selectpicker show-tick">
+                        <select id="select_author" name="select_author" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick">
                             <option value="0" >מוסר שיעור</option>
                             <?php 
                                
@@ -86,7 +86,7 @@
                     <!-- filter by subject -->
                      <form>      
                          
-                         <select id="select_subject" name="select_subject" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>)" class="selectpicker show-tick"> 
+                         <select id="select_subject" name="select_subject" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick"> 
                              
                              <option value="<?php echo $this_category->cat_ID; ?>">
                                 <?php echo esc_attr(__('נושא')); ?>
@@ -127,7 +127,7 @@
                     
      <form>          
            <!-- filter by order -->                          
-           <select id="select_order" name="select_order" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>)" class="selectpicker show-tick">
+           <select id="select_order" name="select_order" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick">
                <option value="new_to_old">חדש לישן</option>
                <option value="old_to_new">ישן לחדש</option>
                <option value="name">אלף בתי</option>                                                                          
