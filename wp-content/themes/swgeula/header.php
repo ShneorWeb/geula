@@ -125,7 +125,7 @@
                     
                     
                     <div class="profile_dtls dropdown">
-                         <div class="avatar_name" data-toggle="dropdown">
+                         <div id="div-display-name" class="avatar_name" data-toggle="dropdown">
                        <?php
                            $current_user = wp_get_current_user();
                            /*

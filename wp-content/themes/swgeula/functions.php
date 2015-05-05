@@ -923,7 +923,7 @@ function set_user_profile2(){
 		 
 		if( empty( $error ) ){
 
-			$userdata = array( 'ID' => $uid, 'first_name' => $fname, 'last_name' => $lname, 'user_nicename' => $fname.' '.$lname );
+			$userdata = array( 'ID' => $uid, 'first_name' => $fname, 'last_name' => $lname, 'display_name' => $fname.' '.$lname );
 		 
 			$status = wp_update_user( $userdata );
 			 

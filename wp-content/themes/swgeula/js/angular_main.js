@@ -268,11 +268,12 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
         }).success(function (data, status, headers, config) {
                 console.log(data);
                 if (data==1) {                	    				    					
+                		document.getElementById('div-display-name').innerHTML = $scope.user.firstname + ' ' + $scope.user.lastname; //update menu on top
 					   	$scope.tabs[2].disabled = false;
 					   	$scope.tabs[3].disabled = false;
 					   	$scope.tabs[1].active = false;		
 					   	$scope.tabs[2].active = true;	
-					   	$scope.User_Success=true;						   						   	
+					   	$scope.User_Success=true;						   						   						   	
 
                 }
             }).error(function (data, status, headers, config) {
