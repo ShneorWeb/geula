@@ -719,6 +719,8 @@ function getCatIDOfLibrary() {
 	return 3;
 }
 
+show_admin_bar(false);
+
 /*****************************AJAX/ANGUALR FUNCTIONS******************/
 function getSWGeulaAvatar($size=96)  {
 	global $current_user;

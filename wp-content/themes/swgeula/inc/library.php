@@ -140,7 +140,7 @@
 											    	<div class="category_square_number">
 														<?php 
                                                             $user_post_count = count_user_posts( $user_id );
-                                                            echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');
+                                                            echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');                                                            
                                                         ?>                                                        
 													</div><?php } ?>
 											</div>
