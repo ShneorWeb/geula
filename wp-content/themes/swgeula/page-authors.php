@@ -61,17 +61,11 @@ get_header(); ?>
 										<div class="category_square_content">                                         
 
 											<div class="category_square_author">
-												<?php
-                        												    
-                                                    //TODO : image from ofer function
+												<?php                       												    
+                                                    
 												    echo '<div class="category_square_avatar">';
-
-												    if ( getSWGeulaAvatar()!="" ) { ?>												    
-												    	<img src="<?php echo getSWGeulaAvatarUID($user->ID); ?>"/>
-												    <?php 	
-												    	} else echo get_avatar( $user, 100 );												    
-												    
-												    
+												     
+												    echo get_avatar( $user->ID, 96 );												    											    												    
 
 												    echo '</div>'; 
 

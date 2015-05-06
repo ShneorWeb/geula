@@ -722,7 +722,7 @@ function getCatIDOfLibrary() {
 
 show_admin_bar(false);
 
-/*****************************AJAX/ANGUALR FUNCTIONS******************/
+
 function getSWGeulaAvatar($size=96)  {
 	global $current_user;
 	$current_user = wp_get_current_user();
@@ -737,13 +737,38 @@ function getSWGeulaAvatar($size=96)  {
 function getSWGeulaAvatarUID($uid,$size=96)  {
 	$avtr = "";
 
-	if ( !empty($uid) && is_numeric($uid) ) {
+	if ( !empty($uid) && is_numeric($uid) ) {		
 		if ($size==96) $avtr = get_user_meta( $uid, 'custom_avatar', true );
 		else $avtr = get_user_meta( $uid, 'custom_avatar_'.$size, true );
 		if ( empty($avtr) || (is_array($avtr) && size($avtr)==0) ) $avtr = "";
 	}
 	return $avtr;	
 }
+
+function my_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {			
+    if (!isset($size)) $size=96;
+
+    if ( is_numeric( $id_or_email ) ) $id = (int)$id_or_email;       
+    elseif ( is_object( $id_or_email ) ) {    	
+        if ( !empty( $id_or_email->ID ) ) {        	
+            $id = (int)$id_or_email->ID;                                    
+        }
+    }
+    else {
+    	$user = get_user_by( 'email', $id_or_email );
+    	$id = (int) $user->ID;    	
+    }
+    if (is_numeric($id)) {    
+        $customAvatarSrc = getSWGeulaAvatarUID($id,$size);        
+
+        if ( !empty($customAvatarSrc) ) $avatar = '<img src="'.$customAvatarSrc.'"/>';                                            
+    }
+
+    return $avatar;
+}
+add_filter( 'get_avatar' , 'my_custom_avatar' , 1 , 5 );
+
+/*****************************AJAX/ANGUALR FUNCTIONS******************/
 function get_user_id() {
 	if ( is_user_logged_in() ) {
 		$current_user = wp_get_current_user();

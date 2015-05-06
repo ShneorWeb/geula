@@ -348,9 +348,8 @@ class MY_Post_Numbers {
                     </h3>
 
                     <div class="box userdtls">
-                           <?php
-                                //TODO : image from ofer function
-                                echo '<div class="category_square_avatar">'. get_avatar( $the_user, 100 ) . '</div>'; 
+                           <?php                                
+                                echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 96 ) . '</div>'; 
                             ?>
                                    
                                     <div class="dtls">
