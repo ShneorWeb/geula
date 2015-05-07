@@ -23,7 +23,7 @@ $current_user = wp_get_current_user();
                    <a class="current">
                         <?php echo __('השיעורים שלי', 'swgeula'); ?>
                     </a>
-                    <a href="<?php echo get_permalink('91'); ?>">
+                    <a href="<?php echo esc_url( get_permalink( get_page_by_title( __('שיעורים שאני מוסר', 'swgeula') ) ) ); ?>">
                         <?php echo __('שיעורים שאני מוסר', 'swgeula'); ?>
                     </a>
                 </div>

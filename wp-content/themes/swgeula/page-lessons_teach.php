@@ -24,7 +24,7 @@ get_header(); ?>
                          </div>
                          
                           <div class="box menu">
-                            <a  href="<?php echo get_permalink('88'); ?>">
+                            <a href="<?php echo esc_url( get_permalink( get_page_by_title( __('השיעורים שלי', 'swgeula') ) ) ); ?>">
                                 <?php echo __('השיעורים שלי', 'swgeula'); ?>
                             </a >
                             <a class="current">
