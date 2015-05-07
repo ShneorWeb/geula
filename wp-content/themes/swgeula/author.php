@@ -297,6 +297,8 @@
                                                         }
 
                                                     ?>
+                                                    
+            <?php include "inc/add_lesson_btn.php" ?>
             
         </div>
 		

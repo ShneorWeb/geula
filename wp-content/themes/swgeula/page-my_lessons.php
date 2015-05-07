@@ -29,12 +29,19 @@ $current_user = wp_get_current_user();
                 </div>
 
                 <div class="image_category">
+                               
+                               <?php 
+                                    //if there is a lesson in schedule
+                                    $schedule = true;
+                                ?>
                                 
                                 <div class="big_icon">
                                     <i class="fa fa-calendar-o"></i>
-                                    <div class="status x"><i class="fa fa-times"></i></div>
-                                    <!-- display on after-->
-                                    <div class="status v" style="display:none"><i class="fa fa-check"></i></div>
+                                    <?php if($schedule){?>
+                                        <div class="status x"><i class="fa fa-times"></i></div>
+                                    <?php }else{?>
+                                        <div class="status v"><i class="fa fa-check"></i></div>
+                                    <?php }?>
                                 </div>
                                 <div class="dtls">
                                     

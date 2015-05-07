@@ -184,6 +184,8 @@
                                                             }
 
                                                         ?>
+                                                        
+            <?php include "add_lesson_btn.php" ?>
                 
             </div>
     		

@@ -12,7 +12,7 @@ Author URI:
 
 Tags:
 */
-.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .page-template-custom-profile-php .nav-pills > li > a {
+.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .page-template-custom-profile-php .nav-pills > li > a, .add_lesson_btn.add {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -1944,6 +1944,34 @@ button.edit_profile {
 .page-template-page-my_lessons-php .single_lesson_cont {
   background-color: rgba(131, 140, 199, 0.15);
   border: #E1E1E1 1px solid;
+}
+
+.add_lesson_btn {
+  border: 2px solid #EAEDEF;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+  float: left;
+  padding: 7px 10px;
+  color: #b2bac2;
+}
+.add_lesson_btn.done {
+  color: green;
+}
+.add_lesson_btn.remove i.remove {
+  display: none;
+}
+.add_lesson_btn.remove:hover {
+  padding: 9px 11px;
+}
+.add_lesson_btn.remove:hover i.add {
+  display: none;
+}
+.add_lesson_btn.remove:hover i.remove {
+  display: block;
+  color: red;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------

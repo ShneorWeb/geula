@@ -2221,6 +2221,40 @@ button.edit_profile{
 }
 
 
+.add_lesson_btn{
+  border: 2px solid #EAEDEF;
+  @include border-radius(50%);
+  font-size: 16px;
+  font-weight: 700;
+  float: left;
+  padding: 7px 10px;
+  color: #b2bac2;
+    
+    &.add{
+    @extend %trans;
+    }
+    
+     &.done{
+    color: green;
+    }
+    
+    &.remove{
+        i.remove{
+                 display:none;
+            }
+        &:hover{
+            padding: 9px 11px;
+            i.add{
+                display:none;
+            }
+            i.remove{
+                 display:block;
+                 color: red;
+            }
+        }
+    }
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
