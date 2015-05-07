@@ -603,6 +603,10 @@ h3{
 .ltl_title{
   font-size: 1.125rem;
   font-weight: 700;
+    span{
+        color: #b2bac2;
+        margin-right: 10px;
+    }
 }
 
 .site-branding{
@@ -1919,7 +1923,7 @@ margin: 5px 0 45px;
     display: none;
 }
 
-.page-template-page-dashboard-php,.page-template-page-my_lessons-php{
+.page-template-page-dashboard-php,.page-template-page-my_lessons-php,.page-template-page-lessons_teach-php{
     
      .menu-menu-right-container ul li.microphone {
           background-color: inherit;
@@ -2133,10 +2137,11 @@ button.edit_profile{
 
 
 
-.page-template-page-my_lessons-php{
+.page-template-page-my_lessons-php,.page-template-page-lessons_teach-php{
     .image_category {      
       padding-top: 8px;
       padding-bottom: 40px;
+      margin-bottom: 80px;
         
     }
     .box.menu{
@@ -2252,6 +2257,35 @@ button.edit_profile{
                  color: red;
             }
         }
+    }
+}
+
+.page-template-page-my_lessons-php .image_category p{
+  font-size: 1.125rem;  
+}
+
+a.schedule_new{
+    color: #08BBFD;
+    font-weight: 700;
+}
+
+.box.new{
+    display: inline-block;
+    width: 100%;
+    float: right;
+}
+
+.cat_cont{
+    margin-top: 25px;
+}
+
+.page-template-page-lessons_teach-php{
+    li.bookmark{
+        background-color: #57bfb8;
+    }
+    .image_category{
+          padding-top: 4.8%;
+          margin-bottom: 0;
     }
 }
 
