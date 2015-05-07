@@ -127,11 +127,8 @@
 										<div class="category_top_square" style="background:<?php echo $color; ?>">
                                             <span class="category_top_time">
                                                 
-                                                <!-- 
-                                                    TODO: get the time of category dynamcly
-                                                -->
-                                                
-                                                12 שעות
+                                                <?php echo formatHoursMinutes(getTotalVideoDurationCat($cat2->cat_ID));?>
+
                                             </span>
                                             <!-- 
                                                     TODO: get the icon of category dynamcly

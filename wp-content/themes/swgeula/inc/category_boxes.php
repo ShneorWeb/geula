@@ -104,11 +104,8 @@
     										<div class="category_top_square" style="background:<?php echo $color; ?>">
                                                 <span class="category_top_time">
                                                     
-                                                    <!-- 
-                                                        TODO: get the time of category dynamcly
-                                                    -->
+                                                         <?php echo formatHoursMinutes(getTotalVideoDurationCat($cat->cat_ID));?>                                              
                                                     
-                                                    12 שעות
                                                 </span>
     											<i class="icon-type-of-lesson-icon-1"></i>
     										</div>
@@ -149,8 +146,7 @@
     												 $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
     												foreach ($values as $user_id) {
     												    $the_user = get_user_by('id', $user_id);                                                                                                                
-
-                                                        //TODO : image from ofer function
+                                                        
     												    echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 96 ) . '</div>'; 
 
     												    echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->display_name . '</h4></div>';

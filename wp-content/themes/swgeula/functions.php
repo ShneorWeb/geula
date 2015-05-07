@@ -13,6 +13,11 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 640; /* pixels */
 }
 
+global $IS_LOCAL;
+$pos1 = strpos(get_bloginfo('wpurl'), "127.0.0.1"); //dev	
+if ($pos1 === false) $IS_LOCAL=false;
+else $IS_LOCAL = true;
+
 if ( ! function_exists( 'swgeula_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -75,12 +80,7 @@ function swgeula_setup() {
 	add_theme_support( 'custom-background', apply_filters( 'swgeula_custom_background_args', array(
 		'default-color' => 'ffffff',
 		'default-image' => '',
-	) ) );	
-
-	global $IS_LOCAL;
-	$pos1 = strpos(get_bloginfo('wpurl'), "127.0.0.1"); //dev	
-	if ($pos1 === false) $IS_LOCAL=false;
-	else $IS_LOCAL = true;
+	) ) );		
 }
 endif; // swgeula_setup
 add_action( 'after_setup_theme', 'swgeula_setup' );
@@ -610,6 +610,7 @@ function getYoutubeDuration($video_id){
         //$data=@file_get_contents(filename)('http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
         //if (false===$data) return 0;
 
+
 		$curlSession = curl_init();
 	    curl_setopt($curlSession, CURLOPT_URL, 'http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
 	    curl_setopt($curlSession, CURLOPT_BINARYTRANSFER, true);
@@ -647,6 +648,37 @@ function getTotalVideoDuration($arrLessonIDs) {
 	}
 	return $retVal;	
 }
+function getTotalVideoDurationCat($catID) {
+	global $wpdb;
+	$retVal = 0;
+
+	if (is_numeric($catID)) :
+
+		$mainQuery = new WP_Query( 'cat='.$catID.',post_status=publish,post_type=post' );
+
+		if ( $mainQuery->have_posts() ) :
+
+			while ( $mainQuery->have_posts() ) : $mainQuery->the_post();
+				$arrLessonIDs[] = get_the_ID();
+			endwhile;	
+
+		endif;	
+
+		if (is_array($arrLessonIDs) && count($arrLessonIDs)>0) :
+
+			$results = $wpdb->get_results("SELECT duration FROM wp_sw_videos WHERE lesson_id IN (".implode(",", $arrLessonIDs).") ORDER BY id DESC;",ARRAY_A);		
+			
+				if (count($results)>0) {
+						
+						foreach($results as $row) {	
+							$retVal += (int)$row['duration'];
+						}
+				}			
+		endif;
+
+	endif;	
+	return $retVal;	
+}
 
 function getNumStudents($arrPostIDs) {
 	global $wpdb;
@@ -677,7 +709,7 @@ function getNumStudents($arrPostIDs) {
 		$wpdb->insert("wp_sw_videos", array( 		
 				'video_id' => $vidID,
 				'lesson_id' => $post_id, 				
-				'duration' => getYoutubeDuration($vidID),
+				'duration' => getYoutubeDuration($vidID),				
 				'date_added' => date('Y-m-d H:i:s')
 		));
 	}	
