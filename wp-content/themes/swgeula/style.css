@@ -12,7 +12,7 @@ Author URI:
 
 Tags:
 */
-.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .page-template-custom-profile-php .nav-pills > li > a {
+.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .page-template-custom-profile-php .nav-pills > li > a, .add_lesson_btn.add {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -20,12 +20,12 @@ Tags:
   transition: all 0.2s ease-in-out;
 }
 
-.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn {
+.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-.single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover, .page-template-page-my_lessons-php .schedule_btn:hover {
+.single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover, .page-template-page-my_lessons-php .schedule_btn:hover, .page-template-page-lessons_teach-php .schedule_btn:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   opacity: 0.75;
 }
@@ -517,6 +517,10 @@ h3 {
 .ltl_title {
   font-size: 1.125rem;
   font-weight: 700;
+}
+.ltl_title span {
+  color: #b2bac2;
+  margin-right: 10px;
 }
 
 .site-branding h1 {
@@ -1204,28 +1208,28 @@ main library page
   padding-bottom: 0px;
 }
 
-.archive.author .menu-menu-right-container ul li.microphone, .page-template-page-dashboard-php .menu-menu-right-container ul li.microphone, .page-template-page-my_lessons-php .menu-menu-right-container ul li.microphone {
+.archive.author .menu-menu-right-container ul li.microphone, .page-template-page-dashboard-php .menu-menu-right-container ul li.microphone, .page-template-page-my_lessons-php .menu-menu-right-container ul li.microphone, .page-template-page-lessons_teach-php .menu-menu-right-container ul li.microphone {
   background-color: #57bfb8;
 }
-.archive.author .image_category, .page-template-page-dashboard-php .image_category, .page-template-page-my_lessons-php .image_category {
+.archive.author .image_category, .page-template-page-dashboard-php .image_category, .page-template-page-my_lessons-php .image_category, .page-template-page-lessons_teach-php .image_category {
   background-color: #fff;
   padding-right: 4.8%;
   padding-left: 4.8%;
   padding-top: 4.8%;
 }
-.archive.author .current_category_name h1, .page-template-page-dashboard-php .current_category_name h1, .page-template-page-my_lessons-php .current_category_name h1 {
+.archive.author .current_category_name h1, .page-template-page-dashboard-php .current_category_name h1, .page-template-page-my_lessons-php .current_category_name h1, .page-template-page-lessons_teach-php .current_category_name h1 {
   color: #39add1;
   font-size: 2.25rem;
 }
-.archive.author .category_square_avatar.in_header, .page-template-page-dashboard-php .category_square_avatar.in_header, .page-template-page-my_lessons-php .category_square_avatar.in_header {
+.archive.author .category_square_avatar.in_header, .page-template-page-dashboard-php .category_square_avatar.in_header, .page-template-page-my_lessons-php .category_square_avatar.in_header, .page-template-page-lessons_teach-php .category_square_avatar.in_header {
   width: 16%;
   margin-left: 2%;
 }
-.archive.author .current_category_description, .page-template-page-dashboard-php .current_category_description, .page-template-page-my_lessons-php .current_category_description, .archive.author .number_of_posts_in_header, .page-template-page-dashboard-php .number_of_posts_in_header, .page-template-page-my_lessons-php .number_of_posts_in_header, .archive.author .current_category_name, .page-template-page-dashboard-php .current_category_name, .page-template-page-my_lessons-php .current_category_name {
+.archive.author .current_category_description, .page-template-page-dashboard-php .current_category_description, .page-template-page-my_lessons-php .current_category_description, .page-template-page-lessons_teach-php .current_category_description, .archive.author .number_of_posts_in_header, .page-template-page-dashboard-php .number_of_posts_in_header, .page-template-page-my_lessons-php .number_of_posts_in_header, .page-template-page-lessons_teach-php .number_of_posts_in_header, .archive.author .current_category_name, .page-template-page-dashboard-php .current_category_name, .page-template-page-my_lessons-php .current_category_name, .page-template-page-lessons_teach-php .current_category_name {
   float: right;
   clear: both;
 }
-.archive.author .dtls, .page-template-page-dashboard-php .dtls, .page-template-page-my_lessons-php .dtls {
+.archive.author .dtls, .page-template-page-dashboard-php .dtls, .page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls {
   float: right;
   width: 60%;
   margin-top: 10px;
@@ -1697,19 +1701,19 @@ h2.name_of_single {
   display: none;
 }
 
-.page-template-page-dashboard-php .menu-menu-right-container ul li.microphone, .page-template-page-my_lessons-php .menu-menu-right-container ul li.microphone {
+.page-template-page-dashboard-php .menu-menu-right-container ul li.microphone, .page-template-page-my_lessons-php .menu-menu-right-container ul li.microphone, .page-template-page-lessons_teach-php .menu-menu-right-container ul li.microphone {
   background-color: inherit;
 }
-.page-template-page-dashboard-php .back_to_libary h1, .page-template-page-my_lessons-php .back_to_libary h1 {
+.page-template-page-dashboard-php .back_to_libary h1, .page-template-page-my_lessons-php .back_to_libary h1, .page-template-page-lessons_teach-php .back_to_libary h1 {
   font-size: 1.125rem;
   font-weight: 700;
   margin-top: 3px;
   margin-bottom: 4px;
 }
-.page-template-page-dashboard-php .current_category_description.sub, .page-template-page-my_lessons-php .current_category_description.sub {
+.page-template-page-dashboard-php .current_category_description.sub, .page-template-page-my_lessons-php .current_category_description.sub, .page-template-page-lessons_teach-php .current_category_description.sub {
   font-weight: 300;
 }
-.page-template-page-dashboard-php .nextstage_block, .page-template-page-my_lessons-php .nextstage_block {
+.page-template-page-dashboard-php .nextstage_block, .page-template-page-my_lessons-php .nextstage_block, .page-template-page-lessons_teach-php .nextstage_block {
   background-color: #fff;
   padding-right: 4.8%;
   padding-left: 4.8%;
@@ -1718,37 +1722,37 @@ h2.name_of_single {
   width: 100%;
   margin: 5px 0px 25px;
 }
-.page-template-page-dashboard-php .nextstage_block p, .page-template-page-my_lessons-php .nextstage_block p {
+.page-template-page-dashboard-php .nextstage_block p, .page-template-page-my_lessons-php .nextstage_block p, .page-template-page-lessons_teach-php .nextstage_block p {
   font-size: 1.5rem;
   color: #686969;
 }
-.page-template-page-dashboard-php .nextstage_block p.rabbi_quote, .page-template-page-my_lessons-php .nextstage_block p.rabbi_quote {
+.page-template-page-dashboard-php .nextstage_block p.rabbi_quote, .page-template-page-my_lessons-php .nextstage_block p.rabbi_quote, .page-template-page-lessons_teach-php .nextstage_block p.rabbi_quote {
   font-style: italic;
   margin-top: 50px;
 }
-.page-template-page-dashboard-php .nextstage_block p.rabbi_quote_source, .page-template-page-my_lessons-php .nextstage_block p.rabbi_quote_source {
+.page-template-page-dashboard-php .nextstage_block p.rabbi_quote_source, .page-template-page-my_lessons-php .nextstage_block p.rabbi_quote_source, .page-template-page-lessons_teach-php .nextstage_block p.rabbi_quote_source {
   font-size: 0.875rem;
 }
-.page-template-page-dashboard-php .nextstage_block .progress, .page-template-page-my_lessons-php .nextstage_block .progress {
+.page-template-page-dashboard-php .nextstage_block .progress, .page-template-page-my_lessons-php .nextstage_block .progress, .page-template-page-lessons_teach-php .nextstage_block .progress {
   margin-top: 40px;
 }
-.page-template-page-dashboard-php .nextstage_block .current_level, .page-template-page-my_lessons-php .nextstage_block .current_level {
+.page-template-page-dashboard-php .nextstage_block .current_level, .page-template-page-my_lessons-php .nextstage_block .current_level, .page-template-page-lessons_teach-php .nextstage_block .current_level {
   font-family: 'Open Sans Hebrew', Helvetica, Arial, Sans-Serif;
   text-align: center;
   font-size: 1.125rem;
 }
-.page-template-page-dashboard-php .first_title, .page-template-page-dashboard-php .second_title, .page-template-page-my_lessons-php .first_title, .page-template-page-my_lessons-php .second_title {
+.page-template-page-dashboard-php .first_title, .page-template-page-dashboard-php .second_title, .page-template-page-my_lessons-php .first_title, .page-template-page-my_lessons-php .second_title, .page-template-page-lessons_teach-php .first_title, .page-template-page-lessons_teach-php .second_title {
   color: #686969;
   font-size: 2.25rem;
   line-height: 1.3;
 }
-.page-template-page-dashboard-php .big_icon, .page-template-page-my_lessons-php .big_icon {
+.page-template-page-dashboard-php .big_icon, .page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon {
   width: 16%;
   margin-left: 2%;
   float: right;
   display: block;
 }
-.page-template-page-dashboard-php .big_icon i, .page-template-page-my_lessons-php .big_icon i {
+.page-template-page-dashboard-php .big_icon i, .page-template-page-my_lessons-php .big_icon i, .page-template-page-lessons_teach-php .big_icon i {
   font-size: 10.31rem;
   margin-top: 50%;
   color: #384047;
@@ -1820,10 +1824,10 @@ button.edit_profile {
   transform: none !important;
 }
 
-.page-template-page-dashboard-php .site-content > .container {
+.page-template-page-dashboard-php .site-content > .container, .page-template-page-my_lessons-php .site-content > .container, .page-template-page-lessons_teach-php .site-content > .container {
   max-width: 100%;
 }
-.page-template-page-dashboard-php .dtls {
+.page-template-page-dashboard-php .dtls, .page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls {
   width: 80%;
 }
 
@@ -1877,36 +1881,37 @@ button.edit_profile {
   margin-bottom: 20px !important;
 }
 
-.page-template-page-my_lessons-php .image_category {
+.page-template-page-my_lessons-php .image_category, .page-template-page-lessons_teach-php .image_category {
   padding-top: 8px;
   padding-bottom: 40px;
+  margin-bottom: 80px;
 }
-.page-template-page-my_lessons-php .box.menu {
+.page-template-page-my_lessons-php .box.menu, .page-template-page-lessons_teach-php .box.menu {
   float: right;
   width: 100%;
   margin-top: 23px;
   padding: 16px 20px;
 }
-.page-template-page-my_lessons-php .box.menu a {
+.page-template-page-my_lessons-php .box.menu a, .page-template-page-lessons_teach-php .box.menu a {
   color: #555459;
   font-size: 1.25rem;
   margin-left: 50px;
 }
-.page-template-page-my_lessons-php .box.menu a.current {
+.page-template-page-my_lessons-php .box.menu a.current, .page-template-page-lessons_teach-php .box.menu a.current {
   font-weight: 700;
 }
-.page-template-page-my_lessons-php .box.menu a.last-child {
+.page-template-page-my_lessons-php .box.menu a.last-child, .page-template-page-lessons_teach-php .box.menu a.last-child {
   margin-left: 0;
 }
-.page-template-page-my_lessons-php .big_icon {
+.page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon {
   width: 16%;
   margin-left: 2%;
   position: relative;
 }
-.page-template-page-my_lessons-php .big_icon i {
+.page-template-page-my_lessons-php .big_icon i, .page-template-page-lessons_teach-php .big_icon i {
   margin-top: 75px;
 }
-.page-template-page-my_lessons-php .big_icon .status {
+.page-template-page-my_lessons-php .big_icon .status, .page-template-page-lessons_teach-php .big_icon .status {
   position: absolute;
   top: 70px;
   bottom: 0;
@@ -1915,35 +1920,94 @@ button.edit_profile {
   text-align: center;
   max-width: 155px;
 }
-.page-template-page-my_lessons-php .big_icon .status i {
+.page-template-page-my_lessons-php .big_icon .status i, .page-template-page-lessons_teach-php .big_icon .status i {
   font-size: 80px;
   margin-top: 70px;
 }
-.page-template-page-my_lessons-php .big_icon .status.x i {
+.page-template-page-my_lessons-php .big_icon .status.x i, .page-template-page-lessons_teach-php .big_icon .status.x i {
   color: #e15258;
 }
-.page-template-page-my_lessons-php .big_icon .status.v i {
+.page-template-page-my_lessons-php .big_icon .status.v i, .page-template-page-lessons_teach-php .big_icon .status.v i {
   color: #51b46d;
 }
-.page-template-page-my_lessons-php .dtls h2 {
+.page-template-page-my_lessons-php .dtls h2, .page-template-page-lessons_teach-php .dtls h2 {
   color: #555459;
   font-size: 2.25rem;
   font-weight: 400;
   margin-bottom: 20px;
 }
-.page-template-page-my_lessons-php .schedule_btn {
+.page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn {
   background-color: #51b46d;
   color: #fff;
   font-size: 1.25rem;
   font-weight: 700;
   padding: 11px 25px;
 }
-.page-template-page-my_lessons-php .schedule_btn i {
+.page-template-page-my_lessons-php .schedule_btn i, .page-template-page-lessons_teach-php .schedule_btn i {
   margin-left: 10px;
 }
-.page-template-page-my_lessons-php .single_lesson_cont {
+.page-template-page-my_lessons-php .single_lesson_cont, .page-template-page-lessons_teach-php .single_lesson_cont {
   background-color: rgba(131, 140, 199, 0.15);
   border: #E1E1E1 1px solid;
+}
+
+.add_lesson_btn {
+  border: 2px solid #EAEDEF;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 700;
+  float: left;
+  padding: 7px 10px;
+  color: #b2bac2;
+}
+.add_lesson_btn.done {
+  color: green;
+}
+.add_lesson_btn.remove i.remove {
+  display: none;
+}
+.add_lesson_btn.remove:hover {
+  padding: 9px 11px;
+}
+.add_lesson_btn.remove:hover i.add {
+  display: none;
+}
+.add_lesson_btn.remove:hover i.remove {
+  display: block;
+  color: red;
+}
+
+.page-template-page-my_lessons-php .image_category p {
+  font-size: 1.125rem;
+}
+
+a.schedule_new {
+  color: #08BBFD;
+  font-weight: 700;
+}
+
+.box.new {
+  display: inline-block;
+  width: 100%;
+  float: right;
+}
+
+.cat_cont {
+  margin-top: 25px;
+}
+
+.page-template-page-lessons_teach-php li.bookmark {
+  background-color: #57bfb8;
+}
+.page-template-page-lessons_teach-php .image_category {
+  padding-top: 4.8%;
+  margin-bottom: 0;
+}
+
+.page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls {
+  width: auto;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
@@ -2037,7 +2101,7 @@ _responsive styles
     display: none;
   }
 
-  .archive.author .dtls, .page-template-page-dashboard-php .dtls, .page-template-page-my_lessons-php .dtls {
+  .archive.author .dtls, .page-template-page-dashboard-php .dtls, .page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls {
     margin-top: 0;
   }
 
@@ -2049,8 +2113,16 @@ _responsive styles
     width: 100%;
   }
 
-  .page-template-page-dashboard-php .big_icon i {
+  .page-template-page-dashboard-php .big_icon i, .page-template-page-my_lessons-php .big_icon i, .page-template-page-lessons_teach-php .big_icon i {
     font-size: 7.5rem;
+  }
+
+  .page-template-page-my_lessons-php .big_icon .status, .page-template-page-lessons_teach-php .big_icon .status {
+    max-width: 95px;
+  }
+  .page-template-page-my_lessons-php .big_icon .status i, .page-template-page-lessons_teach-php .big_icon .status i {
+    font-size: 60px;
+    margin-top: 47px;
   }
 }
 /* 1024 and less ----------- */
@@ -2140,6 +2212,18 @@ _responsive styles
 
   .page-template-page-dashboard-php .big_icon i {
     font-size: 6.5rem;
+  }
+
+  .page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon {
+    float: none;
+    margin: 0 auto;
+    min-width: 105px;
+  }
+  .page-template-page-my_lessons-php .big_icon i, .page-template-page-lessons_teach-php .big_icon i {
+    margin-top: 40px;
+  }
+  .page-template-page-my_lessons-php .big_icon .status i, .page-template-page-lessons_teach-php .big_icon .status i {
+    margin-top: 12px;
   }
 }
 /* 768 and more ----------- */

@@ -1,19 +1,35 @@
-<?php get_header(); ?>	
+<?php
+/*
+Template Name: Lessons Teach
+*/
+get_header(); ?>	
 
     <div class="col-lg-12 col-md-12 archive_cont">	
+       
         <?php
-          $author =  get_the_author_meta( 'ID'); 
+          $current_user = wp_get_current_user();
+//print_r($current_user);
+          $author =   $current_user->ID;
         ?>
+           
              <div class="page-header">	
 				
 
 				<div class="header_category">	
 
 					    <div class="back_to_libary">
-                          <a href="<?php echo get_permalink('68'); ?>">
-                              <i class="fa fa-arrow-right"></i>
-                              <?php echo get_the_title( '68' ); ?>
-                          </a>
+
+                            <h1><?php the_title(); ?></h1>
+
+                         </div>
+                         
+                          <div class="box menu">
+                            <a href="<?php echo esc_url( get_permalink( get_page_by_title( __('השיעורים שלי', 'swgeula') ) ) ); ?>">
+                                <?php echo __('השיעורים שלי', 'swgeula'); ?>
+                            </a >
+                            <a class="current">
+                                <?php echo __('שיעורים שאני מוסר', 'swgeula'); ?>
+                            </a>
                         </div>
 
                         <div class="image_category">
@@ -23,20 +39,20 @@
                             </div>
                             <div class="dtls">
                                 <div class="current_category_name">
-                                         <h1><?php echo get_the_author_meta( 'display_name'); ?></h1>
+                                         <h1><?php echo $current_user->display_name; ?></h1>
                                 </div>
 
                                 <div class="current_category_description">
-                                    <?php echo get_the_author_meta( 'subject'); ?>
+                                    <?php echo $current_user->subject; ?>
                                 </div>
 
                                 <div class="current_category_description">
-                                    <?php echo get_the_author_meta( 'description'); ?>
+                                    <?php echo $current_user->description; ?>
                                 </div>
 
                                 <div class="number_of_posts_in_header">
                                     <?php
-                                        $user_id = get_the_author_meta('ID');                                     
+                                        $user_id = $current_user->id;                                     
                                         $user_post_count = count_user_posts( $user_id );
                                                    
                                         echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');  

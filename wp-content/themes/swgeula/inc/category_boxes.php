@@ -135,7 +135,7 @@
                                                         ?>
     												<p>
                                                     <?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
-                                                        echo substr( $short_description, 0,180); 
+                                                        echo substr( $short_description, 0,170); 
                                                         echo "...";
                                                         ?>
                                                     </p>
@@ -184,12 +184,14 @@
                                                             }
 
                                                         ?>
+                                                        
+            <?php include "add_lesson_btn.php" ?>
                 
             </div>
     		
                         
                         
-                        </div>
+                        
     									</li>
     							</div>
 

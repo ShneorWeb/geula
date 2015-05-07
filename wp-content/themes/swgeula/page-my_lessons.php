@@ -20,29 +20,48 @@ $current_user = wp_get_current_user();
                 </div>
                 
                 <div class="box menu">
-                    <a href="#" class="current">
+                   <a class="current">
                         <?php echo __('השיעורים שלי', 'swgeula'); ?>
                     </a>
-                    <a href="#">
-                        <?php echo __('שיעורים שאני מלמד', 'swgeula'); ?>
+                    <a href="<?php echo esc_url( get_permalink( get_page_by_title( __('שיעורים שאני מוסר', 'swgeula') ) ) ); ?>">
+                        <?php echo __('שיעורים שאני מוסר', 'swgeula'); ?>
                     </a>
                 </div>
 
                 <div class="image_category">
+                               
+                               <?php 
+                                    //if there is a lesson in schedule
+                                    $schedule = false;
+                                ?>
                                 
                                 <div class="big_icon">
                                     <i class="fa fa-calendar-o"></i>
-                                    <div class="status x"><i class="fa fa-times"></i></div>
-                                    <!-- display on after-->
-                                    <div class="status v" style="display:none"><i class="fa fa-check"></i></div>
+                                    <?php if($schedule){?>
+                                        <div class="status x"><i class="fa fa-times"></i></div>
+                                    <?php }else{?>
+                                        <div class="status v"><i class="fa fa-check"></i></div>
+                                    <?php }?>
                                 </div>
                                 <div class="dtls">
                                     
-                                    <h2><?php the_field('title_no_lessons'); ?></h2>
+                                    <h2>
+                                       <?php if($schedule){?>
+                                       <?php the_field('title_no_lessons'); ?>
+                                       <?php }else{?>
+                                       <?php the_field('title_is_lessons'); ?>
+                                       <?php }?>
+                                    </h2>
 
-                                       <button class="schedule_btn">
-                                            <i class="fa fa-clock-o"></i><?php echo __('תזמן לימוד', 'swgeula'); ?>
-                                        </button>
+                                    <?php if(!$schedule){?>                                            
+                                    <p><?php echo __('תזמון הלימוד שלך הינו ל', 'swgeula') . $lesson_date . " " . __('בשעה', 'swgeula'). $lesson_time; ?> <a href="#" class="schedule_new"><?php echo __('תזמן מחדש', 'swgeula'); ?></a></p>  
+                                    <?php }?> 
+                                     
+                                    <?php if($schedule){?>
+                                           <button class="schedule_btn">
+                                                <i class="fa fa-clock-o"></i><?php echo __('תזמן לימוד', 'swgeula'); ?>
+                                            </button>
+                                    <?php }?>
                                         
                                         <h3 class="ltl_title">
                                             <?php echo __('השיעור הבא', 'swgeula'); ?>
@@ -63,6 +82,17 @@ $current_user = wp_get_current_user();
                                         
                                 </div>
 
+                   </div>
+                   
+                   <h3 class="ltl_title">
+                       <?php
+                            $number_of_series = 6;
+                            echo __('סדרות שאני לומד', 'swgeula') . "<span>" . $number_of_series . "</span>";
+                       ?>
+                   </h3>
+                   
+                   <div class="row cat_cont">
+                        <?php include_once("inc/category_boxes.php");?>
                    </div>
     </div>	
                      

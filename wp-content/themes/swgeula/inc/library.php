@@ -217,8 +217,11 @@
                                                         }
 
                                                     ?>
-            
-        <!--<a href="javascript:void(0);" onclick="addToMyLessons('cat',$cat2->cat_ID);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>">+</a>--></div>
+        
+        
+        <?php include "add_lesson_btn.php" ?>
+        
+        </div>
 		
                     
                                 </li>
