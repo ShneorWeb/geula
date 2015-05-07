@@ -61,6 +61,8 @@
 
 <body <?php body_class(); ?>>
 
+  <?php if(!is_page("custom-login-page")) : ?>
+
     <div class="navbar navbar-inverse navbar-fixed-top" >
        
       <header id="masthead" class="site-header" role="banner">
@@ -235,7 +237,7 @@
         
       </div>
 
-     
+     <?php endif; //of if ! custom-login-page ?>
 
    
 		<div id="content" class="site-content">

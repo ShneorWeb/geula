@@ -129,7 +129,7 @@ function swgeula_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 	
-	if($post->post_name == "custom-profile-page") {
+	if( is_page("custom-profile-page") ) {
 		wp_enqueue_script(
 			'angularjs',
 			get_stylesheet_directory_uri() . '/angular/angular.min.js'
@@ -453,6 +453,13 @@ function add_contact_fields($profile_fields) {
 }
 // Adding the filter
 add_filter('user_contactmethods', 'add_contact_fields');
+
+ function compareDates($a, $b) {
+            if ( $a['date'] == $b['date'] ) {
+              return 0;
+            }
+            return ($a['date'] < $b['date']) ? 1 : -1;
+}
 /****************Lessons Ajax ****************************************/
 function set_video_loc() {
 	global $wpdb;	

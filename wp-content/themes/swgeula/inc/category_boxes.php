@@ -7,19 +7,66 @@
       
 					//if (is_category() || is_single() || $bIsAjax) {
                         
-                        $args = array(	 
+                      $args = array(	 
                             'child_of' => $parent_cat,
                             'hide_empty' => 0,
                             'orderby' => $orderby,
                             'order' => $order,
-                        );
-					    $cats = get_categories($args);
+                      );
+					  $cats = get_categories($args);
+
+                       //sort categories by last updated post:
+                      $arrCatsArray = array();
+                      foreach ($cats as $cat2) : 
+
+                        $post_args = array(
+                          'post_type' => 'post',
+                          'post_status' => 'publish',
+                          'orderby' => 'post_date',
+                          'order' => 'DESC',
+                          'posts_per_page' => 1,
+                          'cat' => (int)$cat2->cat_ID,            
+                        );    
                         
+                        $the_query = new WP_Query( $post_args);
+
+                        if ( $the_query->have_posts() ) :
+
+                          while ( $the_query->have_posts() ) { $the_query->the_post();
+
+                            $arrCatsArray[] = array(
+                              'date' => get_the_time('U'),
+                              'term_id' => $cat2->term_id,              
+                              'cat_ID' => $cat2->cat_ID,              
+                              'cat_name' => $cat2->cat_name,
+                              'slug' => $cat2->slug,
+                              'parent' => $cat2->parent 
+                            );
+                          }
+
+                        else :
+                            $arrCatsArray[] = array(
+                              'date' => strtotime("-1 year", time()),
+                              'term_id' => $cat2->term_id,   
+                              'cat_ID' => $cat2->cat_ID,                         
+                              'cat_name' => $cat2->cat_name,
+                              'slug' => $cat2->slug,
+                              'parent' => $cat2->parent 
+                            );  
+                        endif;
+
+                      endforeach;
+
+                      usort($arrCatsArray, "compareDates");                 
+
+                       
                         
-				        foreach ($cats as $cat) : 
+				        foreach ($arrCatsArray as $cat) : 
+
+                            $cat = (object)$cat; 
                         
                             //get depth of category from - http://www.devdevote.com/cms/wordpress-hacks/get_depth
-                            $cats_str = get_category_parents($cat, false, '%#%');
+                            $cats_str = get_category_parents($cat->cat_ID, false, '%#%');
                             $cats_array = explode('%#%', $cats_str);
                             $cat_depth = sizeof($cats_array)-2;
                             
@@ -43,7 +90,7 @@
                             
                             //filter by authors
                             if( empty($iAuthorID) || ($iAuthorID==0) || (isset($the_user) && is_object($the_user) && $iAuthorID == $the_user->ID) ):
-                            
+                                
                             ?>
 
                                

@@ -66,12 +66,58 @@
 					$count = 0;
 					$cats = get_categories($args);
 
+          //sort categories by last updated post:
+          $arrCatsArray = array();
+          foreach ($cats as $cat2) : 
 
-					foreach ($cats as $cat) : 
+            $post_args = array(
+              'post_type' => 'post',
+              'post_status' => 'publish',
+              'orderby' => 'post_date',
+              'order' => 'DESC',
+              'posts_per_page' => 1,
+              'cat' => (int)$cat2->cat_ID,            
+            );    
+            
+            $the_query = new WP_Query( $post_args);
 
-                      $color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category'));
-        			  $is_subject_category = get_category_meta('subject_category', get_term_by('slug', $cat->cat_name, 'category'));
-                        if(!$is_subject_category) : 		
+            if ( $the_query->have_posts() ) :
+
+              while ( $the_query->have_posts() ) { $the_query->the_post();
+
+                $arrCatsArray[] = array(
+                  'date' => get_the_time('U'),
+                  'term_id' => $cat2->term_id,              
+                  'cat_ID' => $cat2->cat_ID,          
+                  'cat_name' => $cat2->cat_name,
+                  'slug' => $cat2->slug,
+                  'parent' => $cat2->parent 
+                );
+              }
+
+            else :
+                $arrCatsArray[] = array(
+                  'date' => strtotime("-1 year", time()),
+                  'term_id' => $cat2->term_id,  
+                  'cat_ID' => $cat2->cat_ID,                      
+                  'cat_name' => $cat2->cat_name,
+                  'slug' => $cat2->slug,
+                  'parent' => $cat2->parent 
+                );  
+            endif;
+
+          endforeach;
+
+          usort($arrCatsArray, "compareDates");
+
+
+					foreach ($arrCatsArray as $cat2) :
+
+                $cat2 = (object)$cat2; 
+
+                $color = get_category_meta('color', get_term_by('slug', $cat2->cat_name, 'category'));
+        			  $is_subject_category = get_category_meta('subject_category', get_term_by('slug', $cat2->slug, 'category'));
+                if(!$is_subject_category) : 		
 					?>
                  
 					   <div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
@@ -96,11 +142,11 @@
 										<div class="category_square_content">
                                             
 											<h3 class="category_square-format">
-												<?php $values =  get_category_meta('type', get_term_by('slug', $cat->cat_name, 'category'));
+												<?php $values =  get_category_meta('type', get_term_by('slug', $cat2->cat_name, 'category'));
 												foreach ($values as $value => $label) {
 												    echo '' . $value .'' ;
 												}
-												$values = get_category_meta('format', get_term_by('slug', $cat->cat_name, 'category'));
+												$values = get_category_meta('format', get_term_by('slug', $cat2->cat_name, 'category'));
 												foreach ($values as $value => $label) {
 												    echo  '&nbsp;' . $value . '';
 												}?>
@@ -109,15 +155,15 @@
 										
 
 											<h2>
-                                                <a href="<?php echo get_category_link($cat->term_id); ?>"><?php echo $cat->cat_name; ?></a>
+                                                <a href="<?php echo get_category_link($cat2->term_id); ?>"><?php echo $cat2->cat_name; ?></a>
                                             </h2>
                                             
 											<div class="category_square_description">
 													<?php
-                                                    /*echo category_description($cat->term_id); */
+                                                    /*echo category_description($cat2->term_id); */
                                                     ?>
 												<p>
-                                                <?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
+                                                <?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat2->cat_name, 'category'));
                                                     echo substr( $short_description, 0,180); 
                                                     echo "...";
                                                     ?>
@@ -127,7 +173,7 @@
 											<div class="category_square_author">
 												<?php
 													
-												 $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
+												 $values = get_category_meta('authors', get_term_by('slug', $cat2->slug, 'category'));
 												foreach ($values as $user_id) {
 												    $the_user = get_user_by('id', $user_id);
                                                     //TODO : image from ofer function
@@ -151,8 +197,8 @@
 		<div class="category_square_oval">
                                                
              <?php
-                $cat_slug =  $cat->slug;
-                $cat_parent_id = $cat->parent;
+                $cat2_slug =  $cat2->slug;
+                $cat_parent_id = $cat2->parent;
                 
                 $cat_parent_object = get_category($cat_parent_id);
                 $cat_parent_slug = $cat_parent_object->slug;
@@ -175,7 +221,7 @@
 
                                                     ?>
             
-        <!--<a href="javascript:void(0);" onclick="addToMyLessons('cat',$cat->cat_ID);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>">+</a>--></div>
+        <!--<a href="javascript:void(0);" onclick="addToMyLessons('cat',$cat2->cat_ID);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>">+</a>--></div>
 		
                     
                                 </li>
