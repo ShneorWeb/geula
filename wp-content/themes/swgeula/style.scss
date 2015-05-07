@@ -2065,7 +2065,7 @@ button.edit_profile{
     }
 }
 
-.page-template-page-dashboard-php{
+.page-template-page-dashboard-php,.page-template-page-my_lessons-php,.page-template-page-lessons_teach-php{
     .site-content > .container {
       max-width: 100%;
     }
@@ -2289,6 +2289,12 @@ a.schedule_new{
     }
 }
 
+.page-template-page-my_lessons-php,.page-template-page-lessons_teach-php{
+    .dtls{
+      width: auto;
+    }
+} 
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
@@ -2402,9 +2408,25 @@ _responsive styles
       width: 100%;
     }
     
-    .page-template-page-dashboard-php .big_icon i {
-      font-size: 7.5rem;
-    }
+    .page-template-page-dashboard-php,.page-template-page-my_lessons-php,.page-template-page-lessons_teach-php{
+        .big_icon i{
+          font-size: 7.5rem;
+        }
+        
+    } 
+    
+     .page-template-page-my_lessons-php,.page-template-page-lessons_teach-php{
+         .big_icon .status{
+                max-width: 95px;
+                  i {
+                 font-size: 60px;
+                 margin-top: 47px;
+                }
+          } 
+        
+    } 
+    
+  
 
 }
 
@@ -2503,6 +2525,25 @@ _responsive styles
     .page-template-page-dashboard-php .big_icon i {
       font-size: 6.5rem;
     }
+    
+     .page-template-page-my_lessons-php,.page-template-page-lessons_teach-php{
+         .big_icon{
+             float: none;
+             margin: 0 auto;
+             min-width: 105px;
+                  i {
+                 margin-top: 40px;
+                }
+             .status{
+                 i{
+                       margin-top: 12px;
+                 }
+             }
+          } 
+        
+    } 
+    
+    
   
 
 }

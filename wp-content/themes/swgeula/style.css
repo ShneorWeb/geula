@@ -1824,10 +1824,10 @@ button.edit_profile {
   transform: none !important;
 }
 
-.page-template-page-dashboard-php .site-content > .container {
+.page-template-page-dashboard-php .site-content > .container, .page-template-page-my_lessons-php .site-content > .container, .page-template-page-lessons_teach-php .site-content > .container {
   max-width: 100%;
 }
-.page-template-page-dashboard-php .dtls {
+.page-template-page-dashboard-php .dtls, .page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls {
   width: 80%;
 }
 
@@ -2006,6 +2006,10 @@ a.schedule_new {
   margin-bottom: 0;
 }
 
+.page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls {
+  width: auto;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
@@ -2109,8 +2113,16 @@ _responsive styles
     width: 100%;
   }
 
-  .page-template-page-dashboard-php .big_icon i {
+  .page-template-page-dashboard-php .big_icon i, .page-template-page-my_lessons-php .big_icon i, .page-template-page-lessons_teach-php .big_icon i {
     font-size: 7.5rem;
+  }
+
+  .page-template-page-my_lessons-php .big_icon .status, .page-template-page-lessons_teach-php .big_icon .status {
+    max-width: 95px;
+  }
+  .page-template-page-my_lessons-php .big_icon .status i, .page-template-page-lessons_teach-php .big_icon .status i {
+    font-size: 60px;
+    margin-top: 47px;
   }
 }
 /* 1024 and less ----------- */
@@ -2200,6 +2212,18 @@ _responsive styles
 
   .page-template-page-dashboard-php .big_icon i {
     font-size: 6.5rem;
+  }
+
+  .page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon {
+    float: none;
+    margin: 0 auto;
+    min-width: 105px;
+  }
+  .page-template-page-my_lessons-php .big_icon i, .page-template-page-lessons_teach-php .big_icon i {
+    margin-top: 40px;
+  }
+  .page-template-page-my_lessons-php .big_icon .status i, .page-template-page-lessons_teach-php .big_icon .status i {
+    margin-top: 12px;
   }
 }
 /* 768 and more ----------- */
