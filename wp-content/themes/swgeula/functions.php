@@ -460,6 +460,14 @@ add_filter('user_contactmethods', 'add_contact_fields');
             }
             return ($a['date'] < $b['date']) ? 1 : -1;
 }
+/*
+function wplogin_filter( $url, $path, $orig_scheme ) {
+ 	$old  = array( "/(wp-login\.php)/");
+ 	$new  = array( "custom-login-page/");
+ 	return preg_replace( $old, $new, $url, 1);
+}
+add_filter('site_url',  'wplogin_filter', 10, 3);
+*/
 /****************Lessons Ajax ****************************************/
 function set_video_loc() {
 	global $wpdb;	
@@ -839,13 +847,18 @@ function get_user_profile() {
 		    $country = get_user_meta( $uid, 'user_country', true );
 		    $city = get_user_meta( $uid, 'user_city', true );		    
 		    $position = addslashes(get_user_meta( $uid, 'subject', true ));		    
-		    $about = addslashes(get_user_meta( $uid, 'description', true ));		    
+		    $about = addslashes(get_user_meta( $uid, 'description', true ));		    		    
 		    $timezone = get_user_meta( $uid, 'user_timezone', true );
+
+		    $fname = str_replace("'","\'", addslashes($current_user->user_firstname));
+		    $lname = str_replace("'","\'", addslashes($current_user->user_lastname));
+		    $about = str_replace("'","\'", $about);
+		    $position = str_replace("'","\'", $position);
 
 
 		    
-		    $response = '{"firstname":"'.$current_user->user_firstname.
-		    	'", "lastname":"'.$current_user->user_lastname.
+		    $response = '{"firstname":"'.$fname.
+		    	'", "lastname":"'.$lname.
 		    	'", "email":"'.$current_user->user_email.
 		    	'","avatar":"'.$avtr.
 		    	'","avatar_220":"'.$avtr_220.

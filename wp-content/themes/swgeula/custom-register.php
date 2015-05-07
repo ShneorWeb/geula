@@ -10,7 +10,6 @@ require( ABSPATH . '/wp-load.php' );
 
 include_once("header.php");
 
-
 // Redirect to https login if forced to use SSL
 if ( force_ssl_admin() && ! is_ssl() ) {
 	if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
@@ -702,7 +701,25 @@ case 'register' :
 		    <h2 class="signin-google"><?php _e("Or register with your Google account", "swgeulatr");?></h2>
 
 		    <p>
-		    <span id="signinButton">
+		    <script>
+			function signinCallback(authResult) {
+			  if (authResult['status']['signed_in'] && authResult['status']['method']=="PROMPT") {
+			    // Update the app to reflect a signed in user
+			    // Hide the sign-in button now that the user is authorized, for example:
+			    //document.getElementById('signinButton').setAttribute('style', 'display: none');    
+			    document.location.href="<?php echo home_url();?>";    
+			  }
+			  else {  
+			    // Update the app to reflect a signed out user
+			    // Possible error values:
+			    //   "user_signed_out" - User is signed-out
+			    //   "access_denied" - User denied access to your app
+			    //   "immediate_failed" - Could not automatically log in the user
+			    //console.log('Sign-in state: ' + authResult['error']);    
+			  }
+			}
+			</script>	
+		    <span id="signinButton">		    	
 		      <span
 		        class="g-signin"
 		        data-callback="signinCallback"

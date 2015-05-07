@@ -167,9 +167,14 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	
 	
 	//get user data and init ui elemnts:
-	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser').success(function(res){	
-		//console.log(res);
-		$scope.user = res;
+	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser').success(function(res){					
+		//console.log(res);	
+		var objRes = res;				
+		objRes.firstname = objRes.firstname.toString().replace(/\\'/g,"'");				
+		objRes.lastname = objRes.lastname.toString().replace(/\\'/g,"'");				
+		objRes.about = objRes.about.toString().replace(/\\'/g,"'");				
+		objRes.position = objRes.position.toString().replace(/\\'/g,"'");				
+		$scope.user = objRes;
 		
 		//get countries:
 		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getctrselect').success(function(res){		
@@ -251,7 +256,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 
      $scope.submitTheForm2 = function(item, event) {
 	    if ($scope.checkError()) return false;
-       //console.log("--> Submitting form");
+      // console.log($scope.user.about);
        var dataStr = 'action=setuser2' +        					
        					'&firstname=' + $scope.user.firstname +
        					'&lastname=' + $scope.user.lastname+
