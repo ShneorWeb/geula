@@ -707,7 +707,32 @@ case 'register' :
 			    // Update the app to reflect a signed in user
 			    // Hide the sign-in button now that the user is authorized, for example:
 			    //document.getElementById('signinButton').setAttribute('style', 'display: none');    
-			    document.location.href="<?php echo home_url();?>";    
+			    gapi.client.load('plus','v1', function(){ 
+			        // once we get this call back, gapi.client.plus.* will exist
+			        var user = gapi.client.plus.people.get( {'userId' : 'me'} ); 
+			        
+			        user.execute(function(resp) {                                       
+			                var primaryEmail;
+			                for (var i=0; i < resp.emails.length; i++) {
+			                  if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
+			                }
+			                //console.log(primaryEmail);                
+
+			                var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
+			                var data = {        
+			                        action: 'google_user_init',
+			                        uid: resp.id,
+			                        display_name: resp.displayName,
+			                        image_url: resp.image.url,
+			                        primary_email: primaryEmail
+			                };                                                                                                            
+			                jQuery.post(ajaxurl, data, function(data) {                                    
+			                        //console.log(data);
+			                        document.location.href="<?php echo home_url();?>";    
+			                });
+			        });
+			    });    
+			    
 			  }
 			  else {  
 			    // Update the app to reflect a signed out user

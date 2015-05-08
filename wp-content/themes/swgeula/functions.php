@@ -468,6 +468,19 @@ function wplogin_filter( $url, $path, $orig_scheme ) {
 }
 add_filter('site_url',  'wplogin_filter', 10, 3);
 */
+/************************* Session Management *********************************/
+function myStartSession() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+function myEndSession() {
+    session_destroy ();
+}
+add_action('init', 'myStartSession', 1);
+add_action('wp_logout', 'myEndSession');
+add_action('wp_login', 'myEndSession');
+/************************* END Session Management *********************************/
 /****************Lessons Ajax ****************************************/
 function set_video_loc() {
 	global $wpdb;	
@@ -539,6 +552,19 @@ function getVideoLoc() {
 }
 add_action('wp_ajax_get_video_loc', 'getVideoLoc');
 add_action('wp_ajax_nopriv_get_video_loc', 'getVideoLoc');
+
+
+function googleUserInit() {	
+	$_SESSION['google_user'] = 1;
+	$_SESSION['uid'] = (int)$_POST['uid'];
+	$_SESSION['display_name'] = $_POST['display_name'];
+	$_SESSION['image_url'] = $_POST['image_url'];
+	$_SESSION['primary_email'] = $_POST['primary_email'];
+	echo(1);
+	exit;
+}
+add_action('wp_ajax_google_user_init', 'googleUserInit');
+add_action('wp_ajax_nopriv_google_user_init', 'googleUserInit');
 
 
 function getLessonStarted($lessonID,$userID) {

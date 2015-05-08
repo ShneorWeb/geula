@@ -29,6 +29,7 @@
 	<![endif]-->
     
   <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+  <script src = "https://plus.google.com/js/client:plusone.js"></script>
 
 	<?php wp_head(); ?>
 
@@ -117,11 +118,15 @@
                     </div>
                     
                     <div class="profile_dtls avatar_image">
-                    <?php if ( getSWGeulaAvatar()!="" ) : ?>
-                        <img src="<?php echo getSWGeulaAvatar(); ?>"/>
-                    <?php else : ?>
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg"/ width="38">
-                    <?php endif; ?>
+                    <?php if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) {?>
+                          <img src="<?php echo $_SESSION['image_url']; ?>"/>
+                    <?php } else { ?> 
+                      <?php if ( getSWGeulaAvatar()!="" ) : ?>
+                          <img src="<?php echo getSWGeulaAvatar(); ?>"/>
+                      <?php else : ?>
+                          <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg"/ width="38">
+                      <?php endif; ?>
+                    <?php } ?>  
                     </div>
                     
                     
@@ -129,15 +134,11 @@
                     <div class="profile_dtls dropdown">
                          <div id="div-display-name" class="avatar_name" data-toggle="dropdown">
                        <?php
-                           $current_user = wp_get_current_user();
-                           /*
-                           echo 'Username: ' . $current_user->user_login . '<br />';
-                           echo 'User email: ' . $current_user->user_email . '<br />';
-                           echo 'User first name: ' . $current_user->user_firstname . '<br />';
-                           echo 'User last name: ' . $current_user->user_lastname . '<br />';
-                           */
-                           echo $current_user->display_name;
-                           /*echo 'User ID: ' . $current_user->ID . '<br />';*/
+                           if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) echo $_SESSION['display_name'];
+                           else {
+                            $current_user = wp_get_current_user();                           
+                            echo $current_user->display_name;                           
+                          }
                        ?>
                     </div>
                         
