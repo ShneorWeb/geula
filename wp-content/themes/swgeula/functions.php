@@ -589,6 +589,70 @@ function getLessonStarted($lessonID,$userID) {
 	return 0;		
 }
 
+function getLessonIDsInCat($catID) {
+	$arrRet = array();
+
+	$args = array(
+			'category' => $catID,
+			'post_type' => 'post',
+			'post_status' => 'publish'
+		);
+	$postlist = get_posts( $args );
+
+	foreach ( $postlist as $post ) {
+   		$arrRet[] = $post->ID;
+	}
+
+	return $arrRet;
+}
+
+function addToMyLessons() {
+	global $wpdb;	
+	$userID = -1;
+	$arrLessonIDs = array();
+
+	if ( is_user_logged_in() ) { 
+		$lessonID = (int)$_POST['lesson_id'];
+		$catID = (int)$_POST['cat_id'];
+		
+		if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) $userID = (int)$_SESSION['uid'];
+		else {	
+			$current_user = wp_get_current_user();
+			$userID = $current_user->ID;
+		}
+
+		if ($catID>0 && $lessonID==-1) $arrLessonIDs = getLessonIDsInCat($catID);
+		else $arrLessonIDs[] = $lessonID;
+
+		if ( is_int($userID) && is_array($arrLessonIDs) ) :
+
+			foreach($arrLessonIDs as $lid) :
+
+				$results = $wpdb->get_results("SELECT id FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lid ORDER BY id DESC LIMIT 1;",ARRAY_A);		
+				
+				if (count($results)>0) continue;
+				else {
+					$wpdb->insert("wp_sw_user_lesson", array( 		
+							'user_id' => $userID,
+							'lesson_id' => $lid, 				
+							'video_pos' => 0,				
+							'date' => date('Y-m-d H:i:s')
+					));
+				}
+
+			endforeach;	
+			echo "1";		
+			exit;
+				
+		endif;	
+	}
+
+	echo "0";		
+	exit;
+}
+add_action('wp_ajax_add_to_my_lessons', 'addToMyLessons');
+add_action('wp_ajax_nopriv_add_to_my_lessons', 'addToMyLessons');
+
 /*
 used for ajax - maybe can be deleted
 function getLessonStarted() {

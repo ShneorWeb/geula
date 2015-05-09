@@ -32,7 +32,7 @@ $current_user = wp_get_current_user();
                                
                                <?php 
                                     //if there is a lesson in schedule
-                                    $schedule = false;
+                                    $schedule = true;
                                 ?>
                                 
                                 <div class="big_icon">

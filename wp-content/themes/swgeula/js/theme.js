@@ -1,4 +1,5 @@
 var filterBoxes;
+var addToMyLessons;
 
 (function($) {
     
@@ -46,12 +47,34 @@ filterBoxes = function(iAuthorID,parentCat,sSort,iCatID,bInNosse) {
   });
 }
 
-/*
-function addToMyLessons(sType,id) {
 
+addToMyLessons = function(sType,id) {    
+  iCatID = -1;
+  iLessonID = -1;
+
+  if (sType=="lesson") iLessonID = id;
+  else if (sType=="cat") iCatID = id;
+
+  $.ajax({
+          type : "post",
+          data : {
+              'action': 'add_to_my_lessons',
+              'cat_id': iCatID,             
+              'lesson_id': iLessonID,             
+          },          
+          url: ajaxurl,          
+          success    : function(data){                                        
+            console.log("in success");
+               console.log(data);
+          },
+          error     : function(jqXHR, textStatus, errorThrown) {
+            console.log("in error");
+              console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+          }      
+  });
 }
 
-*/
+
     
 function profile_to_mob(){
     if($(window).width() < 768-17){

@@ -1,5 +1,5 @@
 <!--regular-->
-        <a href="javascript:void(0);" onclick="addToMyLessons('cat',$cat2->cat_ID);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>" class="add_lesson_btn add"  onMouseOver="this.style.color='<?php echo $color; ?>',this.style.color" onMouseOut="this.style.color='#b2bac2'">
+        <a href="javascript:void(0);" onclick="addToMyLessons('cat',<?php echo $cat2->cat_ID;?>);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>" class="add_lesson_btn add"  onMouseOver="this.style.color='<?php echo $color; ?>',this.style.color" onMouseOut="this.style.color='#b2bac2'">
             <i class="fa fa-star"></i>
         </a>
         
