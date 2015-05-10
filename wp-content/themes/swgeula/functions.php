@@ -611,8 +611,7 @@ function addToMyLessons() {
 	$userID = -1;
 	$arrLessonIDs = array();
 
-	if ( is_user_logged_in() ) { 
-		$lessonID = (int)$_POST['lesson_id'];
+	if ( is_user_logged_in() ) { 		
 		$catID = (int)$_POST['cat_id'];
 		
 		if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) $userID = (int)$_SESSION['uid'];
@@ -621,8 +620,7 @@ function addToMyLessons() {
 			$userID = $current_user->ID;
 		}
 
-		if ($catID>0 && $lessonID==-1) $arrLessonIDs = getLessonIDsInCat($catID);
-		else $arrLessonIDs[] = $lessonID;
+		if ($catID>0) $arrLessonIDs = getLessonIDsInCat($catID);		
 
 		if ( is_int($userID) && is_array($arrLessonIDs) ) :
 
@@ -635,23 +633,92 @@ function addToMyLessons() {
 					$wpdb->insert("wp_sw_user_lesson", array( 		
 							'user_id' => $userID,
 							'lesson_id' => $lid, 				
+							'cat_id' => $catID, 				
 							'video_pos' => 0,				
-							'date' => date('Y-m-d H:i:s')
+							'date_added' => date('Y-m-d H:i:s'),
+							'done' => 0,				
 					));
 				}
 
 			endforeach;	
-			echo "1";		
+			echo 1;		
 			exit;
 				
 		endif;	
 	}
 
-	echo "0";		
+	echo 0;		
 	exit;
 }
 add_action('wp_ajax_add_to_my_lessons', 'addToMyLessons');
 add_action('wp_ajax_nopriv_add_to_my_lessons', 'addToMyLessons');
+
+function removeFromMyLessons() {
+	global $wpdb;	
+	$userID = -1;	
+
+	if ( is_user_logged_in() ) { 		
+		$catID = (int)$_POST['cat_id'];
+		
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;		
+
+		
+		if ( is_int($userID) && ($catID>0) ) :
+			
+				$results = $wpdb->get_results("DELETE FROM wp_sw_user_lesson WHERE user_id = $userID AND cat_id = $catID;",ARRAY_A);									
+				$wpdb->delete( 'wp_sw_user_lesson', array( 'user_id'=>$userID, 'cat_id' => $catID ) );
+				echo 1;		
+				exit;
+				
+		endif;	
+	}
+
+	echo 0;		
+	exit;
+}
+add_action('wp_ajax_remove_from_my_lessons', 'removeFromMyLessons');
+add_action('wp_ajax_nopriv_remove_from_my_lessons', 'removeFromMyLessons');
+
+function getCatInMyLessons($catID) {
+	global $wpdb;	
+	if ( is_user_logged_in() ) :	
+		
+		if ($catID>0) :
+
+			if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) $userID = (int)$_SESSION['uid'];
+			else {	
+				$current_user = wp_get_current_user();
+				$userID = $current_user->ID;
+			}
+
+			if (is_int($userID)) :
+
+				$results = $wpdb->get_results("SELECT done FROM wp_sw_user_lesson WHERE user_id = $userID AND cat_id = $catID ORDER BY id ASC;",ARRAY_A);		
+					
+					if (count($results)>0) :
+
+							$bAllDone = true;
+
+							foreach($results as $row) :			
+
+								if ($row['done']!=1) $bAllDone=false;	 
+
+							endforeach;
+
+							if ($bAllDone) return(1); //1 - category done
+							return(2); //2 - category currently being studied
+							
+
+					endif;
+			endif;		
+
+		endif;	
+
+	endif; //user logged in
+
+	return(0);	
+}
 
 /*
 used for ajax - maybe can be deleted

@@ -219,7 +219,12 @@
                                                     ?>
         
         
-        <?php include "add_lesson_btn.php" ?>
+        <div id="lessob_buttons">
+        <?php 
+              $catAddID=$cat2->cat_ID; 
+              include "add_lesson_btn.php";
+        ?>
+        </div>
         
         </div>
 		

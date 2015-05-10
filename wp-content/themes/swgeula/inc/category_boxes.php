@@ -13,7 +13,7 @@
                             'orderby' => $orderby,
                             'order' => $order,
                       );
-					  $cats = get_categories($args);
+					            $cats = get_categories($args);
 
                        //sort categories by last updated post:
                       $arrCatsArray = array();
@@ -185,7 +185,10 @@
 
                                                         ?>
                                                         
-            <?php include "add_lesson_btn.php" ?>
+            <?php 
+                $catAddID=$cat->cat_ID; 
+                include "add_lesson_btn.php";
+            ?>
                 
             </div>
     		

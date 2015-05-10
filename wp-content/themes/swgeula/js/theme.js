@@ -1,5 +1,6 @@
 var filterBoxes;
 var addToMyLessons;
+var removeFromMyLessons;
 
 (function($) {
     
@@ -48,24 +49,47 @@ filterBoxes = function(iAuthorID,parentCat,sSort,iCatID,bInNosse) {
 }
 
 
-addToMyLessons = function(sType,id) {    
-  iCatID = -1;
-  iLessonID = -1;
-
-  if (sType=="lesson") iLessonID = id;
-  else if (sType=="cat") iCatID = id;
-
+addToMyLessons = function(catid) {      
+  
   $.ajax({
           type : "post",
           data : {
               'action': 'add_to_my_lessons',
-              'cat_id': iCatID,             
-              'lesson_id': iLessonID,             
+              'cat_id': catid,                           
           },          
           url: ajaxurl,          
           success    : function(data){                                        
-            console.log("in success");
-               console.log(data);
+              //console.log("in success");
+              //console.log(data);
+              if (data==1) {
+                $('#btn_add_'+catid).hide();
+                $('#btn_rm_'+catid).show();                
+              }
+              
+          },
+          error     : function(jqXHR, textStatus, errorThrown) {
+            console.log("in error");
+              console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+          }      
+  });
+}
+
+removeFromMyLessons = function(catid) {
+  $.ajax({
+          type : "post",
+          data : {
+              'action': 'remove_from_my_lessons',
+              'cat_id': catid,                           
+          },          
+          url: ajaxurl,          
+          success    : function(data){                                        
+              //console.log("in success");
+              //console.log(data);
+              if (data==1) {
+                $('#btn_add_'+catid).show();
+                $('#btn_rm_'+catid).hide();                
+              }
+              
           },
           error     : function(jqXHR, textStatus, errorThrown) {
             console.log("in error");
