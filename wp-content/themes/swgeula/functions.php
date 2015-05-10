@@ -720,6 +720,34 @@ function getCatInMyLessons($catID) {
 	return(0);	
 }
 
+function getMyCats() {
+	global $wpdb;	
+
+	if ( is_user_logged_in() ) :				
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;
+
+		if (is_int($userID)) :
+
+				$arrRetVal = array();	
+
+				$results = $wpdb->get_results("SELECT DISTINCT cat_id FROM wp_sw_user_lesson WHERE user_id = $userID ORDER BY cat_id ASC;",ARRAY_A);		
+					
+				if (count($results)>0) :					
+					
+					foreach($results as $row) :			
+						$arrRetVal[] = $row['cat_id'];	
+					endforeach;
+
+				endif;
+
+				return $arrRetVal;
+	 	endif;			
+
+	 endif;
+	 return 0;
+}
+
 /*
 used for ajax - maybe can be deleted
 function getLessonStarted() {

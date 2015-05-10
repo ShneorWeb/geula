@@ -6,13 +6,28 @@
                       }
       
 					//if (is_category() || is_single() || $bIsAjax) {
-                        
-                      $args = array(	 
-                            'child_of' => $parent_cat,
-                            'hide_empty' => 0,
-                            'orderby' => $orderby,
-                            'order' => $order,
-                      );
+                      
+
+                      //if in my lessons page get my catgories:                                                   
+                      if ( isset($arrMyCats) && is_array($arrMyCats) ) {
+                        $args = array(   
+                              'child_of' => $parent_cat,
+                              'hide_empty' => 0,
+                              'orderby' => $orderby,
+                              'order' => $order,                            
+                              'include' => implode(",", $arrMyCats)
+                        );
+                      }
+
+                      else {  
+                        $args = array(	 
+                              'child_of' => $parent_cat,
+                              'hide_empty' => 0,
+                              'orderby' => $orderby,
+                              'order' => $order
+                        );
+                      }
+
 					            $cats = get_categories($args);
 
                        //sort categories by last updated post:
