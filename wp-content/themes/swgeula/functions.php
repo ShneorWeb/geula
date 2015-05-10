@@ -554,6 +554,32 @@ add_action('wp_ajax_get_video_loc', 'getVideoLoc');
 add_action('wp_ajax_nopriv_get_video_loc', 'getVideoLoc');
 
 
+
+function setVideoDone() {
+	global $wpdb;	
+	
+	$lessonID = (int)$_POST['lesson_id'];
+	$userID = (int)$_POST['user_id'];
+
+	if ( is_int($userID) && is_int($lessonID) ) :
+
+		$wpdb->update( 
+			'wp_sw_user_lesson', 
+			array( 
+				'done' => 1
+			), 
+			array( 'lesson_id' => $lessonID, 'user_id' => $userID )			
+		);
+		echo(1);			
+		exit;
+							
+	endif;
+	echo(0);			
+	exit;
+}
+add_action('wp_ajax_set_video_done', 'setVideoDone');
+add_action('wp_ajax_nopriv_set_video_done', 'setVideoDone');
+
 function googleUserInit() {	
 	$_SESSION['google_user'] = 1;
 	$_SESSION['uid'] = (int)$_POST['uid'];

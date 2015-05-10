@@ -176,6 +176,20 @@ class MY_Post_Numbers {
                       });
                     }
 
+                    function setDone() {
+                      var data = {        
+                        action: 'set_video_done',
+                        lesson_id: lessonID,                        
+                        user_id: userID
+                      };                                                                                            
+                      console.log( data );
+                      jQuery.post(ajaxurl, data, function(data) {                    
+                        //bDoNotPost[playerID]=true;                                                                                                                                                        
+                        //jQuery("#jwplayer-"+playerID+"-views").text(data);                                    
+                        console.log(data);
+                      });
+                    }
+
                     // 3. This function creates an <iframe> (and YouTube player)
                     //    after the API code downloads.
                     var player;
@@ -203,7 +217,7 @@ class MY_Post_Numbers {
                         //setTimeout(stopVideo, 6000);
                         //done = true;
                       //}
-                      if (event.data == YT.PlayerState.ENDED) setVideoPos(0);
+                      if (event.data == YT.PlayerState.ENDED) setDone();
                       else if (event.data == YT.PlayerState.PAUSED) setVideoPos(event.target.getCurrentTime());
                     }
                     function stopVideo() {

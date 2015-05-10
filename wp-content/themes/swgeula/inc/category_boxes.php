@@ -9,7 +9,7 @@
                       
 
                       //if in my lessons page get my catgories:                                                   
-                      if ( isset($arrMyCats) && is_array($arrMyCats) ) {
+                      if ( $bMyLessons ) {
                         $args = array(   
                               'child_of' => $parent_cat,
                               'hide_empty' => 0,
@@ -109,7 +109,7 @@
                             ?>
 
                                
-    							<div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
+    							<div id="catbox_<?php echo $cat->cat_ID; ?>" class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
 
 
     							<?php $color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category')); ?>

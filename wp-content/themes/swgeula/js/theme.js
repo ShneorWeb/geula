@@ -1,6 +1,7 @@
 var filterBoxes;
 var addToMyLessons;
 var removeFromMyLessons;
+var hideCat;
 
 (function($) {
     
@@ -98,7 +99,12 @@ removeFromMyLessons = function(catid) {
   });
 }
 
-
+hideCat = function(catid) {
+    $("#catbox_"+catid).hide();
+    var myLessonsNum = parseInt($("#count-my-lessons").text());
+    myLessonsNum--;
+    $("#count-my-lessons").text(myLessonsNum);
+}
     
 function profile_to_mob(){
     if($(window).width() < 768-17){

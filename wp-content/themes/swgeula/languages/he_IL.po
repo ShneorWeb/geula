@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
 "POT-Creation-Date: 2015-05-10 22:02+0200\n"
-"PO-Revision-Date: 2015-05-10 22:02+0200\n"
+"PO-Revision-Date: 2015-05-10 23:08+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -515,7 +515,7 @@ msgstr "הסתיים"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/add_lesson_btn.php:12
 msgid "Are you sure you want to remove this category from your lessons?"
-msgstr ""
+msgstr "האם אתה בטוח שאתה רוצה למחוק סדרה זו מהשעורים שלך?"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/add_lesson_btn.php:12
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/add_lesson_btn.php:22

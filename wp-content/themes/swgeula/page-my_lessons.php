@@ -86,13 +86,17 @@ $current_user = wp_get_current_user();
                    
                    <h3 class="ltl_title">
                        <?php
-                            $arrMyCats = getMyCats();                            
-                            echo __("series I'm learning", 'swgeula') . __("<span>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");
+                            $bMyLessons=true;
+                            $arrMyCats = array();
+                            $tempArrMyCats = getMyCats();                            
+                            if ( is_array($tempArrMyCats) && count($tempArrMyCats)>0 ) $arrMyCats = $tempArrMyCats;                                                         
+                            echo __("series I'm learning", 'swgeula') . __("<span id='count-my-lessons'>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");
+                            if ( count($arrMyCats)==0 ) $arrMyCats[] = -1;
                        ?>
                    </h3>
                    
                    <div class="row cat_cont">
-                        <?php $bMyLessons=true; include_once("inc/category_boxes.php");?>
+                        <?php include_once("inc/category_boxes.php");?>
                    </div>
     </div>	
                      
