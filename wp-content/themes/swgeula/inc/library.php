@@ -34,15 +34,14 @@
  $this_category = get_category($cat);
  if (get_category_children($this_category->cat_ID) != "") {
      if (is_category()|| is_single()) {
-		    $this_category = get_category($cat);						
-        $id = get_query_var('cat');
+		    $this_category = get_category($cat);						        
         $args = array(	 
             'parent' => $this_category->cat_ID,
             'hide_empty' => 0
         );
          
         $count = 0;
-        $cats1 = get_categories($args);
+        $cats1 = get_categories($args);        
 					
 		foreach ($cats1 as $cat) : ?>
 							
@@ -68,21 +67,18 @@
                               
             <div class="bottom_part">
               <?php
-				$cat_image =  get_category_meta('image', get_term_by('slug', $cat->cat_name, 'category'));
-                $page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
-                $page_bg_image_url = $page_bg_image[0];
-                $cat_name = get_category(get_query_var('cat'))->name;?>
+				        $cat_image =  get_category_meta('image', get_term_by('slug', $cat->cat_name, 'category'));               
+              ?>
 				<div class="library_image_category" style="background-image:url(<?php echo $cat_image ?>);">
                     <ul class="product_list row">
 							
 									
-					<?php 
-						
-					$id = get_query_var('cat');
+					<?php 						
+					
 					$args = array(	 
                         'child_of' => $cat->cat_ID,
                         'hide_empty' => 0,
-                        'number' => 4,
+                        'number' => 4
                     );
 
 					$count = 0;
@@ -207,7 +203,8 @@
                                                             $user_post_count = count_user_posts( $user_id );
                                                             echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');                                                            
                                                         ?>                                                        
-													</div><?php } ?>
+													</div>
+                        <?php } ?>
 											</div>
 													
 
@@ -215,32 +212,23 @@
                                         
 		<div class="category_square_oval">
                                                
-             <?php
-                $cat2_slug =  $cat2->slug;
+             <?php                
                 $cat_parent_id = $cat2->parent;
                 
-                $cat_parent_object = get_category($cat_parent_id);
-                $cat_parent_slug = $cat_parent_object->slug;
-                $cat_parent_name = $cat_parent_object->name;
-                
-                $cat_grandparent_id = $cat_parent_object->parent;
-                $cat_grandparent_object = get_category($cat_grandparent_id);
-                $cat_grandparent_slug = $cat_grandparent_object->slug;
-                        
+                $cat_parent_object = get_category($cat_parent_id);                
+                $cat_parent_name = $cat_parent_object->name;                                                      
                 /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
 ?>
                     
-       <a href="<?php echo $cat_grandparent_slug; ?>/<?php echo $cat_parent_slug;?>" style="color:<?php echo $color; ?>" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
+       <a href="<?php echo get_category_link($cat_parent_id);?>" style="color:<?php echo $color; ?>" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
                      
 
-          <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
+        <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
                 foreach ($values as $value => $label) {
                     echo '<span class="oval">' . $value . '</span>';
-                                                        }
+                }
+        ?>      
 
-                                                    ?>
-        
-        
         <div id="lessob_buttons">
         <?php 
               $catAddID=$cat2->cat_ID; 
