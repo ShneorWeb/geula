@@ -21,19 +21,22 @@ function signinCallback(authResult) {
                 for (var i=0; i < resp.emails.length; i++) {
                   if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
                 }
-                //console.log(primaryEmail);                
+                console.log(resp.aboutMe);                 
 
                 var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
                 var data = {        
-                        action: 'google_user_init',
-                        uid: resp.id,
-                        display_name: resp.displayName,
-                        image_url: resp.image.url,
-                        primary_email: primaryEmail
+                        'action': 'google_user_reg',
+                        'uid': resp.id,
+                        'first_name': resp.name['givenName'],
+                        'last_name': resp.name['familyName'],
+                        'image_url': resp.image.url,
+                        'primary_email': primaryEmail,
+                        'about_me': resp.aboutMe,
+                        'language': resp.language
                 };                                                                                                            
                 jQuery.post(ajaxurl, data, function(data) {                                    
                         //console.log(data);
-                        document.location.href="<?php echo home_url();?>";    
+                       // document.location.href="<?php echo home_url();?>";    
                 });
         });
     });    
@@ -124,7 +127,7 @@ function signinCallback(authResult) {
         data-clientid="1071363229202-e8nga4duksuc3vldrpm3guuikc9i82ae.apps.googleusercontent.com"
         data-cookiepolicy="single_host_origin"
         data-requestvisibleactions="http://schema.org/AddAction"
-        data-scope="https://www.googleapis.com/auth/plus.login email"
+        data-scope="https://www.googleapis.com/auth/plus.login email profile"
         >
       </span>
     </span>

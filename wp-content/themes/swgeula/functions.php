@@ -580,17 +580,18 @@ function setVideoDone() {
 add_action('wp_ajax_set_video_done', 'setVideoDone');
 add_action('wp_ajax_nopriv_set_video_done', 'setVideoDone');
 
-function googleUserInit() {	
-	$_SESSION['google_user'] = 1;
+function googleUserReg() {	
+	/*$_SESSION['google_user'] = 1;
 	$_SESSION['uid'] = (int)$_POST['uid'];
 	$_SESSION['display_name'] = $_POST['display_name'];
 	$_SESSION['image_url'] = $_POST['image_url'];
-	$_SESSION['primary_email'] = $_POST['primary_email'];
+	$_SESSION['primary_email'] = $_POST['primary_email'];*/
+	
 	echo(1);
 	exit;
 }
-add_action('wp_ajax_google_user_init', 'googleUserInit');
-add_action('wp_ajax_nopriv_google_user_init', 'googleUserInit');
+add_action('wp_ajax_google_user_reg', 'googleUserReg');
+add_action('wp_ajax_nopriv_google_user_reg', 'googleUserReg');
 
 
 function getLessonStarted($lessonID,$userID) {
