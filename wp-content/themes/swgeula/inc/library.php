@@ -1,7 +1,36 @@
 <div class="page-header library-page">
-    		
-		      </div><!-- page-header -->
-	       </div><!-- archive_cont -->
+        <div class="header_category"> 
+
+             
+
+                        <?php 
+                                    $cat_image =  get_category_meta('image');
+                                    $page_bg_image = wp_get_attachment_image($cat_image, 'category_image');                                   
+                        ?>
+
+                        <div class="image_category" style="background-image:url(<?php echo $cat_image ?>);">
+                            
+                            <div class="texts">
+                                <i class="icon-library-icon"></i>
+                                <div class="name_and_sedc">
+                                    <div class="current_category_name">
+                                             <h1><?php the_field('library_title', 'option'); ?></h1>
+
+                                    </div>
+                                    <div class="current_category_description">
+                                        <p><?php the_field('library_sub_title', 'option'); ?></p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                             <div class="stages">
+                                <?php the_field('stages', 'option'); ?>
+                            </div>
+
+                        </div>
+        </div><!-- header_category -->
+          </div><!-- page-header -->
+         </div><!-- archive_cont -->
         </div><!-- row -->
     </div><!-- container -->
 </div><!-- content -->
