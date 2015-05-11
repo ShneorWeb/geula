@@ -1,14 +1,8 @@
 <div class="page-header library-page">
-        <div class="header_category"> 
+        <div class="header_category">            
+                        
 
-             
-
-                        <?php 
-                                    $cat_image =  get_category_meta('image');
-                                    $page_bg_image = wp_get_attachment_image($cat_image, 'category_image');                                   
-                        ?>
-
-                        <div class="image_category" style="background-image:url(<?php echo $cat_image ?>);">
+                        <div class="image_category">
                             
                             <div class="texts">
                                 <i class="icon-library-icon"></i>
