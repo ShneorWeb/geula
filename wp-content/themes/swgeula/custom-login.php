@@ -20,8 +20,7 @@ function signinCallback(authResult) {
                 var primaryEmail;
                 for (var i=0; i < resp.emails.length; i++) {
                   if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
-                }
-                console.log(resp.aboutMe);                 
+                }                                 
 
                 var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
                 var data = {        
@@ -33,10 +32,15 @@ function signinCallback(authResult) {
                         'primary_email': primaryEmail,
                         'about_me': resp.aboutMe,
                         'language': resp.language
-                };                                                                                                            
+                    };                               
+                console.log(data);
+                    
                 jQuery.post(ajaxurl, data, function(data) {                                    
-                        //console.log(data);
-                       // document.location.href="<?php echo home_url();?>";    
+                       console.log(data);
+                       if (data==2) jQuery("div.login-error-msg").text('this email is already registered');
+                       else if (data==0) jQuery("div.login-error-msg").text('an error occured');
+                       else if (data==1) document.location.href="<?php echo home_url('custom-profile-page/');?>"                       
+                       else if (data==11) document.location.href="<?php echo home_url();?>"                       
                 });
         });
     });    
@@ -75,13 +79,16 @@ function signinCallback(authResult) {
 
 <div class="row">
     <div class="col-sm-5 col-sm-offset-4"> 
-    <div class="panel" style="text-align:center;">
+    <div class="panel" style="text-align:center;">    
     <div class="div-login">       
 
     		<h1><?php _e("Login with an exisiting account","swgeulatr");?></h1>
     		<h2><?php _e("enter your email address and your password","swgeulatr");?></h2>
 
     <div class="col-sm-8 col-sm-offset-2">
+
+        <div class="login-error-msg"></div>
+
         <?php 
 
         $login  = (isset($_GET['login']) ) ? $_GET['login'] : 0;  

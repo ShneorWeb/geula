@@ -715,20 +715,27 @@ case 'register' :
 			                var primaryEmail;
 			                for (var i=0; i < resp.emails.length; i++) {
 			                  if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
-			                }
-			                //console.log(primaryEmail);                
+			                }                                 
 
 			                var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
 			                var data = {        
-			                        action: 'google_user_init',
-			                        uid: resp.id,
-			                        display_name: resp.displayName,
-			                        image_url: resp.image.url,
-			                        primary_email: primaryEmail
-			                };                                                                                                            
+			                        'action': 'google_user_reg',
+			                        'uid': resp.id,
+			                        'first_name': resp.name['givenName'],
+			                        'last_name': resp.name['familyName'],
+			                        'image_url': resp.image.url,
+			                        'primary_email': primaryEmail,
+			                        'about_me': resp.aboutMe,
+			                        'language': resp.language
+			                    };                               
+			                console.log(data);
+			                    
 			                jQuery.post(ajaxurl, data, function(data) {                                    
-			                        //console.log(data);
-			                        document.location.href="<?php echo home_url();?>";    
+			                       console.log(data);
+			                       if (data==2) jQuery("div.login-error-msg").text('this email is already registered');
+			                       else if (data==0) jQuery("div.login-error-msg").text('an error occured');
+			                       else if (data==1) document.location.href="<?php echo home_url('custom-profile-page/');?>"                       
+			                       else if (data==11) document.location.href="<?php echo home_url();?>"                       
 			                });
 			        });
 			    });    

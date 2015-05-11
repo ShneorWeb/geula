@@ -34,8 +34,7 @@
  $this_category = get_category($cat);
  if (get_category_children($this_category->cat_ID) != "") {
      if (is_category()|| is_single()) {
-		$this_category = get_category($cat);
-						
+		    $this_category = get_category($cat);						
         $id = get_query_var('cat');
         $args = array(	 
             'parent' => $this_category->cat_ID,

@@ -581,14 +581,58 @@ add_action('wp_ajax_set_video_done', 'setVideoDone');
 add_action('wp_ajax_nopriv_set_video_done', 'setVideoDone');
 
 function googleUserReg() {	
-	/*$_SESSION['google_user'] = 1;
-	$_SESSION['uid'] = (int)$_POST['uid'];
-	$_SESSION['display_name'] = $_POST['display_name'];
-	$_SESSION['image_url'] = $_POST['image_url'];
-	$_SESSION['primary_email'] = $_POST['primary_email'];*/
-	
-	echo(1);
-	exit;
+
+	$uid_google = (int)$_POST['uid'];
+	$fname = $_POST['first_name'];
+	$lname = $_POST['last_name'];
+	$imageUrl = $_POST['image_url'];
+	$email = $_POST['primary_email'];
+	$aboutMe = $_POST['about_me'];
+	$language = $_POST['language'];
+
+	if ( is_int($uid_google) && !empty($email) && (!empty($fname) || !empty($lname)) ) :
+
+		global $wpdb;	
+		$results = $wpdb->get_results("SELECT user_id FROM wp_sw_google_users WHERE google_id = $uid_google LIMIT 1;",ARRAY_A);		
+		
+		if (count($results)>0) {			
+				wp_set_auth_cookie($results[0]['user_id']);				
+				echo 11;
+				exit;
+		}
+		else { //new user so sign him up			
+			$random_password = wp_generate_password( $length=12, $include_standard_special_chars=false );			    
+
+			$userdata = array(
+			    'user_login'  =>  $email,
+			    'user_email' => $email,			     
+			    'user_pass'   =>  $random_password,
+			    'first_name' => $fname,
+			    'last_name' => $lname,	
+			    'description' => $aboutMe
+			);
+			
+			$user_id = wp_insert_user( $userdata ) ;
+			
+			if( !is_wp_error($user_id) ) { 	
+			 		
+					$wpdb->insert("wp_sw_google_users", array( 		
+						'user_id' => $user_id, 
+						'google_id' => $uid_google						
+					));
+					wp_set_auth_cookie($user_id);		
+					echo 1;
+					exit;			 
+			}
+			else {
+				echo 0;
+				exit;	
+			}
+		}			
+	endif;
+
+	echo 0;
+	exit;		
 }
 add_action('wp_ajax_google_user_reg', 'googleUserReg');
 add_action('wp_ajax_nopriv_google_user_reg', 'googleUserReg');
