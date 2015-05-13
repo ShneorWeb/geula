@@ -14,7 +14,7 @@ if ( isset($catAddID) ) :
             <i class="fa fa-times remove"></i>
         </a>
         <!-- add -->    
-        <a style="display:none;" id="btn_add_<?php echo $catAddID;?>" href="javascript:void(0);" onclick="addToMyLessons(<?php echo $catAddID;?>);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>" class="add_lesson_btn add"  onMouseOver="this.style.color='<?php echo $color; ?>',this.style.color" onMouseOut="this.style.color='#b2bac2'">
+        <a style="display:none;" id="btn_add_<?php echo $catAddID;?>" href="javascript:void(0);" onclick="addToMyLessons(<?php echo $catAddID;?>);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>" class="add_lesson_btn add"  onMouseOver="this.style.color='<?php echo $color; ?>'" onMouseOut="this.style.color='#b2bac2'">
             <i class="fa fa-star"></i>
         </a>  
 <?php } else { ?>                
@@ -24,7 +24,7 @@ if ( isset($catAddID) ) :
             <i class="fa fa-times remove"></i>
         </a>
         <!-- add -->    
-        <a href="javascript:void(0);" id="btn_add_<?php echo $catAddID;?>" onclick="addToMyLessons(<?php echo $catAddID;?>);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>" class="add_lesson_btn add"  onMouseOver="this.style.color='<?php echo $color; ?>',this.style.color" onMouseOut="this.style.color='#b2bac2'">
+        <a href="javascript:void(0);" id="btn_add_<?php echo $catAddID;?>" onclick="addToMyLessons(<?php echo $catAddID;?>);" title="<?php _e('add to my lessons', 'swgeula');?>" alt="<?php _e('add to my lessons', 'swgeula');?>" class="add_lesson_btn add"  onMouseOver="this.style.color='<?php echo $color; ?>'" onMouseOut="this.style.color='#b2bac2'">
             <i class="fa fa-star"></i>
         </a>                          
 <?php

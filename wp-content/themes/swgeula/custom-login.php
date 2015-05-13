@@ -21,7 +21,7 @@ function signinCallback(authResult) {
                 for (var i=0; i < resp.emails.length; i++) {
                   if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
                 }                                 
-
+                console.log(resp);
                 var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
                 var data = {        
                         'action': 'google_user_reg',
@@ -31,7 +31,8 @@ function signinCallback(authResult) {
                         'image_url': resp.image.url,
                         'primary_email': primaryEmail,
                         'about_me': resp.aboutMe,
-                        'language': resp.language
+                        'language': resp.language,
+                        'occupation' : resp.occupation
                     };                               
                 console.log(data);
                     
@@ -40,7 +41,7 @@ function signinCallback(authResult) {
                        if (data==2) jQuery("div.login-error-msg").text('this email is already registered');
                        else if (data==0) jQuery("div.login-error-msg").text('an error occured');
                        else if (data==1) document.location.href="<?php echo home_url('custom-profile-page/');?>"                       
-                       else if (data==11) document.location.href="<?php echo home_url();?>"                       
+                       else if (data==11) document.location.href="<?php echo get_category_link(3); ?>"                       
                 });
         });
     });    

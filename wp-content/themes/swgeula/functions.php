@@ -217,10 +217,7 @@ erez styles and scripts
 function swgeula_styles() {
 	wp_enqueue_style(
         'bootstrap_css', get_template_directory_uri() . '/css/bootstrap.css' 
-    );
-    wp_enqueue_style(
-        'bootstrap-datepicker', get_template_directory_uri() . '/css/bootstrap-datetimepicker.css' 
-    );   
+    );    
    //hebrew version only
     wp_enqueue_style(
             'bootstrap_rtl_css', get_template_directory_uri() . '/css/bootstrap-rtl.css' 
@@ -265,10 +262,7 @@ function swgeula_manual_scripts(){
     );
      wp_enqueue_script(
         'moment-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js', array()
-    );     
-     wp_enqueue_script(
-        'bootstrap-datepicker', get_template_directory_uri() . '/js/bootstrap-datetimepicker.js', array('moment-with-locales')
-    );         
+    );          
     wp_enqueue_script(
         'bootstrap-tabcollapse', get_template_directory_uri() . '/js/bootstrap-tabcollapse.js', array(), '1.0.0'
     );
@@ -592,52 +586,71 @@ add_action('wp_ajax_set_video_done', 'setVideoDone');
 add_action('wp_ajax_nopriv_set_video_done', 'setVideoDone');
 
 function googleUserReg() {	
+	global $wpdb;	
 
-	$uid_google = (int)$_POST['uid'];
+	$uid_google = $_POST['uid'];
 	$fname = $_POST['first_name'];
 	$lname = $_POST['last_name'];
 	$imageUrl = $_POST['image_url'];
 	$email = $_POST['primary_email'];
 	$aboutMe = $_POST['about_me'];
 	$language = $_POST['language'];
+	$occupation = $_POST['occupation'];
 
-	if ( is_int($uid_google) && !empty($email) && (!empty($fname) || !empty($lname)) ) :
+	if ( !empty($uid_google) && !empty($email) && (!empty($fname) || !empty($lname)) ) :
 
-		global $wpdb;	
 		$results = $wpdb->get_results("SELECT user_id FROM wp_sw_google_users WHERE google_id = $uid_google LIMIT 1;",ARRAY_A);		
 		
-		if (count($results)>0) {			
+		if (count($results)>0) { //user found. login			
 				wp_set_auth_cookie($results[0]['user_id']);				
 				echo 11;
 				exit;
 		}
-		else { //new user so sign him up			
-			$random_password = wp_generate_password( $length=12, $include_standard_special_chars=false );			    
-
-			$userdata = array(
-			    'user_login'  =>  $email,
-			    'user_email' => $email,			     
-			    'user_pass'   =>  $random_password,
-			    'first_name' => $fname,
-			    'last_name' => $lname,	
-			    'description' => $aboutMe
-			);
-			
-			$user_id = wp_insert_user( $userdata ) ;
-			
-			if( !is_wp_error($user_id) ) { 	
-			 		
-					$wpdb->insert("wp_sw_google_users", array( 		
-						'user_id' => $user_id, 
+		elseif( !empty($email) ) { //user is regsitered with wordpress so link to google account			
+			$results = $wpdb->get_results("SELECT ID FROM wp_users WHERE user_email = '$email' LIMIT 1;",ARRAY_A);	
+			if (count($results)>0) { 
+				$wpdb->insert("wp_sw_google_users", array( 		
+						'user_id' => $results[0]['ID'], 
 						'google_id' => $uid_google						
 					));
-					wp_set_auth_cookie($user_id);		
-					echo 1;
-					exit;			 
-			}
-			else {
-				echo 0;
-				exit;	
+				wp_set_auth_cookie($user_id);		
+				echo 11;
+				exit;			 
+			}		
+			else { //new user so sign him up and link to google account						
+				$random_password = wp_generate_password( $length=12, $include_standard_special_chars=false );			    
+
+				$userdata = array(
+				    'user_login'  =>  $email,
+				    'user_email' => $email,			     
+				    'user_pass'   =>  $random_password,
+				    'first_name' => $fname,
+				    'last_name' => $lname,	
+				    'description' => $aboutMe,
+				    'subject' => $occupation
+				);						
+				$user_id = wp_insert_user( $userdata ) ;			
+				
+				if( !is_wp_error($user_id) ) { 						
+				 		
+						$wpdb->insert("wp_sw_google_users", array( 		
+							'user_id' => $user_id, 
+							'google_id' => $uid_google						
+						));
+
+						if ( !empty($imageUrl) ) {
+							update_usermeta($user_id, 'custom_avatar', $imageUrl);
+							update_usermeta($user_id, 'custom_avatar_220', $imageUrl);
+						}
+
+						wp_set_auth_cookie($user_id);		
+						echo 1;
+						exit;			 
+				}
+				else {
+					echo 0;
+					exit;	
+				}
 			}
 		}			
 	endif;

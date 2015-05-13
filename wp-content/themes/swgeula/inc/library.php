@@ -133,7 +133,7 @@
 
                 $cat2 = (object)$cat2; 
 
-                $color = get_category_meta('color', get_term_by('slug', $cat2->cat_name, 'category'));
+                $color = get_category_meta('color', get_term_by('slug', $cat2->cat_name, 'category'));                
         			  $is_subject_category = get_category_meta('subject_category', get_term_by('slug', $cat2->slug, 'category'));
                 if(!$is_subject_category) : 		
 					?>

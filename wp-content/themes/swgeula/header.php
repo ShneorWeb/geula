@@ -77,7 +77,7 @@
           
           <div class="site-branding">
               <h1 class="site-title">
-                  <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="nav-brand">
+                  <a class="navbar-brand" href="<?php echo get_category_link(3); ?>" rel="home" class="nav-brand">
                       <?php bloginfo( 'name' ); ?>
                   </a>
               </h1>
