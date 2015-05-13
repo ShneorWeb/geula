@@ -17,6 +17,8 @@
 	</footer><!-- #colophon -->
 </div>
 
+<script src = "https://plus.google.com/js/client:plusone.js"></script>
+
 <?php wp_footer(); ?>
 
 </body>

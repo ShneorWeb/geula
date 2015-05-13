@@ -21,60 +21,105 @@ $current_user = wp_get_current_user();
                 
                 <div class="box menu">
                    <a class="current">
-                        <?php echo __('השיעורים שלי', 'swgeula'); ?>
+                        <?php _e('my lessons', 'swgeula'); ?>
                     </a>
-                    <a href="<?php echo esc_url( get_permalink( get_page_by_title( __('שיעורים שאני מוסר', 'swgeula') ) ) ); ?>">
-                        <?php echo __('שיעורים שאני מוסר', 'swgeula'); ?>
+                    <a href="<?php echo esc_url( get_permalink( get_page_by_title( __('lessons I teach', 'swgeula') ) ) ); ?>">
+                        <?php _e('lessons I teach', 'swgeula'); ?>
                     </a>
                 </div>
 
                 <div class="image_category">
                                
                                <?php 
-                                    //if there is a lesson in schedule
-                                    $schedule = true;
+                                    $arrNextScheduled = getNextSchedulesCat();
+                                    if ( is_array($arrNextScheduled) && count($arrNextScheduled)>0 ) $bScheduled = true;
+                                    else $bScheduled = false;
                                 ?>
                                 
                                 <div class="big_icon">
                                     <i class="fa fa-calendar-o"></i>
-                                    <?php if($schedule){?>
-                                        <div class="status x"><i class="fa fa-times"></i></div>
-                                    <?php }else{?>
+                                    <?php if($bScheduled){?>
                                         <div class="status v"><i class="fa fa-check"></i></div>
+                                    <?php }else{?>
+                                        <div class="status x"><i class="fa fa-times"></i></div>
                                     <?php }?>
                                 </div>
                                 <div class="dtls">
                                     
                                     <h2>
-                                       <?php if($schedule){?>
-                                       <?php the_field('title_no_lessons'); ?>
-                                       <?php }else{?>
+                                       <?php if($bScheduled){?>
                                        <?php the_field('title_is_lessons'); ?>
+                                       <?php }else{?>
+                                       <?php the_field('title_no_lessons'); ?>
                                        <?php }?>
                                     </h2>
 
-                                    <?php if(!$schedule){?>                                            
-                                    <p><?php echo __('תזמון הלימוד שלך הינו ל', 'swgeula') . $lesson_date . " " . __('בשעה', 'swgeula'). $lesson_time; ?> <a href="#" class="schedule_new"><?php echo __('תזמן מחדש', 'swgeula'); ?></a></p>  
+                                    <?php if($bScheduled){?>                                            
+                                    <p><?php echo __('Your scheduled lesson is for', 'swgeula') . $lesson_date . " " . __('at', 'swgeula'). $lesson_time; ?> <a href="#" onclick="jQuery('#dp1').show();" class="schedule_new"><?php _e('schedule again', 'swgeula'); ?></a></p>  
+                                            <div id="dp1" class="form-group" style="width:300px; display:none;">
+                                                    <div class='input-group date' id='datetimepicker1'>
+                                                        <input type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                            </div> 
+                                            <script>
+                                                        jQuery(function () {                                                          
+                                                            jQuery('#datetimepicker1').datetimepicker();
+                                                            jQuery('#datetimepicker1').on('dp.change', function(e){
+                                                                console.log(e.timeStamp);
+                                                                setSchedule(e.timeStamp,25);
+                                                            });
+                                                        });
+                                            </script>     
                                     <?php }?> 
                                      
-                                    <?php if($schedule){?>
-                                           <button class="schedule_btn">
-                                                <i class="fa fa-clock-o"></i><?php echo __('תזמן לימוד', 'swgeula'); ?>
-                                            </button>
+                                    <?php if(!$bScheduled){?>                                    
+                                           <button class="schedule_btn" onclick="jQuery('#dp1').show();">
+                                                <i class="fa fa-clock-o"></i><?php _e('schedule learning', 'swgeula'); ?>                                                
+                                            </button>                                                                                              
+                                            <div id="dp1" class="form-group" style="width:300px; display:none;">
+                                                    <div class='input-group date' id='datetimepicker1'>
+                                                        <input type='text' class="form-control" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                            </div>                                                 
+                                            <script>
+                                                        jQuery(function () {                                                          
+                                                            jQuery('#datetimepicker1').datetimepicker();
+                                                            jQuery('#datetimepicker1').on('dp.change', function(e){
+                                                                console.log(e.timeStamp);
+                                                                setSchedule(e.timeStamp,25);
+                                                            });
+                                                        });
+                                            </script>                                              
                                     <?php }?>
                                         
                                         <h3 class="ltl_title">
-                                            <?php echo __('השיעור הבא', 'swgeula'); ?>
+                                            <?php _e('next lesson', 'swgeula'); ?>
                                         </h3>
                                         
                                         <div class="single_lesson_cont">
 								    
                                             <a href="#">
                                                 <div class="name">                                            
-                                                    <i class="fa fa-chevron-left"></i>                               
-                                                    פוסט שלישי לדוגמא מקטגוריה שלישית תחת הכהנים                                                                        </div>    
+                                                    <i class="fa fa-chevron-left"></i>            
+                                                    <?php                                                                                                                            
+                                                    if ( is_array($arrNextScheduled) && count($arrNextScheduled)>0 ) {
+                                                        $tempCatObj = get_category($arrNextScheduled[0]);                                                                                                        
+                                                        echo($tempCatObj->name);
+                                                    }
+                                                    ?>
+                                                </div>
                                                 <div class="time">                                            
-                                                    00:00:00 
+                                                    <?php
+                                                    if ( is_array($arrNextScheduled) && count($arrNextScheduled)>0 ) {                                                        
+                                                        echo($arrNextScheduled[1]);
+                                                    }
+                                                    ?> 
                                                  </div>
                                             </a>
                                         

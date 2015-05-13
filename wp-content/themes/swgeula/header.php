@@ -29,8 +29,7 @@
 	<![endif]-->
     
   <script src="https://apis.google.com/js/client:platform.js" async defer></script>
-  <script src = "https://plus.google.com/js/client:plusone.js"></script>
-
+  
 	<?php wp_head(); ?>
 
 

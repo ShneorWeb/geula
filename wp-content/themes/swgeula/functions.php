@@ -127,8 +127,7 @@ function swgeula_scripts() {
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
-	}
-	
+	}	
 	if( is_page("custom-profile-page") ) {
 		wp_enqueue_script(
 			'angularjs',
@@ -144,7 +143,7 @@ function swgeula_scripts() {
 			'ui-bootstrap',
 			get_stylesheet_directory_uri() . '/angular/ui-bootstrap-tpls-0.12.1.min.js',
 			array( 'angularjs')
-		);
+		);				
 		wp_enqueue_script(
 			'angular-translate',
 			get_stylesheet_directory_uri() . '/angular/angular-translate.min.js',
@@ -219,9 +218,15 @@ function swgeula_styles() {
 	wp_enqueue_style(
         'bootstrap_css', get_template_directory_uri() . '/css/bootstrap.css' 
     );
+    wp_enqueue_style(
+        'bootstrap-datepicker', get_template_directory_uri() . '/css/bootstrap-datetimepicker.css' 
+    );   
    //hebrew version only
     wp_enqueue_style(
             'bootstrap_rtl_css', get_template_directory_uri() . '/css/bootstrap-rtl.css' 
+    );
+    wp_enqueue_style(
+            'bootstrap_rtl_css', get_template_directory_uri() . '/css/datepicker.css' 
     );
     wp_enqueue_style(
         'font-awesome', get_template_directory_uri() . '/css/font-awesome.css' 
@@ -258,6 +263,12 @@ function swgeula_manual_scripts(){
      wp_enqueue_script(
         'bootstrap-select', get_template_directory_uri() . '/js/bootstrap-select.js', array(), '1.0.0'
     );
+     wp_enqueue_script(
+        'moment-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js', array()
+    );     
+     wp_enqueue_script(
+        'bootstrap-datepicker', get_template_directory_uri() . '/js/bootstrap-datetimepicker.js', array('moment-with-locales')
+    );         
     wp_enqueue_script(
         'bootstrap-tabcollapse', get_template_directory_uri() . '/js/bootstrap-tabcollapse.js', array(), '1.0.0'
     );
@@ -735,9 +746,8 @@ function removeFromMyLessons() {
 		$userID = $current_user->ID;		
 
 		
-		if ( is_int($userID) && ($catID>0) ) :
-			
-				$results = $wpdb->get_results("DELETE FROM wp_sw_user_lesson WHERE user_id = $userID AND cat_id = $catID;",ARRAY_A);									
+		if ( is_int($userID) && ($catID>0) ) :			
+				
 				$wpdb->delete( 'wp_sw_user_lesson', array( 'user_id'=>$userID, 'cat_id' => $catID ) );
 				echo 1;		
 				exit;
@@ -817,6 +827,68 @@ function getMyCats() {
 
 	 endif;
 	 return 0;
+}
+
+
+function setSchedule() {
+	global $wpdb;	
+	$userID = -1;	
+
+	if ( is_user_logged_in() ) { 		
+		$catID = (int)$_POST['cat_id'];
+		$timeStamp = (int)$_POST['time_stamp'];		
+		
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;		
+		
+		if ( is_int($userID) && ($catID>0) && ($timeStamp>0) ) :			
+				
+				$wpdb->delete( 'wp_sw_schedules', array( 'user_id'=>$userID, 'cat_id' => $catID ) );
+				
+				$wpdb->insert("wp_sw_schedules", array( 		
+							'user_id' => $userID,
+							'cat_id' => $catID, 																		
+							'schedule_date' => date('d-m-Y H:i:s',$timeStamp),
+							'repeat' => 0
+							)				
+				);
+				echo 1;		
+				exit;
+				
+		endif;	
+	}
+	echo 0;		
+	exit;
+}
+add_action('wp_ajax_set_schedule', 'setSchedule');
+add_action('wp_ajax_nopriv_set_schedule', 'setSchedule');
+
+
+function getNextSchedulesCat() {
+	global $wpdb;	
+
+	if ( is_user_logged_in() ) { 		
+
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;	
+
+		if (is_int($userID)) :
+				
+				$results = $wpdb->get_results("SELECT cat_id,schedule_date FROM wp_sw_schedules WHERE user_id = $userID AND schedule_date>='".date('d-m-Y H:i:s')."' ORDER BY schedule_date ASC LIMIT 1;",ARRAY_A);											
+
+				if (count($results)>0) :														
+					$arrRetVal = array();
+					$arrRetVal[] = $results[0]['cat_id'];
+					$arrRetVal[] = $results[0]['schedule_date'];
+					return $arrRetVal;										
+				else :  
+					return $wpdb->last_error;	
+				endif;
+
+	 	endif;			
+
+	}	
+	return "";
 }
 
 /*

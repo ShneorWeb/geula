@@ -2,6 +2,7 @@ var filterBoxes;
 var addToMyLessons;
 var removeFromMyLessons;
 var hideCat;
+var setSchedule;
 
 (function($) {
     
@@ -47,6 +48,30 @@ filterBoxes = function(iAuthorID,parentCat,sSort,iCatID,bInNosse) {
               console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
           }      
   });
+}
+
+setSchedule = function(timestamp,catid) {
+  if (catid==-1) catid = getNextCatToSchedule();
+
+  $.ajax({
+          type : "post",
+          data : {
+              'action': 'set_schedule',
+              'cat_id': catid,     
+              'time_stamp': timestamp,                           
+          },          
+          url: ajaxurl,          
+          success    : function(data){                                        
+              //console.log("in success");
+              console.log(data);              
+              $('#dp1').hide();                                                         
+          },
+          error     : function(jqXHR, textStatus, errorThrown) {
+            console.log("in error");
+              console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+          }      
+  });
+
 }
 
 
