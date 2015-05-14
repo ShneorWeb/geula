@@ -363,7 +363,7 @@ class MY_Post_Numbers {
 
                     <div class="box userdtls">
                            <?php                                
-                                echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 60 ) . '</div>'; 
+                                echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 100 ) . '</div>'; 
                             ?>
                                    
                                     <div class="dtls">

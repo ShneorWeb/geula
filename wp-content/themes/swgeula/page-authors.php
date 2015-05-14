@@ -65,7 +65,7 @@ get_header(); ?>
                                                     
 												    echo '<div class="category_square_avatar">';
 												     
-												    echo get_avatar( $user->ID, 60 );												    											    												    
+												    echo get_avatar( $user->ID, 100 );												    											    												    
 
 												    echo '</div>'; 
 

@@ -282,7 +282,7 @@
 						foreach ($values as $user_id) {
 							$the_user = get_user_by('id', $user_id);
                             //TODO : image from ofer function
-							echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 60 ) . '</div>'; 
+							echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 100 ) . '</div>'; 
                              ?>
                             <div class="dtls">
                                 <?php

@@ -179,8 +179,8 @@
                                                     ?>
 												<p>
                                                 <?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat2->cat_name, 'category'));
-                                                    echo substr( $short_description, 0,180); 
-                                                    echo "...";
+                                                    echo substr( $short_description, 0,177); 
+                                                    /*echo "...";*/
                                                     ?>
                                                 </p>
 											</div>
