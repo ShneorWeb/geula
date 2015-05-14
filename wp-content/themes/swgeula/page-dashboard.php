@@ -22,7 +22,7 @@ $current_user = wp_get_current_user();
                 <div class="image_category">
                                 <!--TODO : image from ofer function -->
                                 <div class="category_square_avatar in_header">
-                                    <?php echo get_avatar( $user->ID, 96 );?>
+                                    <?php echo get_avatar( $current_user->ID, 160 );?>
                                 </div>
                                 <div class="dtls">
                                     <div class="current_category_name">

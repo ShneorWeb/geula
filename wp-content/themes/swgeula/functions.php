@@ -1111,12 +1111,14 @@ function getCatIDOfLibrary() {
 show_admin_bar(false);
 
 
-function getSWGeulaAvatar($size=96)  {
+function getSWGeulaAvatar($size=60)  {
 	global $current_user;
+	$avtr = "";	
 	$current_user = wp_get_current_user();
 	$uid = $current_user->ID;
-	if ($size==96) $avtr = get_user_meta( $uid, 'custom_avatar', true );
-	else $avtr = get_user_meta( $uid, 'custom_avatar_'.$size, true );
+
+	if ($size==100 || $size==160) $avtr = get_user_meta( $uid, 'custom_avatar_'.$size, true );	
+	else $avtr = get_user_meta( $uid, 'custom_avatar', true );
 
 	if ( empty($avtr) || (is_array($avtr) && size($avtr)==0) ) $avtr = "";
 
@@ -1125,16 +1127,17 @@ function getSWGeulaAvatar($size=96)  {
 function getSWGeulaAvatarUID($uid,$size=96)  {
 	$avtr = "";
 
-	if ( !empty($uid) && is_numeric($uid) ) {		
-		if ($size==96) $avtr = get_user_meta( $uid, 'custom_avatar', true );
-		else $avtr = get_user_meta( $uid, 'custom_avatar_'.$size, true );
+	if ( !empty($uid) && is_numeric($uid) ) {				
+		if ($size==100 || $size==160)  $avtr = get_user_meta( $uid, 'custom_avatar_'.$size, true );
+		else $avtr = get_user_meta( $uid, 'custom_avatar', true );
+		
 		if ( empty($avtr) || (is_array($avtr) && size($avtr)==0) ) $avtr = "";
 	}
 	return $avtr;	
 }
 
 function my_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {			
-    if (!isset($size)) $size=96;
+    if (!isset($size)) $size=60;
 
     if ( is_numeric( $id_or_email ) ) $id = (int)$id_or_email;       
     elseif ( is_object( $id_or_email ) ) {    	
@@ -1183,7 +1186,8 @@ function get_user_profile() {
 		    
 
 		    $avtr = get_user_meta( $uid, 'custom_avatar', true );
-		    $avtr_220 = get_user_meta( $uid, 'custom_avatar_220', true );
+		    $avtr_100 = get_user_meta( $uid, 'custom_avatar_100', true );
+		    $avtr_160 = get_user_meta( $uid, 'custom_avatar_160', true );
 		    $lang = get_user_meta( $uid, 'user_lang', true );
 		    $country = get_user_meta( $uid, 'user_country', true );
 		    $city = get_user_meta( $uid, 'user_city', true );		    
@@ -1443,19 +1447,23 @@ function set_user_profile3(){
 
 			  $image_editor1 = wp_get_image_editor($status['file']);
 			  $image_editor2 = wp_get_image_editor($status['file']);
+			  $image_editor3 = wp_get_image_editor($status['file']);
 			  
 			  if(empty($status['error'])){	
 				//resize
 				//$resized = image_resize($status['file'], 96, 96, $crop = true);	 
-				$image_editor1->resize( 96, 96, true );
-				$image_editor2->resize( 220, 220, true );				
+				$image_editor1->resize( 60, 60, true );
+				$image_editor2->resize( 100, 100, true );				
+				$image_editor3->resize( 160, 160, true );				
 				$img1 = $image_editor1->save();				
 				$img2 = $image_editor2->save();
+				$img3 = $image_editor3->save();
 			
 				if(!is_wp_error($resized)) { //resize successful		
 					//$uploads = wp_upload_dir();												
 					$_POST['resized_url'] = $imgBaseName . $img1["file"];
-					$_POST['resized_url_220'] = $imgBaseName . $img2["file"];										
+					$_POST['resized_url_100'] = $imgBaseName . $img2["file"];										
+					$_POST['resized_url_160'] = $imgBaseName . $img3["file"];										
 				}
 			  }
 			  else {
@@ -1465,16 +1473,20 @@ function set_user_profile3(){
 			}
 			elseif ($_POST) {
 				$_POST['resized_url']='';
-				$_POST['resized_url_220']='';
+				$_POST['resized_url_100']='';
+				$_POST['resized_url_160']='';
 			}
 
 
 		 	$userdata['resized_url'] = $_POST['resized_url'];		
-		 	$userdata['resized_url_220'] = $_POST['resized_url_220'];		
+		 	$userdata['resized_url_100'] = $_POST['resized_url_100'];		
+		 	$userdata['resized_url_160'] = $_POST['resized_url_160'];		
 			
 			if (!empty($userdata['resized_url'])) update_usermeta($uid, 'custom_avatar', $userdata['resized_url']);
 			else $error .= '<p class="error">File not found</p>';	
-			if (!empty($userdata['resized_url_220'])) update_usermeta($uid, 'custom_avatar_220', $userdata['resized_url_220']);
+			if (!empty($userdata['resized_url_100'])) update_usermeta($uid, 'custom_avatar_100', $userdata['resized_url_100']);
+			else $error .= '<p class="error">File not found</p>';	
+			if (!empty($userdata['resized_url_160'])) update_usermeta($uid, 'custom_avatar_160', $userdata['resized_url_160']);
 			else $error .= '<p class="error">File not found</p>';	
 
 			if( !empty( $error ) ) {			 
@@ -1484,7 +1496,7 @@ function set_user_profile3(){
 		 
 		 	}
 		 	else {	 
-					$msg = $userdata['resized_url_220'];	 
+					$msg = $userdata['resized_url_160'];	 
 			 		echo $msg;
 			 		exit;
 			 }
