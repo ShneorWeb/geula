@@ -3,7 +3,6 @@
 Template Name: Custom_Register
 */
 
-
 /** Make sure that the WordPress bootstrap has run before continuing. */
 require( ABSPATH . '/wp-load.php' );
 
@@ -355,7 +354,7 @@ if ( SITECOOKIEPATH != COOKIEPATH )
  *
  * @since 2.8.0
  */
-do_action( 'login_form_' . $action ); 
+//do_action( 'login_form_' . $action ); 
 
 $http_post = ('POST' == $_SERVER['REQUEST_METHOD']);
 $interim_login = isset($_REQUEST['interim-login']);
@@ -670,7 +669,7 @@ case 'register' :
 				login_header(__('Registration Form'), '', $errors);
 			?>
 
-			<form name="registerform" id="registerform" action="<?php echo esc_url( site_url('/custom-register-page/?action=register', 'login_post') ); ?>" method="post" novalidate="novalidate" onsubmit="return regSetFields(this)">				
+			<form name="registerform" id="registerform" action="<?php echo esc_url( site_url('/registration/?action=register', 'login_post') ); ?>" method="post" novalidate="novalidate" onsubmit="return regSetFields(this)">				
 					<input type="hidden" name="user_login" id="user_login" value="" />				
 					<input type="hidden" name="first_name" id="first_name" value="" />				
 					<input type="hidden" name="last_name" id="last_name" value="" />				

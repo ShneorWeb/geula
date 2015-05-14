@@ -146,7 +146,7 @@ function signinCallback(authResult) {
 <div class="col-sm-3"></div>
 
 <div class="col-sm-5 col-sm-offset-4" style="text-align:center;"> 
-    <div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/custom-register-page/?action=register";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
+    <div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/registration/?action=register";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
 </div>
 <div class="col-sm-3"></div>
 

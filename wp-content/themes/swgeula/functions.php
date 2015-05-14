@@ -312,12 +312,12 @@ function swgeula_login_page( $login_url, $redirect ) {
 add_filter( 'login_url', 'swgeula_login_page', 10, 2 );
 
 function swgeula_reg_page( $register_url ) {
-    return home_url( '/custom-register-page/?action=register' );
+    return home_url( '/registration/?action=register' );
 }
 add_filter( 'register_url', 'swgeula_reg_page', 10, 2 );
 
 function swgeula_lost_pass_page( $lostpassword_url, $redirect ) {
-    return home_url( '/custom-register-page/?action=lostpassword&redirecr='.$redirect );
+    return home_url( '/registration/?action=lostpassword&redirecr='.$redirect );
 }
 add_filter( 'lostpassword_url', 'swgeula_lost_pass_page', 10, 2 );
 
