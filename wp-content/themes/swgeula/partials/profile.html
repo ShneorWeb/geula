@@ -23,7 +23,7 @@
                
 
                 <div class="messages">
-                    <div class="text-success" ng-show="User_Success">{{'Data_Saved_Successfully' | translate}}</div>                
+                    <div class="text-success" ng-show="User_Success">{{'Data_Saved_Successfully' | translate}}</div> 
                 </div>                    
                  
                 <div class="col-sm-12 panel"> 
@@ -33,13 +33,19 @@
                   
                   <div class="form-group">
                     <div  class="col-sm-9 col-sm-offset-3 login-error-msg" ng-show="PSWRD_MATCH_ERROR">Passwords do not match</div>                    
-                    <label for="st-psw" style="text-align:right;" class="col-sm-3 control-label">{{'Password' | translate}}</label>                                        
+                    <label for="st-psw" class="col-sm-4 control-label">{{'Password' | translate}}</label>                                        
                     <div class="col-sm-4"><input type="password" class="form-control" name="password" id="st-psw" ng-model="user.password" placeholder="{{'Current_Password' | translate}}" /></div>                   
-                    <div class="col-sm-4 col-sm-offset-1"><input type="password" class="form-control" name="password2" id="st-psw2" ng-model="user.password2" placeholder="{{'New_Password' | translate}}" /></div>
+                    <div class="col-sm-4"><input type="password" class="form-control" name="password2" id="st-psw2" ng-model="user.password2" placeholder="{{'New_Password' | translate}}" /></div>
                    </div> 
 
-                  <div class="col-sm-4" style="margin-top:0.5em; text-align: right;"><a href="{{lostPassURL}}">{{'Forgot_Password' | translate}}</a></div><div class="col-sm-4 col-sm-offset-1">
-                    <div class="progress-label">{{'Strength' | translate}}:</div><div ng-password-strength="user.password2" strength="passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-"></div>
+                  
+                   <div class="col-sm-4 col-sm-offset-4 forgotPass">
+                       <a href="{{lostPassURL}}">{{'Forgot_Password' | translate}}</a>
+                   </div>
+                   
+                   <div class="col-sm-4 password_cont">
+                     <div class="progress-label">{{'Strength' | translate}}:</div>
+                     <div ng-password-strength="user.password2" strength="passStrength" inner-class="progress-bar" inner-class-prefix="progress-bar-" class="bar"></div>
                   </div>
                    
                   <div class="span12 clearfix"><hr /></div>

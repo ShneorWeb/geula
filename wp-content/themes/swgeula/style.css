@@ -12,7 +12,7 @@ Author URI:
 
 Tags:
 */
-.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .page-template-custom-profile-php .nav-pills > li > a, .add_lesson_btn.add {
+.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-custom-profile-php .forgotPass a, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .add_lesson_btn.add, .page-template-custom-profile-php .nav-pills > li > a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -20,12 +20,12 @@ Tags:
   transition: all 0.2s ease-in-out;
 }
 
-.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn {
+.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-custom-profile-php .forgotPass a {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-.single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover, .page-template-page-my_lessons-php .schedule_btn:hover, .page-template-page-lessons_teach-php .schedule_btn:hover {
+.single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover, .page-template-page-my_lessons-php .schedule_btn:hover, .page-template-page-lessons_teach-php .schedule_btn:hover, .page-template-custom-profile-php .forgotPass a:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   opacity: 0.75;
 }
@@ -1831,56 +1831,6 @@ button.edit_profile {
   width: 80%;
 }
 
-.page-template-custom-profile-php .drop {
-  display: none;
-}
-.page-template-custom-profile-php .div-login {
-  padding: 30px 0 0;
-}
-.page-template-custom-profile-php .site-content {
-  margin-right: 0;
-  float: right;
-  width: 100%;
-}
-.page-template-custom-profile-php .page_cont {
-  float: none;
-  margin: 0 auto;
-}
-.page-template-custom-profile-php h1.settings_page_title {
-  color: #555459;
-  font-size: 2.25rem;
-  font-weight: 400;
-  text-align: right;
-  margin-top: 11px;
-  margin-bottom: 30px;
-}
-.page-template-custom-profile-php h1.settings_page_title i {
-  color: #51b46d;
-}
-.page-template-custom-profile-php .nav-pills {
-  border-radius: 3px;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
-  background-color: #fff;
-}
-.page-template-custom-profile-php .nav-pills > li > a {
-  color: #555459;
-  font-size: 1.25rem;
-  background-color: transparent;
-  padding-top: 16px;
-  padding-bottom: 16px;
-}
-.page-template-custom-profile-php .nav-pills > li.active > a, .page-template-custom-profile-php .nav-pills > li.active > a:hover, .page-template-custom-profile-php .nav-pills > li.active > a:focus {
-  color: #555459;
-  font-weight: 700;
-  background-color: transparent;
-}
-.page-template-custom-profile-php .tab-content > .active {
-  padding: 0;
-}
-.page-template-custom-profile-php .div-login div {
-  margin-bottom: 20px !important;
-}
-
 .page-template-page-my_lessons-php .image_category, .page-template-page-lessons_teach-php .image_category {
   padding-top: 8px;
   padding-bottom: 40px;
@@ -2008,6 +1958,114 @@ a.schedule_new {
 
 .page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls {
   width: auto;
+}
+
+.page-template-custom-profile-php .drop {
+  display: none;
+}
+.page-template-custom-profile-php .div-login {
+  padding: 30px 0 0;
+}
+.page-template-custom-profile-php .site-content {
+  margin-right: 0;
+  float: right;
+  width: 100%;
+}
+.page-template-custom-profile-php .page_cont {
+  float: none;
+  margin: 0 auto;
+}
+.page-template-custom-profile-php h1.settings_page_title {
+  color: #555459;
+  font-size: 2.25rem;
+  font-weight: 400;
+  text-align: right;
+  margin-top: 11px;
+  margin-bottom: 30px;
+}
+.page-template-custom-profile-php h1.settings_page_title i {
+  color: #51b46d;
+}
+.page-template-custom-profile-php .nav-pills {
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+.page-template-custom-profile-php .nav-pills > li > a {
+  color: #555459;
+  font-size: 1.25rem;
+  background-color: transparent;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.page-template-custom-profile-php .nav-pills > li.active > a, .page-template-custom-profile-php .nav-pills > li.active > a:hover, .page-template-custom-profile-php .nav-pills > li.active > a:focus {
+  color: #555459;
+  font-weight: 700;
+  background-color: transparent;
+}
+.page-template-custom-profile-php .tab-content > .active {
+  padding: 0;
+}
+.page-template-custom-profile-php .div-login div {
+  /*margin-bottom: 20px !important;*/
+}
+.page-template-custom-profile-php .col-xs-1, .page-template-custom-profile-php .col-sm-1, .page-template-custom-profile-php .col-md-1, .page-template-custom-profile-php .col-lg-1, .page-template-custom-profile-php .col-xs-2, .page-template-custom-profile-php .col-sm-2, .page-template-custom-profile-php .col-md-2, .page-template-custom-profile-php .col-lg-2, .page-template-custom-profile-php .col-xs-3, .page-template-custom-profile-php .col-sm-3, .page-template-custom-profile-php .col-md-3, .page-template-custom-profile-php .col-lg-3, .page-template-custom-profile-php .col-xs-4, .page-template-custom-profile-php .col-sm-4, .page-template-custom-profile-php .col-md-4, .page-template-custom-profile-php .col-lg-4, .page-template-custom-profile-php .col-xs-5, .page-template-custom-profile-php .col-sm-5, .page-template-custom-profile-php .col-md-5, .page-template-custom-profile-php .col-lg-5, .page-template-custom-profile-php .col-xs-6, .page-template-custom-profile-php .col-sm-6, .page-template-custom-profile-php .col-md-6, .page-template-custom-profile-php .col-lg-6, .page-template-custom-profile-php .col-xs-7, .page-template-custom-profile-php .col-sm-7, .page-template-custom-profile-php .col-md-7, .page-template-custom-profile-php .col-lg-7, .page-template-custom-profile-php .col-xs-8, .page-template-custom-profile-php .col-sm-8, .page-template-custom-profile-php .col-md-8, .page-template-custom-profile-php .col-lg-8, .page-template-custom-profile-php .col-xs-9, .page-template-custom-profile-php .col-sm-9, .page-template-custom-profile-php .col-md-9, .page-template-custom-profile-php .col-lg-9, .page-template-custom-profile-php .col-xs-10, .page-template-custom-profile-php .col-sm-10, .page-template-custom-profile-php .col-md-10, .page-template-custom-profile-php .col-lg-10, .page-template-custom-profile-php .col-xs-11, .page-template-custom-profile-php .col-sm-11, .page-template-custom-profile-php .col-md-11, .page-template-custom-profile-php .col-lg-11, .page-template-custom-profile-php .col-xs-12, .page-template-custom-profile-php .col-sm-12, .page-template-custom-profile-php .col-md-12, .page-template-custom-profile-php .col-lg-12 {
+  margin-bottom: 0;
+}
+.page-template-custom-profile-php form label {
+  color: #555459;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: right;
+}
+.page-template-custom-profile-php ::-webkit-input-placeholder {
+  color: #C5C5C5;
+  font-size: 1.25rem;
+}
+.page-template-custom-profile-php :-moz-placeholder {
+  /* Firefox 18- */
+  color: red;
+}
+.page-template-custom-profile-php ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: red;
+}
+.page-template-custom-profile-php :-ms-input-placeholder {
+  color: red;
+}
+.page-template-custom-profile-php input, .page-template-custom-profile-php select, .page-template-custom-profile-php textarea {
+  padding: 14px 20px;
+  line-height: 1.25rem;
+}
+.page-template-custom-profile-php .forgotPass {
+  text-align: right;
+  margin-top: 10px;
+}
+.page-template-custom-profile-php .forgotPass a {
+  color: #439FE0;
+  font-size: 1.125rem;
+}
+.page-template-custom-profile-php .progress-label {
+  color: #C5C5C5;
+  font-size: 0.875rem;
+  font-weight: 400;
+  float: right;
+  width: 40px;
+  text-align: right;
+}
+.page-template-custom-profile-php .password_cont {
+  margin-top: 10px;
+}
+.page-template-custom-profile-php .password_cont .bar {
+  width: calc(100% - 40px);
+  float: right;
+}
+.page-template-custom-profile-php .password_cont .bar .progress {
+  margin: 2px 0;
+}
+.page-template-custom-profile-php hr {
+  margin: 30px 0;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
