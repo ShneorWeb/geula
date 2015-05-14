@@ -431,6 +431,10 @@ span.oval{
 .category_square_author{
   padding-bottom:10px;
   color:#b2bac2;
+    a{
+        @extend %clickbleElement;
+        float: right;
+    }
 }
 
 .rows{

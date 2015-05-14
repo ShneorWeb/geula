@@ -262,12 +262,15 @@ get_header(); ?>
 											</div>
 
 											<div class="category_square_author">
+											
 												<?php
-													
+												 
 												 $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
 												foreach ($values as $user_id) {
+                                                    
 												    $the_user = get_user_by('id', $user_id);
-                                                    //TODO : image from ofer function
+                                                    echo '<a href="'. get_author_posts_url( $user_id) . '">';
+                                                   
 												    echo '<div class="category_square_avatar">'. get_avatar( $the_user, 60 ) . '</div>'; 
 
 												    echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->display_name . '</h4></div>';
@@ -281,9 +284,11 @@ get_header(); ?>
 
                                                             echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');  
                                                         ?>
+                                                        
 													</div><?php } ?>
+                                                
 											</div>
-													
+													</a>
 
 											</div>
                                         

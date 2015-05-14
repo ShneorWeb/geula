@@ -12,7 +12,7 @@ Author URI:
 
 Tags:
 */
-.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-custom-profile-php .forgotPass a, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .add_lesson_btn.add, .page-template-custom-profile-php .nav-pills > li > a {
+.category_square_author a, .single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-custom-profile-php .forgotPass a, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .add_lesson_btn.add, .page-template-custom-profile-php .nav-pills > li > a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -20,12 +20,12 @@ Tags:
   transition: all 0.2s ease-in-out;
 }
 
-.single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-custom-profile-php .forgotPass a {
+.category_square_author a, .single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-custom-profile-php .forgotPass a {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-.single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover, .page-template-page-my_lessons-php .schedule_btn:hover, .page-template-page-lessons_teach-php .schedule_btn:hover, .page-template-custom-profile-php .forgotPass a:hover {
+.category_square_author a:hover, .single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover, .page-template-page-my_lessons-php .schedule_btn:hover, .page-template-page-lessons_teach-php .schedule_btn:hover, .page-template-custom-profile-php .forgotPass a:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   opacity: 0.75;
 }
@@ -346,6 +346,9 @@ span.oval {
 .category_square_author {
   padding-bottom: 10px;
   color: #b2bac2;
+}
+.category_square_author a {
+  float: right;
 }
 
 .rows {
