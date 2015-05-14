@@ -61,7 +61,7 @@
 
 <body <?php body_class(); ?>>
 
-  <?php if(!is_page("custom-login-page")) : ?>
+  <?php if(!is_page("custom-login-page") && !is_page("registration")) : ?>
 
     <div class="navbar navbar-inverse navbar-fixed-top" >
        
