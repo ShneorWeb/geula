@@ -89,12 +89,14 @@
               'menu'        => 'header-menu',
               'menu_class'  => 'nav navbar-nav',
               'container'   => 'false'
-            );
-            //wp_nav_menu( $args );
+            );          
           ?></div>
         </div>        
 
          <div class="menu-top" >
+          
+          <?php if ( is_user_logged_in() ) {?> 
+
                 <div class="profile hidden-xs">
                     
                     <div class="points profile_dtls">
@@ -219,7 +221,14 @@
                 </div>
              
             </div>
-            
+            <?php }  //if user is logged in 
+                  else   {
+            ?>
+              <div style="margin-left:20px;">
+                <button type="button" class="btn btn-default" aria-label="Left Align" onclick="window.location.href='/custom-register-page/?action=register'"><?php _e("Login","swgeula") ?></button>                
+              </div>            
+            <?php }
+            ?>
         </div>
 
 
