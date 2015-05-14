@@ -162,7 +162,7 @@
     												foreach ($values as $user_id) {
     												    $the_user = get_user_by('id', $user_id);                                                                                                                
                                                         
-    												    echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 96 ) . '</div>'; 
+    												    echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 60 ) . '</div>'; 
 
     												    echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->display_name . '</h4></div>';
     												    
