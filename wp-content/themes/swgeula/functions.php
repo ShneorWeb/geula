@@ -639,8 +639,13 @@ function googleUserReg() {
 						));
 
 						if ( !empty($imageUrl) ) {
-							update_usermeta($user_id, 'custom_avatar', $imageUrl);
-							update_usermeta($user_id, 'custom_avatar_220', $imageUrl);
+							$imageUrl1 = str_replace("sz=50", "sz=60", $imageUrl);
+							$imageUrl2 = str_replace("sz=50", "sz=100", $imageUrl);
+							$imageUrl3 = str_replace("sz=50", "sz=160", $imageUrl);
+
+							update_usermeta('', 'custom_avatar', $imageUrl1);
+							update_usermeta($user_id, 'custom_avatar_100', $imageUrl2);
+							update_usermeta($user_id, 'custom_avatar_160', $imageUrl3);
 						}
 
 						wp_set_auth_cookie($user_id);		
