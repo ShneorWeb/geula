@@ -48,16 +48,18 @@
 }
 
 .div-login hr {
-  margin-top: 6px !important;  
+  /*margin-top: 6px !important;  /*
 }
 .div-login div {
-  margin-bottom: 10px !important;  
+  /*margin-bottom: 10px !important;  */
 }
 
 .progress-label {
+    /*
     float: right;
     margin-left: 1em;
     margin-top: 0.5em;
+    */
 }
 
 #login-bottom-text {
@@ -137,16 +139,18 @@
 }
 
 .div-login hr {
-  margin-top: 6px !important;  
+  /*margin-top: 6px !important;  */
 }
 .div-login div {
-  margin-bottom: 10px !important;  
+  /*margin-bottom: 10px !important;  */
 }
 
 .progress-label {
+    /*
     float: right;
     margin-left: 1em;
     margin-top: 0.5em;
+    */
 }
 
 #login-bottom-text {

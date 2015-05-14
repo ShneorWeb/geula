@@ -431,6 +431,10 @@ span.oval{
 .category_square_author{
   padding-bottom:10px;
   color:#b2bac2;
+    a{
+        @extend %clickbleElement;
+        float: right;
+    }
 }
 
 .rows{
@@ -827,7 +831,11 @@ line-height: 1.1;
     }
 }
 
-
+.page-template-page-authors-php{
+    .category_square_content{
+    @include border-radius(4px);
+    }
+}
 
 span.category_top_time {
   padding-left: 0;
@@ -840,7 +848,7 @@ span.category_top_time {
     line-height: 1.3;
     float: right;
     background-color: #FFF;
-    @include border-radius(4px);
+    @include border-radius(0 0 4px 4px);
     @include box-shadow(0 2px 0 rgba(56, 64, 71, 0.2));
     width: 100%;
      h3{
@@ -855,6 +863,7 @@ span.category_top_time {
         margin-top: 0;
         line-height: 1.1;
         margin-bottom: 6px;
+        min-height: 44px;
     }
     h4{
         color: #384047;
@@ -1313,6 +1322,7 @@ main library page
             font-size: 16px;
             font-weight: 400;
             margin-bottom: 0;
+            min-height: 0;
         }
     }
 
@@ -2075,68 +2085,6 @@ button.edit_profile{
 } 
 
 
-.page-template-custom-profile-php{
-    .drop{
-    display: none;
-    }
-    .div-login{
-        padding: 30px 0 0 ;
-    }
-    .site-content {
-      margin-right: 0;
-      float: right;
-      width: 100%;
-    }
-    .page_cont{
-        float: none;
-        margin: 0 auto;
-    }
-    
-    h1.settings_page_title{
-        color: #555459;
-        font-size: 2.25rem;
-        font-weight: 400;
-        text-align: right;
-        margin-top: 11px;
-        margin-bottom: 30px;
-        i{
-            color:#51b46d;
-        }
-    }
-    
-    .nav-pills{
-          border-radius: 3px;
-          box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
-        background-color: #fff;
-    }
-    
-    .nav-pills > li > a {
-      color: #555459;
-        font-size: 1.25rem;
-        background-color: transparent;
-        @extend %trans;
-        padding-top: 16px;
-        padding-bottom: 16px;
-    }
-    
-    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-        color: #555459;
-        font-weight: 700;
-        background-color: transparent;
-    }
-    
-    .tab-content > .active {
-      padding: 0;
-    }
-    
-    .div-login div {
-      margin-bottom: 20px !important;
-    }
-    
-}
-
-
-
 .page-template-page-my_lessons-php,.page-template-page-lessons_teach-php{
     .image_category {      
       padding-top: 8px;
@@ -2294,6 +2242,134 @@ a.schedule_new{
       width: auto;
     }
 } 
+
+
+.page-template-custom-profile-php{
+    .drop{
+    display: none;
+    }
+    .div-login{
+        padding: 30px 0 0 ;
+    }
+    .site-content {
+      margin-right: 0;
+      float: right;
+      width: 100%;
+    }
+    .page_cont{
+        float: none;
+        margin: 0 auto;
+    }
+    
+    h1.settings_page_title{
+        color: #555459;
+        font-size: 2.25rem;
+        font-weight: 400;
+        text-align: right;
+        margin-top: 11px;
+        margin-bottom: 30px;
+        i{
+            color:#51b46d;
+        }
+    }
+    
+    .nav-pills{
+          border-radius: 3px;
+          box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+        background-color: #fff;
+          margin-bottom: 20px;
+    }
+    
+    .nav-pills > li > a {
+      color: #555459;
+        font-size: 1.25rem;
+        background-color: transparent;
+        @extend %trans;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+    
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+        color: #555459;
+        font-weight: 700;
+        background-color: transparent;
+    }
+    
+    .tab-content > .active {
+      padding: 0;
+    }
+    
+    .div-login div {
+      /*margin-bottom: 20px !important;*/
+    }
+    
+    .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+      margin-bottom: 0;
+    }
+    
+    form{
+        label{
+              color: #555459;
+              font-size: 1.25rem;
+              font-weight: 400;
+              text-align: right;
+        }
+    }
+    ::-webkit-input-placeholder {
+        color: #C5C5C5;
+        font-size: 1.25rem;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: red;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: red;  
+    }
+
+    :-ms-input-placeholder {  
+       color: red;  
+    }
+    
+    input, select, textarea{
+        padding: 14px 20px;
+        line-height: 1.25rem;
+    }
+    .forgotPass{
+        text-align: right;
+        margin-top: 10px;
+        a{
+            color: #439FE0;
+            font-size: 1.125rem;
+            @extend  %clickbleElement;
+        }
+    }
+    
+    .progress-label{
+        color: #C5C5C5;
+        font-size:  0.875rem;
+        font-weight: 400;
+        float: right;
+        width: 40px;
+          text-align: right;
+    }
+    
+    .password_cont{
+          margin-top: 10px;
+             .bar{
+                width: calc(100% - 40px);
+                float: right;
+                .progress{
+                      margin: 2px 0;
+                }
+            }
+    } 
+    
+    hr{
+        margin: 30px 0;
+    }
+}
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
