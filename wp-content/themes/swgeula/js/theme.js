@@ -4,6 +4,10 @@ var removeFromMyLessons;
 var hideCat;
 var setSchedule;
 
+function goToLogin() {
+  window.location.href=gbLocal?'/geula/custom-login-page/':'/custom-login-page/';
+}
+
 (function($) {
     
 //global vars

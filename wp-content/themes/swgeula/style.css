@@ -1000,6 +1000,11 @@ ul.dropdown-menu.inner li {
   */
 }
 
+.not-logged-msg {
+  width:100%;
+  text-align: center;
+}
+
 /* ----------- ----------- ----------- ----------- -
 main library page
 ------ ----------- ----------- -----------  */

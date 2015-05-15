@@ -105,7 +105,7 @@ function signinCallback(authResult) {
             <p class="login-msg">    <?php echo _e('Registration complete. Please check your e-mail and login.','swgeulatr');?> </p>
             <?php  }   
 
-        $redirect_to = !empty( $_REQUEST['redirecr'] ) ? $_REQUEST['redirecr'] : home_url();
+        $redirect_to = !empty( $_REQUEST['redirecr'] ) ? $_REQUEST['redirecr'] : get_category_link(3);
             
         $args = array(                                
                 'redirect' => ( (isset($_GET['checkemail']) && $_GET['checkemail']=='registered') || isset($_GET['vc']) )?home_url('custom-profile-page'):$redirect_to, 

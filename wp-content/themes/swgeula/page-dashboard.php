@@ -4,6 +4,11 @@ Template Name: Dashboard
 */
 get_header(); 
 
+if (!is_user_logged_in()) {
+  include_once("inc/not_logged_in_msg.php");
+}
+else {  
+
 $current_user = wp_get_current_user();
 ?>	
 
@@ -159,6 +164,8 @@ $current_user = wp_get_current_user();
 	
 				
 </div>
-
+<?php
+} //of else logged in
+?>
 <?php get_footer(); ?>
 				

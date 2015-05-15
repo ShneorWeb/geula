@@ -225,7 +225,7 @@
                   else   {
             ?>
               <div style="margin-left:20px;">
-                <button type="button" class="btn btn-default" aria-label="Left Align" onclick="window.location.href='/registration/?action=register'"><?php _e("Login","swgeula") ?></button>                
+                <button type="button" class="btn btn-default" aria-label="Left Align" onclick="goToLogin()"><?php _e("Login","swgeula") ?></button>                
               </div>            
             <?php }
             ?>

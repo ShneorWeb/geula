@@ -2,10 +2,7 @@
 				
 				<?php				;
 				//echo("lang=".WPLANG);
-				?>
-				<?php _e("hello world","swgeulatr");?>
-
-				<?php _e("Web site","swgeulatr");?>
+				?>				
 
 				<div class="sidebar">
 
