@@ -1159,7 +1159,7 @@ function my_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
 add_filter( 'get_avatar' , 'my_custom_avatar' , 1 , 5 );
 
 
-function check_custom_authentication ($username,$pswrd) {
+function check_custom_authentication ($username) {
         global $wp_query;        
         
         $userID = username_exists($username);

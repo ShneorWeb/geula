@@ -629,6 +629,8 @@ case 'register' :
 				$vccode = md5("swgeula".$errors."vc24");
 				update_user_meta( $errors, 'verify_email_code', $vccode );
 
+				wp_new_user_notification( $errors, $user_password ); 
+
 				$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url().'/custom-login-page/?checkemail=registered';
 				//wp_safe_redirect( $redirect_to );
 				?>

@@ -108,7 +108,7 @@ function signinCallback(authResult) {
         $redirect_to = !empty( $_REQUEST['redirecr'] ) ? $_REQUEST['redirecr'] : home_url();
             
         $args = array(                                
-                'redirect' => ( isset($_GET['checkemail']) && $_GET['checkemail']=='registered' )?home_url('custom-profile-page'):$redirect_to, 
+                'redirect' => ( (isset($_GET['checkemail']) && $_GET['checkemail']=='registered') || isset($_GET['vc']) )?home_url('custom-profile-page'):$redirect_to, 
                 'form_id' => 'loginform-custom',
                 'label_username' => '',
                 'label_password' => '',                
