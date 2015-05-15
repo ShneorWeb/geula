@@ -290,9 +290,7 @@ if (!function_exists('wp_new_user_notification')) {
 
 			$headers = str_replace('[admin_email]', $admin_email, $headers);
 			$headers = str_replace('[blog_name]', $blog_name, $headers);
-			//$headers = str_replace('[site_url]', $sb_we_home, $headers);
-			$sw_sb_we_home = $sw_sb_we_home."?vc=".md5("swgeula".$user_id."vc24"); //added by Ofer ShneorWeb !!
-			$headers = str_replace('[site_url]', $sw_sb_we_home, $headers);
+			$headers = str_replace('[site_url]', $sb_we_home, $headers);
 			//End Headers
 
 			//Don't notify if the admin object doesn't exist;
@@ -356,8 +354,8 @@ if (!function_exists('wp_new_user_notification')) {
 
 			if (!empty($plaintext_pass)) {
 				$user_message = str_replace('[admin_email]', $admin_email, $user_message);
-				$user_message = str_replace('[site_url]', $sb_we_home, $user_message);
-				$user_message = str_replace('[login_url]', $sb_we_home . 'wp-login.php', $user_message);
+				$user_message = str_replace('[site_url]', $sb_we_home, $user_message);		
+				$user_message = str_replace('[login_url]', $sb_we_home . 'custom-login-page/?vc='.md5('swgeula'.$user_id.'vc24'), $user_message);
 				$user_message = str_replace('[user_email]', $user_email, $user_message);
 				$user_message = str_replace('[user_login]', $user_login, $user_message);
 				$user_message = str_replace('[last_name]', $last_name, $user_message);

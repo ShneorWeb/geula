@@ -354,6 +354,7 @@ function verify_username_password( $user, $username, $password ) {
 add_filter( 'authenticate', 'verify_username_password', 1, 3);  
 
 
+/*
 // Redefine user notification function
 if ( !function_exists('wp_new_user_notification') ) {
 
@@ -391,7 +392,7 @@ if ( !function_exists('wp_new_user_notification') ) {
 			$message
 		);
 	}
-}
+}*/
 
 /************************** end user registration stuff: ************************************/
 
