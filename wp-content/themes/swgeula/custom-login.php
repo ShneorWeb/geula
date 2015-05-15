@@ -95,6 +95,8 @@ function signinCallback(authResult) {
         $login  = (isset($_GET['login']) ) ? $_GET['login'] : 0;  
         if ( $login === "failed" ) {  ?>
             <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Invalid username and/or password.","swgeulatr");?></p>  
+         <?php } elseif ( $login === "failedvc" ) {  ?>
+            <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Please check your registration email and use the link to login","swgeulatr");?>.</p>    
         <?php } elseif ( $login === "empty" ) {  ?>
             <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Username and/or Password is empty","swgeulatr");?>.</p>
         <?php } elseif ( $login === "false" ) {  ?>
@@ -113,7 +115,7 @@ function signinCallback(authResult) {
                 'label_remember' => __( 'Remember Me','swgeulatr' ),
                 'label_log_in' => __( 'Log In','swgeulatr' ),
                 'remember' => true
-        );
+        );        
         wp_login_form($args); 
         ?>
     </div>

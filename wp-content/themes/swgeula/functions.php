@@ -332,11 +332,11 @@ function swgeula_registration_errors( $errors, $sanitized_user_login, $user_emai
 }
 add_filter( 'registration_errors', 'swgeula_registration_errors', 10, 3 );
 
-function my_front_end_login_fail( $username ) {	
+function my_front_end_login_fail( $username ) {		
    $referrer = $_SERVER['HTTP_REFERER'];  // where did the post submission come from?
    // if there's a valid referrer, and it's not the default log-in screen
    if ( !empty($referrer) && !strstr($referrer,'wp-login') && !strstr($referrer,'wp-admin') ) {
-      wp_redirect( add_query_arg( 'login', 'failed',$referrer ) );  // let's append some information (login=failed) to the URL for the theme to use
+   	  wp_redirect( add_query_arg( 'login', 'failed',$referrer ) );  // let's append some information (login=failed) to the URL for the theme to use
       exit;
    }
 }
@@ -465,14 +465,7 @@ add_filter('user_contactmethods', 'add_contact_fields');
             }
             return ($a['date'] < $b['date']) ? 1 : -1;
 }
-/*
-function wplogin_filter( $url, $path, $orig_scheme ) {
- 	$old  = array( "/(wp-login\.php)/");
- 	$new  = array( "custom-login-page/");
- 	return preg_replace( $old, $new, $url, 1);
-}
-add_filter('site_url',  'wplogin_filter', 10, 3);
-*/
+
 /************************* Session Management *********************************/
 function myStartSession() {
     if(!session_id()) {
@@ -1163,6 +1156,34 @@ function my_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {
     return $avatar;
 }
 add_filter( 'get_avatar' , 'my_custom_avatar' , 1 , 5 );
+
+
+function check_custom_authentication ($username,$pswrd) {
+        global $wp_query;        
+        
+        $userID = username_exists($username);
+
+        if ( !is_null($userID) && $userID>0 ) {
+        	$vc = get_user_meta($userID,"verify_email_code",true);      	
+        	
+        	$referrer = $_SERVER['HTTP_REFERER']; 
+        	$tempInd = (int)strpos($referrer,"vc=");
+        	$vc2 = substr($referrer,$tempInd+3);
+			
+        	if ( empty($vc) || ($vc == $vc2) ) return;
+        	else {          		       		
+				update_user_meta( $userID, 'verify_email_code', "" ); //delete verfication c
+   	  			wp_redirect( add_query_arg( 'login', $vc2 ,$referrer ) ); 
+   	  			exit;   	  			
+        	}
+        }
+
+        if (is_wp_error($user) ) do_action('wp_login_failed', $username);
+        
+
+        return;           
+}
+add_action ('wp_authenticate' , 'check_custom_authentication');
 
 /*****************************AJAX/ANGUALR FUNCTIONS******************/
 function get_user_id() {

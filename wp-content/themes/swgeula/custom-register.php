@@ -354,7 +354,7 @@ if ( SITECOOKIEPATH != COOKIEPATH )
  *
  * @since 2.8.0
  */
-//do_action( 'login_form_' . $action ); 
+do_action( 'login_form_' . $action ); 
 
 $http_post = ('POST' == $_SERVER['REQUEST_METHOD']);
 $interim_login = isset($_REQUEST['interim-login']);
@@ -622,8 +622,13 @@ case 'register' :
 		if ( !is_wp_error($errors) ) {
 
 			$userdata = array( 'ID' => $errors, 'first_name' => $first_name, 'last_name' => $last_name );		 
-			$status = wp_update_user( $userdata );			 
+			$status = wp_update_user( $userdata );			 			
+
 			if( !is_wp_error($status) ){
+				//now add verification code:
+				$vccode = md5("swgeula".$errors."vc24");
+				update_user_meta( $errors, 'verify_email_code', $vccode );
+
 				$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url().'/custom-login-page/?checkemail=registered';
 				//wp_safe_redirect( $redirect_to );
 				?>
