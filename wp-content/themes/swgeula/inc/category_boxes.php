@@ -67,7 +67,7 @@
 
                             else :
                                 $arrCatsArray[] = array(
-                                  'date' => strtotime("-1 year", time()),
+                                  'date' => strtotime("-1 year"),
                                   'term_id' => $cat2->term_id,   
                                   'cat_ID' => $cat2->cat_ID,                         
                                   'cat_name' => $cat2->cat_name,
@@ -77,12 +77,13 @@
                             endif;
 
                           endforeach;
-
-                          usort($arrCatsArray, "compareDates");
+                          
+                          if (strtolower($order)=='desc') usort($arrCatsArray, "compareDates");
+                          else usort($arrCatsArray, "compareDates2");
 
                       else :
                         
-                          $arrCatsArray =  (array)$cats;   
+                          $arrCatsArray =  (array)$cats;                           
                           usort($arrCatsArray, "compareNames");  
 
                       endif; //of if ($order!="name")

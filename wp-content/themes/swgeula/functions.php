@@ -466,6 +466,12 @@ add_filter('user_contactmethods', 'add_contact_fields');
             }
             return ($a['date'] < $b['date']) ? 1 : -1;
 }
+function compareDates2($a, $b) {
+            if ( $a['date'] == $b['date'] ) {
+              return 0;
+            }
+            return ($a['date'] < $b['date']) ? -1 : 1;
+}
 
 function compareNames($a, $b) {
             if ( $a->name == $b->name ) {
