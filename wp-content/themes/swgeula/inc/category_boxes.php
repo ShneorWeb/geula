@@ -1,3 +1,4 @@
+<ul class="product_list" style="padding:0px;">
 					<?php                   
 
                     //if parent cat is empty
@@ -28,51 +29,63 @@
                         );
                       }
 
+                      //var_dump($args);
+
 					            $cats = get_categories($args);
 
-                       //sort categories by last updated post:
-                      $arrCatsArray = array();
-                      foreach ($cats as $cat2) : 
+                      //var_dump($cats);
 
-                        $post_args = array(
-                          'post_type' => 'post',
-                          'post_status' => 'publish',
-                          'orderby' => 'post_date',
-                          'order' => 'DESC',
-                          'posts_per_page' => 1,
-                          'cat' => (int)$cat2->cat_ID,            
-                        );    
+                      if ($orderby!="name") :                        
+                           //sort categories by last updated post:
+                          $arrCatsArray = array();
+                          foreach ($cats as $cat2) : 
+
+                            $post_args = array(
+                              'post_type' => 'post',
+                              'post_status' => 'publish',
+                              'orderby' => 'post_date',
+                              'order' => 'DESC',
+                              'posts_per_page' => 1,
+                              'cat' => (int)$cat2->cat_ID,            
+                            );    
+                            
+                            $the_query = new WP_Query( $post_args);
+
+                            if ( $the_query->have_posts() ) :
+
+                              while ( $the_query->have_posts() ) { $the_query->the_post();
+
+                                $arrCatsArray[] = array(
+                                  'date' => get_the_time('U'),
+                                  'term_id' => $cat2->term_id,              
+                                  'cat_ID' => $cat2->cat_ID,              
+                                  'cat_name' => $cat2->cat_name,
+                                  'slug' => $cat2->slug,
+                                  'parent' => $cat2->parent 
+                                );
+                              }
+
+                            else :
+                                $arrCatsArray[] = array(
+                                  'date' => strtotime("-1 year", time()),
+                                  'term_id' => $cat2->term_id,   
+                                  'cat_ID' => $cat2->cat_ID,                         
+                                  'cat_name' => $cat2->cat_name,
+                                  'slug' => $cat2->slug,
+                                  'parent' => $cat2->parent 
+                                );  
+                            endif;
+
+                          endforeach;
+
+                          usort($arrCatsArray, "compareDates");
+
+                      else :
                         
-                        $the_query = new WP_Query( $post_args);
+                          $arrCatsArray =  (array)$cats;   
+                          usort($arrCatsArray, "compareNames");  
 
-                        if ( $the_query->have_posts() ) :
-
-                          while ( $the_query->have_posts() ) { $the_query->the_post();
-
-                            $arrCatsArray[] = array(
-                              'date' => get_the_time('U'),
-                              'term_id' => $cat2->term_id,              
-                              'cat_ID' => $cat2->cat_ID,              
-                              'cat_name' => $cat2->cat_name,
-                              'slug' => $cat2->slug,
-                              'parent' => $cat2->parent 
-                            );
-                          }
-
-                        else :
-                            $arrCatsArray[] = array(
-                              'date' => strtotime("-1 year", time()),
-                              'term_id' => $cat2->term_id,   
-                              'cat_ID' => $cat2->cat_ID,                         
-                              'cat_name' => $cat2->cat_name,
-                              'slug' => $cat2->slug,
-                              'parent' => $cat2->parent 
-                            );  
-                        endif;
-
-                      endforeach;
-
-                      usort($arrCatsArray, "compareDates");                 
+                      endif; //of if ($order!="name")
 
                        
                         
@@ -86,8 +99,8 @@
                             $cat_depth = sizeof($cats_array)-2;
                             
                           
-                            //
-    				        $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
+                            
+    				                $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
                             if (is_array($values))
                                 {
                                     foreach ($values as $user_id) {
@@ -100,7 +113,7 @@
                             }
                                       
                             
-                            //remove level 2(subject) categories
+                            //remove level 2(subject) categories                            
                             if($cat_depth == 3  ) :
                             
                             //filter by authors
@@ -226,3 +239,4 @@
                         endforeach; 
                         //} 
         ?>
+</ul>

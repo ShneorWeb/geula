@@ -22,7 +22,7 @@ filterBoxes = function(iAuthorID,parentCat,sSort,iCatID,bInNosse) {
   sOrderby = "ID";
   if (sSort == 'new_to_old') sOrder = "desc";  
   else if (sSort == 'old_to_new') sOrder = "asc"; 
-  if (sSort == "name") { 
+  if (sSort == "alphabet") { 
     sOrderby = "name";
     sOrder = "asc";  
   }  

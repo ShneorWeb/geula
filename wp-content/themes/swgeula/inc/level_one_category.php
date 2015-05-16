@@ -130,7 +130,7 @@
            <select id="select_order" name="select_order" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick">
                <option value="new_to_old">חדש לישן</option>
                <option value="old_to_new">ישן לחדש</option>
-               <option value="name">אלף בתי</option>                                                                          
+               <option value="alphabet">אלף בתי</option>                                                                          
            </select>    
      </form>
 													
@@ -140,10 +140,8 @@
 
           <div id="spinner"></div>				    	   	
 		
-			 <div class="categories row" id="div-cat-boxes">                
-            <ul class="product_list" style="padding:0px;">
-                <?php include_once("category_boxes.php");?>
-            </ul>
+			 <div class="categories row" id="div-cat-boxes">                            
+                <?php $orderby="ID"; include_once("category_boxes.php");?>            
 				
 			 </div>
 				

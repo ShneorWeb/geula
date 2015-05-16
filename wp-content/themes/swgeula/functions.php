@@ -467,6 +467,13 @@ add_filter('user_contactmethods', 'add_contact_fields');
             return ($a['date'] < $b['date']) ? 1 : -1;
 }
 
+function compareNames($a, $b) {
+            if ( $a->name == $b->name ) {
+              return 0;
+            }
+            return ($a->name < $b->name) ? -1 : 1;
+}
+
 /************************* Session Management *********************************/
 function myStartSession() {
     if(!session_id()) {
@@ -1090,12 +1097,12 @@ function getCatBoxes() {
     $parentcat = get_category($parent);    
     $bInNosse = (int)$_POST['in_nosse'];
 
-	//if ( is_int($userID) && is_int($lessonID) ) :
-
+	ob_start();
 	include_once("inc/category_boxes.php");
+	$inc = ob_get_clean();
 
+	echo($inc);
 	
-	//endif;
 	exit;
 }
 
