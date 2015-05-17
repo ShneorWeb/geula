@@ -2041,18 +2041,29 @@ a.schedule_new {
 }
 .page-template-custom-profile-php :-moz-placeholder {
   /* Firefox 18- */
-  color: red;
+  color: #C5C5C5;
+  font-size: 1.25rem;
 }
 .page-template-custom-profile-php ::-moz-placeholder {
   /* Firefox 19+ */
-  color: red;
+  color: #C5C5C5;
+  font-size: 1.25rem;
 }
 .page-template-custom-profile-php :-ms-input-placeholder {
-  color: red;
+  color: #C5C5C5;
+  font-size: 1.25rem;
 }
 .page-template-custom-profile-php input, .page-template-custom-profile-php select, .page-template-custom-profile-php textarea {
   padding: 14px 20px;
   line-height: 1.25rem;
+  color: #C5C5C5;
+  font-size: 1.25rem;
+}
+.page-template-custom-profile-php textarea {
+  line-height: 1.3;
+}
+.page-template-custom-profile-php input[type="submit"] {
+  color: #fff;
 }
 .page-template-custom-profile-php select {
   min-height: 50px;
