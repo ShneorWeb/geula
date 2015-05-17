@@ -2308,11 +2308,14 @@ a.schedule_new{
     }
     
     form{
+        margin: 40px 15px 0;
+        padding-bottom: 30px;
         label{
               color: #555459;
               font-size: 1.25rem;
               font-weight: 400;
               text-align: right;
+              margin-top: 12px;
         }
     }
     ::-webkit-input-placeholder {
@@ -2335,6 +2338,14 @@ a.schedule_new{
     input, select, textarea{
         padding: 14px 20px;
         line-height: 1.25rem;
+        
+    }
+    select{
+          min-height: 50px;
+          color: #C5C5C5;
+          font-size: 1.25rem;
+          font-weight: 400;
+          padding: 0 20px;
     }
     .forgotPass{
         text-align: right;
@@ -2369,6 +2380,33 @@ a.schedule_new{
     hr{
         margin: 30px 0;
     }
+    
+    .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+        padding: 11px;
+    }
+    
+    #register-me{
+        background-color: #51b46d;
+        font-size: 1.25rem;
+        padding: 14px 33px;
+        border: none;
+        @extend %clickbleElement;
+    }
+    
+    .page_cont{
+        margin-bottom: 30px;
+        width: 50%;
+    }
+}
+
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  color: #C5C5C5;
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
@@ -2420,6 +2458,12 @@ _responsive styles
     
     .comment-content{
     width: calc(92% - 20px);
+    }
+    
+    .page-template-custom-profile-php{
+        .page_cont{
+            width: 75%;
+        }
     }
 }
 
@@ -2619,9 +2663,12 @@ _responsive styles
         
     } 
     
-    
+    .page-template-custom-profile-php{
+        .page_cont{
+            width: 90%;
+        }
+    }
   
-
 }
 
 /* 768 and more ----------- */
@@ -2900,6 +2947,32 @@ _responsive styles
         }
     }
     
+    .page-template-custom-profile-php{
+        
+         .nav-pills > li > a {
+          padding-right: 8px;
+          padding-left: 8px;
+        }
+
+        form{
+            label {
+              float: right;
+              margin-bottom: 15px !important;
+            }
+            input{
+                margin-bottom: 10px;
+            }
+        } 
+        
+        .password_cont{
+              float: right;
+              width: 100%;
+        }
+        
+    }
+     
+    
+    
 
 }
 
@@ -2930,6 +3003,10 @@ _responsive styles
       width: 13%;
     }
     
-    
+    .page-template-custom-profile-php{
+         .page_cont {
+          width: 85%;
+        }
+    }
 
 }
