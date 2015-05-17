@@ -27,8 +27,10 @@
 	<!--[if lt IE 9]>
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
-    
+  
+  <?php if ( is_page("registration") || is_page("sign-in") ) {?>  
   <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+  <?php } ?>
   
 	<?php wp_head(); ?>
 
@@ -116,28 +118,21 @@
                         <div class="notification_point green"></div>
                     </div>
                     
-                    <div class="profile_dtls avatar_image">
-                    <?php if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) {?>
-                          <img src="<?php echo $_SESSION['image_url']; ?>"/>
-                    <?php } else { ?> 
+                    <div class="profile_dtls avatar_image">                    
                       <?php if ( getSWGeulaAvatar()!="" ) : ?>
                           <img src="<?php echo getSWGeulaAvatar(); ?>"/>
                       <?php else : ?>
                           <img src="<?php echo get_template_directory_uri(); ?>/images/user.svg"/ width="38">
-                      <?php endif; ?>
-                    <?php } ?>  
+                      <?php endif; ?>                    
                     </div>
                     
                     
                     
                     <div class="profile_dtls dropdown">
                          <div id="div-display-name" class="avatar_name" data-toggle="dropdown">
-                       <?php
-                           if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) echo $_SESSION['display_name'];
-                           else {
+                       <?php                           
                             $current_user = wp_get_current_user();                           
-                            echo $current_user->display_name;                           
-                          }
+                            echo $current_user->display_name;                                                     
                        ?>
                     </div>
                         

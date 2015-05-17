@@ -9,6 +9,8 @@
   foreach ( $posts as $post ) :    
       $arrPostIDs[] = $post->ID;
   endforeach;  
+
+  $category_link = get_category_link( $parentcat_id ); 
 ?>
 
 <div class="page-header single_category_list">	

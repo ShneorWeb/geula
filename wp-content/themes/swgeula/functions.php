@@ -721,11 +721,9 @@ function addToMyLessons() {
 	if ( is_user_logged_in() ) { 		
 		$catID = (int)$_POST['cat_id'];
 		
-		if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) $userID = (int)$_SESSION['uid'];
-		else {	
-			$current_user = wp_get_current_user();
-			$userID = $current_user->ID;
-		}
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;
+		
 
 		if ($catID>0) $arrLessonIDs = getLessonIDsInCat($catID);		
 
@@ -792,11 +790,9 @@ function getCatInMyLessons($catID) {
 		
 		if ($catID>0) :
 
-			if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) $userID = (int)$_SESSION['uid'];
-			else {	
-				$current_user = wp_get_current_user();
-				$userID = $current_user->ID;
-			}
+			$current_user = wp_get_current_user();
+			$userID = $current_user->ID;
+			
 
 			if (is_int($userID)) :
 

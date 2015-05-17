@@ -2,12 +2,11 @@
 
     <div class="col-lg-12 col-md-12 archive_cont">	      
         <?php                      
-          $this_category = get_category($cat);
+          $this_category = get_category(get_query_var('cat'));
           $parent = $this_category->parent;
           $parentcat = get_category($parent);
           $parent_name = $parentcat->name;
-          $parentcat_id = $parentcat->cat_ID;
-          $category_link = get_category_link( $parentcat_id ); 
+          $parentcat_id = $parentcat->cat_ID;          
           $bInNosse = false;
 
           if ($parentcat->parent === getCatIDOfLibrary()) {            
@@ -16,8 +15,7 @@
             $parent = $this_category->parent;
             $parentcat = get_category($parent);
             $parent_name = $parentcat->name;
-            $parentcat_id = $parentcat->cat_ID;
-            $category_link = get_category_link( $parentcat_id );          
+            $parentcat_id = $parentcat->cat_ID;                  
           }                 
           
 
