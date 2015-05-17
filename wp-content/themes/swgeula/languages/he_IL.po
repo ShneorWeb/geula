@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
-"POT-Creation-Date: 2015-05-17 21:55+0200\n"
-"PO-Revision-Date: 2015-05-17 21:56+0200\n"
+"POT-Creation-Date: 2015-05-17 23:00+0200\n"
+"PO-Revision-Date: 2015-05-17 23:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -41,7 +41,6 @@ msgid " שיעורים בספריה"
 msgstr ""
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/author.php:68
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_one_category.php:92
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-lessons_teach.php:84
 msgid "נושא"
 msgstr ""
@@ -49,7 +48,7 @@ msgstr ""
 #: C:\wamp\www\geula\wp-content\themes\swgeula/author.php:266
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/category_boxes.php:188
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:301
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/library.php:206
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/library.php:233
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-authors.php:82
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-lessons_teach.php:285
 #: C:\wamp\www\geula\wp-content\themes\swgeula/single.php:379
@@ -420,30 +419,50 @@ msgstr "הוסף לשעורים שלי"
 msgid "Page %s"
 msgstr ""
 
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_one_category.php:53
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:279
+msgid "teacher"
+msgstr "מוסר שיעור"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_one_category.php:92
+msgid "subject"
+msgstr "נושא"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_one_category.php:131
+msgid "old to new"
+msgstr "ישן לחדש"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_one_category.php:132
+msgid "new to old"
+msgstr "חדש לישן"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_one_category.php:133
+msgid "alphabetical"
+msgstr "אלף בתי"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:69
+msgid "new"
+msgstr "חדש"
+
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:113
-msgid "שיעורים"
-msgstr ""
+msgid "lessons"
+msgstr "שיעורים"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:131
-msgid "התחל"
-msgstr ""
+msgid "start"
+msgstr "התחל"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:138
-msgid "תזמן למעגל"
-msgstr ""
+msgid "schedule to circle"
+msgstr "תזמן למעגל"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:166
-msgid "אודות הסדרה"
-msgstr ""
+msgid "about the series"
+msgstr "אודות הסדרה"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:173
-msgid "שיעורים בסדרה זו"
-msgstr ""
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:279
-#: C:\wamp\www\geula\wp-content\themes\swgeula/single.php:361
-msgid "מוסר שיעור"
-msgstr ""
+msgid "lessons in this series"
+msgstr "שיעורים בסדרה זו"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/library.php:62
 msgid "show all"
@@ -637,6 +656,10 @@ msgstr ""
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/single.php:260
 msgid "קבצים להורדה"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/single.php:361
+msgid "מוסר שיעור"
 msgstr ""
 
 #~ msgid "Username"

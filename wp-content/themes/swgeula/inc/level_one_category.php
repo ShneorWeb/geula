@@ -50,7 +50,7 @@
                     <!-- filter by author -->
                      <form>
                         <select id="select_author" name="select_author" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick">
-                            <option value="0" >מוסר שיעור</option>
+                            <option value="0" ><?php _e("teacher","swgeula");?></option>
                             <?php 
                                
                                   $args = array(                                                                  
@@ -89,7 +89,7 @@
                          <select id="select_subject" name="select_subject" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick"> 
                              
                              <option value="<?php echo $this_category->cat_ID; ?>">
-                                <?php echo esc_attr(__('נושא')); ?>
+                                <?php _e("subject","swgeula");?>
                              </option> 
                              
                              <?php   
@@ -128,9 +128,9 @@
      <form>          
            <!-- filter by order -->                          
            <select id="select_order" name="select_order" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick">
-               <option value="new_to_old">חדש לישן</option>
-               <option value="old_to_new">ישן לחדש</option>
-               <option value="alphabet">אלף בתי</option>                                                                          
+               <option value="new_to_old"><?php _e("old to new","swgeula");?></option>
+               <option value="old_to_new"><?php _e("new to old","swgeula");?></option>
+               <option value="alphabet"><?php _e("alphabetical","swgeula");?></option>                                                                          
            </select>    
      </form>
 													
