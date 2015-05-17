@@ -1052,7 +1052,7 @@ function getNumStudents($arrPostIDs) {
 	$vidURL = "";
 	$vidID = -1;	
 
-	$fieldID = $IS_LOCAL?'field_5540c9a078b69':'field_554136579a911';	
+	$fieldID = $IS_LOCAL?'field_554136579a911':'field_554136579a911';	
 	
 	if (isset( $_REQUEST['fields'][$fieldID] )) {
 		$vidURL = sanitize_text_field( $_REQUEST['fields'][$fieldID] );
@@ -1069,7 +1069,32 @@ function getNumStudents($arrPostIDs) {
 				'duration' => getYoutubeDuration($vidID),				
 				'date_added' => date('Y-m-d H:i:s')
 		));
-	}	
+	}
+
+	//if a new lesson is added then check if need to add to schedules of users:
+	$arrCats = wp_get_post_categories($post_id);
+	foreach ($arrCats  as $catid) :
+		
+		$results = $wpdb->get_results("SELECT user_id FROM wp_sw_user_lesson WHERE cat_id = $catid ORDER BY user_id ASC;",ARRAY_A);				
+		if (count($results)>0) {
+			foreach($results as $row) {	
+				$results = $wpdb->get_results("SELECT user_id FROM wp_sw_user_lesson WHERE cat_id = $catid AND lesson_id=$post_id ORDER BY user_id ASC LIMIT 1;",ARRAY_A);	
+				if (count($results)<=0) {
+					//add new lesson:
+					$wpdb->insert("wp_sw_user_lesson", array( 		
+							'user_id' => $row['user_id'],
+							'lesson_id' => $post_id, 				
+							'cat_id' => $catid,				
+							'video_pos' => 0,							
+							'date_added' => date('Y-m-d H:i:s'),
+							'done' => 0
+					));
+				}
+			}
+		}
+
+	endforeach;
+
 }
 add_action( 'save_post', 'sw_update_video_table', 10, 3 );
 
