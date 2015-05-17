@@ -1078,7 +1078,7 @@ function getNumStudents($arrPostIDs) {
 		$results = $wpdb->get_results("SELECT user_id FROM wp_sw_user_lesson WHERE cat_id = $catid ORDER BY user_id ASC;",ARRAY_A);				
 		if (count($results)>0) {
 			foreach($results as $row) {	
-				$results = $wpdb->get_results("SELECT user_id FROM wp_sw_user_lesson WHERE cat_id = $catid AND lesson_id=$post_id ORDER BY user_id ASC LIMIT 1;",ARRAY_A);	
+				$results = $wpdb->get_results("SELECT user_id FROM wp_sw_user_lesson WHERE cat_id = $catid AND lesson_id=$post_id AND user_id=".$row['user_id']." ORDER BY user_id ASC LIMIT 1;",ARRAY_A);	
 				if (count($results)<=0) {
 					//add new lesson:
 					$wpdb->insert("wp_sw_user_lesson", array( 		
