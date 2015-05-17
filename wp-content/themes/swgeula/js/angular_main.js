@@ -112,12 +112,12 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	
 
 	function changeTabs(sLocHash) {		
-		if (sLocHash.indexOf("profile")!=-1) {		
-			$scope.tabs[1].active = true;				
-		}
-		else if (sLocHash.indexOf("pic")!=-1) {		
+		if (sLocHash.indexOf("profile-image")!=-1) {		
 			$scope.tabs[2].active = true;				
 		}
+		else if (sLocHash.indexOf("profile")!=-1) {		
+			$scope.tabs[1].active = true;				
+		}		
 		else if (sLocHash.indexOf("alerts")!=-1) {		
 			$scope.tabs[3].active = true;				
 		}

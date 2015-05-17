@@ -128,7 +128,7 @@ function swgeula_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}	
-	if( is_page("custom-profile-page") ) {
+	if( is_page("settings") ) {
 		wp_enqueue_script(
 			'angularjs',
 			get_stylesheet_directory_uri() . '/angular/angular.min.js'
@@ -307,12 +307,12 @@ function swgeula_login_logo() { ?>
 add_action( 'login_enqueue_scripts', 'swgeula_login_logo' );
 
 function swgeula_login_page( $login_url, $redirect ) {
-    return home_url( '/custom-login-page/?action=login&redirecr='.$redirect);
+    return home_url( '/my-account/sign-in/?action=login&redirecr='.$redirect);
 }
 add_filter( 'login_url', 'swgeula_login_page', 10, 2 );
 
 function swgeula_reg_page( $register_url ) {
-    return home_url( '/registration/?action=register' );
+    return home_url( '/registration/' );
 }
 add_filter( 'register_url', 'swgeula_reg_page', 10, 2 );
 

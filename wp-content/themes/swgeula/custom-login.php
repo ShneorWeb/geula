@@ -40,7 +40,7 @@ function signinCallback(authResult) {
                        console.log(data);
                        if (data==2) jQuery("div.login-error-msg").text('this email is already registered');
                        else if (data==0) jQuery("div.login-error-msg").text('an error occured');
-                       else if (data==1) document.location.href="<?php echo home_url('custom-profile-page/');?>"                       
+                       else if (data==1) document.location.href="<?php echo home_url('settings/');?>"                       
                        else if (data==11) document.location.href="<?php echo get_category_link(3); ?>"                       
                 });
         });
@@ -108,7 +108,7 @@ function signinCallback(authResult) {
         $redirect_to = !empty( $_REQUEST['redirecr'] ) ? $_REQUEST['redirecr'] : get_category_link(3);
             
         $args = array(                                
-                'redirect' => ( (isset($_GET['checkemail']) && $_GET['checkemail']=='registered') || isset($_GET['vc']) )?home_url('custom-profile-page'):$redirect_to, 
+                'redirect' => ( (isset($_GET['checkemail']) && $_GET['checkemail']=='registered') || isset($_GET['vc']) )?home_url('settings'):$redirect_to, 
                 'form_id' => 'loginform-custom',
                 'label_username' => '',
                 'label_password' => '',                
@@ -130,7 +130,7 @@ function signinCallback(authResult) {
     <h2 class="signin-google"><?php _e("Or sign in with your Google account", "swgeulatr");?></h2>
 
     <p>
-    <span id="signinButton">
+    <span id="signinButton">        
       <span
         class="g-signin"
         data-callback="signinCallback"
@@ -148,7 +148,7 @@ function signinCallback(authResult) {
 <div class="col-sm-3"></div>
 
 <div class="col-sm-5 col-sm-offset-4" style="text-align:center;"> 
-    <div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/registration/?action=register";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
+    <div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/registration/";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
 </div>
 <div class="col-sm-3"></div>
 

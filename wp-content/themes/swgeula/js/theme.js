@@ -5,7 +5,7 @@ var hideCat;
 var setSchedule;
 
 function goToLogin() {
-  window.location.href=gbLocal?'/geula/custom-login-page/':'/custom-login-page/';
+  window.location.href=gbLocal?'/geula/my-account/sign-in/':'/my-account/sign-in/';
 }
 
 (function($) {

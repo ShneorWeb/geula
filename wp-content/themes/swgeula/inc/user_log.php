@@ -18,8 +18,8 @@
 
 	<?php else : // not logged in ?>
 		
-		<input type="button" value="לוגאין" onclick="document.location.href='<?php echo add_query_arg('action','login',get_site_url().'/custom-login-page/')?>'" />
-		<input type="button" value="הרשם" onclick="document.location.href='<?php echo add_query_arg('action','register',get_site_url().'/custom-login-page/')?>'" />
+		<input type="button" value="לוגאין" onclick="document.location.href='<?php echo add_query_arg('action','login',get_site_url().'/my-account/sign-in/')?>'" />
+		<input type="button" value="הרשם" onclick="document.location.href='<?php echo add_query_arg('action','register',get_site_url().'/my-account/sign-in/')?>'" />
 
 	<?php endif; //of if logged in ?>
 

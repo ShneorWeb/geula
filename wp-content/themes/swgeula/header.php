@@ -43,7 +43,7 @@
         $(".nav .menu-item a:not([href$='edit-profile/'])").attr("target","_self");
 
 
-        if (document.location.href.indexOf("custom-profile-page")!=-1) {          
+        if (document.location.href.indexOf("settings")!=-1) {          
             angular.element(document).ready(function() {
               angular.bootstrap(document,['appgeula']);                 
             });
@@ -60,9 +60,7 @@
 </head> 
 
 <body <?php body_class(); ?>>
-
-  <?php if(!is_page("custom-login-page") && !is_page("registration")) : ?>
-
+  
     <div class="navbar navbar-inverse navbar-fixed-top" >
        
       <header id="masthead" class="site-header" role="banner">
@@ -207,16 +205,7 @@
                         <i class="icon-timer"></i>
                         <!-- TODO: get the timer from user profile -->
                     </div>
-                  </div>
-                  <?php 
-                 //mob settings - ???
-                         $args = array(
-                          'menu'        => 'header-menu',
-                           'menu_class'  => '',
-                           'container'   => 'false'
-                         );
-                      //wp_nav_menu( $args );
-                    ?>
+                  </div>                 
                     
                 </div>
              
@@ -236,7 +225,7 @@
 
            	<nav id="site-navigation" class="main-navigation" role="navigation">
                 <ul class="drop"  style="padding-right:0px; right:0;">
-                    <?php get_sidebar(); ?>
+                    <?php if ( !is_page("registration") && !is_page("sign-in") ) get_sidebar(); ?>
                     
                  </ul>
             </nav>
@@ -245,8 +234,7 @@
         </header>
         
       </div>
-
-     <?php endif; //of if ! custom-login-page ?>
+     
 
    
 		<div id="content" class="site-content">
