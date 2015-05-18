@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
-"POT-Creation-Date: 2015-05-17 23:00+0200\n"
-"PO-Revision-Date: 2015-05-17 23:00+0200\n"
+"POT-Creation-Date: 2015-05-18 21:23+0200\n"
+"PO-Revision-Date: 2015-05-18 21:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -370,29 +370,29 @@ msgstr ""
 msgid "Right Menu"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:986
 #: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:988
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:989
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:990
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:991
 msgid " "
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:986
-msgid "hours"
-msgstr "שעות"
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:988
+msgid "hrs"
+msgstr "ש'"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:987
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:989
 msgid "hour"
 msgstr "שעה"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:988
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:990
 msgid "and"
 msgstr "ו"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:989
-msgid "minutes"
-msgstr "דקות"
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:991
+msgid "mins"
+msgstr "ד'"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/header.php:212
+#: C:\wamp\www\geula\wp-content\themes\swgeula/header.php:211
 msgid "Login"
 msgstr "התחבר"
 
@@ -661,6 +661,12 @@ msgstr ""
 #: C:\wamp\www\geula\wp-content\themes\swgeula/single.php:361
 msgid "מוסר שיעור"
 msgstr ""
+
+#~ msgid "hours"
+#~ msgstr "שעות"
+
+#~ msgid "minutes"
+#~ msgstr "דקות"
 
 #~ msgid "Username"
 #~ msgstr "שם משתמש"

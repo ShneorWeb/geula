@@ -985,10 +985,10 @@ function formatHoursMinutes($secs) {
 	$hrs = intval(gmdate("H",$secs));
 	$mins = intval(gmdate("i",$secs));
 
-	if ($hrs>1) $retVal .= (_e($hrs) . _e (" ") . _e("hours","swgeula"));
+	if ($hrs>1) $retVal .= (_e($hrs) . _e (" ") . _e("hrs","swgeula"));
 	elseif ($hrs>0) $retVal .= (_e("hour","swgeula"));
 	if ($hrs>0 && $mins>0) $retVal .= _e(" ") . _e("and","swgeula") . _e(" ");
-	if ($mins>0) $retVal .= ( _e($mins). _e(" ") . _e("minutes","swgeula"));
+	if ($mins>0) $retVal .= ( _e($mins). _e(" ") . _e("mins","swgeula"));
 
 	return $retVal;
 
