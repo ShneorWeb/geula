@@ -863,7 +863,10 @@ span.category_top_time {
         margin-top: 0;
         line-height: 1.1;
         margin-bottom: 6px;
-        min-height: 44px;
+        /*
+        overflow: hidden;
+        height: 24px;
+        */
     }
     h4{
         color: #384047;
