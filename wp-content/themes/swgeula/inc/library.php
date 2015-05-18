@@ -29,12 +29,10 @@
     </div><!-- container -->
 </div><!-- content -->
 
-
-<?php
- $this_category = get_category($cat);
- if (get_category_children($this_category->cat_ID) != "") {
-     if (is_category()|| is_single()) {
-		    $this_category = get_category($cat);						        
+<?php 
+ //if (get_category_children($this_category->cat_ID) != "") {
+     //if (is_category() || is_single()) {
+		    //$this_category = get_category($cat);						        
         $args = array(	 
             'parent' => $this_category->cat_ID,
             'hide_empty' => 0
@@ -61,7 +59,7 @@
                 </a>
                                 
                 <a href="<?php echo get_category_link($cat->term_id); ?>" class="btn_cont">
-                  <button type="button">הצג הכל</button>
+                  <button type="button"><?php _e("show all","swgeula") ?></button>
                 </a>
             </div>
                               
@@ -74,19 +72,44 @@
 							
 									
 					<?php 						
+
+          //get direct child of current category which is a nosse. 
+          //Then get all direct children of this child
+          $args = array(   
+                        'parent' => $cat->cat_ID,
+                        'hide_empty' => 0                        
+                    );
+          $catsTemp = get_categories($args);          
+          $arrTempCats = array();
+
+          foreach ($catsTemp as $cattemp) : 
+
+              $args2 = array(   
+                        'parent' => $cattemp->cat_ID,
+                        'hide_empty' => 0                        
+              );     
+          
+              $catsTemp2 = get_categories($args2);       
+              
+              foreach ($catsTemp2 as $cattemp2) : 
+                if ( !in_array($cattemp2->cat_ID,$arrTempCats) ) $arrTempCats[] = $cattemp2->cat_ID;
+              endforeach;
+
+          endforeach;
+
 					
 					$args = array(	 
-                        'child_of' => $cat->cat_ID,
+                        'include' => implode(",",$arrTempCats),
                         'hide_empty' => 0,
-                        'number' => 4
+                        'number' => 3
                     );
 
 					$count = 0;
-					$cats = get_categories($args);
+					$cats2 = get_categories($args);          
 
           //sort categories by last updated post:
           $arrCatsArray = array();
-          foreach ($cats as $cat2) : 
+          foreach ($cats2 as $cat2) : 
 
             $post_args = array(
               'post_type' => 'post',
@@ -128,8 +151,10 @@
 
           usort($arrCatsArray, "compareDates");
 
-
+          $iCounter = 0;
 					foreach ($arrCatsArray as $cat2) :
+
+                if ($iCounter>2) break;
 
                 $cat2 = (object)$cat2; 
 
@@ -219,8 +244,7 @@
 		<div class="category_square_oval">
                                                
              <?php                
-                $cat_parent_id = $cat2->parent;
-                
+                $cat_parent_id = $cat2->parent;                
                 $cat_parent_object = get_category($cat_parent_id);                
                 $cat_parent_name = $cat_parent_object->name;                                                      
                 /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
@@ -248,7 +272,11 @@
                                 </li>
                     </div><!-- category_single -->
                 
-            <?php endif;endforeach  ?>
+            <?php endif;?>
+            <?php 
+              $iCounter++;
+            endforeach  
+            ?>
 										
 
 					</ul>		
@@ -257,9 +285,7 @@
         </div><!-- cat_sing -->
 							
     <?php
-      endforeach; } 
-        }else{
-      if ( have_posts() ) : while ( have_posts() ) : the_post(); 
-     endwhile; endif; }
+      endforeach; //} 
+//        }
     ?>
 </div>

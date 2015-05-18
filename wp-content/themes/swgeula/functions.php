@@ -721,11 +721,9 @@ function addToMyLessons() {
 	if ( is_user_logged_in() ) { 		
 		$catID = (int)$_POST['cat_id'];
 		
-		if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) $userID = (int)$_SESSION['uid'];
-		else {	
-			$current_user = wp_get_current_user();
-			$userID = $current_user->ID;
-		}
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;
+		
 
 		if ($catID>0) $arrLessonIDs = getLessonIDsInCat($catID);		
 
@@ -792,11 +790,9 @@ function getCatInMyLessons($catID) {
 		
 		if ($catID>0) :
 
-			if ( isset($_SESSION['google_user']) && $_SESSION['google_user']==1 ) $userID = (int)$_SESSION['uid'];
-			else {	
-				$current_user = wp_get_current_user();
-				$userID = $current_user->ID;
-			}
+			$current_user = wp_get_current_user();
+			$userID = $current_user->ID;
+			
 
 			if (is_int($userID)) :
 
@@ -1056,7 +1052,7 @@ function getNumStudents($arrPostIDs) {
 	$vidURL = "";
 	$vidID = -1;	
 
-	$fieldID = $IS_LOCAL?'field_5540c9a078b69':'field_554136579a911';	
+	$fieldID = $IS_LOCAL?'field_554136579a911':'field_554136579a911';	
 	
 	if (isset( $_REQUEST['fields'][$fieldID] )) {
 		$vidURL = sanitize_text_field( $_REQUEST['fields'][$fieldID] );
@@ -1073,7 +1069,32 @@ function getNumStudents($arrPostIDs) {
 				'duration' => getYoutubeDuration($vidID),				
 				'date_added' => date('Y-m-d H:i:s')
 		));
-	}	
+	}
+
+	//if a new lesson is added then check if need to add to schedules of users:
+	$arrCats = wp_get_post_categories($post_id);
+	foreach ($arrCats  as $catid) :
+		
+		$results = $wpdb->get_results("SELECT user_id FROM wp_sw_user_lesson WHERE cat_id = $catid ORDER BY user_id ASC;",ARRAY_A);				
+		if (count($results)>0) {
+			foreach($results as $row) {	
+				$results = $wpdb->get_results("SELECT user_id FROM wp_sw_user_lesson WHERE cat_id = $catid AND lesson_id=$post_id AND user_id=".$row['user_id']." ORDER BY user_id ASC LIMIT 1;",ARRAY_A);	
+				if (count($results)<=0) {
+					//add new lesson:
+					$wpdb->insert("wp_sw_user_lesson", array( 		
+							'user_id' => $row['user_id'],
+							'lesson_id' => $post_id, 				
+							'cat_id' => $catid,				
+							'video_pos' => 0,							
+							'date_added' => date('Y-m-d H:i:s'),
+							'done' => 0
+					));
+				}
+			}
+		}
+
+	endforeach;
+
 }
 add_action( 'save_post', 'sw_update_video_table', 10, 3 );
 
@@ -1225,8 +1246,7 @@ function get_user_profile() {
 			$uid = $current_user->ID;
 		    
 
-		    $avtr = get_user_meta( $uid, 'custom_avatar', true );
-		    $avtr_100 = get_user_meta( $uid, 'custom_avatar_100', true );
+		    $avtr = get_user_meta( $uid, 'custom_avatar', true );		    
 		    $avtr_160 = get_user_meta( $uid, 'custom_avatar_160', true );
 		    $lang = get_user_meta( $uid, 'user_lang', true );
 		    $country = get_user_meta( $uid, 'user_country', true );
@@ -1246,7 +1266,7 @@ function get_user_profile() {
 		    	'", "lastname":"'.$lname.
 		    	'", "email":"'.$current_user->user_email.
 		    	'","avatar":"'.$avtr.
-		    	'","avatar_220":"'.$avtr_220.
+		    	'","avatar_160":"'.$avtr_160.
 		    	'","lang":"'.$lang.
 		    	'","country":"'.$country.
 		    	'","city":"'.$city.

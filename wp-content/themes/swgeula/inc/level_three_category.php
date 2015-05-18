@@ -9,6 +9,8 @@
   foreach ( $posts as $post ) :    
       $arrPostIDs[] = $post->ID;
   endforeach;  
+
+  $category_link = get_category_link( $parentcat_id ); 
 ?>
 
 <div class="page-header single_category_list">	
@@ -64,7 +66,7 @@
 				    			<div class="category_square_oval">
 								    <?php
 								        //TODO: get the 'new' tag dynamclay from site
-								       	echo '<span class="oval">חדש</span>';
+								       	echo '<span class="oval">'. __('new', 'swgeula').'</span>';
 								    	
 								    	$values = get_category_meta('level');
 								    	foreach ($values as $value => $label) {
@@ -108,7 +110,7 @@
 																	    echo '<span>' . $value .'</span>' ;
 																	}?>
 													</li>
-													<li><?php echo $count . ' ' . __('שיעורים', 'swgeula'); ?></li>
+													<li><?php echo $count . ' ' . __('lessons', 'swgeula'); ?></li>
                                                     <!-- TODO: get the number of users need to come dynamclay -->	
                                                     <li><?php echo(getNumStudents($arrPostIDs));?> לומדים</li>
 												</ul>
@@ -126,14 +128,14 @@
                                     <a href="#" id="playBtnCont">
                                         <button type="button" class="btn btn-default playBtn">
                                             <i class="fa fa-play fa-flip-horizontal"></i> 
-                                                <?php echo __('התחל', 'swgeula'); ?>
+                                                <?php _e('start', 'swgeula'); ?>
                                         </button>
                                     </a>	
                                     <!--TODO: what link is need to go to? -->
                                     <a href="#">
                                         <button type="button" class="btn btn-default getAfter" >
                                             <i class="fa fa-clock-o"></i>  
-                                                <?php echo __('תזמן למעגל', 'swgeula'); ?>
+                                                <?php _e('schedule to circle', 'swgeula'); ?>
                                         </button>
                                     </a>	
 				    			</div>
@@ -161,14 +163,14 @@
         
         <div class="col-lg-8 col-md-8">
             <h3>
-                <?php echo __('אודות הסדרה', 'swgeula'); ?>
+                <?php _e('about the series', 'swgeula'); ?>
             </h3>
 			<div class="box">
 			    <?php echo category_description($cat->term_id);  ?>
 			</div>
             
             <h3>
-                <?php echo $count . ' ' . __('שיעורים בסדרה זו', 'swgeula'); ?>
+                <?php echo $count . ' ' . __('lessons in this series', 'swgeula'); ?>
             </h3>
 			<div class="box contOfSingPosts">
             <script> 
@@ -274,7 +276,7 @@
         
 	   <div class="col-lg-4 col-md-4">
 			<h3>
-                <?php echo __('מוסר שיעור', 'swgeula'); ?>
+                <?php _e('teacher', 'swgeula'); ?>
             </h3>
 			<div class="box userdtls">
                    <?php
