@@ -174,6 +174,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		if (typeof objRes.lastname != 'undefined') objRes.lastname = objRes.lastname.toString().replace(/\\'/g,"'");				
 		if (typeof objRes.about != 'undefined') objRes.about = objRes.about.toString().replace(/\\'/g,"'");				
 		if (typeof objRes.position != 'undefined') objRes.position = objRes.position.toString().replace(/\\'/g,"'");				
+		
 		$scope.user = objRes;
 		
 		//get countries:
