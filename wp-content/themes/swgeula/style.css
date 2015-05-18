@@ -2154,6 +2154,7 @@ a.schedule_new {
   padding-right: 0;
   text-align: right;
   margin-top: 10px;
+  border: none;
 }
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
