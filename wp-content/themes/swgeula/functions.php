@@ -649,10 +649,12 @@ function googleUserReg() {
 							$imageUrl1 = str_replace("sz=50", "sz=60", $imageUrl);
 							$imageUrl2 = str_replace("sz=50", "sz=100", $imageUrl);
 							$imageUrl3 = str_replace("sz=50", "sz=160", $imageUrl);
+							$imageUrl4 = str_replace("sz=50", "sz=240", $imageUrl);
 
 							update_usermeta('', 'custom_avatar', $imageUrl1);
 							update_usermeta($user_id, 'custom_avatar_100', $imageUrl2);
 							update_usermeta($user_id, 'custom_avatar_160', $imageUrl3);
+							update_usermeta($user_id, 'custom_avatar_240', $imageUrl4);
 						}
 
 						wp_set_auth_cookie($user_id);		
