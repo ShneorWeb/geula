@@ -35,7 +35,7 @@
 	<?php wp_head(); ?>
 
 
-	<?php //if (!is_user_logged_in()) : ?>
+	<?php if ( is_page("settings") ) : ?>
     <script> 
 
     (function($) {
@@ -56,8 +56,7 @@
 
 	})(jQuery);
 	</script>  
-
-    <?php //endif;?>  
+  <?php endif;?>  
 
 </head> 
 
