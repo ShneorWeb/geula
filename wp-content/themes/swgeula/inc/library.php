@@ -172,6 +172,13 @@
                                                 
                                                 <?php echo formatHoursMinutes(getTotalVideoDurationCat($cat2->cat_ID));?>
 
+                                            </span> 
+                                            <span class="category_top_time" style="margin-left:6px;">
+                                              <?php 
+                                                $numLessons = getNumLessons($cat2->cat_ID);
+                                                if ($numLessons==1) echo __('lesson','swgeula') . __(' 1','swgeula');
+                                                else echo __($numLessons) . __(' ','swgeula') . __('lessons','swgeula');
+                                              ?>
                                             </span>
                                             <!-- 
                                                     TODO: get the icon of category dynamcly

@@ -39,6 +39,10 @@ $current_user = wp_get_current_user();
                                     $arrNextScheduled = getNextSchedulesCat();
                                     if ( is_array($arrNextScheduled) && count($arrNextScheduled)>0 ) $bScheduled = true;
                                     else $bScheduled = false;
+
+                                    $bMyLessons=true;
+                                    $arrMyCats = array();
+                                    $tempArrMyCats = getMyCats();   
                                 ?>
                                 
                                 <div class="big_icon">
@@ -57,50 +61,11 @@ $current_user = wp_get_current_user();
                                        <?php }else{?>
                                        <?php the_field('title_no_lessons'); ?>
                                        <?php }?>
-                                    </h2>
-
-                                    <?php if($bScheduled){?>                                            
-                                    <p><?php echo __('Your scheduled lesson is for', 'swgeula') . $lesson_date . " " . __('at', 'swgeula'). $lesson_time; ?> <a href="#" onclick="jQuery('#dp1').show();" class="schedule_new"><?php _e('schedule again', 'swgeula'); ?></a></p>  
-                                            <div id="dp1" class="form-group" style="width:300px; display:none;">
-                                                    <div class='input-group date' id='datetimepicker1'>
-                                                        <input type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
-                                            </div> 
-                                            <script>
-                                                        jQuery(function () {                                                          
-                                                            jQuery('#datetimepicker1').datetimepicker();
-                                                            jQuery('#datetimepicker1').on('dp.change', function(e){
-                                                                console.log(e.timeStamp);
-                                                                setSchedule(e.timeStamp,25);
-                                                            });
-                                                        });
-                                            </script>     
-                                    <?php }?> 
-                                     
+                                    </h2>                                
                                     <?php if(!$bScheduled){?>                                    
-                                           <button class="schedule_btn" onclick="jQuery('#dp1').show();">
+                                           <button class="schedule_btn">
                                                 <i class="fa fa-clock-o"></i><?php _e('schedule learning', 'swgeula'); ?>                                                
-                                            </button>                                                                                              
-                                            <div id="dp1" class="form-group" style="width:300px; display:none;">
-                                                    <div class='input-group date' id='datetimepicker1'>
-                                                        <input type='text' class="form-control" />
-                                                        <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-calendar"></span>
-                                                        </span>
-                                                    </div>
-                                            </div>                                                 
-                                            <script>
-                                                        jQuery(function () {                                                          
-                                                            jQuery('#datetimepicker1').datetimepicker();
-                                                            jQuery('#datetimepicker1').on('dp.change', function(e){
-                                                                console.log(e.timeStamp);
-                                                                setSchedule(e.timeStamp,25);
-                                                            });
-                                                        });
-                                            </script>                                              
+                                            </button>                                                                                                                                                                                        
                                     <?php }?>
                                         
                                         <h3 class="ltl_title">
@@ -117,10 +82,14 @@ $current_user = wp_get_current_user();
                                                         $tempCatObj = get_category($arrNextScheduled[0]);                                                                                                        
                                                         echo($tempCatObj->name);
                                                     }
+                                                    elseif ( is_array($tempArrMyCats) && (count($tempArrMyCats)>0) ) {
+                                                        _e("start learning to get updated with next lesson","swgeula");
+                                                    } 
+                                                    else _e("add series and start learning to get updated with next lesson","swgeula");                                                    
                                                     ?>
                                                 </div>
                                                 <div class="time">                                            
-                                                    <?php
+                                                    <?php                                                    
                                                     if ( is_array($arrNextScheduled) && count($arrNextScheduled)>0 ) {                                                        
                                                         echo($arrNextScheduled[1]);
                                                     }
@@ -135,10 +104,7 @@ $current_user = wp_get_current_user();
                    </div>
                    
                    <h3 class="ltl_title">
-                       <?php
-                            $bMyLessons=true;
-                            $arrMyCats = array();
-                            $tempArrMyCats = getMyCats();                            
+                       <?php                                                    
                             if ( is_array($tempArrMyCats) && count($tempArrMyCats)>0 ) $arrMyCats = $tempArrMyCats;                                                         
                             echo __("series I'm learning", 'swgeula') . __("<span id='count-my-lessons'>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");
                             if ( count($arrMyCats)==0 ) $arrMyCats[] = -1;

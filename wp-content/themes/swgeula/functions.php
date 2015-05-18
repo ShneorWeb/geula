@@ -993,6 +993,7 @@ function formatHoursMinutes($secs) {
 	return $retVal;
 
 }
+
 function getTotalVideoDuration($arrLessonIDs) {
 	global $wpdb;
 	$retVal = 0;
@@ -1112,6 +1113,11 @@ add_action( 'save_post', 'sw_update_video_table', 10, 3 );
 			}
 	}
 	return 0;	
+}
+
+function getNumLessons($catID) {
+	$postsInCat = get_term_by('ID',$catID,'category');
+	return $postsInCat->count;	
 }
 
 function getCatBoxes() {		

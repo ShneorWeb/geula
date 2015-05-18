@@ -136,6 +136,13 @@
                                                          <?php echo formatHoursMinutes(getTotalVideoDurationCat($cat->cat_ID));?>                                              
                                                     
                                                 </span>
+                                                <span class="category_top_time" style="margin-left:6px;">
+                                                  <?php 
+                                                    $numLessons = getNumLessons($cat->cat_ID);
+                                                    if ($numLessons==1) echo __('lesson','swgeula') . __(' 1','swgeula');
+                                                    else echo __($numLessons) . __(' ','swgeula') . __('lessons','swgeula');
+                                                  ?>
+                                                </span>
     											<i class="icon-type-of-lesson-icon-1"></i>
     										</div>
                                             
