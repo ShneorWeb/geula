@@ -1247,7 +1247,7 @@ function get_user_profile() {
 		    
 
 		    $avtr = get_user_meta( $uid, 'custom_avatar', true );		    
-		    $avtr_160 = get_user_meta( $uid, 'custom_avatar_160', true );
+		    $avtr_240 = get_user_meta( $uid, 'custom_avatar_240', true );
 		    $lang = get_user_meta( $uid, 'user_lang', true );
 		    $country = get_user_meta( $uid, 'user_country', true );
 		    $city = get_user_meta( $uid, 'user_city', true );		    
@@ -1266,7 +1266,7 @@ function get_user_profile() {
 		    	'", "lastname":"'.$lname.
 		    	'", "email":"'.$current_user->user_email.
 		    	'","avatar":"'.$avtr.
-		    	'","avatar_160":"'.$avtr_160.
+		    	'","avatar_240":"'.$avtr_240.
 		    	'","lang":"'.$lang.
 		    	'","country":"'.$country.
 		    	'","city":"'.$city.
