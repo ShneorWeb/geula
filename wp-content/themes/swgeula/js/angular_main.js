@@ -62,7 +62,10 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		Select_Timezone : 'בחר אזור זמן',
 		Data_Saved_Successfully : 'הנתונים נשמרו בהצלחה!',
 		Forgot_Password : 'שכחתי את הסיסמה',
-		Strength : 'חוזק'
+		Strength : 'חוזק',
+        Your_Picture  : 'התמונה שלך',
+        Photo_visible_to_everyone : 'התמונה גלויה לכולם',
+        Select_an_image_to_upload : 'בחר תמונה להעלות'
 	  });
 	$translateProvider.preferredLanguage('he_IL');
  	
