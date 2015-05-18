@@ -128,7 +128,7 @@ function swgeula_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}	
-	if( is_page("settings") ) {
+	if( is_page("settings") ) :
 		wp_enqueue_script(
 			'angularjs',
 			get_stylesheet_directory_uri() . '/angular/angular.min.js'
@@ -191,7 +191,7 @@ function swgeula_scripts() {
 			get_stylesheet_directory_uri() . '/js/angular_main.js',
 			array( 'angularjs', 'angularjs-route' )
 		);	
-	}	
+	endif;	
 	wp_localize_script(
 		'my-scripts',
 		'myLocalized',
@@ -1515,15 +1515,18 @@ function set_user_profile3(){
 				$image_editor1->resize( 60, 60, true );
 				$image_editor2->resize( 100, 100, true );				
 				$image_editor3->resize( 160, 160, true );				
+				$image_editor4->resize( 240, 240, true );				
 				$img1 = $image_editor1->save();				
 				$img2 = $image_editor2->save();
 				$img3 = $image_editor3->save();
+				$img4 = $image_editor4->save();
 			
 				if(!is_wp_error($resized)) { //resize successful		
 					//$uploads = wp_upload_dir();												
 					$_POST['resized_url'] = $imgBaseName . $img1["file"];
 					$_POST['resized_url_100'] = $imgBaseName . $img2["file"];										
 					$_POST['resized_url_160'] = $imgBaseName . $img3["file"];										
+					$_POST['resized_url_240'] = $imgBaseName . $img4["file"];										
 				}
 			  }
 			  else {
@@ -1535,18 +1538,22 @@ function set_user_profile3(){
 				$_POST['resized_url']='';
 				$_POST['resized_url_100']='';
 				$_POST['resized_url_160']='';
+				$_POST['resized_url_240']='';
 			}
 
 
 		 	$userdata['resized_url'] = $_POST['resized_url'];		
 		 	$userdata['resized_url_100'] = $_POST['resized_url_100'];		
 		 	$userdata['resized_url_160'] = $_POST['resized_url_160'];		
+		 	$userdata['resized_url_240'] = $_POST['resized_url_240'];		
 			
 			if (!empty($userdata['resized_url'])) update_usermeta($uid, 'custom_avatar', $userdata['resized_url']);
 			else $error .= '<p class="error">File not found</p>';	
 			if (!empty($userdata['resized_url_100'])) update_usermeta($uid, 'custom_avatar_100', $userdata['resized_url_100']);
 			else $error .= '<p class="error">File not found</p>';	
 			if (!empty($userdata['resized_url_160'])) update_usermeta($uid, 'custom_avatar_160', $userdata['resized_url_160']);
+			else $error .= '<p class="error">File not found</p>';	
+			if (!empty($userdata['resized_url_240'])) update_usermeta($uid, 'custom_avatar_240', $userdata['resized_url_240']);
 			else $error .= '<p class="error">File not found</p>';	
 
 			if( !empty( $error ) ) {			 
@@ -1556,7 +1563,7 @@ function set_user_profile3(){
 		 
 		 	}
 		 	else {	 
-					$msg = $userdata['resized_url_160'];	 
+					$msg = $userdata['resized_url_240'];	 					
 			 		echo $msg;
 			 		exit;
 			 }
