@@ -309,7 +309,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
                 }).success(function (data, status, headers, config) {
                     //console.log('file ' + config.file.name + ' uploaded. Response: ' + JSON.stringify(data));
                     $scope.User_Success=true;
-                    $scope.user.avatar_220 = data;
+                    $scope.user.avatar_240 = data;
                 });
 
             }

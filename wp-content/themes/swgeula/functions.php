@@ -1508,6 +1508,7 @@ function set_user_profile3(){
 			  $image_editor1 = wp_get_image_editor($status['file']);
 			  $image_editor2 = wp_get_image_editor($status['file']);
 			  $image_editor3 = wp_get_image_editor($status['file']);
+			  $image_editor4 = wp_get_image_editor($status['file']);
 			  
 			  if(empty($status['error'])){	
 				//resize
