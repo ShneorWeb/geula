@@ -157,6 +157,7 @@ function equal_heights(){
            });  
             
             $(this).find('.category_square_content').height(highestBox1);
+            $(this).find('.category_square_content .bottom_cont').css('position','absolute');
            
         
           highestBox2 = 0;
@@ -282,6 +283,10 @@ function equal_heights(){
     
      //Bootstrap Tab Collapse
      $('.nav.nav-tabs').tabCollapse();
+     
+     $('.category_square').click(function(){
+         window.location = $(this) .find('h2 a').attr('href')
+     });
      
   //end of document).ready function
  });  

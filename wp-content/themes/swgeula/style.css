@@ -12,7 +12,7 @@ Author URI:
 
 Tags:
 */
-.category_square_author a, .single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-custom-profile-php .forgotPass a, .page-template-custom-profile-php #register-me, .page-template-custom-profile-php .picture_cont .drop-box, button.edit_profile, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .add_lesson_btn.add, .page-template-custom-profile-php .nav-pills > li > a {
+.category_square_author a, .single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-custom-profile-php .forgotPass a, .page-template-custom-profile-php #register-me, .page-template-custom-profile-php .picture_cont .drop-box, button.edit_profile, .category_top_square, .category_square_content, .menu-menu-right-container ul li a, .menu-menu-right-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .add_lesson_btn.add, .page-template-custom-profile-php .nav-pills > li > a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -283,8 +283,15 @@ span.category_top_time {
 }
 
 .category_square_content {
-  padding: 20px;
-  padding-top: 5px;
+  position: relative;
+}
+
+.category_single:hover .category_top_square, .category_single:hover .category_square_content {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  -webkit-transform: translateY(-1px);
+  transform: translateY(-1px);
+  -moz-transform: none;
 }
 
 .category_square_content h4, .category_square_content h5, .category_square_content h6 {
@@ -582,7 +589,7 @@ h1.site-title a {
 }
 
 .menu-menu-right-container ul li.current-menu-item a, .menu-menu-right-container ul li.current-category-ancestor a, .menu-menu-right-container ul li a:hover {
-  /*background:#57bfb8;*/
+  /*background:#39add1;*/
 }
 
 .sidebar ul li a i, .sidebar ul li a span {
@@ -595,7 +602,7 @@ h1.site-title a {
   cursor: pointer;
 }
 .menu-menu-right-container ul li:hover, .menu-menu-right-container ul li.current-category-ancestor, .menu-menu-right-container ul li.current-menu-item, .menu-menu-right-container ul li.current-post-ancestor {
-  background-color: #57bfb8;
+  background-color: #39add1;
 }
 
 .menu-menu-right-container ul {
@@ -732,7 +739,7 @@ span.category_top_time {
 }
 
 .category_square_content {
-  padding: 30px 30px 19px;
+  padding: 30px;
   line-height: 1.3;
   float: right;
   background-color: #FFF;
@@ -756,10 +763,8 @@ span.category_top_time {
   margin-top: 0;
   line-height: 1.1;
   margin-bottom: 6px;
-  /*
   overflow: hidden;
-  height: 24px;
-  */
+  max-height: 44px;
 }
 .category_square_content h4 {
   color: #384047;
@@ -769,6 +774,7 @@ span.category_top_time {
 .category_square_description {
   min-height: 40px;
   margin-bottom: 25px;
+  display: inline-block;
 }
 
 .category_square_author_subject, .category_square_author_desc {
@@ -943,7 +949,7 @@ span.oval.subject {
   font-weight: 700;
   float: right;
   margin-left: 10px;
-  padding: 7px 15px;
+  padding: 5px 15px;
   color: #b2bac2;
 }
 
@@ -952,8 +958,7 @@ span.oval.subject {
   opacity: 1;
 }
 .category_square_oval_submit:hover {
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
-  opacity: 0.75;
+  /*@include opacity(0.75);*/
 }
 
 .btn-group.bootstrap-select.show-tick button {
@@ -1223,7 +1228,7 @@ main library page
 }
 
 .archive.author .menu-menu-right-container ul li.microphone, .page-template-page-dashboard-php .menu-menu-right-container ul li.microphone, .page-template-page-my_lessons-php .menu-menu-right-container ul li.microphone, .page-template-page-lessons_teach-php .menu-menu-right-container ul li.microphone {
-  background-color: #57bfb8;
+  background-color: #39add1;
 }
 .archive.author .image_category, .page-template-page-dashboard-php .image_category, .page-template-page-my_lessons-php .image_category, .page-template-page-lessons_teach-php .image_category {
   background-color: #fff;
@@ -1923,7 +1928,7 @@ button.edit_profile {
   font-size: 16px;
   font-weight: 700;
   float: left;
-  padding: 7px 10px;
+  padding: 5px 8px;
   color: #b2bac2;
 }
 .add_lesson_btn.done {
@@ -1963,7 +1968,7 @@ a.schedule_new {
 }
 
 .page-template-page-lessons_teach-php li.bookmark {
-  background-color: #57bfb8;
+  background-color: #39add1;
 }
 .page-template-page-lessons_teach-php .image_category {
   padding-top: 4.8%;
@@ -2167,6 +2172,38 @@ a.schedule_new {
   color: #C5C5C5;
   font-size: 1.25rem;
   font-weight: 400;
+}
+
+.logged-in .navbar-header .menu-top, .logged-in .navbar-collapse .menu-top {
+  margin-top: 18px;
+}
+
+.navbar-header .menu-top {
+  margin-top: 13px;
+}
+
+.navbar-header .avatar_image img {
+  border: none;
+}
+
+.category_square {
+  cursor: pointer;
+}
+
+.category_square_content .bottom_cont {
+  bottom: 20px;
+  max-width: calc(100% - 60px);
+}
+
+.category_square_description {
+  margin-bottom: 15px;
+}
+.category_square_description p {
+  margin-bottom: 0;
+}
+
+.category_square_author {
+  padding-bottom: 5px;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------

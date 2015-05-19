@@ -170,6 +170,8 @@
                                                     </p>
     											</div>
 
+                                                                                         
+                                          <div class="bottom_cont">
     											<div class="category_square_author">                                                       
     												<?php    						                                                     					
     												 $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
@@ -206,8 +208,9 @@
                          /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/    ?>                   
                      <?php //echo "cat="   . $tempParent2->parent; ?>
 
-              <?php echo '<a href="'.get_category_link($cat->parent).'" style="color:'.$color.'" class="category_square_oval_submit">'.$tempParent->name.'</a>';  ?>
-
+              <?php echo '<a href="'.get_category_link($cat->parent).'" style="color:'.$color.'" class="category_square_oval_submit"'; ?>
+onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #b2bac2'"
+<?php echo ">$tempParent->name</a>";?>
               <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
                     foreach ($values as $value => $label) {                        
                         echo '<span class="oval">' . $value . '</span>';
@@ -224,7 +227,7 @@
     		
                         
                         
-                        
+    </div>
     									</li>
     							</div>
 

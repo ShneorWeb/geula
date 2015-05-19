@@ -146,7 +146,6 @@
 			<div class="categories row">
                 
                 
-
 				<ul class="product_list" style="padding:0px;">
 
 					<?php
@@ -244,7 +243,8 @@
                                                     ?>
                                                 </p>
 											</div>
-
+                                        
+                                        <div class="bottom_cont">
 											<div class="category_square_author">
 												<?php
 													
@@ -289,7 +289,7 @@
                 /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
 ?>
                     
-       <a href="<?php echo site_url() . '/category/' . $cat_grandparent_slug.'?select_parent='.$cat_parent_id; ?>" style="color:<?php echo $color; ?>" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
+       <a href="<?php echo site_url() . '/category/' . $cat_grandparent_slug.'?select_parent='.$cat_parent_id; ?>" style="color:<?php echo $color; ?>" onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #b2bac2'" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
                      
 
           <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
@@ -306,6 +306,7 @@
                     
                     
                     </div>
+                </div>
 									</li>
 							</div>
 
