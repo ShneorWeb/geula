@@ -121,9 +121,9 @@ function swgeula_scripts() {
 
 	global $post;
 
-	wp_enqueue_script( 'swgeula-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_enqueue_script( 'swgeula-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', false );
 
-	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', false );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -985,14 +985,15 @@ function formatHoursMinutes($secs) {
 	$hrs = intval(gmdate("H",$secs));
 	$mins = intval(gmdate("i",$secs));
 
-	if ($hrs>1) $retVal .= (_e($hrs) . _e (" ") . _e("hours","swgeula"));
+	if ($hrs>1) $retVal .= (_e($hrs) . _e (" ") . _e("hrs","swgeula"));
 	elseif ($hrs>0) $retVal .= (_e("hour","swgeula"));
 	if ($hrs>0 && $mins>0) $retVal .= _e(" ") . _e("and","swgeula") . _e(" ");
-	if ($mins>0) $retVal .= ( _e($mins). _e(" ") . _e("minutes","swgeula"));
+	if ($mins>0) $retVal .= ( _e($mins). _e(" ") . _e("mins","swgeula"));
 
 	return $retVal;
 
 }
+
 function getTotalVideoDuration($arrLessonIDs) {
 	global $wpdb;
 	$retVal = 0;
@@ -1112,6 +1113,14 @@ add_action( 'save_post', 'sw_update_video_table', 10, 3 );
 			}
 	}
 	return 0;	
+}
+
+function getNumLessons($catID) {
+	if ( $catID>0 ) {
+		$postsInCat = get_term_by('ID',$catID,'category');
+		return $postsInCat->count;	
+	}
+	return 0;
 }
 
 function getCatBoxes() {		

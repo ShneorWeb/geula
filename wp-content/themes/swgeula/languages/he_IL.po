@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
-"POT-Creation-Date: 2015-05-17 23:00+0200\n"
-"PO-Revision-Date: 2015-05-17 23:00+0200\n"
+"POT-Creation-Date: 2015-05-18 22:50+0200\n"
+"PO-Revision-Date: 2015-05-18 22:50+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -46,9 +46,9 @@ msgid "נושא"
 msgstr ""
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/author.php:266
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/category_boxes.php:188
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/category_boxes.php:195
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:301
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/library.php:233
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/library.php:240
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-authors.php:82
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-lessons_teach.php:285
 #: C:\wamp\www\geula\wp-content\themes\swgeula/single.php:379
@@ -370,29 +370,31 @@ msgstr ""
 msgid "Right Menu"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:986
 #: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:988
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:989
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:990
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:991
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/category_boxes.php:143
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/library.php:180
 msgid " "
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:986
-msgid "hours"
-msgstr "שעות"
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:988
+msgid "hrs"
+msgstr "ש'"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:987
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:989
 msgid "hour"
 msgstr "שעה"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:988
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:990
 msgid "and"
 msgstr "ו"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:989
-msgid "minutes"
-msgstr "דקות"
+#: C:\wamp\www\geula\wp-content\themes\swgeula/functions.php:991
+msgid "mins"
+msgstr "ד'"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/header.php:212
+#: C:\wamp\www\geula\wp-content\themes\swgeula/header.php:211
 msgid "Login"
 msgstr "התחבר"
 
@@ -413,6 +415,22 @@ msgstr "הסר מהשיעורים שלי"
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/add_lesson_btn.php:27
 msgid "add to my lessons"
 msgstr "הוסף לשעורים שלי"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/category_boxes.php:142
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/library.php:179
+msgid "lesson"
+msgstr "שיעור"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/category_boxes.php:142
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/library.php:179
+msgid " 1"
+msgstr ""
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/category_boxes.php:143
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:113
+#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/library.php:180
+msgid "lessons"
+msgstr "שיעורים"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/extras.php:52
 #, php-format
@@ -443,10 +461,6 @@ msgstr "אלף בתי"
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:69
 msgid "new"
 msgstr "חדש"
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:113
-msgid "lessons"
-msgstr "שיעורים"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/level_three_category.php:131
 msgid "start"
@@ -601,35 +615,31 @@ msgstr "השיעורים שלי"
 msgid "lessons I teach"
 msgstr "שיעורים שאני מוסר"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:63
-msgid "Your scheduled lesson is for"
-msgstr "תזמון הלימוד שלך הינו ל"
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:63
-msgid "at"
-msgstr "בשעה"
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:63
-msgid "schedule again"
-msgstr "תזמן מחדש"
-
-#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:85
+#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:67
 msgid "schedule learning"
 msgstr "תזמן לימוד"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:107
+#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:72
 msgid "next lesson"
 msgstr "השיעור הבא"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:143
+#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:86
+msgid "start learning to get updated with next lesson"
+msgstr "התחל ללמוד כדי להתעדכן בשיעור הבא"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:88
+msgid "add series and start learning to get updated with next lesson"
+msgstr "הוסף סדרות והתחל ללמוד כדי להתעדכן בשיעור הבא"
+
+#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:109
 msgid "series I'm learning"
 msgstr "סדרות שאני לומד"
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:143
+#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:109
 msgid "<span id='count-my-lessons'>"
 msgstr ""
 
-#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:143
+#: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:109
 msgid "</span>"
 msgstr ""
 
@@ -661,6 +671,21 @@ msgstr ""
 #: C:\wamp\www\geula\wp-content\themes\swgeula/single.php:361
 msgid "מוסר שיעור"
 msgstr ""
+
+#~ msgid "Your scheduled lesson is for"
+#~ msgstr "תזמון הלימוד שלך הינו ל"
+
+#~ msgid "at"
+#~ msgstr "בשעה"
+
+#~ msgid "schedule again"
+#~ msgstr "תזמן מחדש"
+
+#~ msgid "hours"
+#~ msgstr "שעות"
+
+#~ msgid "minutes"
+#~ msgstr "דקות"
 
 #~ msgid "Username"
 #~ msgstr "שם משתמש"
