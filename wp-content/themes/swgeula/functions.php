@@ -121,9 +121,9 @@ function swgeula_scripts() {
 
 	global $post;
 
-	wp_enqueue_script( 'swgeula-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_enqueue_script( 'swgeula-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', false );
 
-	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', false );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -1116,8 +1116,11 @@ add_action( 'save_post', 'sw_update_video_table', 10, 3 );
 }
 
 function getNumLessons($catID) {
-	$postsInCat = get_term_by('ID',$catID,'category');
-	return $postsInCat->count;	
+	if ( $catID>0 ) {
+		$postsInCat = get_term_by('ID',$catID,'category');
+		return $postsInCat->count;	
+	}
+	return 0;
 }
 
 function getCatBoxes() {		
