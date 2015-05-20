@@ -78,15 +78,14 @@ function signinCallback(authResult) {
 </script>
 
 
-<div class="row">
-    <div class="col-sm-5 col-sm-offset-4"> 
-    <div class="panel" style="text-align:center;">    
+<div class="logAndReg_cont"> 
+       <div class="panel" style="text-align:center;">    
     <div class="div-login">       
 
     		<h1><?php _e("Login with an exisiting account","swgeulatr");?></h1>
     		<h2><?php _e("enter your email address and your password","swgeulatr");?></h2>
 
-    <div class="col-sm-8 col-sm-offset-2">
+    
 
         <div class="login-error-msg"></div>
 
@@ -118,11 +117,11 @@ function signinCallback(authResult) {
         );        
         wp_login_form($args); 
         ?>
-    </div>
-    <div class="col-sm-2"></div>
+    
+    
     
     <div style="clear:both;">
-    <a href="<?php echo wp_lostpassword_url(); ?>" title="<?php esc_attr_e( 'Lost my password','swgeulatr' ); ?>"><?php _e( 'Lost my password','swgeulatr' ); ?></a>
+    <a class="frgtPassLink" href="<?php echo wp_lostpassword_url(); ?>" title="<?php esc_attr_e( 'Lost my password','swgeulatr' ); ?>"><?php _e( 'Lost my password','swgeulatr' ); ?></a>
     </div>
 
     <hr/>
@@ -145,12 +144,12 @@ function signinCallback(authResult) {
 </div>
 </div>
 </div>
-<div class="col-sm-3"></div>
+
 
 <div class="col-sm-5 col-sm-offset-4" style="text-align:center;"> 
     <div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/registration/";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
 </div>
-<div class="col-sm-3"></div>
+
 
 
 

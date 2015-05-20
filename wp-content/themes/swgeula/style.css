@@ -1983,7 +1983,7 @@ a.schedule_new {
   display: none;
 }
 .page-template-custom-profile-php .div-login {
-  padding: 30px 0 0;
+  padding: 6px 0 0;
 }
 .page-template-custom-profile-php .site-content {
   margin-right: 0;
@@ -2035,50 +2035,6 @@ a.schedule_new {
 .page-template-custom-profile-php form {
   margin: 40px 15px 0;
   padding-bottom: 30px;
-}
-.page-template-custom-profile-php label {
-  color: #555459;
-  font-size: 1.25rem;
-  font-weight: 400;
-  text-align: right;
-  margin-top: 12px;
-}
-.page-template-custom-profile-php ::-webkit-input-placeholder {
-  color: #C5C5C5;
-  font-size: 1.25rem;
-}
-.page-template-custom-profile-php :-moz-placeholder {
-  /* Firefox 18- */
-  color: #C5C5C5;
-  font-size: 1.25rem;
-}
-.page-template-custom-profile-php ::-moz-placeholder {
-  /* Firefox 19+ */
-  color: #C5C5C5;
-  font-size: 1.25rem;
-}
-.page-template-custom-profile-php :-ms-input-placeholder {
-  color: #C5C5C5;
-  font-size: 1.25rem;
-}
-.page-template-custom-profile-php input, .page-template-custom-profile-php select, .page-template-custom-profile-php textarea {
-  padding: 14px 20px;
-  line-height: 1.25rem;
-  color: #C5C5C5;
-  font-size: 1.25rem;
-}
-.page-template-custom-profile-php textarea {
-  line-height: 1.3;
-}
-.page-template-custom-profile-php input[type="submit"], .page-template-custom-profile-php input[type="button"] {
-  color: #fff;
-}
-.page-template-custom-profile-php select {
-  min-height: 50px;
-  color: #C5C5C5;
-  font-size: 1.25rem;
-  font-weight: 400;
-  padding: 0 20px;
 }
 .page-template-custom-profile-php .forgotPass {
   text-align: right;
@@ -2164,6 +2120,55 @@ a.schedule_new {
   margin-top: 10px;
   border: none;
 }
+.page-template-custom-profile-php .back_to_libary {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.page-template-custom-profile-php ::-webkit-input-placeholder, .page-template-custom-register-php ::-webkit-input-placeholder, .page-template-custom-login-php ::-webkit-input-placeholder {
+  color: #C5C5C5;
+  font-size: 1.25rem;
+}
+.page-template-custom-profile-php :-moz-placeholder, .page-template-custom-register-php :-moz-placeholder, .page-template-custom-login-php :-moz-placeholder {
+  /* Firefox 18- */
+  color: #C5C5C5;
+  font-size: 1.25rem;
+}
+.page-template-custom-profile-php ::-moz-placeholder, .page-template-custom-register-php ::-moz-placeholder, .page-template-custom-login-php ::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #C5C5C5;
+  font-size: 1.25rem;
+}
+.page-template-custom-profile-php :-ms-input-placeholder, .page-template-custom-register-php :-ms-input-placeholder, .page-template-custom-login-php :-ms-input-placeholder {
+  color: #C5C5C5;
+  font-size: 1.25rem;
+}
+.page-template-custom-profile-php input, .page-template-custom-profile-php select, .page-template-custom-profile-php textarea, .page-template-custom-register-php input, .page-template-custom-register-php select, .page-template-custom-register-php textarea, .page-template-custom-login-php input, .page-template-custom-login-php select, .page-template-custom-login-php textarea {
+  padding: 14px 20px;
+  line-height: 1.25rem;
+  color: #555459;
+  font-size: 1.25rem;
+}
+.page-template-custom-profile-php label, .page-template-custom-register-php label, .page-template-custom-login-php label {
+  color: #555459;
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: right;
+  margin-top: 12px;
+}
+.page-template-custom-profile-php textarea, .page-template-custom-register-php textarea, .page-template-custom-login-php textarea {
+  line-height: 1.3;
+}
+.page-template-custom-profile-php input[type="submit"], .page-template-custom-profile-php input[type="button"], .page-template-custom-register-php input[type="submit"], .page-template-custom-register-php input[type="button"], .page-template-custom-login-php input[type="submit"], .page-template-custom-login-php input[type="button"] {
+  color: #fff;
+}
+.page-template-custom-profile-php select, .page-template-custom-register-php select, .page-template-custom-login-php select {
+  min-height: 50px;
+  color: #C5C5C5;
+  font-size: 1.25rem;
+  font-weight: 400;
+  padding: 0 20px;
+}
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   border: none;
@@ -2204,6 +2209,58 @@ a.schedule_new {
 
 .category_square_author {
   padding-bottom: 5px;
+}
+
+.page-template-custom-register-php .logAndReg_cont, .page-template-custom-login-php .logAndReg_cont {
+  width: 45%;
+  margin: 80px auto 20px;
+}
+.page-template-custom-register-php .logAndReg_cont .div-login, .page-template-custom-login-php .logAndReg_cont .div-login {
+  padding: 30px 0 20px;
+  margin-bottom: 0;
+}
+.page-template-custom-register-php .logAndReg_cont .div-login form, .page-template-custom-login-php .logAndReg_cont .div-login form {
+  margin: auto 20%;
+}
+.page-template-custom-register-php .logAndReg_cont h1, .page-template-custom-login-php .logAndReg_cont h1 {
+  color: #555459;
+  font-size: 2.25rem;
+  margin: 0;
+  line-height: 1;
+}
+.page-template-custom-register-php .logAndReg_cont h2, .page-template-custom-login-php .logAndReg_cont h2 {
+  color: #555459;
+  font-size: 1.25rem;
+  margin-bottom: 25px;
+}
+.page-template-custom-register-php #wp-submit, .page-template-custom-login-php #wp-submit {
+  width: 100%;
+}
+.page-template-custom-register-php #login-bottom-text, .page-template-custom-login-php #login-bottom-text {
+  margin-top: 35px;
+  font-size: 20px;
+  color: #555459;
+  font-weight: 400;
+}
+.page-template-custom-register-php #login-bottom-text a, .page-template-custom-login-php #login-bottom-text a {
+  color: #439FE0;
+  font-weight: 700;
+}
+.page-template-custom-register-php a.frgtPassLink, .page-template-custom-login-php a.frgtPassLink {
+  color: #439FE0;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+.page-template-custom-register-php .site-content, .page-template-custom-login-php .site-content {
+  float: none;
+  margin: auto;
+}
+
+.page-template-custom-login-php label {
+  display: none;
+}
+.page-template-custom-login-php .login-submit.login-remember label {
+  display: inline-block;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
@@ -2428,6 +2485,10 @@ _responsive styles
 
   .page-template-custom-profile-php .page_cont {
     width: 90%;
+  }
+
+  .page-template-custom-register-php .logAndReg_cont, .page-template-custom-login-php .logAndReg_cont {
+    width: 85%;
   }
 }
 /* 768 and more ----------- */
@@ -2736,6 +2797,24 @@ _responsive styles
   }
   .page-template-custom-profile-php .picture_cont .img_vis_cont {
     margin-bottom: 20px;
+  }
+
+  .page-template-custom-register-php .logAndReg_cont, .page-template-custom-login-php .logAndReg_cont {
+    width: 95%;
+  }
+  .page-template-custom-register-php .logAndReg_cont .div-login, .page-template-custom-login-php .logAndReg_cont .div-login {
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+  .page-template-custom-register-php .logAndReg_cont .div-login form, .page-template-custom-login-php .logAndReg_cont .div-login form {
+    margin: auto 0%;
+  }
+  .page-template-custom-register-php .menu-top, .page-template-custom-login-php .menu-top {
+    display: none;
+  }
+
+  .container {
+    max-width: 100%;
   }
 }
 /* 500 and less ----------- */

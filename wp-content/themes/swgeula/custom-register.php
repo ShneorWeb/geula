@@ -654,7 +654,7 @@ default:
 	 */	
 ?>
 
-<div class="col-sm-5 col-sm-offset-4"> 
+<div class="logAndReg_cont"> 
 	<div class="panel" style="text-align:center;">
     	<div class="div-login">   		
 
@@ -698,16 +698,15 @@ default:
 				<p>					
 					<input type="password" class="form-control" name="user_password" id="user_password" placeholder="<?php _e('Password','swgeulatr') ?>" value="" />
 				</p>
-				<br class="clear" />
 				<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 				<p class="submit"><input type="submit" name="wp-submit" id="wp-submit" class="btn btn-success" value="<?php esc_attr_e('Register','swgeulatr'); ?>" /></p>
 			</form>
 
 			<hr/>
 
-		    <h2 class="signin-google"><?php _e("Or register with your Google account", "swgeulatr");?></h2>
+		    <h2><?php _e("Or register with your Google account", "swgeulatr");?></h2>
 
-		    <p>
+		    
 		    <script>
 			function signinCallback(authResult) {
 			  if (authResult['status']['signed_in'] && authResult['status']['method']=="PROMPT") {
@@ -768,7 +767,7 @@ default:
 		        data-scope="https://www.googleapis.com/auth/plus.login">
 		      </span>
 		    </span>
-		    </p>					
+		   					
 		</div>		    
 	</div>
 

@@ -65,7 +65,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		Strength : 'חוזק',
         Your_Picture  : 'התמונה שלך',
         Photo_visible_to_everyone : 'התמונה גלויה לכולם',
-        Select_an_image_to_upload : 'בחר תמונה להעלות'
+        Select_an_image_to_upload : 'בחר תמונה להעלות',
+        Back_to_Library : 'חזרה לספריה'
 	  });
 	$translateProvider.preferredLanguage('he_IL');
  	
