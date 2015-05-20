@@ -2537,6 +2537,10 @@ a.schedule_new{
 
 
 .page-template-custom-register-php,.page-template-custom-login-php{
+    .site-content > .container {
+      float: none;
+      margin: auto;
+    }
     .logAndReg_cont{
         width: 45%;
         margin: 80px auto 20px;

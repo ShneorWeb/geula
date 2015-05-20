@@ -2211,6 +2211,10 @@ a.schedule_new {
   padding-bottom: 5px;
 }
 
+.page-template-custom-register-php .site-content > .container, .page-template-custom-login-php .site-content > .container {
+  float: none;
+  margin: auto;
+}
 .page-template-custom-register-php .logAndReg_cont, .page-template-custom-login-php .logAndReg_cont {
   width: 45%;
   margin: 80px auto 20px;
