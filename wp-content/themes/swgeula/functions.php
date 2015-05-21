@@ -182,10 +182,10 @@ function swgeula_scripts() {
 			'password-strength',
 			get_stylesheet_directory_uri() . '/js/ng-password-strength.min.js'			
 		);
-		/*wp_enqueue_script(
+		wp_enqueue_script(
 			'vendor',
 			get_stylesheet_directory_uri() . '/js/vendor.js'			
-		);*/
+		);
 		wp_enqueue_script(
 			'my-scripts',
 			get_stylesheet_directory_uri() . '/js/angular_main.js',
@@ -740,6 +740,7 @@ function addToMyLessons() {
 
 
 			$results = $wpdb->get_results("SELECT id FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_id = $catID LIMIT 1;",ARRAY_A);		
+			$results2 = $wpdb->get_results("SELECT id FROM wp_sw_user_lesson WHERE user_id = $userID AND cat_id = $catID AND video_pos>0 LIMIT 1;",ARRAY_A);		
 			
 			if (count($results)>0) continue;
 			else {
@@ -747,7 +748,7 @@ function addToMyLessons() {
 						'user_id' => $userID,						
 						'cat_id' => $catID, 										
 						'date_added' => date('Y-m-d H:i:s'),
-						'cat_status' => 0			
+						'cat_status' => (count($results2)>0)?1:0
 				));
 			}
 		

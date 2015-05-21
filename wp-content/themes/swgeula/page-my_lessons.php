@@ -107,8 +107,9 @@ $current_user = wp_get_current_user();
                    <h3 class="ltl_title">
                        <?php                                                    
                             if ( is_array($tempArrMyCats) && count($tempArrMyCats)>0 ) $arrMyCats = $tempArrMyCats;                                                         
-                            echo __("series I'm learning", 'swgeula') . __("<span id='count-my-lessons'>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");
+                            echo __("series I'm learning", 'swgeula') . __("<span id='count-my-lessons-learn'>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");
                             if ( count($arrMyCats)==0 ) $arrMyCats[] = -1;
+                            $NumberSpanID = "count-my-lessons-learn";
                        ?>
                    </h3>
                    
@@ -120,8 +121,9 @@ $current_user = wp_get_current_user();
                        <?php                                                             
                             $arrMyCats = null;              
                             if ( is_array($tempArrMyCats2) && count($tempArrMyCats2)>0 ) $arrMyCats = $tempArrMyCats2;                                                                                     
-                            echo __("series I added", 'swgeula') . __("<span id='count-my-lessons'>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");
+                            echo __("series I added", 'swgeula') . __("<span id='count-my-lessons-add'>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");
                             if ( count($arrMyCats)==0 ) $arrMyCats[] = -1;
+                            $NumberSpanID = "count-my-lessons-add";
                        ?>
                    </h3>
                    

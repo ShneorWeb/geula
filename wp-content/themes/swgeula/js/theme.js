@@ -128,11 +128,11 @@ removeFromMyLessons = function(catid) {
   });
 }
 
-hideCat = function(catid) {
+hideCat = function(catid,spanID) {
     $("#catbox_"+catid).hide();
-    var myLessonsNum = parseInt($("#count-my-lessons").text());
-    myLessonsNum--;
-    $("#count-my-lessons").text(myLessonsNum);
+    var myLessonsNum = parseInt($("#"+spanID).text());
+    myLessonsNum--;    
+    $("#"+spanID).text(myLessonsNum);
 }
     
 function profile_to_mob(){

@@ -25,7 +25,7 @@ class MY_Post_Numbers {
                                 public function display_count() {
                                     $this->init(); // prevent unnecessary queries
                                     $id = get_the_ID();
-                                    echo __('שיעור', 'swgeula') . ' ' . $this->posts[$id] . ' ' . __('מתוך', 'swgeula') . ' ' . $this->count;
+                                    echo __('lesson', 'swgeula') . ' ' . $this->posts[$id] . ' ' . __('of', 'swgeula') . ' ' . $this->count;
                                 }
 
                                 private function init() {
@@ -258,9 +258,9 @@ class MY_Post_Numbers {
 
                                       <!-- Nav tabs -->
                                       <ul class="nav nav-tabs" role="tablist" id="singleTabs">
-                                        <li role="presentation" class="active"><a href="#discussion" aria-controls="discussion" role="tab" data-toggle="tab"><?php echo __('דיון', 'swgeula'); ?></a></li>
-                                        <li role="presentation"><a href="#references" aria-controls="references" role="tab" data-toggle="tab"><?php echo __('מראה מקומות', 'swgeula'); ?></a></li>
-                                        <li role="presentation"><a href="#downloads" aria-controls="downloads" role="tab" data-toggle="tab"><?php echo __('קבצים להורדה', 'swgeula'); ?></a></li>
+                                        <li role="presentation" class="active"><a href="#discussion" aria-controls="discussion" role="tab" data-toggle="tab"><?php echo __('discussion', 'swgeula'); ?></a></li>
+                                        <li role="presentation"><a href="#references" aria-controls="references" role="tab" data-toggle="tab"><?php echo __('cross references', 'swgeula'); ?></a></li>
+                                        <li role="presentation"><a href="#downloads" aria-controls="downloads" role="tab" data-toggle="tab"><?php echo __('files to download', 'swgeula'); ?></a></li>
 
                                       </ul>
 
@@ -361,7 +361,7 @@ class MY_Post_Numbers {
                   </div>
                   
                     <h3>
-                        <?php echo __('מוסר שיעור', 'swgeula'); ?>
+                        <?php echo __('teacher', 'swgeula'); ?>
                     </h3>
 
                     <div class="box userdtls">
