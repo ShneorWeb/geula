@@ -132,6 +132,7 @@ class MY_Post_Numbers {
                     var tag = document.createElement('script');
                     var userID = <?php echo get_current_user_id(); ?>;
                     var lessonID = <?php echo get_the_ID();?>;
+                    var catID = <?php $catForJS = get_the_category(); echo $catForJS[0]->cat_ID; ?>;
                     var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php'; 
 
                     tag.src = "https://www.youtube.com/iframe_api";
@@ -143,6 +144,7 @@ class MY_Post_Numbers {
                       var data = {        
                         action: 'video_played',
                         lesson_id: lessonID,
+                        cat_id: catID,
                         video_loc: pos,
                         user_id: userID
                       };                                                                                            
@@ -179,8 +181,9 @@ class MY_Post_Numbers {
                     function setDone() {
                       var data = {        
                         action: 'set_video_done',
-                        lesson_id: lessonID,                        
-                        user_id: userID
+                        lesson_id: lessonID,                                                
+                        user_id: userID,
+                        cat_id: catID
                       };                                                                                            
                       console.log( data );
                       jQuery.post(ajaxurl, data, function(data) {                    

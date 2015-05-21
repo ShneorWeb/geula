@@ -226,7 +226,7 @@
 
                 <script>
                                       
-                  arrLessonIDs.push(<?php the_ID(); ?>);
+                  //arrLessonIDs.push(<?php the_ID(); ?>);
 
                   /*(function($) {
 
@@ -258,7 +258,10 @@
 								    
 								    <a href="<?php the_permalink(); ?>">
                                         <div class="name">                                            
-                                            <i id="<?php the_ID();?>" class="fa <?php if (getLessonStarted(get_the_ID(),$userID)) echo('fa-check-circle'); else echo('fa-chevron-left');?>"></i>                                            
+                                            <?php
+                                            $lessosStatus = getLessonStarted(get_the_ID(),$userID);
+                                            ?>
+                                            <i id="<?php the_ID();?>" class="fa <?php if ($lessosStatus==1) echo('fa-check-circle'); elseif ($lessosStatus==2) echo("todo: circle done"); else echo('fa-chevron-left');?>"></i>                                            
                                             <?php the_title(); ?>
                                         </div>
                                         <div class="time">                                            

@@ -498,12 +498,13 @@ function set_video_loc() {
 	global $wpdb;	
 	
 	$lessonID = (int)$_POST['lesson_id'];
+	$catID = (int)$_POST['cat_id'];
 	$vidLoc = (float)$_POST['video_loc'];
 	$userID = (int)$_POST['user_id'];
 
-	if ( is_int($userID) && is_numeric($vidLoc) && is_int($lessonID) ) :
+	if ( is_int($userID) && is_numeric($vidLoc) && is_int($lessonID) && is_int($catID) ) :
 			
-		$results = $wpdb->get_results("SELECT * FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lessonID  ORDER BY id DESC LIMIT 1;",ARRAY_A);		
+		$results = $wpdb->get_results("SELECT * FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lessonID  LIMIT 1;",ARRAY_A);		
 		
 		if (count($results)>0) {
 
@@ -519,20 +520,28 @@ function set_video_loc() {
 					), 
 					array( 'id' =>  $rowid)					
 				); 			
-			}
-			echo("success");
-			exit;
+			}			
 		}
-		else {				
+		else {					
 			$wpdb->insert("wp_sw_user_lesson", array( 		
 				'user_id' => $userID, 
 				'lesson_id' => $lessonID, 
+				'cat_id' => $catID, 
 				'video_pos' => $vidLoc,
-				'date' => date_create()->format('Y-m-d H:i:s')
-			));
-			echo("success");
-			exit;
-		} 		
+				'date_added' => date_create()->format('Y-m-d H:i:s'),
+				'done' => 0
+			));								
+		}
+		$wpdb->update( 
+				'wp_sw_cats_learn', 
+				array( 
+					'cat_status' => 1
+				), 
+				array( 'cat_id' => $catID, 'user_id' => $userID )			
+		);	
+		echo("success");
+		exit; 		
+
 	endif;
 	echo("fail");			
 	exit;
@@ -572,6 +581,7 @@ function setVideoDone() {
 	
 	$lessonID = (int)$_POST['lesson_id'];
 	$userID = (int)$_POST['user_id'];
+	$catID = (int)$_POST['cat_id'];
 
 	if ( is_int($userID) && is_int($lessonID) ) :
 
@@ -582,6 +592,20 @@ function setVideoDone() {
 			), 
 			array( 'lesson_id' => $lessonID, 'user_id' => $userID )			
 		);
+		
+		//now check if all lessons done mark category as done
+		$results = $wpdb->get_results("SELECT id FROM wp_sw_user_lesson WHERE user_id = $userID AND cat_id = $catID AND done=0  LIMIT 1;",ARRAY_A);		
+		
+		if (count($results)==0) {
+			$wpdb->update( 
+					'wp_sw_cats_learn', 
+					array( 
+						'cat_status' => 2
+					), 
+					array( 'cat_id' => $catID, 'user_id' => $userID )			
+			);	
+		}
+
 		echo(1);			
 		exit;
 							
@@ -682,13 +706,15 @@ function getLessonStarted($lessonID,$userID) {
 
 	if ( is_int($userID) && is_int($lessonID) ) :
 
-		$results = $wpdb->get_results("SELECT lesson_id,video_pos FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lessonID ORDER BY id DESC LIMIT 1;",ARRAY_A);		
+		$results = $wpdb->get_results("SELECT lesson_id,video_pos,done FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lessonID ORDER BY id DESC LIMIT 1;",ARRAY_A);		
 		
 		if (count($results)>0) {			
 
 			foreach($results as $row) {																
-								
-				if ($row['video_pos']==0 || $row['video_pos']>0) return 1;											
+				
+				if ($row['done']==1) return 2;				
+				elseif ($row['video_pos']>0) return 1;	
+				else return 0;										
 			}
 			
 		}
@@ -696,23 +722,6 @@ function getLessonStarted($lessonID,$userID) {
 	endif;	
 
 	return 0;		
-}
-
-function getLessonIDsInCat($catID) {
-	$arrRet = array();
-
-	$args = array(
-			'category' => $catID,
-			'post_type' => 'post',
-			'post_status' => 'publish'
-		);
-	$postlist = get_posts( $args );
-
-	foreach ( $postlist as $post ) {
-   		$arrRet[] = $post->ID;
-	}
-
-	return $arrRet;
 }
 
 function addToMyLessons() {
@@ -724,30 +733,24 @@ function addToMyLessons() {
 		$catID = (int)$_POST['cat_id'];
 		
 		$current_user = wp_get_current_user();
-		$userID = $current_user->ID;
+		$userID = $current_user->ID;	
+
 		
+		if ( is_int($userID) && ($catID>0) ) :
 
-		if ($catID>0) $arrLessonIDs = getLessonIDsInCat($catID);		
 
-		if ( is_int($userID) && is_array($arrLessonIDs) ) :
-
-			foreach($arrLessonIDs as $lid) :
-
-				$results = $wpdb->get_results("SELECT id FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id = $lid ORDER BY id DESC LIMIT 1;",ARRAY_A);		
-				
-				if (count($results)>0) continue;
-				else {
-					$wpdb->insert("wp_sw_user_lesson", array( 		
-							'user_id' => $userID,
-							'lesson_id' => $lid, 				
-							'cat_id' => $catID, 				
-							'video_pos' => 0,				
-							'date_added' => date('Y-m-d H:i:s'),
-							'done' => 0,				
-					));
-				}
-
-			endforeach;	
+			$results = $wpdb->get_results("SELECT id FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_id = $catID LIMIT 1;",ARRAY_A);		
+			
+			if (count($results)>0) continue;
+			else {
+				$wpdb->insert("wp_sw_cats_learn", array( 		
+						'user_id' => $userID,						
+						'cat_id' => $catID, 										
+						'date_added' => date('Y-m-d H:i:s'),
+						'cat_status' => 0			
+				));
+			}
+		
 			echo 1;		
 			exit;
 				
@@ -773,7 +776,7 @@ function removeFromMyLessons() {
 		
 		if ( is_int($userID) && ($catID>0) ) :			
 				
-				$wpdb->delete( 'wp_sw_user_lesson', array( 'user_id'=>$userID, 'cat_id' => $catID ) );
+				$wpdb->delete( 'wp_sw_cats_learn', array( 'user_id'=>$userID, 'cat_id' => $catID ) );
 				echo 1;		
 				exit;
 				
@@ -798,20 +801,11 @@ function getCatInMyLessons($catID) {
 
 			if (is_int($userID)) :
 
-				$results = $wpdb->get_results("SELECT done FROM wp_sw_user_lesson WHERE user_id = $userID AND cat_id = $catID ORDER BY id ASC;",ARRAY_A);		
+				$results = $wpdb->get_results("SELECT cat_status FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_id = $catID LIMIT 1;",ARRAY_A);		
 					
-					if (count($results)>0) :
+					if (count($results)>0) :								
 
-							$bAllDone = true;
-
-							foreach($results as $row) :			
-
-								if ($row['done']!=1) $bAllDone=false;	 
-
-							endforeach;
-
-							if ($bAllDone) return(1); //1 - category done
-							return(2); //2 - category currently being studied
+						return $row['cat_status']; //2 - category done, 1 - being studied, 0 not started					
 							
 
 					endif;
@@ -821,10 +815,10 @@ function getCatInMyLessons($catID) {
 
 	endif; //user logged in
 
-	return(0);	
+	return(-1);	
 }
 
-function getMyCats() {
+function getMyCatsStudied() {
 	global $wpdb;	
 
 	if ( is_user_logged_in() ) :				
@@ -835,7 +829,7 @@ function getMyCats() {
 
 				$arrRetVal = array();	
 
-				$results = $wpdb->get_results("SELECT DISTINCT cat_id FROM wp_sw_user_lesson WHERE user_id = $userID ORDER BY cat_id ASC;",ARRAY_A);		
+				$results = $wpdb->get_results("SELECT DISTINCT cat_id FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_status>0 ORDER BY cat_id ASC;",ARRAY_A);		
 					
 				if (count($results)>0) :					
 					
@@ -849,7 +843,35 @@ function getMyCats() {
 	 	endif;			
 
 	 endif;
-	 return 0;
+	 return array();
+}
+
+function getMyCatsNotYetStudied() {
+	global $wpdb;	
+
+	if ( is_user_logged_in() ) :				
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;
+
+		if (is_int($userID)) :
+
+				$arrRetVal = array();	
+
+				$results = $wpdb->get_results("SELECT DISTINCT cat_id FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_status=0 ORDER BY cat_id ASC;",ARRAY_A);		
+					
+				if (count($results)>0) :					
+					
+					foreach($results as $row) :			
+						$arrRetVal[] = $row['cat_id'];	
+					endforeach;
+
+				endif;
+
+				return $arrRetVal;
+	 	endif;			
+
+	 endif;
+	 return array();
 }
 
 
@@ -971,8 +993,7 @@ function YTDurationToSeconds($sMatch) {
 function getYoutubeDuration($video_id){
         
         //$data=@file_get_contents(filename)('http://gdata.youtube.com/feeds/api/videos/'.$video_id.'?v=2&alt=jsonc');
-        //if (false===$data) return 0;			
-		
+        //if (false===$data) return 0;					
 		$curlSession = curl_init();									
 		$sStr = 'https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id='.$video_id.'&key=AIzaSyAobNQd_CHgf0eozaLmNSJp_7RyRjzmnuk';
 	    curl_setopt($curlSession, CURLOPT_URL, $sStr);	    	    	    	    
@@ -980,7 +1001,7 @@ function getYoutubeDuration($video_id){
 	    curl_setopt($curlSession, CURLOPT_RETURNTRANSFER, true);
 	    $obj = json_decode(curl_exec($curlSession));	    
 	    curl_close($curlSession);         
-	    	    
+
         return YTDurationToSeconds($obj->items[0]->contentDetails->duration);
 }
 function formatHoursMinutes($secs) {
