@@ -481,6 +481,7 @@ function compareNames($a, $b) {
 }
 
 /************************* Session Management *********************************/
+/*
 function myStartSession() {
     if(!session_id()) {
         session_start();
@@ -492,6 +493,7 @@ function myEndSession() {
 add_action('init', 'myStartSession', 1);
 add_action('wp_logout', 'myEndSession');
 add_action('wp_login', 'myEndSession');
+*/
 /************************* END Session Management *********************************/
 /****************Lessons Ajax ****************************************/
 function set_video_loc() {
