@@ -30,6 +30,7 @@
   
   <?php if ( is_page("registration") || is_page("sign-in") ) {?>  
   <script src="https://apis.google.com/js/client:platform.js" async defer></script>
+  <script src = "https://plus.google.com/js/client:plusone.js"></script>
   <?php } ?>
   
 	<?php wp_head(); ?>
