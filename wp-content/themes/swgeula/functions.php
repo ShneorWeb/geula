@@ -1290,6 +1290,7 @@ function get_user_profile() {
 		    $position = addslashes(get_user_meta( $uid, 'subject', true ));		    
 		    $about = addslashes(get_user_meta( $uid, 'description', true ));		    		    
 		    $timezone = get_user_meta( $uid, 'user_timezone', true );
+		    $email_verified = empty(get_user_meta( $uid, 'verify_email_code', true ))?1:0;
 
 		    $fname = str_replace("'","\'", addslashes($current_user->user_firstname));
 		    $lname = str_replace("'","\'", addslashes($current_user->user_lastname));
@@ -1309,7 +1310,8 @@ function get_user_profile() {
 		    	'","timezone":"'.$timezone.
 		    	'","position":"'.$position.
 		    	'","about":"'.$about.
-		    	'"}'; 
+		    	'","email_verified":'.$email_verified.
+		    	'}'; 
 		    
 		    header( "Content-Type: application/json" );    
 		    echo $response; 

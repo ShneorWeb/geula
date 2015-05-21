@@ -100,6 +100,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.User_Success=false;
 	$scope.strength = 'fff';
 	$scope.user.timezone = '';
+	$scope.user.email_verified = false;
 	$scope.lostPassURL = myLocalized.home_url + 'registration/?action=lostpassword';
 
 	$scope.tabs = [
@@ -172,12 +173,12 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	
 	//get user data and init ui elemnts:
 	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser').success(function(res){					
-		//console.log(res);	
+		console.log(res);	
 		var objRes = res;				
 		if (typeof objRes.firstname != 'undefined') objRes.firstname = objRes.firstname.toString().replace(/\\'/g,"'");				
 		if (typeof objRes.lastname != 'undefined') objRes.lastname = objRes.lastname.toString().replace(/\\'/g,"'");				
 		if (typeof objRes.about != 'undefined') objRes.about = objRes.about.toString().replace(/\\'/g,"'");				
-		if (typeof objRes.position != 'undefined') objRes.position = objRes.position.toString().replace(/\\'/g,"'");				
+		if (typeof objRes.position != 'undefined') objRes.position = objRes.position.toString().replace(/\\'/g,"'");						
 		
 		$scope.user = objRes;
 		
