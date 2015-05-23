@@ -1087,7 +1087,9 @@ function getNumStudents($arrPostIDs) {
 	if (isset( $_REQUEST['fields'][$fieldID] )) {
 		$vidURL = sanitize_text_field( $_REQUEST['fields'][$fieldID] );
 		$vidArray = explode("/", $vidURL);
-		$vidID = $vidArray[count($vidArray)-1];		
+		$vidID = $vidArray[count($vidArray)-1];						
+		
+		if (preg_match('/(watch\?v=)(\S+)/',$vidID, $matches)) $vidID=$matches[2]; 		
 	}
 	
 	if ( ($vidID!=-1)  && ($post->post_status=="publish") ) {		
@@ -1240,8 +1242,10 @@ function check_custom_authentication ($username) {
         	$vc = get_user_meta($userID,"verify_email_code",true);      	
         	
         	$referrer = $_SERVER['HTTP_REFERER']; 
-        	$tempInd = (int)strpos($referrer,"vc=");
-        	$vc2 = substr($referrer,$tempInd+3);
+        	$vc2 = "";
+        	if (preg_match('/(vc=)(\S+)/',$referrer, $matches)) $vc2=$matches[2];         	
+        	//$tempInd = (int)strpos($referrer,"vc=");
+        	//$vc2 = substr($referrer,$tempInd+3);        	
 			
         	if ( empty($vc) || ($vc == $vc2) ) return;
         	else {          		       		

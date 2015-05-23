@@ -66,8 +66,9 @@ class MY_Post_Numbers {
 
         <?php
         $vidURL = sanitize_text_field( get_field('video_url') );
-        $vidArray = explode("/", $vidURL);
+        $vidArray = explode("/", $vidURL);        
         $vidID = $vidArray[count($vidArray)-1];      
+        if (preg_match('/(watch\?v=)(\S+)/',$vidID, $matches)) $vidID=$matches[2]; 
         ?>
 
 				<div class="page-header">
