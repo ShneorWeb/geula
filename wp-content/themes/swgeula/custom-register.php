@@ -764,7 +764,10 @@ default:
 		        data-clientid="1071363229202-e8nga4duksuc3vldrpm3guuikc9i82ae.apps.googleusercontent.com"
 		        data-cookiepolicy="single_host_origin"
 		        data-requestvisibleactions="http://schema.org/AddAction"
-		        data-scope="https://www.googleapis.com/auth/plus.login">
+		        data-scope="https://www.googleapis.com/auth/plus.login"
+		        data-width="wide"
+		        data-height="tall"
+		        >
 		      </span>
 		    </span>
 		   					

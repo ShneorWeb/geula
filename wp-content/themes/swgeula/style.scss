@@ -1611,6 +1611,7 @@ main library page
             float: left;
             width: 33%;
             margin: 0;
+            text-align: left;
         }
         .category_square_author_name{
             margin-bottom: 0;
@@ -2436,61 +2437,6 @@ a.schedule_new{
     }
 }
 
-.page-template-custom-profile-php,.page-template-custom-register-php,.page-template-custom-login-php{
-    ::-webkit-input-placeholder {
-        color: #C5C5C5;
-        font-size: 1.25rem;
-    }
-
-    :-moz-placeholder { /* Firefox 18- */
-       color: #C5C5C5;
-        font-size: 1.25rem;  
-    }
-
-    ::-moz-placeholder {  /* Firefox 19+ */
-       color: #C5C5C5;
-        font-size: 1.25rem;
-    }
-
-    :-ms-input-placeholder {  
-       color: #C5C5C5;
-        font-size: 1.25rem;
-    }
-    
-    input, select, textarea{
-        padding: 14px 20px;
-        line-height: 1.25rem;
-        color: #555459;
-        font-size: 1.25rem;
-        
-    }
-    
-     label{
-              color: #555459;
-              font-size: 1.25rem;
-              font-weight: 400;
-              text-align: right;
-              margin-top: 12px;
-        }
-    
-    
-
-    textarea{
-        line-height: 1.3;
-    }
-    input[type="submit"],input[type="button"]{
-        color: #fff;
-    }
-    select{
-          min-height: 50px;
-          color: #C5C5C5;
-          font-size: 1.25rem;
-          font-weight: 400;
-          padding: 0 20px;
-    }
-}
-
-
 
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   border: none;
@@ -2592,6 +2538,88 @@ a.schedule_new{
       float: none;
       margin: auto;
     }
+    
+    hr{
+        margin:30px 20% 20px;
+        border-top-color:#c5c5c5
+    }
+    
+    .login-submit.login-remember{
+        label{
+            margin-top: 2px;
+        }
+        
+    }
+    
+        ::-webkit-input-placeholder {
+        color: #C5C5C5;
+        font-size: 1.25rem;
+        font-weight: 100;
+        line-height: 1.25rem;
+        padding-top: 4px;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: #C5C5C5;
+        font-size: 1.25rem;  
+        font-weight: 100;
+        line-height: 1.25rem;
+        padding-top: 4px;
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: #C5C5C5;
+        font-size: 1.25rem;
+        font-weight: 100;
+        line-height: 1.25rem;
+        padding-top: 4px;
+    }
+
+    :-ms-input-placeholder {  
+       color: #C5C5C5;
+        font-size: 1.25rem;
+        font-weight: 100;
+        line-height: 1.25rem;
+        padding-top: 4px;
+        
+    }
+    
+    input, select, textarea{
+        padding: 10px 20px 11px;
+        line-height: 1.25rem;
+        color: #555459;
+        font-size: 1.25rem;
+        line-height: 1.25rem;
+    }
+    
+     label{
+              color: #555459;
+              font-size: 1.25rem;
+              font-weight: 400;
+              text-align: right;
+              margin-top: 12px;
+        }
+    
+    
+
+    textarea{
+        line-height: 1.3;
+    }
+    input[type="submit"],input[type="button"]{
+        color: #fff;
+    }
+    select{
+          min-height: 50px;
+          color: #C5C5C5;
+          font-size: 1.25rem;
+          font-weight: 400;
+          padding: 0 20px;
+    }
+    
+    .div-login{
+    @include box-shadow(0 2px 0 rgba(56, 64, 71, 0.2)); 
+        @include border-radius(4px);
+    }
 }
 
 
@@ -2607,8 +2635,24 @@ a.schedule_new{
     }
 }
 
+.email_field_cont {
+    .form-control{
+      float: right;
+      width: auto;
+    }
+    .fa-check-circle{
+      float: right;
+      margin-top: 18px;
+      /* color: green; */
+      color: rgb(81, 180, 109);
+      height: auto;
+    }
+}
 
 
+ul.drop{
+    padding-right:0px; right:0;
+}
 
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------

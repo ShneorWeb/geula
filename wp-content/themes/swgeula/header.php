@@ -219,7 +219,7 @@
         <div class="navbar-collapse collapse">
 
            	<nav id="site-navigation" class="main-navigation" role="navigation">
-                <ul class="drop"  style="padding-right:0px; right:0;">
+                <ul class="drop">
                     <?php if ( !is_page("registration") && !is_page("sign-in") ) get_sidebar(); ?>
                     
                  </ul>

@@ -137,18 +137,20 @@ function signinCallback(authResult) {
         data-cookiepolicy="single_host_origin"
         data-requestvisibleactions="http://schema.org/AddAction"
         data-scope="https://www.googleapis.com/auth/plus.login email profile"
+        data-width="wide"
+        data-height="tall"
         >
       </span>
     </span>
     </p>
 </div>
 </div>
+
+<div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/registration/";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
+
 </div>
 
 
-<div class="col-sm-5 col-sm-offset-4" style="text-align:center;"> 
-    <div id="login-bottom-text"><span><?php echo _e("Is this your first time? ","swgeulatr"); ?></span> <span><a href="<?php echo site_url()."/registration/";?>"><?php echo _e("Create a new account","swgeulatr"); ?></a></span></div>
-</div>
 
 
 
