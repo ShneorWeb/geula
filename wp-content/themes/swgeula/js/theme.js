@@ -288,6 +288,8 @@ function equal_heights(){
          window.location = $(this) .find('h2 a').attr('href')
      });
      
+    
+     
   //end of document).ready function
  });  
  
@@ -315,6 +317,10 @@ function equal_heights(){
      //
      var achievements_height = $('.achievements_singles').height();
      $('#donut-chart svg').height(achievements_height);
+     
+      //
+      $('.email_field_cont').append($('.fa-check-circle'));
+     
      
 //end of window.load function
  });

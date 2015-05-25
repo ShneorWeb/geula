@@ -219,12 +219,15 @@ function swgeula_styles() {
         'bootstrap_css', get_template_directory_uri() . '/css/bootstrap.css' 
     );    
    //hebrew version only
-    wp_enqueue_style(
+    if(is_rtl()){
+         wp_enqueue_style(
             'bootstrap_rtl_css', get_template_directory_uri() . '/css/bootstrap-rtl.css' 
-    );
-    wp_enqueue_style(
-            'bootstrap_rtl_css', get_template_directory_uri() . '/css/datepicker.css' 
-    );
+        );
+    }
+   
+    /*wp_enqueue_style(
+            'datepicker', get_template_directory_uri() . '/css/datepicker.css' 
+    );*/
     wp_enqueue_style(
         'font-awesome', get_template_directory_uri() . '/css/font-awesome.css' 
     );
