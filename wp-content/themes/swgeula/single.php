@@ -149,11 +149,11 @@ class MY_Post_Numbers {
                         video_loc: pos,
                         user_id: userID
                       };                                                                                            
-                      console.log( data );
+                      //console.log( data );
                       jQuery.post(ajaxurl, data, function(data) {                    
                         //bDoNotPost[playerID]=true;                                                                                                                                                        
                         //jQuery("#jwplayer-"+playerID+"-views").text(data);                                    
-                        console.log(data);
+                        //console.log(data);
                       });
                     }
                     function getVideoPos(event) {
@@ -162,11 +162,11 @@ class MY_Post_Numbers {
                         lesson_id: lessonID,                        
                         user_id: userID
                       };                                                      
-                      console.log( data );
+                      //console.log( data );
                       jQuery.post(ajaxurl, data, function(data) {                    
                         //bDoNotPost[playerID]=true;                                                                                                                                                        
                         //jQuery("#jwplayer-"+playerID+"-views").text(data);                                    
-                        console.log(data);
+                        //console.log(data);
                         if (jQuery.isNumeric( data )) {
                           curVidPos = data;                        
                           event.target.seekTo(curVidPos,true);
@@ -220,9 +220,14 @@ class MY_Post_Numbers {
                       //if (event.data == YT.PlayerState.PLAYING && !done) {
                         //setTimeout(stopVideo, 6000);
                         //done = true;
-                      //}
+                      //}                        
                       if (event.data == YT.PlayerState.ENDED) setDone();
                       else if (event.data == YT.PlayerState.PAUSED) setVideoPos(event.target.getCurrentTime());
+                      else if (event.data == YT.PlayerState.PLAYING) {
+                        iTime = event.target.getCurrentTime();
+                        if (iTime==0) iTime=0.1;
+                        setVideoPos(iTime);
+                      }
                     }
                     function stopVideo() {
                       player.stopVideo();
@@ -231,7 +236,7 @@ class MY_Post_Numbers {
 
                     jQuery( window ).unload(function() {
                       setVideoPos(player.getCurrentTime());
-                      console.log("time="+player.getCurrentTime());
+                      //console.log("time="+player.getCurrentTime());
                       return false;
                     });
                   </script>
