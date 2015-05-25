@@ -627,11 +627,23 @@ function googleUserReg() {
 	$uid_google = $_POST['uid'];
 	$fname = $_POST['first_name'];
 	$lname = $_POST['last_name'];
+	$display_name = $_POST['display-name'];
 	$imageUrl = $_POST['image_url'];
 	$email = $_POST['primary_email'];
 	$aboutMe = $_POST['about_me'];
 	$language = $_POST['language'];
 	$occupation = $_POST['occupation'];
+	$lang = $_POST['language'];
+	$plived = $_POST['places-lived'];
+
+	
+
+	$arrPlived = explode(",", $plived);
+	if ( is_array($arrPlived) ) {
+		if (isset($arrPlived[0])) $city = $arrPlived[0];
+		if (isset($arrPlived[1])) $country = $arrPlived[1];
+	}
+
 
 	if ( !empty($uid_google) && !empty($email) && (!empty($fname) || !empty($lname)) ) :
 
@@ -662,6 +674,7 @@ function googleUserReg() {
 				    'user_pass'   =>  $random_password,
 				    'first_name' => $fname,
 				    'last_name' => $lname,	
+				    'display_name' => $display_name,
 				    'description' => $aboutMe,
 				    'subject' => $occupation
 				);						
@@ -685,6 +698,10 @@ function googleUserReg() {
 							update_usermeta($user_id, 'custom_avatar_160', $imageUrl3);
 							update_usermeta($user_id, 'custom_avatar_240', $imageUrl4);
 						}
+
+						if (!empty($lang)) update_user_meta($user_id, 'user_lang', $lang);
+						if (!empty($city)) update_user_meta($user_id, 'user_city', $city);
+						if (!empty($country)) update_user_meta($user_id, 'user_country', $country);	 					
 
 						wp_set_auth_cookie($user_id);		
 						echo 1;

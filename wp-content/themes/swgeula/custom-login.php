@@ -21,27 +21,30 @@ function signinCallback(authResult) {
                 for (var i=0; i < resp.emails.length; i++) {
                   if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
                 }                                 
-                console.log(resp);
+               // console.log(resp);
                 var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
                 var data = {        
                         'action': 'google_user_reg',
                         'uid': resp.id,
                         'first_name': resp.name['givenName'],
                         'last_name': resp.name['familyName'],
+                        'display-name' : resp.displayName,
                         'image_url': resp.image.url,
                         'primary_email': primaryEmail,
                         'about_me': resp.aboutMe,
                         'language': resp.language,
-                        'occupation' : resp.occupation
+                        'occupation' : resp.occupation,
+                        'language' : resp.language,
+                        'places-lived' : resp.placesLived[0].value
                     };                               
                 console.log(data);
                     
                 jQuery.post(ajaxurl, data, function(data) {                                    
-                       console.log(data);
+                       //console.log(data);
                        if (data==2) jQuery("div.login-error-msg").text('this email is already registered');
                        else if (data==0) jQuery("div.login-error-msg").text('an error occured');
                        else if (data==1) document.location.href="<?php echo home_url('settings/');?>"                       
-                       else if (data==11) document.location.href="<?php echo get_category_link(3); ?>"                       
+                       else if (data==11) document.location.href="<?php echo get_category_link(3); ?>" 
                 });
         });
     });    

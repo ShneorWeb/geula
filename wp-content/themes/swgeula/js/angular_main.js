@@ -68,7 +68,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
         Select_an_image_to_upload : 'בחר תמונה להעלות',
         Back_to_Library : 'חזרה לספריה'
 	  });
-	$translateProvider.preferredLanguage('he_IL');
+	$translateProvider.preferredLanguage(gsLang);
  	
 	$routeProvider				
 	.when('/', {						
@@ -78,7 +78,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		controller: 'Profile'
 	})*/	
 })
-.controller('Content', function($scope, $http, $routeParams) {
+
+/*.controller('Content', function($scope, $http, $routeParams) {
 	$http.get('wp-json/posts/').success(function(res){
 		$scope.posts = res;
 	});
@@ -87,7 +88,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$http.get('wp-json/posts/' + $routeParams.ID).success(function(res){
 		$scope.post = res;
 	});
-})
+})*/
+
 .controller('Profile', ['$scope', '$http', '$routeParams','$translate','$upload','$location', function($scope, $http, $routeParams,$translate,$upload,$location) {	
 	//console.log($location.url());	
 	
@@ -162,7 +164,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		if (typeof cntry.name != 'undefined') {
 			ctry = cntry.id + 236;				
 			$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getcities&ctry='+ctry).success(function(res){		
-				//console.log(res);
+				//console.log("in get cities "+res);
 				$scope.cities = [];
 				$scope.cities = eval(res);								
 				$scope.user.chosenCity = {name:$scope.user.city}; 	
@@ -179,6 +181,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		if (typeof objRes.lastname != 'undefined') objRes.lastname = objRes.lastname.toString().replace(/\\'/g,"'");				
 		if (typeof objRes.about != 'undefined') objRes.about = objRes.about.toString().replace(/\\'/g,"'");				
 		if (typeof objRes.position != 'undefined') objRes.position = objRes.position.toString().replace(/\\'/g,"'");						
+		if (typeof objRes.lang != 'en_GB') objRes.lang = "en_US";						
 		
 		$scope.user = objRes;
 		
@@ -190,13 +193,13 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		
 		$scope.getTimeZones();		
 
-		if ($scope.user.lang=="" || $scope.user.lang==null) $scope.user.lang = $translate.preferredLanguage();
+		if ($scope.user.lang=="" || $scope.user.lang==null) $scope.user.lang = $translate.preferredLanguage();		
 
 
 		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getctrbyid&cname='+$scope.user.country).success(function(res){					
-				//console.log(res);
+				//console.log("cntry="+$scope.user.country);
 			 	$scope.user.chosenCountry = {id:eval(res)}; 	
-			 	$scope.getCitiesForCountry({id:eval(res)});			 				 	
+			 	$scope.getCitiesForCountry({id:eval(res),name:$scope.user.country});			 				 	
 		});		 
 		
 
