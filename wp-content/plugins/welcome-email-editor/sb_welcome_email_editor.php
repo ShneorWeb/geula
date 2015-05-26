@@ -113,7 +113,7 @@ function sb_we_lost_password_message($message, $key) {
 			$message = str_replace('[user_login]', $user_login, $message);
 			$message = str_replace('[blog_name]', $blogname, $message);
 			$message = str_replace('[site_url]', $site_url, $message);
-			$message = str_replace('[reset_url]', $reset_url, $message);
+			$message = str_replace('[reset_url]', $reset_url, $message); 
 		}
 	}
 
