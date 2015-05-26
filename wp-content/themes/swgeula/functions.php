@@ -198,7 +198,7 @@ function swgeula_scripts() {
 		array(
 			'theme_dir' => trailingslashit( get_template_directory_uri() ), 
 			'wpadmin_dir' => trailingslashit( admin_url() ),
-			'home_url' => trailingslashit( home_url() ),
+			'home_url' => trailingslashit( home_url() )
 			)
 	);
     

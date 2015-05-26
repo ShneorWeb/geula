@@ -7,59 +7,6 @@ Template Name: Custom_Login
 <?php include_once("header.php");?>
 
 <script>
-function signinCallback(authResult) {
-  if (authResult['status']['signed_in'] && authResult['status']['method']=="PROMPT") {
-    // Update the app to reflect a signed in user
-    // Hide the sign-in button now that the user is authorized, for example:
-    //document.getElementById('signinButton').setAttribute('style', 'display: none');    
-    gapi.client.load('plus','v1', function(){ 
-        // once we get this call back, gapi.client.plus.* will exist
-        var user = gapi.client.plus.people.get( {'userId' : 'me'} ); 
-        
-        user.execute(function(resp) {                                       
-                var primaryEmail;
-                for (var i=0; i < resp.emails.length; i++) {
-                  if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
-                }                                 
-               // console.log(resp);
-                var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
-                var data = {        
-                        'action': 'google_user_reg',
-                        'uid': resp.id,
-                        'first_name': resp.name['givenName'],
-                        'last_name': resp.name['familyName'],
-                        'display-name' : resp.displayName,
-                        'image_url': resp.image.url,
-                        'primary_email': primaryEmail,
-                        'about_me': resp.aboutMe,
-                        'language': resp.language,
-                        'occupation' : resp.occupation,
-                        'language' : resp.language,
-                        'places-lived' : resp.placesLived[0].value
-                    };                               
-                console.log(data);
-                    
-                jQuery.post(ajaxurl, data, function(data) {                                    
-                       //console.log(data);
-                       if (data==2) jQuery("div.login-error-msg").text('this email is already registered');
-                       else if (data==0) jQuery("div.login-error-msg").text('an error occured');
-                       else if (data==1) document.location.href="<?php echo home_url('settings/');?>"                       
-                       else if (data==11) document.location.href="<?php echo get_category_link(3); ?>" 
-                });
-        });
-    });    
-    
-  }
-  else {  
-    // Update the app to reflect a signed out user
-    // Possible error values:
-    //   "user_signed_out" - User is signed-out
-    //   "access_denied" - User denied access to your app
-    //   "immediate_failed" - Could not automatically log in the user
-    //console.log('Sign-in state: ' + authResult['error']);    
-  }
-}
-
 (function($) {
         $(document).ready(function() {          
             $('#user_login').attr( "placeholder", "<?php _e( 'Email','swgeulatr' ); ?>" );

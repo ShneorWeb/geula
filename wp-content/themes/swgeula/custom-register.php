@@ -393,11 +393,9 @@ case 'logout' :
 case 'lostpassword' :
 case 'retrievepassword' :
 ?>
-
 <div class="col-sm-5 col-sm-offset-4"> 
 	<div class="panel" style="text-align:center;">
     	<div class="div-login">
-
 <?php
 
 	if ( $http_post ) {
@@ -439,7 +437,7 @@ case 'retrievepassword' :
 
 ?>
 
-<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( 'wp-login.php?action=lostpassword', 'login_post' ) ); ?>" method="post">
+<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( '/registration/?action=lostpassword', 'login_post' ) ); ?>" method="post">
 	<p>
 		<label for="user_login" class="control-label" ><?php _e('Username or E-mail:') ?><br />
 		<input type="text" name="user_login" id="user_login" class="form-control" value="<?php echo esc_attr($user_login); ?>" size="20" /></label>
@@ -704,59 +702,9 @@ default:
 
 			<hr/>
 
-		    <h2><?php _e("Or register with your Google account", "swgeulatr");?></h2>
-
+		    <h2><?php _e("Or register with your Google account", "swgeulatr");?></h2>	    
 		    
-		    <script>
-			function signinCallback(authResult) {
-			  if (authResult['status']['signed_in'] && authResult['status']['method']=="PROMPT") {
-			    // Update the app to reflect a signed in user
-			    // Hide the sign-in button now that the user is authorized, for example:
-			    //document.getElementById('signinButton').setAttribute('style', 'display: none');    
-			    gapi.client.load('plus','v1', function(){ 
-			        // once we get this call back, gapi.client.plus.* will exist
-			        var user = gapi.client.plus.people.get( {'userId' : 'me'} ); 
-			        
-			        user.execute(function(resp) {                                       
-			                var primaryEmail;
-			                for (var i=0; i < resp.emails.length; i++) {
-			                  if (resp.emails[i].type === 'account') primaryEmail = resp.emails[i].value;
-			                }                                 
-
-			                var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
-			                var data = {        
-			                        'action': 'google_user_reg',
-			                        'uid': resp.id,
-			                        'first_name': resp.name['givenName'],
-			                        'last_name': resp.name['familyName'],
-			                        'image_url': resp.image.url,
-			                        'primary_email': primaryEmail,
-			                        'about_me': resp.aboutMe,
-			                        'language': resp.language
-			                    };                               
-			                console.log(data);
-			                    
-			                jQuery.post(ajaxurl, data, function(data) {                                    
-			                       console.log(data);
-			                       if (data==2) jQuery("div.login-error-msg").text('this email is already registered');
-			                       else if (data==0) jQuery("div.login-error-msg").text('an error occured');
-			                       else if (data==1) document.location.href="<?php echo home_url('settings/');?>"                       
-			                       else if (data==11) document.location.href="<?php echo home_url();?>"                       
-			                });
-			        });
-			    });    
-			    
-			  }
-			  else {  
-			    // Update the app to reflect a signed out user
-			    // Possible error values:
-			    //   "user_signed_out" - User is signed-out
-			    //   "access_denied" - User denied access to your app
-			    //   "immediate_failed" - Could not automatically log in the user
-			    //console.log('Sign-in state: ' + authResult['error']);    
-			  }
-			}
-			</script>	
+			
 		    <span id="signinButton">		    	
 		      <span
 		        class="g-signin"
