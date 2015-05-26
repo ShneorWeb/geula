@@ -401,7 +401,7 @@ case 'retrievepassword' :
 	if ( $http_post ) {
 		$errors = retrieve_password();
 		if ( !is_wp_error($errors) ) {
-			$redirect_to = !empty( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : 'wp-login.php?checkemail=confirm';
+			$redirect_to = !empty( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : network_site_url('/my-account/sign-in/?checkemail=confirm');
 			wp_safe_redirect( $redirect_to );
 			exit();
 		}

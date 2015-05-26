@@ -52,7 +52,9 @@ Template Name: Custom_Login
             <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("You are logged out.","swgeulatr");?></p>  
         <?php } elseif  ( isset($_GET['checkemail']) && 'registered' == $_GET['checkemail'] ) {?>
             <p class="login-msg">    <?php echo _e('Registration complete. Please check your e-mail and login.','swgeulatr');?> </p>
-            <?php  }   
+        <?php } elseif  ( isset($_GET['checkemail']) && 'confirm' == $_GET['checkemail'] ) {?>
+            <p class="login-msg">    <?php echo _e('An email has been sent to you with reset instructions. Please check your email and follow the link to reset your password','swgeulatr');?> </p>            
+            <?php  }               
 
         $redirect_to = !empty( $_REQUEST['redirecr'] ) ? $_REQUEST['redirecr'] : get_category_link(3);
             
