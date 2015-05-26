@@ -260,7 +260,7 @@ function retrieve_password() {
 	if ( empty( $wp_hasher ) ) {
 		require_once ABSPATH . WPINC . '/class-phpass.php';
 		$wp_hasher = new PasswordHash( 8, true );
-	}
+	}	
 	$hashed = $wp_hasher->HashPassword( $key );
 	$wpdb->update( $wpdb->users, array( 'user_activation_key' => $hashed ), array( 'user_login' => $user_login ) );
 
@@ -334,10 +334,9 @@ if ( defined( 'RELOCATE' ) && RELOCATE ) { // Move flag is set
 
 //Set a cookie now to see if they are supported by the browser.
 $secure = ( 'https' === parse_url( site_url(), PHP_URL_SCHEME ) && 'https' === parse_url( home_url(), PHP_URL_SCHEME ) );
-/*setcookie( TEST_COOKIE, 'WP Cookie check', 0, COOKIEPATH, COOKIE_DOMAIN, $secure );
+setcookie( TEST_COOKIE, 'WP Cookie check', 0, COOKIEPATH, COOKIE_DOMAIN, $secure );
 if ( SITECOOKIEPATH != COOKIEPATH )
 	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN, $secure );
-	*/
 
 /**
  * Fires when the login form is initialized.
@@ -394,9 +393,6 @@ case 'logout' :
 case 'lostpassword' :
 case 'retrievepassword' :
 ?>
-<div class="col-sm-5 col-sm-offset-4"> 
-	<div class="panel" style="text-align:center;">
-    	<div class="div-login">
 <?php
 
 	if ( $http_post ) {
@@ -437,8 +433,10 @@ case 'retrievepassword' :
 	$user_login = isset($_POST['user_login']) ? wp_unslash($_POST['user_login']) : '';
 
 ?>
-
-<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( '/registration/?action=lostpassword', 'login_post' ) ); ?>" method="post">
+<div class="col-sm-5 col-sm-offset-4"> 
+	<div class="panel" style="text-align:center;">
+    	<div class="div-login">
+<form name="lostpasswordform" id="lostpasswordform" action="<?php echo esc_url( network_site_url( 'registration/?action=lostpassword', 'login_post' ) ); ?>" method="post">
 	<p>
 		<label for="user_login" class="control-label" ><?php _e('Username or E-mail:') ?><br />
 		<input type="text" name="user_login" id="user_login" class="form-control" value="<?php echo esc_attr($user_login); ?>" size="20" /></label>
@@ -476,11 +474,8 @@ break;
 
 
 case 'resetpass' :
-case 'rp' :
+case 'rp' : 
 ?>
-<div class="col-sm-5 col-sm-offset-4"> 
-	<div class="panel" style="text-align:center;">
-    	<div class="div-login">
 <?php
 	list( $rp_path ) = explode( '?', wp_unslash( $_SERVER['REQUEST_URI'] ) );
 	$rp_cookie = 'wp-resetpass-' . COOKIEHASH;
@@ -493,13 +488,14 @@ case 'rp' :
 
 	if ( isset( $_COOKIE[ $rp_cookie ] ) && 0 < strpos( $_COOKIE[ $rp_cookie ], ':' ) ) {
 		list( $rp_login, $rp_key ) = explode( ':', wp_unslash( $_COOKIE[ $rp_cookie ] ), 2 );
-		$user = check_password_reset_key( $rp_key, $rp_login );		
+		$user = check_password_reset_key( $rp_key, $rp_login );					
 		if ( isset( $_POST['pass1'] ) && ! hash_equals( $rp_key, $_POST['rp_key'] ) ) {
 			$user = false;
-		}
-	} else {
-		$user = false;
-	}
+		}		
+	} 
+	else {
+		$user = false;		
+	}	
 
 	if ( ! $user || is_wp_error( $user ) ) {
 		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
@@ -539,7 +535,10 @@ case 'rp' :
 	login_header(__('Reset Password'), '<p class="message reset-pass">' . __('Enter your new password below.') . '</p>', $errors );
 
 ?>
-<form name="resetpassform" id="resetpassform" action="<?php echo esc_url( network_site_url( 'wp-login.php?action=resetpass', 'login_post' ) ); ?>" method="post" autocomplete="off">
+<div class="col-sm-5 col-sm-offset-4"> 
+	<div class="panel" style="text-align:center;">
+    	<div class="div-login">
+<form name="resetpassform" id="resetpassform" action="<?php echo esc_url( network_site_url( 'registration/?action=resetpass', 'login_post' ) ); ?>" method="post" autocomplete="off">
 	<input type="hidden" id="user_login" value="<?php echo esc_attr( $rp_login ); ?>" autocomplete="off" />
 
 	<p>

@@ -325,12 +325,14 @@ function swgeula_lost_pass_page( $lostpassword_url, $redirect ) {
 add_filter( 'lostpassword_url', 'swgeula_lost_pass_page', 10, 2 );
 
 
+/*
 function reset_password_message( $message, $key ) {
 
 	$message = str_replace("wp-login.php","registration/",$message);	
 	return $message;
 }
 add_filter('retrieve_password_message', reset_password_message, 10, 2);
+*/
 
 
 function swgeula_registration_errors( $errors, $sanitized_user_login, $user_email ) {
