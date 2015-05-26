@@ -12,9 +12,12 @@
 		newBase.setAttribute("href", document.location);
 		document.getElementsByTagName("head")[0].appendChild(newBase);		
 
-    var gbLocal = (document.location.href.indexOf("127.0.0.1")!=-1);
-    var gsLang = "he_IL";
+    var gbLocal = (document.location.href.indexOf("127.0.0.1")!=-1);    
     var gsLibraryDir = '<?php echo get_category_link(getCatIDOfLibrary());?>';
+    var sCurLang = '<?php echo ICL_LANGUAGE_CODE;?>';
+    if (sCurLang=="he") sCurLang = "he_IL";
+    else sCurLang = "en_US";    
+    //console.log(sCurLang);
 	</script>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">

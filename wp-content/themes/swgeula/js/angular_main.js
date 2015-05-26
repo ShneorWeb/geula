@@ -68,7 +68,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
         Select_an_image_to_upload : 'בחר תמונה להעלות',
         Back_to_Library : 'חזרה לספריה'
 	  });
-	$translateProvider.preferredLanguage(gsLang);
+	$translateProvider.preferredLanguage(sCurLang);
  	
 	$routeProvider				
 	.when('/', {						
@@ -164,14 +164,15 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		if (typeof cntry.name != 'undefined') {
 			ctry = cntry.id + 236;				
 			$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getcities&ctry='+ctry).success(function(res){		
-				//console.log("in get cities "+res);
+				//console.log("in get cities "+res);				
 				$scope.cities = [];
-				$scope.cities = eval(res);								
-				$scope.user.chosenCity = {name:$scope.user.city}; 	
+				if ( angular.isArray( eval(res) ) ) {
+					$scope.cities = eval(res);								
+					$scope.user.chosenCity = {name:$scope.user.city}; 	
+				}
 			});
 		}
 	}		
-	
 	
 	//get user data and init ui elemnts:
 	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser').success(function(res){					

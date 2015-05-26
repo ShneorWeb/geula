@@ -107,7 +107,7 @@ function sb_we_lost_password_message($message, $key) {
 			if ( is_multisite() ) $blogname = $GLOBALS['current_site']->site_name;
 			else $blogname = esc_html(get_option('blogname'), ENT_QUOTES);
 
-			$reset_url = trailingslashit(site_url()) . "registration/?action=rp&key=$key&login=" . rawurlencode($user_login); //changed by Ofer Shneorweb
+			$reset_url = trailingslashit(site_url()) . "wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login); 
 			$message = $settings->password_reminder_body; //'Someone requested that the password be reset for the following account: [site_url]' . "\n\n" . 'Username: [user_login]' . "\n\n" . 'If this was a mistake, just ignore this email and nothing will happen.' . "\n\n" . 'To reset your password, visit the following address: [reset_url]';
 
 			$message = str_replace('[user_login]', $user_login, $message);

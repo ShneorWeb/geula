@@ -9,6 +9,7 @@ require( ABSPATH . '/wp-load.php' );
 
 include_once("header.php");
 
+
 // Redirect to https login if forced to use SSL
 if ( force_ssl_admin() && ! is_ssl() ) {
 	if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
@@ -492,7 +493,7 @@ case 'rp' :
 
 	if ( isset( $_COOKIE[ $rp_cookie ] ) && 0 < strpos( $_COOKIE[ $rp_cookie ], ':' ) ) {
 		list( $rp_login, $rp_key ) = explode( ':', wp_unslash( $_COOKIE[ $rp_cookie ] ), 2 );
-		$user = check_password_reset_key( $rp_key, $rp_login );
+		$user = check_password_reset_key( $rp_key, $rp_login );		
 		if ( isset( $_POST['pass1'] ) && ! hash_equals( $rp_key, $_POST['rp_key'] ) ) {
 			$user = false;
 		}
@@ -500,7 +501,6 @@ case 'rp' :
 		$user = false;
 	}
 
-/*
 	if ( ! $user || is_wp_error( $user ) ) {
 		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
 		if ( $user && $user->get_error_code() === 'expired_key' )
@@ -509,7 +509,7 @@ case 'rp' :
 			wp_redirect( site_url( 'wp-login.php?action=lostpassword&error=invalidkey' ) );
 		exit;
 	}
-*/
+
 	$errors = new WP_Error();
 
 	if ( isset($_POST['pass1']) && $_POST['pass1'] != $_POST['pass2'] )

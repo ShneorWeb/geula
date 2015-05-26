@@ -325,6 +325,14 @@ function swgeula_lost_pass_page( $lostpassword_url, $redirect ) {
 add_filter( 'lostpassword_url', 'swgeula_lost_pass_page', 10, 2 );
 
 
+function reset_password_message( $message, $key ) {
+
+	$message = str_replace("wp-login.php","registration/",$message);	
+	return $message;
+}
+add_filter('retrieve_password_message', reset_password_message, 10, 2);
+
+
 function swgeula_registration_errors( $errors, $sanitized_user_login, $user_email ) {
         
         if ( empty( $_POST['full_name'] ) || !empty( $_POST['full_name'] ) && trim( $_POST['full_name'] ) == '' ) {
@@ -1707,7 +1715,7 @@ function get_cities() {
 		echo $retVal;
 		exit;
 	}
-	else echo "error - no country provided";
+	else echo -1;
 	exit;
 }
 add_action( 'wp_ajax_nopriv_getcities', 'get_cities' );
