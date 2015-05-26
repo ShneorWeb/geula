@@ -1,5 +1,8 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,300,400);
+
 body {
     text-align: left;
+    font-family: 'Open Sans', sans-serif;
 }
 
 #wrap {
@@ -305,9 +308,11 @@ span.oval {
 }
 
 .library-page .bottom_part .library_image_category {
+    /*
     background-position: left;
     float: left;
     padding: 40px 2.627430373095113% 40px 23.646873357856016%;
+    */
 }
 
 .library-page #spinner {
@@ -620,4 +625,32 @@ button.edit_profile {
 
 ul.drop{
     padding-left:0px; left:0;right:auto;
+}
+
+
+/* custom styles -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+.library_image_category {
+-webkit-transform:scaleX(-1);
+-moz-transform:scaleX(-1);
+-ms-transform:scaleX(-1);
+-o-transform:scaleX(-1);
+transform:scaleX(-1);
+}
+
+/* undo the vertical flip for all child elements */
+.library_image_category .product_list {
+-webkit-transform:scaleX(-1);
+-moz-transform:scaleX(-1);
+-ms-transform:scaleX(-1);
+-o-transform:scaleX(-1);
+transform:scaleX(-1);
+}
+
+/* responsive styles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+@media screen and (min-width: 1856px){
+    .library-page .site-content > .container {
+      padding-right: 65px;
+      padding-left:0;
+    }
 }
