@@ -647,6 +647,10 @@ transform:scaleX(-1);
 transform:scaleX(-1);
 }
 
+.menu-menu-right-container a {
+  padding-left: 20px;
+}
+
 /* responsive styles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 @media screen and (min-width: 1856px){
     .library-page .site-content > .container {
