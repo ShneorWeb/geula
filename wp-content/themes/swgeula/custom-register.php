@@ -1,4 +1,5 @@
 <?php
+ob_start();
 /*
 Template Name: Custom_Register
 */
@@ -334,9 +335,9 @@ if ( defined( 'RELOCATE' ) && RELOCATE ) { // Move flag is set
 
 //Set a cookie now to see if they are supported by the browser.
 $secure = ( 'https' === parse_url( site_url(), PHP_URL_SCHEME ) && 'https' === parse_url( home_url(), PHP_URL_SCHEME ) );
-setcookie( TEST_COOKIE, 'WP Cookie check', 0, COOKIEPATH, COOKIE_DOMAIN, $secure );
+/*setcookie( TEST_COOKIE, 'WP Cookie check', 0, COOKIEPATH, COOKIE_DOMAIN, $secure );
 if ( SITECOOKIEPATH != COOKIEPATH )
-	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN, $secure );
+	setcookie( TEST_COOKIE, 'WP Cookie check', 0, SITECOOKIEPATH, COOKIE_DOMAIN, $secure );*/
 
 /**
  * Fires when the login form is initialized.
@@ -478,31 +479,32 @@ case 'rp' :
 ?>
 <?php
 	list( $rp_path ) = explode( '?', wp_unslash( $_SERVER['REQUEST_URI'] ) );
-	$rp_cookie = 'wp-resetpass-' . COOKIEHASH;
+	$rp_cookie = 'wp-resetpass-' . COOKIEHASH;		
 	if ( isset( $_GET['key'] ) ) {
-		$value = sprintf( '%s:%s', wp_unslash( $_GET['login'] ), wp_unslash( $_GET['key'] ) );
-		setcookie( $rp_cookie, $value, 0, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
+		$value = sprintf( '%s:%s', wp_unslash( $_GET['login'] ), wp_unslash( $_GET['key'] ) );				
+		setcookie( $rp_cookie, $value, 0, $rp_path, COOKIE_DOMAIN, is_ssl(), true );												
+		ob_end_flush();		
 		wp_safe_redirect( remove_query_arg( array( 'key', 'login' ) ) );
 		exit;
-	}
-
+	}		
+	
 	if ( isset( $_COOKIE[ $rp_cookie ] ) && 0 < strpos( $_COOKIE[ $rp_cookie ], ':' ) ) {
 		list( $rp_login, $rp_key ) = explode( ':', wp_unslash( $_COOKIE[ $rp_cookie ] ), 2 );
-		$user = check_password_reset_key( $rp_key, $rp_login );					
+		$user = check_password_reset_key( $rp_key, $rp_login );
 		if ( isset( $_POST['pass1'] ) && ! hash_equals( $rp_key, $_POST['rp_key'] ) ) {
 			$user = false;
-		}		
+		}
 	} 
 	else {
-		$user = false;		
+		$user = false;
 	}	
 
 	if ( ! $user || is_wp_error( $user ) ) {
 		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
 		if ( $user && $user->get_error_code() === 'expired_key' )
-			wp_redirect( site_url( 'wp-login.php?action=lostpassword&error=expiredkey' ) );
-		else
-			wp_redirect( site_url( 'wp-login.php?action=lostpassword&error=invalidkey' ) );
+			wp_redirect( site_url( 'resgiter/?action=lostpassword&error=expiredkey' ) );
+		else 
+			wp_redirect( site_url( 'resgiter/?action=lostpassword&error=invalidkey' ) );				
 		exit;
 	}
 
@@ -533,6 +535,7 @@ case 'rp' :
 	wp_enqueue_script('user-profile');
 
 	login_header(__('Reset Password'), '<p class="message reset-pass">' . __('Enter your new password below.') . '</p>', $errors );
+	ob_end_flush();
 
 ?>
 <div class="col-sm-5 col-sm-offset-4"> 
