@@ -270,7 +270,7 @@ function retrieve_password() {
 	$message .= sprintf(__('Username: %s'), $user_login) . "\r\n\r\n";
 	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";
 	$message .= __('To reset your password, visit the following address:') . "\r\n\r\n";
-	$message .= '<' . network_site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
+	$message .= '<' . network_site_url("registration/?action=rp&key=$key&login=" . rawurlencode($user_login), 'login') . ">\r\n";
 
 	if ( is_multisite() )
 		$blogname = $GLOBALS['current_site']->site_name;
@@ -301,7 +301,9 @@ function retrieve_password() {
 	 */
 	$message = apply_filters( 'retrieve_password_message', $message, $key );
 
-	if ( $message && !wp_mail( $user_email, wp_specialchars_decode( $title ), $message ) )
+	$swheaders = 'From: Geula Lessons Website <noreply@geula.wpengine.com>' . "\r\n";
+
+	if ( $message && !wp_mail( $user_email, wp_specialchars_decode( $title ), $message, $swheaders ) )
 		wp_die( __('The e-mail could not be sent.') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.') );
 
 	return true;
@@ -502,9 +504,9 @@ case 'rp' :
 	if ( ! $user || is_wp_error( $user ) ) {
 		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
 		if ( $user && $user->get_error_code() === 'expired_key' )
-			wp_redirect( site_url( 'resgiter/?action=lostpassword&error=expiredkey' ) );
+			wp_redirect( site_url( 'my-account/sign-in/?action=expiredkey' ) );
 		else 
-			wp_redirect( site_url( 'resgiter/?action=lostpassword&error=invalidkey' ) );				
+			wp_redirect( site_url( 'my-account/sign-in/?action=invalidkey' ) );				
 		exit;
 	}
 
@@ -526,8 +528,9 @@ case 'rp' :
 	if ( ( ! $errors->get_error_code() ) && isset( $_POST['pass1'] ) && !empty( $_POST['pass1'] ) ) {
 		reset_password($user, $_POST['pass1']);
 		setcookie( $rp_cookie, ' ', time() - YEAR_IN_SECONDS, $rp_path, COOKIE_DOMAIN, is_ssl(), true );
-		login_header( __( 'Password Reset' ), '<p class="message reset-pass">' . __( 'Your password has been reset.' ) . ' <a href="' . esc_url( wp_login_url() ) . '">' . __( 'Log in' ) . '</a></p>' );
-		login_footer();
+		//login_header( __( 'Password Reset' ), '<p class="message reset-pass">' . __( 'Your password has been reset.' ) . ' <a href="' . esc_url( wp_login_url() ) . '">' . __( 'Log in' ) . '</a></p>' );
+		//login_footer();
+		wp_redirect( site_url( 'my-account/sign-in/?action=pcsignin' ) );				
 		exit;
 	}
 

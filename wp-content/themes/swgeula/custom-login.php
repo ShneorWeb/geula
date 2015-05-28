@@ -50,11 +50,17 @@ Template Name: Custom_Login
             <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("Username and/or Password is empty","swgeulatr");?>.</p>
         <?php } elseif ( $login === "false" ) {  ?>
             <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("You are logged out.","swgeulatr");?></p>  
+        <?php } elseif ( isset($_GET['action']) && 'expiredkey' == $_GET['action'] ) {  ?>
+            <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("This key has expired.","swgeulatr");?></p>      
+        <?php } elseif ( isset($_GET['action']) && 'invalidkey' == $_GET['action'] ) {  ?>
+            <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("This key is invalid.","swgeulatr");?></p>      
         <?php } elseif  ( isset($_GET['checkemail']) && 'registered' == $_GET['checkemail'] ) {?>
             <p class="login-msg">    <?php echo _e('Registration complete. Please check your e-mail and login.','swgeulatr');?> </p>
         <?php } elseif  ( isset($_GET['checkemail']) && 'confirm' == $_GET['checkemail'] ) {?>
-            <p class="login-msg">    <?php echo _e('An email has been sent to you with reset instructions. Please check your email and follow the link to reset your password','swgeulatr');?> </p>            
-            <?php  }               
+            <p class="login-msg">    <?php echo _e('An email has been sent to you with reset instructions. Please check your email and follow the link to reset your password','swgeulatr');?> </p>                                     
+        <?php } elseif  ( isset($_GET['action']) && 'pcsignin' == $_GET['action'] ) {?>
+            <p class="login-msg">    <?php echo _e('Your password has been changed succesfully. Please login.','swgeulatr');?> </p>                        
+        <?php  }                   
 
         $redirect_to = !empty( $_REQUEST['redirecr'] ) ? $_REQUEST['redirecr'] : get_category_link(3);
             
