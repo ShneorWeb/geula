@@ -27,11 +27,11 @@
                         </div>
 							
                             <?php 
-                                $cat_image =  get_category_meta('image');
+                                $cat_image =  get_field('swimage',"category_".$this_category->cat_ID);
                                 $page_bg_image = wp_get_attachment_image($cat_image, 'category_image');
                                 $page_bg_image_url = $page_bg_image[0];
                                 $cat_name = get_category(get_query_var('cat'))->name;   
-                                $color =  get_category_meta('color'); 
+                                $color =  get_field('swcolor',"category_".$this_category->cat_ID);
                             ?>
 
 				    		<div class="image_category" style=" background-color:<?php echo $color; ?>; ">
@@ -39,26 +39,24 @@
 								<div class="right-content">
                                     
 								    <div class="category_square-format">
-                                                <!--TODO: GET the icon dunamly -->
-                                                <i class="icon-type-of-lesson-icon-1"></i>
+                       <!--TODO: GET the icon dunamly -->
+                       <i class="icon-type-of-lesson-icon-1"></i>
                                         
-                                                <?php $values =  get_category_meta('type');
-												foreach ($values as $value => $label) {
-												    echo '<span>' . $value .'</span>' ;
-												}
-												$values = get_category_meta('format');
-												foreach ($values as $value => $label) {
-												    echo  '<span>' . $value . '</span>';
-												}?>
-                                    </div>
-				    			     <div class="current_category_name">
+                       <?php $values = get_field('swtype',"category_".$this_category->cat_ID);												
+												echo '<span>' . $$values .'</span>' ;
+												
+												$values = get_field('swformat',"category_".$this_category->cat_ID);                       
+												echo  '<span>' . $$values . '</span>';
+											 ?>
+                   </div>
+				    			 <div class="current_category_name">
                                         <h1><?php echo $cat_name; ?></h1>
-                                    </div>
+                   </div>
 				    				 
-				    				 <div class="current_category_description">
+				    			 <div class="current_category_description">
                                          <h2>
-                                             <?php
-                                                $short_description = get_category_meta('short_description');
+                      <?php
+                         $short_description = get_field('short_description',"category_".$this_category->cat_ID);                       
 												echo $short_description;
 								             ?>
                                          </h2>
@@ -68,10 +66,9 @@
 								        //TODO: get the 'new' tag dynamclay from site
 								       	echo '<span class="oval">'. __('new', 'swgeula').'</span>';
 								    	
-								    	$values = get_category_meta('level');
-								    	foreach ($values as $value => $label) {
-								       		 echo '<span class="oval">' . $value . '</span>';
-								    	}
+								    	$values = get_field('swlevel',"category_".$this_category->cat_ID);                        
+								    	
+								      echo '<span class="oval">' . $values . '</span>';								    	
                                                
                                                $cat = get_queried_object();
                                                $cat_slug =  $cat->slug;
@@ -105,10 +102,9 @@
 												<ul class="single_cat_dtls">
                                                     <!-- TODO: get the length of corses need to come dynamclay -->
 													<li><?php echo formatHoursMinutes(getTotalVideoDuration($arrPostIDs));?></li>
-													<li><?php $values =  get_category_meta('level');
-																	foreach ($values as $value => $label) {
-																	    echo '<span>' . $value .'</span>' ;
-																	}?>
+													<li><?php $values =  get_field('swlevel',"category_".$this_category->cat_ID);                       																	
+																	    echo '<span>' . $values .'</span>' ;
+																	?>
 													</li>
 													<li><?php echo $count . ' ' . __('lessons', 'swgeula'); ?></li>
                                                     <!-- TODO: get the number of users need to come dynamclay -->	
@@ -283,10 +279,11 @@
             </h3>
 			<div class="box userdtls">
                    <?php
-				    $values = get_category_meta('authors');
-						foreach ($values as $user_id) {
-							$the_user = get_user_by('id', $user_id);
-                            //TODO : image from ofer function
+				   $values = get_field('swauthors', "category_".$cat->cat_ID);                                                                                                                
+          if ( is_array($values) && count($values)>0 ) {             
+                                               
+              $the_user = (object)$values;
+          
 							echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 100 ) . '</div>'; 
                              ?>
                             <div class="dtls">
@@ -305,7 +302,9 @@
                                     ?>
                                 </div>
                             </div>
-                        <?php }?>
+          <?php 
+          }
+          ?>
 							
 											
 

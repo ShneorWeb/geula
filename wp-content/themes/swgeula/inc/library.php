@@ -51,7 +51,7 @@
                    <h2><?php echo $cat->cat_name; ?></h2>
                      <p>        
                        <?php
-                          $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
+                          $short_description = get_field('short_description', "category_".$cat->cat_ID);
                           echo $short_description;
                         ?>
                      </p>
@@ -65,7 +65,7 @@
                               
             <div class="bottom_part">
               <?php
-				        $cat_image =  get_category_meta('image', get_term_by('slug', $cat->cat_name, 'category'));               
+				        $cat_image =  get_field('swimage', "category_".$cat->cat_ID);               
               ?>
 				<div class="library_image_category" style="background-image:url(<?php echo $cat_image ?>);">
                    
@@ -159,8 +159,8 @@
 
                 $cat2 = (object)$cat2; 
 
-                $color = get_category_meta('color', get_term_by('slug', $cat2->cat_name, 'category'));                
-        			  $is_subject_category = get_category_meta('subject_category', get_term_by('slug', $cat2->slug, 'category'));
+                $color = get_field('swcolor', "category_".$cat2->cat_ID);                                
+        			  $is_subject_category = get_field('subject_category', "category_".$cat2->cat_ID);
                 if(!$is_subject_category) : 		
 					?>
                  
@@ -187,17 +187,19 @@
 											<i class="icon-type-of-lesson-icon-1"></i>
 										</div>
                                         
-										<div class="category_square_content">
-                                            
+										<div class="category_square_content">                                            
 											<h3 class="category_square-format">
-												<?php $values =  get_category_meta('type', get_term_by('slug', $cat2->cat_name, 'category'));
-												foreach ($values as $value => $label) {
-												    echo '' . $value .'' ;
-												}
-												$values = get_category_meta('format', get_term_by('slug', $cat2->cat_name, 'category'));
-												foreach ($values as $value => $label) {
-												    echo  '&nbsp;' . $value . '';
-												}?>
+												<?php $values =  get_field('swtype', "category_".$cat2->cat_ID);                        
+                        if ( is_array($values) ) {
+  												foreach ($values as $value => $label) {
+  												    echo '' . $value .'' ;
+  												}
+  												$values = get_field('swformat', "category_".$cat2->cat_ID);
+  												foreach ($values as $value => $label) {
+  												    echo  '&nbsp;' . $value . '';
+  												}
+                        }
+                      ?>
 											</h3>
                                             
 										
@@ -211,7 +213,7 @@
                                                     /*echo category_description($cat2->term_id); */
                                                     ?>
 												<p>
-                                                <?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat2->cat_name, 'category'));
+                                                <?php $short_description = get_field('short_description', "category_".$cat->cat_ID);
                                                     echo substr( $short_description, 0,177); 
                                                     /*echo "...";*/
                                                     ?>
@@ -227,25 +229,28 @@
 
                                                         <?php
 
-                                                         $values = get_category_meta('authors', get_term_by('slug', $cat2->slug, 'category'));
-                                                        foreach ($values as $user_id) {
-                                                            $the_user = get_user_by('id', $user_id);
-                                                            //TODO : image from ofer function
-                                                            echo '<a href="'. get_author_posts_url( $user_id) . '">';
-                                                            echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 60 ) . '</div>'; 
+                                                        $values = get_field('swauthors', "category_".$cat2->cat_ID);                                                                                                                
+                                                        if ( is_array($values) && count($values)>0 ) {                                                          
+                                                              
+                                                              $the_user = (object)$values;
 
-                                                            echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->display_name . '</h4></div>';
+                                                              echo '<a href="'. get_author_posts_url( $user_id) . '">';
+                                                              echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 60 ) . '</div>'; 
 
-                                                            echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';?>
+                                                              echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->display_name . '</h4></div>';
 
-                                                            <div class="category_square_number">
-                                                                <?php 
-                                                                    $user_post_count = count_user_posts( $user_id );
-                                                                    echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');                                                            
-                                                                ?>                                                        
-                                                            </div>
-                                                            </a>
-                                                        <?php } ?>
+                                                              echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';?>
+
+                                                              <div class="category_square_number">
+                                                                  <?php 
+                                                                      $user_post_count = count_user_posts( $user_id );
+                                                                      echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');                                                            
+                                                                  ?>                                                        
+                                                              </div>
+                                                              </a>
+                                                          <?php                                                        
+                                                        }
+                                                        ?>
                                                 
 											</div>
 													
@@ -264,10 +269,10 @@
        <a href="<?php echo get_category_link($cat_parent_id);?>" style="color:<?php echo $color; ?>;" onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #b2bac2'" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
                      
 
-        <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
-                foreach ($values as $value => $label) {
-                    echo '<span class="oval">' . $value . '</span>';
-                }
+        <?php $values = get_field('swlevel', "category_".$cat2->cat_ID);        
+              if ( is_string($values) ) {                
+                    echo '<span class="oval">' . $values . '</span>';                
+              }
         ?>      
 
         <div id="lessob_buttons">

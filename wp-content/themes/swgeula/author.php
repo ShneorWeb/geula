@@ -74,16 +74,16 @@
                               )); 
       
                               foreach ($categories as $category) {
-                                $is_subject_category = get_category_meta('subject_category', get_term_by('slug', $category->cat_name, 'category'));
-                                $cat_authors = get_category_meta('authors', get_term_by('slug', $category->cat_name, 'category'));
+                                $is_subject_category = get_field('subject_category', "category_".$category->cat_ID);
+                                $cat_authors = get_field('swauthors', "category_".$category->cat_ID);
                                 
                                 
-                                if($is_subject_category && in_array($author, $cat_authors)) : 
+                                if($is_subject_category && is_array($cat_authors) && count($cat_authors)>0 ) :                                     
                                     $option = '<option value="'.$category->cat_ID.'" '.selected($_GET['select_parent'],$category->cat_ID, 1).'>';
                                     $option .= $category->cat_name;
                                     $option .= '</option>';
                                     echo $option;
-                                    echo $cat_authors[0];
+                                    echo $cat_authors['name'];
                                   endif;
                               }
                                 
@@ -173,15 +173,11 @@
                         
                       
                         //
-				        $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
-                        if (is_array($values))
-                            {
-                                foreach ($values as $user_id) 
-                                    {
-                                    $the_user = get_user_by('id', $user_id);
-                                    $moser_id = get_the_author_meta('id', $user_id );     
-                                  } 
-                        }else{
+				                $values = get_field('swauthors', "category_".$cat->cat_ID);
+                        if (is_array($values) && count($values)>0 ) {                                                      
+                                    $moser_id =  $values["ID"];                            
+                        }
+                        else{
                            $moser_id = 0; 
                         }                                 
                         
@@ -197,7 +193,7 @@
 							<div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
 
 
-							<?php $color = get_category_meta('color', get_term_by('slug', $cat->cat_name, 'category')); ?>
+							<?php $color = get_field('swcolor', "category_".$cat->cat_ID); ?>
 
 									<li class="category_square"> 
                                         
@@ -216,14 +212,12 @@
 										<div class="category_square_content">
                                             
 											<h3 class="category_square-format">
-												<?php $values =  get_category_meta('type', get_term_by('slug', $cat->cat_name, 'category'));
-												foreach ($values as $value => $label) {
-												    echo '' . $value .'' ;
-												}
-												$values = get_category_meta('format', get_term_by('slug', $cat->cat_name, 'category'));
-												foreach ($values as $value => $label) {
-												    echo  '&nbsp;' . $value . '';
-												}?>
+												<?php $values =  get_field('swtype', "category_".$cat->cat_ID);;											
+												    echo '' . $values .'' ;
+
+												$values = get_field('swformat', "category_".$cat->cat_ID);												
+												    echo  '&nbsp;' . $values . '';
+												?>
 											</h3>
                                             
 										
@@ -237,7 +231,7 @@
                                                     /*echo category_description($cat->term_id); */
                                                     ?>
 												<p>
-                                                <?php $short_description = get_category_meta('short_description', get_term_by('slug', $cat->cat_name, 'category'));
+                                                <?php $short_description = get_field('short_description', "category_".$cat->cat_ID);
                                                     echo substr( $short_description, 0,177); 
                                                     /*echo "...";*/
                                                     ?>
@@ -248,9 +242,9 @@
 											<div class="category_square_author">
 												<?php
 													
-												 $values = get_category_meta('authors', get_term_by('slug', $cat->cat_name, 'category'));
-												foreach ($values as $user_id) {
-												    $the_user = get_user_by('id', $user_id);
+												 $values = get_field('swauthors', "category_".$cat->cat_ID);
+												if ( is_array($values) && count($values)>0 ) {
+												    $the_user = (object)$values;
                                                     echo '<a href="'. get_author_posts_url( $user_id) . '">';
 												    echo '<div class="category_square_avatar">'. get_avatar( $the_user, 60 ) . '</div>'; 
 
@@ -292,10 +286,8 @@
        <a href="<?php echo site_url() . '/category/' . $cat_grandparent_slug.'?select_parent='.$cat_parent_id; ?>" style="color:<?php echo $color; ?>" onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #b2bac2'" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
                      
 
-          <?php $values = get_category_meta('level', get_term_by('slug', $cat->cat_name, 'category'));
-                foreach ($values as $value => $label) {
-                    echo '<span class="oval">' . $value . '</span>';
-                                                        }
+          <?php $values = get_field('swlevel', "category_".$cat->cat_ID);               
+                    echo '<span class="oval">' . $values . '</span>';                                                        
 
                                                     ?>
                                                     

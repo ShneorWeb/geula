@@ -15,9 +15,8 @@
 
               <?php             
                                                             
-                                  $cat_meta = get_category_meta(false, get_term_by('ID', $this_category->cat_ID, 'category'));                                  
-                                  $cat_image = $cat_meta["image"];
-                                  $cat_name = get_category($this_category->cat_ID)->name;
+                                  $cat_image = get_field('swimage', "category_".$this_category->cat_ID);                                                                    
+                                  $cat_name = $this_category->name;
                             
 
               ?>
