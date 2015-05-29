@@ -211,13 +211,15 @@ get_header(); ?>
 									<li class="category_square"> 
                                         
 										<div class="category_top_square" style="background:<?php echo $color; ?>">
-                                            <span class="category_top_time">
-                                                
-                                                <!-- 
-                                                    TODO: get the time of category dynamcly
-                                                -->
-                                                
-                                                12 שעות
+                                            <span class="category_top_time">                                                
+                                               <?php echo formatHoursMinutes(getTotalVideoDurationCat($cat->cat_ID));?>
+                                            </span>
+                                             <span class="category_top_time" style="margin-left:6px;">
+                                                  <?php 
+                                                    $numLessons = getNumLessons($cat->cat_ID);
+                                                    if ($numLessons==1) echo __('lesson','swgeula') . __(' 1','swgeula');
+                                                    else echo __($numLessons) . __(' ','swgeula') . __('lessons','swgeula');
+                                                  ?>
                                             </span>
 											<i class="icon-type-of-lesson-icon-1"></i>
 										</div>
@@ -303,9 +305,8 @@ get_header(); ?>
                     
        <a href="<?php echo site_url() . '/category/' . $cat_grandparent_slug.'?select_parent='.$cat_parent_id; ?>" style="color:<?php echo $color; ?>" onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #b2bac2'" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
                      
-
           <?php $values = get_field('swlevel', "category_".$cat->cat_ID);                
-                    echo '<span class="oval">' . $value . '</span>';
+                    echo '<span class="oval">' . $values . '</span>';
                 
 
                                                     ?>
