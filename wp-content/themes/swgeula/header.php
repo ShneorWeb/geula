@@ -4,7 +4,17 @@
  *
  * @package swgeula
  */
-?><!DOCTYPE html>
+$gsLocale = "en_US";
+$arrLangs = icl_get_languages();
+if ( is_array($arrLangs) ) {
+  foreach ($arrLangs as $arrLang)
+    if ($arrLang['active']==1) { //active language
+        $gsLocale = $arrLang['default_locale'];
+    }
+}
+
+?>
+<!DOCTYPE html>
 <html>
 <head>
 	<script>
@@ -14,11 +24,9 @@
 
     var gbLocal = (document.location.href.indexOf("127.0.0.1")!=-1);    
     var gsLibraryDir = '<?php echo get_category_link(getCatIDOfLibrary());?>';
-    var sCurLang = '<?php echo ICL_LANGUAGE_CODE;?>';
-    if (sCurLang=="he") sCurLang = "he_IL";
-    else sCurLang = "en_US";    
-    //console.log(sCurLang);
-	</script>
+    var sCurLang = '<?php echo $gsLocale;?>';    
+    console.log(sCurLang);
+	</script>  
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="<?php bloginfo('template_directory');?>/images/favicon.ico">

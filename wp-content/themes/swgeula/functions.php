@@ -406,7 +406,6 @@ if ( !function_exists('wp_new_user_notification') ) {
 		);
 	}
 }*/
-
 /************************** end user registration stuff: ************************************/
 
 add_theme_support ('menus');
@@ -423,9 +422,17 @@ function register_theme_menus() {
 			)
 		);
 
-		
+	//get user prefered lang:
+	if (is_user_logged_in()) {	    	 
+			global $sitepress;			
+		    
+		    /*$current_user = wp_get_current_user();
+			$uid = $current_user->ID;
+			$lang = get_user_meta( $uid, 'user_lang', true );
 
-
+			$lang  = strstr($lang,"_",true);			
+			$sitepress->switch_lang($lang);	*/
+	}
 }
 add_action( 'init', 'register_theme_menus');
 

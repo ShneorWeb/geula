@@ -182,7 +182,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		if (typeof objRes.lastname != 'undefined') objRes.lastname = objRes.lastname.toString().replace(/\\'/g,"'");				
 		if (typeof objRes.about != 'undefined') objRes.about = objRes.about.toString().replace(/\\'/g,"'");				
 		if (typeof objRes.position != 'undefined') objRes.position = objRes.position.toString().replace(/\\'/g,"'");						
-		if (typeof objRes.lang != 'en_GB') objRes.lang = "en_US";						
+		if ( (typeof objRes.lang != 'undefined') && (objRes.lang=="en_GB") )  objRes.lang = "en_US";						
 		
 		$scope.user = objRes;
 		
@@ -252,6 +252,9 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
         }).success(function (data, status, headers, config) {
                 //console.log(data);
+                //if ($scope.user.lang != sCurLang) {
+                	window.location.reload();
+                //}
                 if (data==1) {                	    				    					
 					   	$scope.tabs[1].disabled = false;
 					   	$scope.tabs[0].active = false;		

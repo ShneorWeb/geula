@@ -43,10 +43,10 @@
                        <i class="icon-type-of-lesson-icon-1"></i>
                                         
                        <?php $values = get_field('swtype',"category_".$this_category->cat_ID);												
-												echo '<span>' . $$values .'</span>' ;
+												echo '<span>' . $values .'</span>' ;
 												
 												$values = get_field('swformat',"category_".$this_category->cat_ID);                       
-												echo  '<span>' . $$values . '</span>';
+												echo  '<span>' . $values . '</span>';
 											 ?>
                    </div>
 				    			 <div class="current_category_name">

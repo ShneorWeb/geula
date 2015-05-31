@@ -189,16 +189,14 @@
                                         
 										<div class="category_square_content">                                            
 											<h3 class="category_square-format">
-												<?php $values =  get_field('swtype', "category_".$cat2->cat_ID);                        
-                        if ( is_array($values) ) {
-  												foreach ($values as $value => $label) {
-  												    echo '' . $value .'' ;
-  												}
-  												$values = get_field('swformat', "category_".$cat2->cat_ID);
-  												foreach ($values as $value => $label) {
-  												    echo  '&nbsp;' . $value . '';
-  												}
-                        }
+												<?php $values =  get_field('swtype', "category_".$cat2->cat_ID);                                                
+                        if ( is_string($values) ) {  												
+  												    echo '' . $values .'' ;
+                          }  												
+  												$values = get_field('swformat', "category_".$cat2->cat_ID);  												
+                          if ( is_string($values) ) {    
+  												    echo  '&nbsp;' . $values . '';  												
+                          }
                       ?>
 											</h3>
                                             
@@ -234,7 +232,7 @@
                                                               
                                                               $the_user = (object)$values;
 
-                                                              echo '<a href="'. get_author_posts_url( $user_id) . '">';
+                                                              echo '<a href="'. get_author_posts_url( $the_user->ID) . '">';
                                                               echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 60 ) . '</div>'; 
 
                                                               echo '<div class="author_des"><div class="category_square_author_name"><h4>' . $the_user->display_name . '</h4></div>';
