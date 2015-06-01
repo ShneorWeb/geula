@@ -4,7 +4,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 
 	$translateProvider.translations('en_US', {
 	    Your_Account: 'Your Account',
-	    Settings: 'Settings.',	    
+	    Settings: 'Settings',	    
 	    Profile: 'Profile',	    
 	    Picture: 'Picture',	    
 	    Alerts: 'Alerts',	    
@@ -255,6 +255,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
         }).success(function (data, status, headers, config) {
                 //console.log(data);
                 if ($scope.user.lang != sCurLang) {
+                	window.location.href += "#profile";
                 	window.location.reload();
                 }
                 if (data==1) {                	    				    					
