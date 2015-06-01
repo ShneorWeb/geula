@@ -426,12 +426,12 @@ function register_theme_menus() {
 	if (is_user_logged_in()) {	    	 
 			global $sitepress;			
 		    
-		    /*$current_user = wp_get_current_user();
+		    $current_user = wp_get_current_user();
 			$uid = $current_user->ID;
 			$lang = get_user_meta( $uid, 'user_lang', true );
 
 			$lang  = strstr($lang,"_",true);			
-			$sitepress->switch_lang($lang);	*/
+			if (!is_admin()) $sitepress->switch_lang($lang);	
 	}
 }
 add_action( 'init', 'register_theme_menus');

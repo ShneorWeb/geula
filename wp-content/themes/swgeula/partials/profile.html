@@ -31,6 +31,7 @@
 
                 <div class="messages">
                     <div class="text-success" ng-show="User_Success">{{'Data_Saved_Successfully' | translate}}</div> 
+                    <div class="error-msg" ng-show="regForm1.sel_country.$error.required || regForm1.sel_timezone.$error.required">{{'Fill_Required_Fields' | translate}}</div>                   
                 </div>                    
                  
                 <div class="col-md-12 panel"> 
@@ -64,10 +65,10 @@
                    </div>                              
                   
                   <div class="span12 clearfix"><hr/></div>
-                   
+                                    
                    <div class="form-group">
                       <label for="st-country" style="text-align:right;"  class="col-md-2 col-sm-2 control-label">{{'Country' | translate}}</label>
-                      <div class="col-md-10 col-sm-10"><select class="form-control" id="st-country" ng-model="user.chosenCountry" ng-options="country.name for country in countries track by country.id" ng-change="getCitiesForCountry(user.chosenCountry);"><option value="">{{'Select_Country' | translate}}</option></select></div> 
+                      <div class="col-md-10 col-sm-10"><select class="form-control" ng-class="{ 'error-input' : regForm1.sel_country.$error.required }" id="st-country" name="sel_country" ng-model="user.chosenCountry" ng-options="country.name for country in countries track by country.id" ng-change="getCitiesForCountry(user.chosenCountry);" required><option value="">{{'Select_Country' | translate}}</option></select></div> 
                     </div>
 
                    <div class="span12 clearfix"><hr/></div> 
@@ -81,7 +82,7 @@
 
                   <div class="form-group">
                       <label for="st-timezone" style="text-align:right;"  class="col-md-2 col-sm-2 control-label">{{'Time_Zone' | translate}}</label>
-                      <div class="col-md-10 col-sm-10"><select class="form-control" id="st-timezone" style="direction:ltr;" ng-model="user.chosenTtimeZ" ng-options="timez.name group by timez.zonegroup for timez in timezones track by timez.id" ng-change="zoneChanged();"></select></div>
+                      <div class="col-md-10 col-sm-10"><select class="form-control" id="st-timezone" name="sel_timezone" ng-class="{ 'error-input' : regForm1.sel_timezone.$error.required }" style="direction:ltr;" ng-model="user.chosenTtimeZ" ng-options="timez.name group by timez.zonegroup for timez in timezones track by timez.id" ng-change="zoneChanged();" required></select></div>
                     </div>
 
                   <div class="span12 clearfix"><hr/></div>  
@@ -110,6 +111,7 @@
 
             <div class="messages">
                     <div class="text-success" ng-show="User_Success">{{'Data_Saved_Successfully' | translate}}</div>                
+                    <div class="error-msg" ng-show="regForm2.lastname.$error.required">{{'Fill_Required_Fields' | translate}}</div> 
             </div>
 
             <div class="col-md-12 panel">
@@ -123,7 +125,7 @@
 
                   <div class="form-group">
                     <label for="st-lastname" class="col-md-2 col-sm-3 control-label">{{'Last_Name' | translate}}</label>
-                    <div class=" col-md-10 col-sm-9"><input type="text" class="form-control" autocomplete="off" name="lastname" id="st_lastname" ng-model="user.lastname" placeholder="{{'Last_Name' | translate}}"  /></div>
+                    <div class=" col-md-10 col-sm-9"><input type="text" class="form-control" ng-class="{ 'error-input' : regForm2.lastname.$error.required }" autocomplete="off" name="lastname" id="st_lastname" ng-model="user.lastname" placeholder="{{'Last_Name' | translate}}" required /></div>
                   </div>  
 
                   <div class="span12 clearfix"><hr/></div>  

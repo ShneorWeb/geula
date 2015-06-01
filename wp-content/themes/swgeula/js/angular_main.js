@@ -31,7 +31,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	    Select_Timezone : 'Select Timezone',
 	    Data_Saved_Successfully : 'Data Saved Successfully!',
 	    Forgot_Password : 'forgot password',
-	    Strength : 'Strength'
+	    Strength : 'Strength',
+	    Fill_Required_Fields : 'Please fill-in the required fields'
 	  });
 	  $translateProvider.translations('he_IL', {
 	    Your_Account: 'החשבון שלך',
@@ -66,7 +67,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
         Your_Picture  : 'התמונה שלך',
         Photo_visible_to_everyone : 'התמונה גלויה לכולם',
         Select_an_image_to_upload : 'בחר תמונה להעלות',
-        Back_to_Library : 'חזרה לספריה'
+        Back_to_Library : 'חזרה לספריה',
+        Fill_Required_Fields : 'נא למלא את שדות החובה'
 	  });
 	$translateProvider.preferredLanguage(sCurLang);
  	
@@ -326,25 +328,3 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
     }
 	
 }]);
-
-/*
-myApp.directive("passwordStrength", function(){	
-    return {        
-        restrict: 'A',
-        link: function(scope, element, attrs){                    
-            scope.$watch(attrs.passwordStrength, function(value) {
-                console.log(checkStrength());
-                if(angular.isDefined(value) && (value.length>0) ){                	
-                    if (value.length > 8) {
-                        scope.strength = '123123';
-                    } else if (value.length > 3) {
-                        scope.strength = '567654';
-                    } else {
-                        scope.strength = '459876';
-                    }                    
-                }
-            });
-        }
-    };
-});
-*/
