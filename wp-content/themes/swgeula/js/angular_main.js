@@ -254,9 +254,9 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
         }).success(function (data, status, headers, config) {
                 //console.log(data);
-                //if ($scope.user.lang != sCurLang) {
+                if ($scope.user.lang != sCurLang) {
                 	window.location.reload();
-                //}
+                }
                 if (data==1) {                	    				    					
 					   	$scope.tabs[1].disabled = false;
 					   	$scope.tabs[0].active = false;		
