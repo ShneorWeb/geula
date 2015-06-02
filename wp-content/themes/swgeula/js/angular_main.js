@@ -249,8 +249,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
             });
      }
 
-     $scope.submitTheForm2 = function(item, event) {
-	    if ($scope.checkError()) return false;
+     $scope.submitTheForm2 = function(item, event) {	    
       // console.log($scope.user.about);
        var dataStr = 'action=setuser2' +        					
        					'&firstname=' + $scope.user.firstname +

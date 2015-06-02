@@ -762,6 +762,25 @@ function getLessonStarted($lessonID,$userID) {
 	return 0;		
 }
 
+function getNextLessonToPlay($catID) {
+	global $wpdb;		
+	
+	$userID = get_current_user_id();
+
+	if ( is_int($catID) && ($catID>0) && is_int($userID) && ($userID>0) ) :
+
+		$results = $wpdb->get_results("SELECT lesson_id,done FROM wp_sw_user_lesson WHERE user_id = $userID AND cat_id = $catID ORDER BY lesson_id DESC;",ARRAY_A);		
+
+		if (count($results)>0) {			
+
+			foreach($results as $row) {																				
+				if ($row['done']==0) return get_permalink($row['lesson_id']);					
+			}			
+			return get_permalink($results[0]['lesson_id']);
+		}
+	endif;	
+}
+
 function addToMyLessons() {
 	global $wpdb;	
 	$userID = -1;
@@ -1103,10 +1122,10 @@ function getTotalVideoDurationCat($catID) {
 	return $retVal;	
 }
 
-function getNumStudents($arrPostIDs) {
+function getNumStudents($catID) {
 	global $wpdb;
 
-	$results = $wpdb->get_results("SELECT DISTINCT user_id FROM wp_sw_user_lesson WHERE lesson_id IN (".implode(",", $arrPostIDs).") ORDER BY id DESC;",ARRAY_A);				
+	$results = $wpdb->get_results("SELECT DISTINCT user_id FROM wp_sw_cats_learn WHERE cat_id=$catID AND cat_status=1 ORDER BY id DESC;",ARRAY_A);				
 	
 	return count($results);	
 }
