@@ -651,10 +651,68 @@ transform:scaleX(-1);
   padding-left: 20px;
 }
 
+
+
 /* responsive styles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 @media screen and (min-width: 1856px){
     .library-page .site-content > .container {
       padding-right: 65px;
       padding-left:0;
     }
+}
+
+@media screen and (max-width:1855px) {
+    .library-page .site-content > .container{padding-right:65px;padding-left: 15px;}
+}
+@media screen and (max-width:1300px) {
+    .image_category{padding-left:30%;padding-right:7%;}
+    .site-content{margin-left:60px;}
+    .library-page .header_part{padding-left:75px;padding-right:65px;}
+    .library-page .bottom_part .library_image_category{padding-left:60px;padding-right:49px;}
+}
+@media screen and (max-width:991px) {
+    .single_category_list .rail .rail--btns a{float:left;}
+    .single_category_list .rail .rail--btns a#playBtnCont{margin-right:2%;}
+    .single_category_list .left-content ul.single_cat_dtls{padding-left:0;border-left:none;}
+    .single_category_list .left-content ul.single_cat_dtls li{float:left;margin-right:15px;}
+    .single_category_list .category_square_oval{left:0;}
+}
+@media screen and (max-width:767px) {
+    .site-content{margin-left:0px;}
+    .selects{float:left;}
+    .search_by{float:left;}
+    .drop{right:-220px;left:auto !important;}
+    .archive_cont.left_to_right_archive_cont{left:-220px;}
+    .navbar-collapse{right:-220px;}
+    .navbar-collapse.left_to_right{right:0;}
+    .menu-top{float:left;}
+    .navbar-collapse .avatar_image, .navbar-collapse .avatar_name, .navbar-collapse .points{float:left;}
+    .navbar-collapse .profile_dtls{margin-right:0;}
+    .navbar-collapse .avatar_image{margin-right:10px;}
+    .navbar-collapse .avatar_name{padding-right:0;}
+    .navbar-collapse .dtls_cont{float:left;}
+    .navbar-collapse .icons_cont{float:right;}
+    .navbar-collapse .notification_icon, .navbar-collapse .timer{float:right;margin-right:0;}
+    .navbar-collapse .name_and_points{float:left;}
+    .navbar-collapse .name_and_points .points .text{margin-left:0;}
+    .library-page .site-content > .container{padding-right:15px;}
+    .library-page .image_category{float:left;}
+    .library-page .header_part{padding-left:15px;padding-right:15px;}
+    .library-page .bottom_part .library_image_category{padding-left:15px;padding-right:15px;}
+    .single_category_list .single_lesson_cont .name .fa{float:left;}
+    .single_category_list .single_lesson_cont .time{text-align:right;}
+    .single-post .length{text-align:right;}
+    .comment-content{margin-left:4%;}
+    .page-template-page-dashboard-php .big_icon{margin-right:0;}
+    .page-template-custom-profile-php .nav-pills > li > a{padding-left:8px;padding-right:8px;}
+    .page-template-custom-profile-php form label{float:left;}
+    .page-template-custom-profile-php .password_cont{float:left;}
+    .page-template-custom-register-php .logAndReg_cont .div-login, .page-template-custom-login-php .logAndReg_cont .div-login{padding-left:5%;padding-right:5%;}
+    .menu-menu-right-container ul {
+     margin-right: -15px;
+    }
+}
+@media screen and (max-width:500px) {
+    .single_category_list .rail .rail--btns a{float:left;}
+    .comment-content{margin-left:7%;}
 }

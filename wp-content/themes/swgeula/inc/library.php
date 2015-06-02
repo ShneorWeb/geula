@@ -164,7 +164,7 @@
                 if(!$is_subject_category) : 		
 					?>
                  
-					   <div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
+					   <div class="category_single col-lg-4 col-md-6 col-sm-6 col-xs-12 ">
 
                                 <li class="category_square"> 
                                         

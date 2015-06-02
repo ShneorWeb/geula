@@ -191,7 +191,7 @@ hideCat = function(catid,spanID) {
     
 function profile_to_mob(){
     if($(window).width() < 768-17){
-        $('.drop .menu').prepend($('.menu-top'));
+        $('.sidebar .menu').prepend($('.menu-top'));
     }else{
         $('.site-header .navbar-header').append($('.menu-top'));
     }
@@ -246,11 +246,24 @@ function equal_heights(){
      $('.navbar-collapse.collapse').css('display','block');
      
      function handler1() {
-         $('.navbar-collapse.collapse').css('left','0');
-         $('.navbar-toggle').css('margin-left','235px');
-         $('.drop').css('left','0');
-         $('.archive_cont').css('right','-220px');
-         $('.cat_sing').css('right','-235px');
+         if(sCurLang == "he_IL"){
+             var direction1 = "left";
+             var margin_direction1 = "margin-left";
+             var direction2 = "right";
+             var margin_direction2 = "margin-right";
+         }else{
+             var direction1 = "right";
+             var margin_direction1 = "margin-right";
+             var direction2 = "left";
+             var margin_direction2 = "margin-left";
+         }
+         
+         
+         $('.navbar-collapse.collapse').css(direction1,'0');
+         $('.navbar-toggle').css(margin_direction1,'235px');
+         $('.drop').css(direction1,'0');
+         $('.archive_cont').css(direction2,'-220px');
+         $('.cat_sing').css(direction2,'-235px');
          
              
             if($(window).width() < 500-17){
@@ -260,11 +273,23 @@ function equal_heights(){
          $(this).one("click", handler2);
     }
     function handler2() {
-         $('.navbar-collapse.collapse').css('left','-220px');
-         $('.navbar-toggle').css('margin-left','15px');
-         $('.drop').css('left','-220px');
-         $('.archive_cont').css('right','0px');
-         $('.cat_sing').css('right','0');
+         if(sCurLang == "he_IL"){
+             var direction1 = "left";
+             var margin_direction1 = "margin-left";
+             var direction2 = "right";
+             var margin_direction2 = "margin-right";
+         }else{
+             var direction1 = "right";
+             var margin_direction1 = "margin-right";
+             var direction2 = "left";
+             var margin_direction2 = "margin-left";
+         }
+        
+         $('.navbar-collapse.collapse').css(direction1,'-220px');
+         $('.navbar-toggle').css(margin_direction1,'15px');
+         $('.drop').css(direction1,'-220px');
+         $('.archive_cont').css(direction2,'0px');
+         $('.cat_sing').css(direction2,'0');
         
             if($(window).width() < 500-17){
                  $('.site-branding').toggle();
