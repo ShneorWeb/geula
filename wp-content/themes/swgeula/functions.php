@@ -294,6 +294,17 @@ add_action( 'wp_enqueue_scripts', 'swgeula_manual_scripts' );
 
 /***************************LANGUAGE SETTINGS********************************************/
 function lang_setup(){
+	if (is_user_logged_in()) {	    	 
+			global $sitepress;			
+		    
+		    $current_user = wp_get_current_user();
+			$uid = $current_user->ID;
+			$lang = get_user_meta( $uid, 'user_lang', true );
+
+			$lang  = strstr($lang,"_",true);			
+			if (!is_admin()) $sitepress->switch_lang($lang);	
+	}
+	
     load_theme_textdomain('swgeulatr', get_template_directory() . '/languages');    
 }
 add_action('after_setup_theme', 'lang_setup');
@@ -421,18 +432,6 @@ function register_theme_menus() {
       
 			)
 		);
-
-	//get user prefered lang:
-	if (is_user_logged_in()) {	    	 
-			global $sitepress;			
-		    
-		    $current_user = wp_get_current_user();
-			$uid = $current_user->ID;
-			$lang = get_user_meta( $uid, 'user_lang', true );
-
-			$lang  = strstr($lang,"_",true);			
-			if (!is_admin()) $sitepress->switch_lang($lang);	
-	}
 }
 add_action( 'init', 'register_theme_menus');
 
