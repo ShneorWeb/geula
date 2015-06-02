@@ -234,16 +234,17 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	   if ($scope.checkError()) return false;
 	   var sPswrd = (typeof $scope.user.password === 'undefined')?'':$scope.user.password;
 	   var sPswrd2 = (typeof $scope.user.password2 === 'undefined')?'':$scope.user.password2;
+	   var sCcountry = (typeof $scope.user.chosenCountry === 'undefined')?'':$scope.user.chosenCountry;
+	   var sCity = (typeof $scope.user.chosenCity === 'undefined')?'':$scope.user.chosenCity;
+	   var sTimeZone = (typeof $scope.user.chosenTtimeZ === 'undefined')?'Asia/Jerusalem':$scope.user.chosenTtimeZ.id;
        //console.log("--> Submitting form");
        var dataStr = 'action=setuser' +        					
        					'&password=' + sPswrd +
        					'&password2=' + sPswrd2+
-       					'&country=' + $scope.user.chosenCountry.name+
-       					'&city=' + $scope.user.chosenCity.name+
-       					'&timezone=' + $scope.user.chosenTtimeZ.id+
-       					'&lang=' + $scope.user.lang;                    
-       
-        
+       					'&country=' + sCcountry+
+       					'&city=' + sCity+
+       					'&timezone=' + sTimeZone+
+       					'&lang=' + $scope.user.lang;                                 
 
        //console.log("dataStr="+dataStr);
       
