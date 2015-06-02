@@ -183,6 +183,7 @@ body {
 	direction:rtl;
 	text-align:right;
 	font-family: 'Open Sans Hebrew', Helvetica, Arial, Sans-Serif;
+    overflow-x: hidden;
 }
 
 html{
@@ -3243,6 +3244,14 @@ _responsive styles
     
     .container {
        max-width: 100%;
+    }
+    
+    .library-page .bottom_part .library_image_category .category_single {
+      margin-bottom: 30px;
+    }
+    
+    .logged-in .navbar-header .menu-top, .logged-in .navbar-collapse .menu-top {
+      margin-top: 34px;
     }
 
 }
