@@ -100,7 +100,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 	$scope.user.password = '';
 	$scope.user.password2 = '';
 	$scope.countries = [];
-	$scope.cities = [];	
+	//$scope.cities = [];	
 	$scope.User_Success=false;
 	$scope.strength = 'fff';
 	$scope.user.timezone = '';
@@ -162,7 +162,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		});		
 	}
 
-	$scope.getCitiesForCountry = function(cntry) {		
+	/*$scope.getCitiesForCountry = function(cntry) {		
 		if (typeof cntry.name != 'undefined') {
 			ctry = cntry.id + 236;				
 			$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getcities&ctry='+ctry).success(function(res){		
@@ -174,7 +174,7 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 				}
 			});
 		}
-	}		
+	}*/		
 	
 	//get user data and init ui elemnts:
 	$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getuser').success(function(res){					
@@ -202,51 +202,28 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
 		$http.get(myLocalized.wpadmin_dir + 'admin-ajax.php?action=getctrbyid&cname='+$scope.user.country).success(function(res){					
 				//console.log("cntry="+$scope.user.country);
 			 	$scope.user.chosenCountry = {id:eval(res)}; 	
-			 	$scope.getCitiesForCountry({id:eval(res),name:$scope.user.country});			 				 	
-		});		 
+			 	//$scope.getCitiesForCountry({id:eval(res),name:$scope.user.country});			 				 	
+		});		 	
 		
-
-		/*$scope.changeLanguage = function (key) {
-    		$translate.use(key);
-  		};*/
 	});			
-
 	
-	$scope.checkError = function()  {
-		//console.log("IN checkError");		
-		/*if ($scope.user.password.length && $scope.user.password2.length) {
-			if ($scope.user.password != $scope.user.password2) {				
-				$scope.PSWRD_MATCH_ERROR = true;				
-				return true;
-			}
-		}*/
-		return false;
-	};
-
-	/*$scope.isActiveTab = function(tab){
-    	return $scope.tabs[tab].active?'active':'';
-  	};*/
-
 	
 
-	$scope.submitTheForm = function(item, event) {
-		//console.log("pswrd="+$scope.user.password2);		
-	   if ($scope.checkError()) return false;
-	   var sPswrd = (typeof $scope.user.password === 'undefined')?'':$scope.user.password;
-	   var sPswrd2 = (typeof $scope.user.password2 === 'undefined')?'':$scope.user.password2;
-	   var sCcountry = (typeof $scope.user.chosenCountry === 'undefined')?'':$scope.user.chosenCountry;
-	   var sCity = (typeof $scope.user.chosenCity === 'undefined')?'':$scope.user.chosenCity;
-	   var sTimeZone = (typeof $scope.user.chosenTtimeZ === 'undefined')?'Asia/Jerusalem':$scope.user.chosenTtimeZ.id;
+	$scope.submitTheForm = function(item, event) {	
+	   var sPswrd = (typeof $scope.user.password == 'undefined')?'':$scope.user.password;
+	   var sPswrd2 = (typeof $scope.user.password2 == 'undefined')?'':$scope.user.password2;
+	   var sCcountry = (typeof $scope.user.chosenCountry == 'undefined' || $scope.user.chosenCountry.name == 'undefined')?'':$scope.user.chosenCountry.name;
+	   //var sCity = (typeof $scope.user.chosenCity == 'undefined' || typeof $scope.user.chosenCity.name == 'undefined')?'':$scope.user.chosenCity.name;
+	   var sTimeZone = (typeof $scope.user.chosenTtimeZ == 'undefined')?'Asia/Jerusalem':$scope.user.chosenTtimeZ.id;
        //console.log("--> Submitting form");
        var dataStr = 'action=setuser' +        					
        					'&password=' + sPswrd +
        					'&password2=' + sPswrd2+
-       					'&country=' + sCcountry+
-       					'&city=' + sCity+
+       					'&country=' + sCcountry+       					
        					'&timezone=' + sTimeZone+
        					'&lang=' + $scope.user.lang;                                 
 
-       //console.log("dataStr="+dataStr);
+       console.log("dataStr="+dataStr);
       
 	   $http({
             url: myLocalized.wpadmin_dir + 'admin-ajax.php?action=setuser',
@@ -254,7 +231,8 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
             data: dataStr,
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}            
         }).success(function (data, status, headers, config) {
-                //console.log(data);
+                //console.log(sCurLang);
+                //console.log($scope.user.lang);
                 if ($scope.user.lang != sCurLang) {
                 	window.location.href += "#profile";
                 	window.location.reload();

@@ -1665,7 +1665,7 @@ function get_country_select() {
 	global $wpdb;
 	$retVal = "[";
 
-	$result = $wpdb->get_results( 'SELECT id,country FROM wp_countries ORDER BY country ASC;', OBJECT );
+	$result = $wpdb->get_results( 'SELECT DISTINCT id,country FROM wp_countries ORDER BY country ASC;', OBJECT );
 
 	$bFirst = true;
 	foreach($result as $row) {
@@ -1708,7 +1708,7 @@ function get_cities() {
 		global $wpdb;
 		$retVal = "[";
 
-		$result = $wpdb->get_results( "SELECT id,city FROM wp_cities WHERE country=$ctry ORDER BY city ASC;", OBJECT );
+		$result = $wpdb->get_results( "SELECT DISTINCT id,city FROM wp_cities WHERE country=$ctry ORDER BY city ASC;", OBJECT );
 
 		$bFirst = true;
 		foreach($result as $row) {
