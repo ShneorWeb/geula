@@ -37,7 +37,7 @@ function signinCallback(authResult) {
                         'language': resp.language,
                         'occupation' : resp.occupation,
                         'language' : resp.language,
-                        'places-lived' : resp.placesLived[0].value
+                        'places-lived' : jQuery.isArray(resp.placesLived)?resp.placesLived[0].value:''
                     };                               
                 console.log(data);
                     
