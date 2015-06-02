@@ -651,9 +651,7 @@ transform:scaleX(-1);
   padding-left: 20px;
 }
 
-.menu-menu-right-container ul {
- margin-right: -15px;
-}
+
 
 /* responsive styles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 @media screen and (min-width: 1856px){
@@ -710,6 +708,9 @@ transform:scaleX(-1);
     .page-template-custom-profile-php form label{float:left;}
     .page-template-custom-profile-php .password_cont{float:left;}
     .page-template-custom-register-php .logAndReg_cont .div-login, .page-template-custom-login-php .logAndReg_cont .div-login{padding-left:5%;padding-right:5%;}
+    .menu-menu-right-container ul {
+     margin-right: -15px;
+    }
 }
 @media screen and (max-width:500px) {
     .single_category_list .rail .rail--btns a{float:left;}
