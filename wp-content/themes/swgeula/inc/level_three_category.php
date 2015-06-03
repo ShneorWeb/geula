@@ -99,16 +99,14 @@
 				    			<div class="left-content">
 									
 											<div class="category_square-format">
-												<ul class="single_cat_dtls">
-                                                    <!-- TODO: get the length of corses need to come dynamclay -->
+												<ul class="single_cat_dtls">                                                    
 													<li><?php echo formatHoursMinutes(getTotalVideoDuration($arrPostIDs));?></li>
 													<li><?php $values =  get_field('swlevel',"category_".$this_category->cat_ID);                       																	
 																	    echo '<span>' . $values .'</span>' ;
 																	?>
 													</li>
-													<li><?php echo $count . ' ' . __('lessons', 'swgeula'); ?></li>
-                                                    <!-- TODO: get the number of users need to come dynamclay -->	
-                                                    <li><?php echo(getNumStudents($arrPostIDs));?> לומדים</li>
+													<li><?php echo $count . ' ' . __('lessons', 'swgeula'); ?></li>                                                    
+                                                    <li><?php echo(getNumStudents($cat_id));?> לומדים</li>
 												</ul>
 											</div>
 											
@@ -122,7 +120,7 @@
                                 <div class="rail--btns">
                                     <!--TODO: what link is need to go to? -->
                                     <a href="#" id="playBtnCont">
-                                        <button type="button" class="btn btn-default playBtn">
+                                        <button type="button" class="btn btn-default playBtn" onclick="document.location.href='<?php echo getNextLessonToPlay($cat_id); ?>';">
                                             <i class="fa fa-play fa-flip-horizontal"></i> 
                                                 <?php _e('start', 'swgeula'); ?>
                                         </button>
@@ -257,7 +255,7 @@
                                             <?php
                                             $lessosStatus = getLessonStarted(get_the_ID(),$userID);
                                             ?>
-                                            <i id="<?php the_ID();?>" class="fa <?php if ($lessosStatus==1) echo('fa-check-circle'); elseif ($lessosStatus==2) echo("todo: circle done"); else echo('fa-chevron-left');?>"></i>                                            
+                                            <i id="<?php the_ID();?>" class="fa <?php if ($lessosStatus==2) echo('fa-check-circle'); elseif ($lessosStatus==1) echo("fa-chevron-left green"); else echo('fa-chevron-left');?>"></i>                                            
                                             <?php the_title(); ?>
                                         </div>
                                         <div class="time">                                            
