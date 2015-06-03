@@ -16,14 +16,17 @@
 <div class="page-header single_category_list">	
 				
     <div class="header_category">	
-					
-					
 					  
 						<div class="back_to_libary">
-                          <a href="<?php echo esc_url( $category_link ); ?>">
-                              <i class="fa fa-arrow-right"></i>
-                              <?php echo $parent_name; ?>
-                          </a>
+                              <a href="<?php echo esc_url( $category_link ); ?>">
+                                   <?php if(ICL_LANGUAGE_CODE=='he'){?>
+                                      <i class="fa fa-arrow-right"></i> 
+                                      <?php echo $parent_name; ?>
+                                  <?php }else{?>
+                                       <?php echo $parent_name; ?>
+                                       <i class="fa fa-arrow-left"></i> 
+                                    <?php } ?>
+                              </a>
                         </div>
 							
                             <?php 
@@ -106,7 +109,8 @@
 																	?>
 													</li>
 													<li><?php echo $count . ' ' . __('lessons', 'swgeula'); ?></li>                                                    
-                                                    <li><?php echo(getNumStudents($cat_id));?> לומדים</li>
+                                                    <li><?php echo(getNumStudents($cat_id)) . ' ' . __('לומדים', 'swgeula'); ?>
+</li>
 												</ul>
 											</div>
 											
@@ -121,15 +125,26 @@
                                     <!--TODO: what link is need to go to? -->
                                     <a href="#" id="playBtnCont">
                                         <button type="button" class="btn btn-default playBtn" onclick="document.location.href='<?php echo getNextLessonToPlay($cat_id); ?>';">
-                                            <i class="fa fa-play fa-flip-horizontal"></i> 
+                                           <?php if(ICL_LANGUAGE_CODE=='he'){?>
+                                                <i class="fa fa-play fa-flip-horizontal"></i> 
                                                 <?php _e('start', 'swgeula'); ?>
+                                            <?php }else{?>
+                                                <?php _e('start', 'swgeula'); ?>
+                                                <i class="fa fa-play"></i> 
+                                            <?php } ?>
+                                            
                                         </button>
                                     </a>	
                                     <!--TODO: what link is need to go to? -->
                                     <a href="#">
                                         <button type="button" class="btn btn-default getAfter" >
-                                            <i class="fa fa-clock-o"></i>  
+                                           <?php if(ICL_LANGUAGE_CODE=='he'){?>
+                                                <i class="fa fa-clock-o"></i>  
                                                 <?php _e('schedule to circle', 'swgeula'); ?>
+                                           <?php }else{?> 
+                                                <?php _e('schedule to circle', 'swgeula'); ?>
+                                                <i class="fa fa-clock-o"></i>  
+                                           <?php } ?>   
                                         </button>
                                     </a>	
 				    			</div>
@@ -255,7 +270,24 @@
                                             <?php
                                             $lessosStatus = getLessonStarted(get_the_ID(),$userID);
                                             ?>
-                                            <i id="<?php the_ID();?>" class="fa <?php if ($lessosStatus==2) echo('fa-check-circle'); elseif ($lessosStatus==1) echo("fa-chevron-left green"); else echo('fa-chevron-left');?>"></i>                                            
+                                          <i id="<?php the_ID();?>" class="fa <?php
+                                                if ($lessosStatus==2) echo('fa-check-circle');
+                                                elseif ($lessosStatus==1) {
+                                                    if(ICL_LANGUAGE_CODE=='he'){
+                                                       echo("fa-chevron-left green"); 
+                                                    }else{
+                                                        echo("fa-chevron-right green");
+                                                    }
+                                                }
+                                                else{
+                                                    if(ICL_LANGUAGE_CODE=='he'){
+                                                       echo("fa-chevron-left"); 
+                                                    }else{
+                                                        echo("fa-chevron-right");
+                                                    }
+                                                } 
+                                              ?>">
+                                           </i>                                            
                                             <?php the_title(); ?>
                                         </div>
                                         <div class="time">                                            
