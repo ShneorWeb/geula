@@ -8,8 +8,14 @@
                           $parentOfParent = get_category($this_category->parent);                            
                           ?>
                           <a href="<?php echo esc_url( get_category_link( $parentOfParent->cat_ID ) ); ?>">
-                              <i class="fa fa-arrow-right"></i>
-                              <?php echo $parentOfParent->name; ?>
+                            <?php if(ICL_LANGUAGE_CODE=='he'){?>
+                                  <i class="fa fa-arrow-right"></i>   
+                                  <?php echo $parentOfParent->name; ?> 
+                            <?php }else{?>
+                                 <?php echo $parentOfParent->name; ?>
+                                  <i class="fa fa-arrow-left"></i> 
+                            <?php } ?>
+                              
                           </a>                      
               </div>
 
@@ -20,17 +26,18 @@
                             
 
               ?>
+              <div class="flipBg">
+                  <div class="image_category" style="background-image:url(<?php echo $cat_image ?>);">
 
-              <div class="image_category" style="background-image:url(<?php echo $cat_image ?>);">
+                                 <div class="current_category_name">
+                                         <h1><?php echo $cat_name; ?></h1>
+                                </div>
 
-                             <div class="current_category_name">
-                                     <h1><?php echo $cat_name; ?></h1>
-                            </div>
+                                <div class="current_category_description">
+                                    <?php echo category_description($cat->term_id);  ?>
+                                </div>
 
-                            <div class="current_category_description">
-                                <?php echo category_description($cat->term_id);  ?>
-                            </div>
-
+                  </div>
               </div>
 
 				</div>
@@ -41,7 +48,8 @@
                     
                 <div class="search_text">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
-                    <input type="search" placeholder="חיפוש">
+                    <input type="search" placeholder="<?php echo __('חיפוש', 'swgeula'); ?>
+">
                 </div>
                 
 				<div class="selects">

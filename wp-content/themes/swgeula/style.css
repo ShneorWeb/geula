@@ -2155,6 +2155,7 @@ a.schedule_new {
 .category_square_content .bottom_cont {
   bottom: 20px;
   max-width: calc(100% - 60px);
+  width: calc(100% - 60px);
 }
 
 .category_square_description {
@@ -2551,6 +2552,10 @@ _responsive styles
 
   .page-template-custom-register-php .logAndReg_cont, .page-template-custom-login-php .logAndReg_cont {
     width: 85%;
+  }
+
+  .selects form {
+    margin-right: 22px;
   }
 }
 /* 768 and more ----------- */
