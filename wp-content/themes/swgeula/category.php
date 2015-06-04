@@ -1,12 +1,13 @@
-<?php get_header(); ?>	
+<?php get_header(); ?>  
 
-    <div class="col-lg-12 col-md-12 archive_cont">	      
+    <div class="col-lg-12 col-md-12 archive_cont">        
         <?php                      
-          $this_category = get_category(get_query_var('cat'));
+          $this_category = get_category($cat);
           $parent = $this_category->parent;
           $parentcat = get_category($parent);
           $parent_name = $parentcat->name;
-          $parentcat_id = $parentcat->cat_ID;          
+          $parentcat_id = $parentcat->cat_ID;
+          $category_link = get_category_link( $parentcat_id ); 
           $bInNosse = false;
 
           if ($parentcat->parent === getCatIDOfLibrary()) {            
@@ -15,11 +16,12 @@
             $parent = $this_category->parent;
             $parentcat = get_category($parent);
             $parent_name = $parentcat->name;
-            $parentcat_id = $parentcat->cat_ID;                  
+            $parentcat_id = $parentcat->cat_ID;
+            $category_link = get_category_link( $parentcat_id );          
           }                 
           
 
-         if ($parentcat_id != 0) {		                 
+         if ($parentcat_id != 0) {                     
 
             if (get_category_children($this_category->cat_ID) != "") {
 
@@ -42,4 +44,4 @@
 </div>
 
 <?php get_footer(); ?>
-				
+        

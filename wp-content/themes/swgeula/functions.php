@@ -212,7 +212,7 @@ add_action( 'wp_enqueue_scripts', 'swgeula_scripts' );
 /************************************************************************
 erez styles and scripts
 *************************************************************************/
-
+ 
 /* styles */
 function swgeula_styles() {
 	wp_enqueue_style(
@@ -293,7 +293,7 @@ function swgeula_manual_scripts(){
 add_action( 'wp_enqueue_scripts', 'swgeula_manual_scripts' );
 
 /***************************LANGUAGE SETTINGS********************************************/
-function lang_setup(){
+function lang_setup(){	
 	if (is_user_logged_in()) {	    	 
 			global $sitepress;			
 		    
@@ -302,12 +302,28 @@ function lang_setup(){
 			$lang = get_user_meta( $uid, 'user_lang', true );
 
 			$lang  = strstr($lang,"_",true);			
-			if (!is_admin()) $sitepress->switch_lang($lang);	
+			if (!is_admin()) $sitepress->switch_lang($lang);				
 	}
 	
     load_theme_textdomain('swgeulatr', get_template_directory() . '/languages');    
 }
 add_action('after_setup_theme', 'lang_setup');
+
+function sw_setup() {
+	global $gsLocale;
+	$gsLocale = "en_US";
+	$arrLangs = icl_get_languages();
+	if ( is_array($arrLangs) ) {
+	  foreach ($arrLangs as $arrLang)
+	    if ($arrLang['active']==1) { //active language
+	        $gsLocale = $arrLang['default_locale'];
+	    }
+	}
+	if ( is_user_logged_in() && ($gsLocale=="en_US") && !isset($_GET['lang']) && (strstr($_SERVER['REQUEST_URI'],"my-account/settings")===false) ) {  //fix for en links that don't have lang parameter
+	  wp_redirect( add_query_arg( 'lang', 'en' ) );
+	}
+}
+add_action('template_redirect', 'sw_setup');
 /***************************END LANGUAGE SETTINGS********************************************/
 
 /************************** user registration stuff: ************************************/

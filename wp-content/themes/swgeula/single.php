@@ -222,11 +222,11 @@ class MY_Post_Numbers {
                         user_id: userID,
                         cat_id: catID
                       };                                                                                            
-                      console.log( data );
+                      //console.log( data );
                       jQuery.post(ajaxurl, data, function(data) {                    
                         //bDoNotPost[playerID]=true;                                                                                                                                                        
                         //jQuery("#jwplayer-"+playerID+"-views").text(data);                                    
-                        console.log(data);
+                        //console.log(data);
                       });
                     }
 
@@ -236,8 +236,16 @@ class MY_Post_Numbers {
                     function onYouTubeIframeAPIReady() {
                       player = new YT.Player('vid_player', {                        
                         width: '1020',
-                        height: '573',
+                        height: '573',                        
                         videoId: '<?php echo $vidID;?>',
+                        playerVars: { 
+                          'rel': 0, 
+                          'fs':0,
+                          'enablejsapi': 1,
+                          'iv_load_policy' : 0,
+                          'modestbranding': 1,
+                          'origin': '<?php echo $_SERVER['HTTP_HOST'];?>'
+                        }, 
                         events: {
                           'onReady': onPlayerReady,
                           'onStateChange': onPlayerStateChange
