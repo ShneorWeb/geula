@@ -319,7 +319,7 @@ function sw_setup() {
 	        $gsLocale = $arrLang['default_locale'];
 	    }
 	}
-	if ( is_user_logged_in() && ($gsLocale=="en_US") && !isset($_GET['lang']) && (strstr($_SERVER['REQUEST_URI'],"my-account/settings")===false) ) {  //fix for en links that don't have lang parameter
+	if ( is_user_logged_in() && ($gsLocale=="en_US") && !isset($_GET['lang']) && (strstr($_SERVER['REQUEST_URI'],"my-account/settings")===false) &&  (strstr($_SERVER['REQUEST_URI'],"my-account/sign-in")===false) ) {  //fix for en links that don't have lang parameter
 	  wp_redirect( add_query_arg( 'lang', 'en' ) );
 	}
 }
@@ -1096,13 +1096,16 @@ function getTotalVideoDuration($arrLessonIDs) {
 	global $wpdb;
 	$retVal = 0;
 
-	$results = $wpdb->get_results("SELECT duration FROM wp_sw_videos WHERE lesson_id IN (".implode(",", $arrLessonIDs).") ORDER BY id DESC;",ARRAY_A);		
+	if (is_array($arrLessonIDs)) {
+
+		$results = $wpdb->get_results("SELECT duration FROM wp_sw_videos WHERE lesson_id IN (".implode(",", $arrLessonIDs).") ORDER BY id DESC;",ARRAY_A);		
 		
-	if (count($results)>0) {
+		if (count($results)>0) {
 			
 			foreach($results as $row) {	
 				$retVal += (int)$row['duration'];
 			}
+		}
 	}
 	return $retVal;	
 }

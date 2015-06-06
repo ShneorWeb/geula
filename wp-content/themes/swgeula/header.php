@@ -17,7 +17,7 @@ global $gsLocale;
     var gbLocal = (document.location.href.indexOf("127.0.0.1")!=-1);    
     var gsLibraryDir = '<?php echo get_category_link(getCatIDOfLibrary());?>';
     var sCurLang = '<?php echo $gsLocale;?>';    
-    console.log("lang="+sCurLang);
+    //console.log("lang="+sCurLang);
 	</script>  
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
