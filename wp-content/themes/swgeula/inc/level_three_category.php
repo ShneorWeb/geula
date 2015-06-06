@@ -19,13 +19,12 @@
 					  
 						<div class="back_to_libary">
                               <a href="<?php echo esc_url( $category_link ); ?>">
-                                   <?php if(ICL_LANGUAGE_CODE=='he'){?>
-                                      <i class="fa fa-arrow-right"></i> 
-                                      <?php echo $parent_name; ?>
-                                  <?php }else{?>
-                                       <?php echo $parent_name; ?>
-                                       <i class="fa fa-arrow-left"></i> 
+                                     <?php if(ICL_LANGUAGE_CODE=='he'){?>
+                                          <i class="fa fa-arrow-right"></i>   
+                                    <?php }else{?>
+                                         <i class="fa fa-arrow-left"></i> 
                                     <?php } ?>
+                                      <?php echo $parent_name; ?>
                               </a>
                         </div>
 							
@@ -127,24 +126,18 @@
                                         <button type="button" class="btn btn-default playBtn" onclick="document.location.href='<?php echo getNextLessonToPlay($cat_id); ?>';">
                                            <?php if(ICL_LANGUAGE_CODE=='he'){?>
                                                 <i class="fa fa-play fa-flip-horizontal"></i> 
-                                                <?php _e('start', 'swgeula'); ?>
                                             <?php }else{?>
-                                                <?php _e('start', 'swgeula'); ?>
                                                 <i class="fa fa-play"></i> 
                                             <?php } ?>
-                                            
+                                            <?php _e('start', 'swgeula'); ?>
+
                                         </button>
                                     </a>	
                                     <!--TODO: what link is need to go to? -->
                                     <a href="#">
                                         <button type="button" class="btn btn-default getAfter" >
-                                           <?php if(ICL_LANGUAGE_CODE=='he'){?>
                                                 <i class="fa fa-clock-o"></i>  
                                                 <?php _e('schedule to circle', 'swgeula'); ?>
-                                           <?php }else{?> 
-                                                <?php _e('schedule to circle', 'swgeula'); ?>
-                                                <i class="fa fa-clock-o"></i>  
-                                           <?php } ?>   
                                         </button>
                                     </a>	
 				    			</div>

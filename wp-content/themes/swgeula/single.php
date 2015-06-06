@@ -76,7 +76,12 @@ class MY_Post_Numbers {
 
                             <div class="back_to_libary">
                               <a href="<?php echo get_category_link($parent_cat->term_id ) ?>">
-                                  <i class="fa fa-arrow-right"></i>
+                                 
+                                  <?php if(ICL_LANGUAGE_CODE=='he'){?>
+                                          <i class="fa fa-arrow-right"></i>   
+                                    <?php }else{?>
+                                         <i class="fa fa-arrow-left"></i> 
+                                    <?php } ?>
                                   <?php echo $parent_cat_name ?>
                               </a>
                             </div>
@@ -91,33 +96,64 @@ class MY_Post_Numbers {
                     <h2 class="name_of_single"><?php the_title(); ?></h2>
 
 								<div class="previous_post_link">
-                                    <?php previous_post_link_plus(array(
-                                    'order_by' => 'post_date',
+                                    <?php
+                                        if(ICL_LANGUAGE_CODE=='he'){
+                                            previous_post_link_plus(array(
+                                                'order_by' => 'post_date',
 
-                                    'format' => '%link',
+                                                'format' => '%link',
 
-                                    'link' => '<i class="fa fa-long-arrow-right"></i>',
+                                                'link' => '<i class="fa fa-long-arrow-right"></i>',
 
-                                    'in_same_cat' => true,
+                                                'in_same_cat' => true,
 
-                                    ) ); ?>
+                                                ) ); 
+                                        }else{
+                                            previous_post_link_plus(array(
+                                                'order_by' => 'post_date',
+
+                                                'format' => '%link',
+
+                                                'link' => '<i class="fa fa-long-arrow-left"></i>',
+
+                                                'in_same_cat' => true,
+
+                                                ) ); 
+                                        }
+                                    ?>
 
 								</div>
 
+								
 								<div class="next_post_link">
 
-                                    <?php next_post_link_plus(array(
-                                    'order_by' => 'post_date',
+											<?php
+                                                if(ICL_LANGUAGE_CODE=='he'){
+                                                    next_post_link_plus(array(
+                                                        'order_by' => 'post_date',
 
-                                    'format' => '%link',
+                                                        'format' => '%link',
 
-                                    'link' => '<i class="fa fa-long-arrow-left"></i>',
+                                                        'link' => '<i class="fa fa-long-arrow-left"></i>',
 
-                                    'in_same_cat' => true,
+                                                        'in_same_cat' => true,
 
-                                    ) ); ?>
+                                                        ) ); 
+                                                    }else{
+                                                    next_post_link_plus(array(
+                                                        'order_by' => 'post_date',
 
-								</div>
+                                                        'format' => '%link',
+
+                                                        'link' => '<i class="fa fa-long-arrow-right"></i>',
+
+                                                        'in_same_cat' => true,
+
+                                                        ) ); 
+                                                }
+                                                ?>
+
+										</div>
 
                   </div>
             
@@ -248,12 +284,13 @@ class MY_Post_Numbers {
                       return false;
                     });
                   </script>
-
-                    <div id="vid_player">
-                        <!-- 16:9 aspect ratio -->
-                        <!--<div class="embed-responsive embed-responsive-16by9">
-                          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/eNKzDlhbxmg?rel=0&amp;showinfo=0" frameborder="1"></iframe>
-                        </div>-->
+                    <div class="videoWrapper">
+                        <div id="vid_player">
+                            <!-- 16:9 aspect ratio -->
+                            <!--<div class="embed-responsive embed-responsive-16by9">
+                              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/eNKzDlhbxmg?rel=0&amp;showinfo=0" frameborder="1"></iframe>
+                            </div>-->
+                        </div>
                     </div>
 
                     <div class="dtls box">
@@ -342,33 +379,62 @@ class MY_Post_Numbers {
                     </div>
                     <h2 class="name_of_single"><?php the_title(); ?></h2>
 
-											<div class="previous_post_link">
+								<div class="previous_post_link">
+                                    <?php
+                                        if(ICL_LANGUAGE_CODE=='he'){
+                                            previous_post_link_plus(array(
+                                                'order_by' => 'post_date',
 
-												<?php previous_post_link_plus(array(
-													'order_by' => 'post_date',
+                                                'format' => '%link',
 
-			                    'format' => '%link',
+                                                'link' => '<i class="fa fa-long-arrow-right"></i>',
 
-			                    'link' => '<i class="fa fa-long-arrow-right"></i>',
+                                                'in_same_cat' => true,
 
-			                    'in_same_cat' => true,
+                                                ) ); 
+                                        }else{
+                                            previous_post_link_plus(array(
+                                                'order_by' => 'post_date',
 
-			                    ) ); ?>
+                                                'format' => '%link',
 
-											</div>
+                                                'link' => '<i class="fa fa-long-arrow-left"></i>',
 
-											<div class="next_post_link">
+                                                'in_same_cat' => true,
 
-											<?php next_post_link_plus(array(
-												'order_by' => 'post_date',
+                                                ) ); 
+                                        }
+                                    ?>
 
-												'format' => '%link',
+								</div>
 
-												'link' => '<i class="fa fa-long-arrow-left"></i>',
+								<div class="next_post_link">
 
-												'in_same_cat' => true,
+											<?php
+                                                if(ICL_LANGUAGE_CODE=='he'){
+                                                    next_post_link_plus(array(
+                                                        'order_by' => 'post_date',
 
-												) ); ?>
+                                                        'format' => '%link',
+
+                                                        'link' => '<i class="fa fa-long-arrow-left"></i>',
+
+                                                        'in_same_cat' => true,
+
+                                                        ) ); 
+                                                    }else{
+                                                    next_post_link_plus(array(
+                                                        'order_by' => 'post_date',
+
+                                                        'format' => '%link',
+
+                                                        'link' => '<i class="fa fa-long-arrow-right"></i>',
+
+                                                        'in_same_cat' => true,
+
+                                                        ) ); 
+                                                }
+                                                ?>
 
 										</div>
 

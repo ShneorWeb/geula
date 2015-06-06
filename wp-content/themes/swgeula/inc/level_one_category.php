@@ -10,12 +10,10 @@
                           <a href="<?php echo esc_url( get_category_link( $parentOfParent->cat_ID ) ); ?>">
                             <?php if(ICL_LANGUAGE_CODE=='he'){?>
                                   <i class="fa fa-arrow-right"></i>   
-                                  <?php echo $parentOfParent->name; ?> 
                             <?php }else{?>
-                                 <?php echo $parentOfParent->name; ?>
-                                  <i class="fa fa-arrow-left"></i> 
+                                 <i class="fa fa-arrow-left"></i> 
                             <?php } ?>
-                              
+                                <?php echo $parentOfParent->name; ?>
                           </a>                      
               </div>
 
