@@ -132,7 +132,7 @@ $current_user = wp_get_current_user();
                        <div class="elipse"></div>
                        <div class="number_and_sub">
                             <b>8</b>
-                            <p>נושא</p>
+                            <p><?php echo __('נושא', 'swgeula'); ?></p>
                         </div>
                     </div>
                 </div>
