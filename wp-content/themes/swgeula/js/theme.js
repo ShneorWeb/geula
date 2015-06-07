@@ -5,7 +5,8 @@ var hideCat;
 var setSchedule;
 
 function goToLogin() {
-  window.location.href=gbLocal?'/geula/my-account/sign-in/':'/my-account/sign-in/';
+  var sLang = sCurLang.indexOf("_")!=-1?sCurLang.substr(0,sCurLang.indexOf("_")):sCurLang;  
+  window.location.href=gbLocal?'/geula/my-account/sign-in/?lang='+sLang:'/my-account/sign-in/?lang='+sLang;
 }
 
 
