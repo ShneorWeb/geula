@@ -920,6 +920,44 @@ function getMyCatsStudied() {
 	 return array();
 }
 
+function getMyCatsTeach() {
+
+	global $wpdb;	
+
+	if ( is_user_logged_in() ) :				
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;
+
+		if (is_int($userID)) :
+
+				$arrRetVal = array();					
+
+				$args = array(
+					'type'                     => 'post',
+					'child_of'                 => getCatIDOfLibrary(),					
+					'orderby'                  => 'name',
+					'order'                    => 'ASC',
+					'hide_empty'               => 0,					
+					'taxonomy'                 => 'category'					
+				); 
+				$results = get_categories( $args );				
+					
+				if (count($results)>0) :					
+					
+					foreach($results as $row) :			
+						$cat_authors = get_field('swauthors', "category_".$row->cat_ID);
+						if ($cat_authors['ID'] == $userID) $arrRetVal[] = $row->cat_ID;	
+					endforeach;
+
+				endif;
+
+				return $arrRetVal;
+	 	endif;			
+
+	 endif;
+	 return array();
+}
+
 function getMyCatsNotYetStudied() {
 	global $wpdb;	
 

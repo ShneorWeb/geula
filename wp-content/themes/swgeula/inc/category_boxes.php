@@ -6,9 +6,8 @@
                         $parent_cat = $this_category->cat_ID;
                       }
       
-					//if (is_category() || is_single() || $bIsAjax) {
-                      
-
+					//if (is_category() || is_single() || $bIsAjax) {                      
+                       
                       //if in my lessons page get my catgories:                                                   
                       if ( $bMyLessons ) {
                         $args = array(   
