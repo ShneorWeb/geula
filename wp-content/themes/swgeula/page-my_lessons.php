@@ -76,8 +76,14 @@ $current_user = wp_get_current_user();
                                         <div class="single_lesson_cont">
 								    
                                             <a href="#">
-                                                <div class="name">                                            
+                                                <div class="name">      
+                                                  
+                                                   <?php if(ICL_LANGUAGE_CODE=='he'){?>                              
                                                     <i class="fa fa-chevron-left"></i>            
+                                                    <?php }else{?>
+                                                    <i class="fa fa-chevron-right"></i>  
+                                                    <?php } ?>
+                                                    
                                                     <?php                                                                                                                            
                                                     if ( is_array($arrNextScheduled) && count($arrNextScheduled)>0 ) {
                                                         $tempCatObj = get_category($arrNextScheduled[0]);                                                                                                        
