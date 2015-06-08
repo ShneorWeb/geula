@@ -610,7 +610,7 @@ button.edit_profile {
 }
 
 .page-template-custom-profile-php .password_cont .bar {
-    float: left;
+    float: right;
 }
 
 .page-template-custom-profile-php .submit_cont {
@@ -721,11 +721,15 @@ transform:scaleX(-1);
 }
 
 .he_elm{
-    display: none;
+    display: inline-block;
 }
 
 .page-template-custom-profile-php .password_cont .bar {
   width: calc(100% - 70px);
+}
+
+.email_field_cont .fa-check-circle {
+  margin-top: 8px;
 }
 
 /* responsive styles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
