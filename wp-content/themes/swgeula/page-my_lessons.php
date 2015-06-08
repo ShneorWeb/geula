@@ -28,7 +28,13 @@ $current_user = wp_get_current_user();
                    <a class="current">
                         <?php _e('my lessons', 'swgeula'); ?>
                     </a>
-                    <a href="<?php echo esc_url( get_permalink( get_page_by_title( __('lessons I teach', 'swgeula') ) ) ); ?>">
+                    <a href="<?php 
+                                if(ICL_LANGUAGE_CODE=='he'){
+                                    echo get_permalink(95);
+                                }else{
+                                   echo get_permalink(129); 
+                                }
+                             ?>">
                         <?php _e('lessons I teach', 'swgeula'); ?>
                     </a>
                 </div>

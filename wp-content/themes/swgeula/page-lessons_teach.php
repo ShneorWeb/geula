@@ -24,7 +24,15 @@ get_header(); ?>
                          </div>
                          
                           <div class="box menu">
-                            <a href="<?php echo esc_url( get_permalink( get_page_by_title( __('השיעורים שלי', 'swgeula') ) ) ); ?>">
+                            <a href="
+                               <?php 
+                                    if(ICL_LANGUAGE_CODE=='he'){
+                                        echo get_permalink(90);
+                                    }else{
+                                       echo get_permalink(126); 
+                                    }
+                                 ?>
+                               ">
                                 <?php echo __('השיעורים שלי', 'swgeula'); ?>
                             </a >
                             <a class="current">
@@ -69,7 +77,7 @@ get_header(); ?>
                     
                 <div class="search_text">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
-                    <input type="search" placeholder="חיפוש">
+                    <input type="search" placeholder="<?php echo __('חיפוש', 'swgeula'); ?>">
                 </div>
                 
 				<div class="selects">
@@ -132,9 +140,9 @@ get_header(); ?>
                    
          
            <select name="select_order" onchange='this.form.submit()' class="selectpicker show-tick">
-               <option value="new_to_old" <?php selected( $_GET['select_order'],'new_to_old'); ?> >חדש לישן</option>
-               <option value="old_to_new" <?php selected( $_GET['select_order'],'old_to_new' ); ?>>ישן לחדש</option>
-               <option value="name" <?php selected( $_GET['select_order'],'name' ); ?>>אלף בתי</option>
+               <option value="new_to_old" <?php selected( $_GET['select_order'],'new_to_old'); ?> ><?php echo __('חדש לישן', 'swgeula'); ?></option>
+               <option value="old_to_new" <?php selected( $_GET['select_order'],'old_to_new' ); ?>><?php echo __('ישן לחדש', 'swgeula'); ?></option>
+               <option value="name" <?php selected( $_GET['select_order'],'name' ); ?>><?php echo __('אלף בתי', 'swgeula'); ?></option>
                 
                
                 
