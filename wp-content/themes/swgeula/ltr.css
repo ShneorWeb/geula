@@ -716,6 +716,18 @@ transform:scaleX(-1);
     direction: rtl;
 }
 
+.en_elm{
+    display: block;
+}
+
+.he_elm{
+    display: none;
+}
+
+.page-template-custom-profile-php .password_cont .bar {
+  width: calc(100% - 70px);
+}
+
 /* responsive styles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 @media screen and (min-width: 1856px){
     .library-page .site-content > .container {
