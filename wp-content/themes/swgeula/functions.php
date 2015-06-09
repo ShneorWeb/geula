@@ -319,7 +319,7 @@ function sw_setup() {
 	        $gsLocale = $arrLang['default_locale'];
 	    }
 	}
-	if ( is_user_logged_in() && ($gsLocale=="en_US") && !isset($_GET['lang']) && (strstr($_SERVER['REQUEST_URI'],"my-account/settings")===false) ) {  //fix for en links that don't have lang parameter
+	if ( is_user_logged_in() && !is_admin() && ($gsLocale=="en_US") && !isset($_GET['lang']) && (strstr($_SERVER['REQUEST_URI'],"my-account/settings")===false) ) {  //fix for en links that don't have lang parameter
 	  wp_redirect( add_query_arg( 'lang', 'en' ) );
 	}
 }
