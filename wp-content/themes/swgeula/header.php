@@ -5,6 +5,7 @@
  * @package swgeula
  */
 global $gsLocale;
+global $gsLocaleShort;
 ?>
 <!DOCTYPE html>
 <html>
