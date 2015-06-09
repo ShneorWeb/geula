@@ -234,7 +234,12 @@ var myApp = angular.module('appgeula', ['ngRoute','ui.bootstrap','pascalprecht.t
                 //console.log(sCurLang);
                 //console.log($scope.user.lang);
                 if ($scope.user.lang != sCurLang) {
-                	window.location.href += "#profile";
+                	//window.location.href += gbLocal?("/geula/settings/?lang="+$scope.user.lang+"#profile"):("/settings/?lang="+$scope.user.lang+"#profile");
+                	var sShortLang = $scope.user.lang.substr(0,$scope.user.lang.indexOf("_"));
+                	$location.search('lang='+sShortLang);
+                	$location.hash('profile');
+                	$location.replace();
+                	//window.location.href += "?lang="+$scope.user.lang+"#profile";                	
                 	window.location.reload();
                 }
                 if (data==1) {                	    				    					
