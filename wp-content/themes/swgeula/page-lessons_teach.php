@@ -144,7 +144,7 @@ get_header(); ?>
        <div class="categories row" id="div-cat-boxes">                                    
                 <?php                  
                   $arrMyCats = array();
-                  $arrMyCats = $teachCats;                     
+                  $arrMyCats = getMyCatsTeach();                     
                   $bMyLessons = true;
                   $orderby="ID"; 
                   include_once("inc/category_boxes.php");
