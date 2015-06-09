@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
 "POT-Creation-Date: 2015-05-28 10:21+0200\n"
-"PO-Revision-Date: 2015-05-28 10:26+0200\n"
+"PO-Revision-Date: 2015-06-09 12:51+0200\n"
 "Last-Translator: erez lieberman <erez2613@gmail.com>\n"
 "Language-Team: \n"
 "Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -38,12 +38,12 @@ msgstr ""
 #: C:\wamp\www\geula\wp-content\themes\swgeula/author.php:42
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-lessons_teach.php:58
 msgid " שיעורים בספריה"
-msgstr ""
+msgstr "lessons in library"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/author.php:68
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-lessons_teach.php:84
 msgid "נושא"
-msgstr ""
+msgstr "Subject"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/author.php:266
 #: C:\wamp\www\geula\wp-content\themes\swgeula/inc/category_boxes.php:197
@@ -72,7 +72,7 @@ msgstr ""
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:52
 msgid "השב לתגובה זו"
-msgstr ""
+msgstr "Replay to this comment"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:75
 msgid "Comments are closed."
@@ -80,16 +80,16 @@ msgstr ""
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:80
 msgid "הגב"
-msgstr ""
+msgstr "Replay"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:82
 msgid "תגובה"
-msgstr ""
+msgstr "Comment"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/comments.php:86
 #, php-format
 msgid "אתה חייב <a href=\"%s\">להתחבר</a> כדי להגיב."
-msgstr ""
+msgstr "You must <a href=\"%s\">log in</a>to replay."
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/content-none.php:13
 msgid "Nothing Found"
@@ -591,36 +591,36 @@ msgstr ""
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-dashboard.php:47
 msgid "עריכת פרופיל"
-msgstr ""
+msgstr "Edit profile"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-dashboard.php:63
 msgid "שלב"
-msgstr ""
+msgstr "level"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-dashboard.php:85
 msgid "צברת סה”כ"
-msgstr ""
+msgstr "You accumulated total"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-dashboard.php:85
 msgid "נקודות"
-msgstr ""
+msgstr "points"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-dashboard.php:100
 msgid "למד וצבור עוד"
-msgstr ""
+msgstr "Learn and Earn More"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-dashboard.php:100
 msgid "נקודות כדי לעלות לשלב הבא"
-msgstr ""
+msgstr "points to move up to the next level"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-lessons_teach.php:27
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-lessons_teach.php:28
 msgid "השיעורים שלי"
-msgstr ""
+msgstr "My Lessons"
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-lessons_teach.php:31
 msgid "שיעורים שאני מוסר"
-msgstr ""
+msgstr "Lessons I teach "
 
 #: C:\wamp\www\geula\wp-content\themes\swgeula/page-my_lessons.php:29
 msgid "my lessons"
