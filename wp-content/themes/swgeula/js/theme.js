@@ -110,7 +110,7 @@ filterBoxes = function(iAuthorID,parentCat,sSort,iCatID,bInNosse) {
   });
 }
 
-filterBoxesTeach = function(parentCat,sSort) {    
+filterBoxesTeach = function(parentCat,sSort,iAuthorID) {    
   
   sOrderby = "ID"; 
   if (sSort == 'new_to_old') sOrder = "desc";  
@@ -126,7 +126,8 @@ filterBoxesTeach = function(parentCat,sSort) {
               'action': 'get_cat_boxes_teach',
               'order_by': sOrderby,
               'order': sOrder,
-              'parent_cat': parentCat              
+              'parent_cat': parentCat,
+              'author_id':iAuthorID              
           },          
           url: ajaxurl,          
           success    : function(data){

@@ -89,15 +89,15 @@ get_header(); ?>
                     <!-- filter by subject -->
                      <form>      
                          
-                         <select id="select_subject" name="select_subject" onchange="filterBoxesTeach(jQuery('#select_subject').val(),jQuery('#select_order').val())" class="selectpicker show-tick"> 
+                         <select id="select_subject" name="select_subject" onchange="filterBoxesTeach(jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $author;?>)" class="selectpicker show-tick"> 
                              
                              <option value="<?php echo $this_category->cat_ID; ?>">
                                 <?php _e("subject","swgeula");?>
                              </option> 
                              
-                             <?php   
-                              
-                             $teachCats = getMyCatsTeach(0);
+                             <?php                                
+
+                             $teachCats = getMyCatsTeach(0,$author);
                              $arrTeachSubjects = array();
 
                              foreach ($teachCats as $teachCat) {                                 
@@ -131,7 +131,7 @@ get_header(); ?>
                     
      <form>          
            <!-- filter by order -->                          
-           <select id="select_order" name="select_order" onchange="filterBoxesTeach(jQuery('#select_subject').val(),jQuery('#select_order').val())" class="selectpicker show-tick">
+           <select id="select_order" name="select_order" onchange="filterBoxesTeach(jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $author;?>)" class="selectpicker show-tick">
                <option value="new_to_old"><?php _e("old to new","swgeula");?></option>
                <option value="old_to_new"><?php _e("new to old","swgeula");?></option>
                <option value="alphabet"><?php _e("alphabetical","swgeula");?></option>                                                                          

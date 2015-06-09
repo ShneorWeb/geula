@@ -923,42 +923,38 @@ function getMyCatsStudied() {
 	 return array();
 }
 
-function getMyCatsTeach($parentCat=-1) {
+function getMyCatsTeach($parentCat=-1,$userID) {
 
 	global $wpdb;	
+	$arrRetVal = array();			
 
-	if ( is_user_logged_in() ) :				
-		$current_user = wp_get_current_user();
-		$userID = $current_user->ID;
+	if (is_int($userID)) :							
 
-		if (is_int($userID)) :
+			$args = array(
+				'type'                     => 'post',
+				'child_of'                 => ($parentCat==-1)?getCatIDOfLibrary():$parentCat,					
+				'orderby'                  => 'name',
+				'order'                    => 'ASC',
+				'hide_empty'               => 0,					
+				'taxonomy'                 => 'category'					
+			); 
+			$results = get_categories( $args );				
+				
+			if (count($results)>0) :					
+				
+				foreach($results as $row) :								
+					$cat_authors = get_field('swauthors', "category_".$row->cat_ID);													
+					if ( is_array($cat_authors) && count($cat_authors)>0 ) $authorID = $cat_authors['ID'];
+					else $authorID=-1;
 
-				$arrRetVal = array();					
+					if ( ($authorID == $userID) && !in_array($row->cat_ID,$arrRetVal) ) $arrRetVal[] = $row->cat_ID;	
+				endforeach;				
 
-				$args = array(
-					'type'                     => 'post',
-					'child_of'                 => ($parentCat==-1)?getCatIDOfLibrary():$parentCat,					
-					'orderby'                  => 'name',
-					'order'                    => 'ASC',
-					'hide_empty'               => 0,					
-					'taxonomy'                 => 'category'					
-				); 
-				$results = get_categories( $args );				
-					
-				if (count($results)>0) :					
-					
-					foreach($results as $row) :			
-						$cat_authors = get_field('swauthors', "category_".$row->cat_ID);								
-						if ($cat_authors['ID'] == $userID) $arrRetVal[] = $row->cat_ID;	
-					endforeach;
+			endif;							
+	
+ 	endif;
 
-				endif;				
-
-				return $arrRetVal;
-	 	endif;			
-
-	 endif;
-	 return array();
+ 	return $arrRetVal;
 }
 
 function getMyCatsNotYetStudied() {
@@ -1292,14 +1288,17 @@ add_action('wp_ajax_nopriv_get_cat_boxes', 'getCatBoxes');
 
 function getCatBoxesTeach() {		
 
-	$parent_cat = (int)$_POST['parent_cat'];		
+	$parent_cat = (int)$_POST['parent_cat'];			
 	$order = $_POST['order'];
 	$orderby = $_POST['order_by'];			    
+	$authorID = (int)$_POST['author_id'];			    	
+
 
 	$arrMyCats = array();
-    $arrMyCats = getMyCatsTeach($parent_cat);                     
+    $arrMyCats = getMyCatsTeach($parent_cat,$authorID);                                
+
     $bMyLessons = true;
-    
+
 	ob_start();
 	include_once("inc/category_boxes.php");
 	$inc = ob_get_clean();
