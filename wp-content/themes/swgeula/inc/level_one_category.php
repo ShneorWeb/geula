@@ -46,7 +46,7 @@
                     
                 <div class="search_text">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
-                    <input type="search" placeholder="<?php echo __('חיפוש', 'swgeula'); ?>
+                    <input type="search" placeholder="<?php echo __('Search', 'swgeulatr'); ?>
 ">
                 </div>
                 

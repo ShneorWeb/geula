@@ -66,7 +66,7 @@
 				    			<div class="category_square_oval">
 								    <?php
 								        //TODO: get the 'new' tag dynamclay from site
-								       	echo '<span class="oval">'. __('new', 'swgeula').'</span>';
+								       	echo '<span class="oval">'. __('new', 'swgeulatr').'</span>';
 								    	
 								    	$values = get_field('swlevel',"category_".$this_category->cat_ID);                        
 								    	
@@ -107,8 +107,8 @@
 																	    echo '<span>' . $values .'</span>' ;
 																	?>
 													</li>
-													<li><?php echo $count . ' ' . __('lessons', 'swgeula'); ?></li>                                                    
-                                                    <li><?php echo(getNumStudents($cat_id)) . ' ' . __('לומדים', 'swgeula'); ?>
+													<li><?php echo $count . ' ' . __('lessons', 'swgeulatr'); ?></li>                                                    
+                                                    <li><?php echo(getNumStudents($cat_id)) . ' ' . __('students', 'swgeulatr'); ?>
 </li>
 												</ul>
 											</div>
@@ -129,7 +129,7 @@
                                             <?php }else{?>
                                                 <i class="fa fa-play"></i> 
                                             <?php } ?>
-                                            <?php _e('start', 'swgeula'); ?>
+                                            <?php _e('start', 'swgeulatr'); ?>
 
                                         </button>
                                     </a>	
@@ -137,7 +137,7 @@
                                     <a href="#">
                                         <button type="button" class="btn btn-default getAfter" >
                                                 <i class="fa fa-clock-o"></i>  
-                                                <?php _e('schedule to circle', 'swgeula'); ?>
+                                                <?php _e('schedule to circle', 'swgeulatr'); ?>
                                         </button>
                                     </a>	
 				    			</div>
@@ -165,14 +165,14 @@
         
         <div class="col-lg-8 col-md-8">
             <h3>
-                <?php _e('about the series', 'swgeula'); ?>
+                <?php _e('about the series', 'swgeulatr'); ?>
             </h3>
 			<div class="box">
 			    <?php echo category_description($cat->term_id);  ?>
 			</div>
             
             <h3>
-                <?php echo $count . ' ' . __('lessons in this series', 'swgeula'); ?>
+                <?php echo $count . ' ' . __('lessons in this series', 'swgeulatr'); ?>
             </h3>
 			<div class="box contOfSingPosts">
             <script> 
@@ -298,7 +298,7 @@
         
 	   <div class="col-lg-4 col-md-4">
 			<h3>
-                <?php _e('teacher', 'swgeula'); ?>
+                <?php _e('teacher', 'swgeulatr'); ?>
             </h3>
 			<div class="box userdtls">
                    <?php
@@ -321,7 +321,7 @@
                                 <div class="category_square_number">
                                    <?php 
                                         $user_post_count = count_user_posts( $user_id );
-                                        echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');  
+                                        echo $user_post_count . ' ' . __('lessons in the library', 'swgeulatr');  
                                     ?>
                                 </div>
                             </div>

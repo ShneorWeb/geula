@@ -717,11 +717,11 @@ transform:scaleX(-1);
 }
 
 .en_elm{
-    display: block;
+    display:inline-block;
 }
 
 .he_elm{
-    display: inline-block;
+    display:none;
 }
 
 .page-template-custom-profile-php .password_cont .bar {
@@ -730,6 +730,10 @@ transform:scaleX(-1);
 
 .email_field_cont .fa-check-circle {
   margin-top: 8px;
+}
+
+.menu-menu-right-container a, .menu-menu_right_en0-container a {
+  padding-left: 20px;
 }
 
 /* responsive styles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
