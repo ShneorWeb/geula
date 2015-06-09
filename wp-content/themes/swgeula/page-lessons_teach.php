@@ -94,7 +94,7 @@ get_header(); ?>
                              
                              <?php   
                               
-                             $teachCats = getMyCatsTeach();
+                             $teachCats = getMyCatsTeach(0);
                              $arrTeachSubjects = array();
 
                              foreach ($teachCats as $teachCat) {                                 
@@ -144,7 +144,7 @@ get_header(); ?>
        <div class="categories row" id="div-cat-boxes">                                    
                 <?php                  
                   $arrMyCats = array();
-                  $arrMyCats = getMyCatsTeach();                     
+                  $arrMyCats = $teachCats;                     
                   $bMyLessons = true;
                   $orderby="ID"; 
                   include_once("inc/category_boxes.php");

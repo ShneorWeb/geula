@@ -1289,7 +1289,7 @@ add_action('wp_ajax_nopriv_get_cat_boxes', 'getCatBoxes');
 
 function getCatBoxesTeach() {		
 
-	$parent_cat = (int)$_POST['parent_cat'];	
+	$parent_cat = (int)$_POST['parent_cat'];		
 	$order = $_POST['order'];
 	$orderby = $_POST['order_by'];			    
 
