@@ -44,7 +44,7 @@ $current_user = wp_get_current_user();
 
                                     <a href="<?php echo get_the_permalink('47'); ?>">
                                        <button class="edit_profile">
-                                            <?php echo __('עריכת פרופיל', 'swgeulatr'); ?>
+                                            <?php echo __('Edit profile', 'swgeulatr'); ?>
                                         </button>
                                     </a>
 
