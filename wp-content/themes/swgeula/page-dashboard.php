@@ -44,7 +44,7 @@ $current_user = wp_get_current_user();
 
                                     <a href="<?php echo get_the_permalink('47'); ?>">
                                        <button class="edit_profile">
-                                            <?php echo __('עריכת פרופיל', 'swgeula'); ?>
+                                            <?php echo __('עריכת פרופיל', 'swgeulatr'); ?>
                                         </button>
                                     </a>
 
@@ -60,7 +60,7 @@ $current_user = wp_get_current_user();
            <?php
                 // TODO: get the current level
                 $current_level = 1;
-                echo __('שלב', 'swgeula') . ' ' . $current_level; 
+                echo __('שלב', 'swgeulatr') . ' ' . $current_level; 
              ?>
          </div>
          </i>
@@ -82,7 +82,7 @@ $current_user = wp_get_current_user();
                 <?php
                     //TODO: get the number of points tahat user have
                     $total_points = 138;
-                    echo __('צברת סה”כ', 'swgeula') . ' ' . $total_points . ' ' . __('נקודות', 'swgeula') 
+                    echo __('צברת סה”כ', 'swgeulatr') . ' ' . $total_points . ' ' . __('נקודות', 'swgeulatr') 
                 ?>
             </p>
             
@@ -97,7 +97,7 @@ $current_user = wp_get_current_user();
                 <?php
                     //TODO: get the number of points tahat user need to get to go to next level
                     $points_to_next_level = 770;
-                    echo __('למד וצבור עוד', 'swgeula') . ' ' . $points_to_next_level . ' ' . __('נקודות כדי לעלות לשלב הבא', 'swgeula') 
+                    echo __('למד וצבור עוד', 'swgeulatr') . ' ' . $points_to_next_level . ' ' . __('נקודות כדי לעלות לשלב הבא', 'swgeulatr') 
                 ?>
             </p>
             
@@ -132,7 +132,7 @@ $current_user = wp_get_current_user();
                        <div class="elipse"></div>
                        <div class="number_and_sub">
                             <b>8</b>
-                            <p><?php echo __('נושא', 'swgeula'); ?></p>
+                            <p><?php echo __('נושא', 'swgeulatr'); ?></p>
                         </div>
                     </div>
                 </div>
