@@ -29,10 +29,13 @@ $current_user = wp_get_current_user();
                         <?php _e('my lessons', 'swgeula'); ?>
                     </a>
                     <a href="<?php 
-                                if(ICL_LANGUAGE_CODE=='he'){
-                                    echo get_permalink(95);
-                                }else{
-                                   echo get_permalink(129); 
+                                if($gsLocaleShort=='he'){
+                                    $temp1 = get_page_by_path('שיעורים-שאני-מוסר');  
+                                    echo get_permalink( $temp1->ID );
+                                }
+                                else{
+                                   $temp1 = get_page_by_path('lessons-i-teach');  
+                                   echo get_permalink( $temp1->ID ); 
                                 }
                              ?>">
                         <?php _e('lessons I teach', 'swgeula'); ?>

@@ -27,11 +27,14 @@ get_header(); ?>
                           <div class="box menu">
                             <a href="
                                <?php 
-                                    if(ICL_LANGUAGE_CODE=='he'){
-                                        echo get_permalink(90);
-                                    }else{
-                                       echo get_permalink(126); 
-                                    }
+                                if($gsLocaleShort=='he'){
+                                    $temp1 = get_page_by_path('השיעורים-שלי');  
+                                    echo get_permalink( $temp1->ID );
+                                }
+                                else{
+                                   $temp1 = get_page_by_path('my-lessons');  
+                                   echo get_permalink( $temp1->ID ); 
+                                }
                                  ?>
                                ">
                                 <?php _e('my lessons', 'swgeula'); ?>

@@ -311,7 +311,8 @@ add_action('after_setup_theme', 'lang_setup');
 
 function sw_setup() {
 	global $gsLocale;
-	$gsLocale = "en_US";
+	global $gsLocaleShort;
+	$gsLocale = "en_US";	
 	$arrLangs = icl_get_languages();
 	if ( is_array($arrLangs) ) {
 	  foreach ($arrLangs as $arrLang)
@@ -319,7 +320,9 @@ function sw_setup() {
 	        $gsLocale = $arrLang['default_locale'];
 	    }
 	}
-	if ( is_user_logged_in() && !is_admin() && ($gsLocale=="en_US") && !isset($_GET['lang']) && (strstr($_SERVER['REQUEST_URI'],"my-account/settings")===false) ) {  //fix for en links that don't have lang parameter
+	$gsLocaleShort = strstr($gsLocale,"_",true);
+
+	if ( is_user_logged_in() && !is_admin() && ($gsLocaleShort=="en") && !isset($_GET['lang']) && (strstr($_SERVER['REQUEST_URI'],"my-account/settings")===false) ) {  //fix for en links that don't have lang parameter
 	  wp_redirect( add_query_arg( 'lang', 'en' ) );
 	}
 }
