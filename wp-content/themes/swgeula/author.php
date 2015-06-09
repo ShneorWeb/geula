@@ -10,9 +10,17 @@
 				<div class="header_category">	
 
 					    <div class="back_to_libary">
-                          <a href="<?php echo get_permalink('68'); ?>">
-                              <i class="fa fa-arrow-right"></i>
-                              <?php echo get_the_title( '68' ); ?>
+                          
+                             <?php if($gsLocaleShort == "he"): ?>
+                               <a href="<?php echo get_permalink('68'); ?>">
+                                <i class="fa fa-arrow-right"></i>
+                                 <?php echo get_the_title( '68' ); ?>
+                             <?php else: ?>
+                               <a href="<?php echo get_permalink('109'); ?>">
+                                <i class="fa fa-arrow-left"></i>
+                                 <?php echo get_the_title( '109' ); ?>
+                             <?php endif; ?>
+                             
                           </a>
                         </div>
 
@@ -39,7 +47,7 @@
                                         $user_id = get_the_author_meta('ID');                                     
                                         $user_post_count = count_user_posts( $user_id );
                                                    
-                                        echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');  
+                                        echo $user_post_count . ' ' . __(' lessons in the library', 'swgeulatr');  
                                     ?>
                                 </div>
                             </div>

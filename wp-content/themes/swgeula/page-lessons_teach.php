@@ -67,7 +67,7 @@ get_header(); ?>
                                         $user_id = $current_user->id;                                     
                                         $user_post_count = count_user_posts( $user_id );
                                                    
-                                        echo $user_post_count . ' ' . __(' שיעורים בספריה', 'swgeula');  
+                                        echo $user_post_count . ' ' . __(' lessons in library', 'swgeula');  
                                     ?>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@ get_header(); ?>
                     
                 <div class="search_text">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>  
-                    <input type="search" placeholder="<?php echo __('חיפוש', 'swgeula'); ?>">
+                    <input type="search" placeholder="<?php echo __('Search', 'swgeulatr'); ?>">
                 </div>
                 
 				<div class="selects">                                     

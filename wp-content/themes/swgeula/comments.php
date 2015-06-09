@@ -49,7 +49,7 @@ if ( post_password_required() ) {
 					'style'      => 'ol',
 					'short_ping' => true,
                     'avatar_size'       => 49,
-                    'reply_text'        => __( 'השב לתגובה זו', 'swgeula' ),
+                    'reply_text'        => __( 'Reply to this comment', 'swgeulatr' ),
 				) );
 			?>
 		</ol><!-- .comment-list -->
@@ -77,13 +77,13 @@ if ( post_password_required() ) {
 
 	<?php
         $args = array(
-            'label_submit'      => __( 'הגב', 'swgeula' ),
+            'label_submit'      => __( 'Replay', 'swgeulatr' ),
             'comment_field' =>  '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) .
-            '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="'.  __( 'תגובה', 'swgeula' ) .'">' .
+            '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="'.  __( 'Comment', 'swgeulatr' ) .'">' .
             '</textarea></p>',
             'must_log_in' => '<p class="must-log-in">' .
             sprintf(
-              __( 'אתה חייב <a href="%s">להתחבר</a> כדי להגיב.' , 'swgeula' ),
+              __( 'You must <a href="%s">log in</a> to replay.' , 'swgeulatr' ),
               wp_login_url( apply_filters( 'the_permalink', get_permalink() ) )
             ) . '</p>',
         );

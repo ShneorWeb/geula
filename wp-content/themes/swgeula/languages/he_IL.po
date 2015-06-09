@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
-"POT-Creation-Date: 2015-06-09 13:14+0200\n"
-"PO-Revision-Date: 2015-06-09 13:15+0200\n"
+"POT-Creation-Date: 2015-06-09 14:00+0200\n"
+"PO-Revision-Date: 2015-06-09 14:01+0200\n"
 "Last-Translator: erez lieberman <erez2613@gmail.com>\n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -35,11 +35,12 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: author.php:42 page-lessons_teach.php:67
-msgid " שיעורים בספריה"
-msgstr "lessons in library"
+#: author.php:42
+#, fuzzy
+msgid " lessons in the library"
+msgstr "שיעורים בספריה"
 
-#: author.php:68 page-dashboard.php:135
+#: author.php:68
 msgid "נושא"
 msgstr "Subject"
 
@@ -61,25 +62,26 @@ msgid "Newer Comments"
 msgstr ""
 
 #: comments.php:52
-msgid "השב לתגובה זו"
-msgstr "Replay to this comment"
+msgid "Reply to this comment"
+msgstr "הגב לתגובה זו"
 
 #: comments.php:75
 msgid "Comments are closed."
 msgstr ""
 
 #: comments.php:80
-msgid "הגב"
-msgstr "Replay"
+msgid "Replay"
+msgstr "הגב"
 
 #: comments.php:82
-msgid "תגובה"
-msgstr "Comment"
+#, fuzzy
+msgid "Comment"
+msgstr "תגובה"
 
 #: comments.php:86
 #, php-format
-msgid "אתה חייב <a href=\"%s\">להתחבר</a> כדי להגיב."
-msgstr "You must <a href=\"%s\">log in</a>to replay."
+msgid "You must <a href=\"%s\">log in</a> to replay."
+msgstr "אתה חייב <a href=\"%s\">להתחבר</a> כדי להגיב"
 
 #: content-none.php:13
 msgid "Nothing Found"
@@ -352,40 +354,40 @@ msgstr "היכנס באמצעות חשבון קיים"
 msgid "Primary Menu"
 msgstr ""
 
-#: functions.php:368
+#: functions.php:371
 msgid "<strong>ERROR</strong>: Please type your full name."
 msgstr "שגיאה: אנא מלא את שמך המלא"
 
-#: functions.php:444
+#: functions.php:447
 msgid "Header Menu"
 msgstr ""
 
-#: functions.php:445
+#: functions.php:448
 msgid "Right Menu"
 msgstr ""
 
-#: functions.php:1123 functions.php:1125 functions.php:1126
+#: functions.php:1126 functions.php:1128 functions.php:1129
 #: inc/category_boxes.php:138 inc/library.php:181
 msgid " "
 msgstr ""
 
-#: functions.php:1123
+#: functions.php:1126
 msgid "hrs"
 msgstr "ש'"
 
-#: functions.php:1124
+#: functions.php:1127
 msgid "hour"
 msgstr "שעה"
 
-#: functions.php:1125
+#: functions.php:1128
 msgid "and"
 msgstr "ו"
 
-#: functions.php:1126
+#: functions.php:1129
 msgid "mins"
 msgstr "ד'"
 
-#: header.php:217
+#: header.php:218
 msgid "Login"
 msgstr "התחבר"
 
@@ -410,8 +412,9 @@ msgid "lesson"
 msgstr "שיעור"
 
 #: inc/category_boxes.php:137 inc/library.php:180
+#, fuzzy
 msgid " 1"
-msgstr ""
+msgstr "%1$s ב %2$s"
 
 #: inc/category_boxes.php:138 inc/level_three_category.php:110
 #: inc/library.php:181
@@ -423,28 +426,30 @@ msgstr "שיעורים"
 msgid "Page %s"
 msgstr "עמוד %s"
 
-#: inc/level_one_category.php:49 page-authors.php:27 page-lessons_teach.php:81
-msgid "חיפוש"
-msgstr ""
+#: inc/level_one_category.php:49 page-authors.php:27
+#, fuzzy
+msgid "Search"
+msgstr "חפש"
 
 #: inc/level_one_category.php:58 inc/level_three_category.php:301
 #: single.php:444
 msgid "teacher"
 msgstr "מוסר שיעור"
 
-#: inc/level_one_category.php:97 page-lessons_teach.php:92
+#: inc/level_one_category.php:97 page-dashboard.php:135
+#: page-lessons_teach.php:95
 msgid "subject"
 msgstr "נושא"
 
-#: inc/level_one_category.php:136 page-lessons_teach.php:132
+#: inc/level_one_category.php:136 page-lessons_teach.php:135
 msgid "old to new"
 msgstr "ישן לחדש"
 
-#: inc/level_one_category.php:137 page-lessons_teach.php:133
+#: inc/level_one_category.php:137 page-lessons_teach.php:136
 msgid "new to old"
 msgstr "חדש לישן"
 
-#: inc/level_one_category.php:138 page-lessons_teach.php:134
+#: inc/level_one_category.php:138 page-lessons_teach.php:137
 msgid "alphabetical"
 msgstr "אלף בתי"
 
@@ -453,8 +458,8 @@ msgid "new"
 msgstr "חדש"
 
 #: inc/level_three_category.php:111
-msgid "לומדים"
-msgstr ""
+msgid "students"
+msgstr "לומדים"
 
 #: inc/level_three_category.php:132
 msgid "start"
@@ -517,7 +522,7 @@ msgstr "השאר תגובה"
 
 #: inc/template-tags.php:122
 msgid "1 Comment"
-msgstr ""
+msgstr "תגובה 1"
 
 #: inc/template-tags.php:122
 #, fuzzy
@@ -575,66 +580,75 @@ msgid "Edit profile"
 msgstr "עדכן פרופיל"
 
 #: page-dashboard.php:63
-msgid "שלב"
-msgstr "level"
+#, fuzzy
+msgid "level"
+msgstr "נקודות כדי לעבור לשלב הבא"
 
 #: page-dashboard.php:85
-msgid "צברת סה”כ"
-msgstr "You accumulated total"
+msgid "You accumulated total"
+msgstr "צברת סך הכל"
 
 #: page-dashboard.php:85
-msgid "נקודות"
-msgstr "points"
+msgid "points"
+msgstr "נקודות"
 
 #: page-dashboard.php:100
-msgid "למד וצבור עוד"
-msgstr "Learn and Earn More"
+msgid "Learn and Earn More"
+msgstr "למד וצבור עוד"
 
 #: page-dashboard.php:100
-msgid "נקודות כדי לעלות לשלב הבא"
-msgstr "points to move up to the next level"
+msgid "points to move up to the next level"
+msgstr "נקודות כדי לעבור לשלב הבא"
 
-#: page-lessons_teach.php:37 page-my_lessons.php:29
+#: page-lessons_teach.php:40 page-my_lessons.php:29
 msgid "my lessons"
 msgstr "השיעורים שלי"
 
-#: page-lessons_teach.php:40 page-my_lessons.php:38
+#: page-lessons_teach.php:43 page-my_lessons.php:41
 msgid "lessons I teach"
 msgstr "שיעורים שאני מוסר"
 
-#: page-my_lessons.php:74
+#: page-lessons_teach.php:70
+msgid " שיעורים בספריה"
+msgstr "lessons in library"
+
+#: page-lessons_teach.php:84
+msgid "חיפוש"
+msgstr ""
+
+#: page-my_lessons.php:77
 msgid "schedule learning"
 msgstr "תזמן לימוד"
 
-#: page-my_lessons.php:79
+#: page-my_lessons.php:82
 msgid "next lesson"
 msgstr "השיעור הבא"
 
-#: page-my_lessons.php:99
+#: page-my_lessons.php:102
 msgid "start learning to get updated with next lesson"
 msgstr "התחל ללמוד כדי להתעדכן בשיעור הבא"
 
-#: page-my_lessons.php:101
+#: page-my_lessons.php:104
 msgid "add series and start learning to get updated with next lesson"
 msgstr "הוסף סדרות והתחל ללמוד כדי להתעדכן בשיעור הבא"
 
-#: page-my_lessons.php:122
+#: page-my_lessons.php:125
 msgid "series I'm learning"
 msgstr "סדרות שאני לומד"
 
-#: page-my_lessons.php:122
+#: page-my_lessons.php:125
 msgid "<span id='count-my-lessons-learn'>"
 msgstr ""
 
-#: page-my_lessons.php:122 page-my_lessons.php:136
+#: page-my_lessons.php:125 page-my_lessons.php:139
 msgid "</span>"
 msgstr ""
 
-#: page-my_lessons.php:136
+#: page-my_lessons.php:139
 msgid "series I added"
 msgstr "סדרות שהוספתי"
 
-#: page-my_lessons.php:136
+#: page-my_lessons.php:139
 msgid "<span id='count-my-lessons-add'>"
 msgstr ""
 
@@ -658,6 +672,33 @@ msgstr "מראי מקומות"
 #: single.php:314
 msgid "files to download"
 msgstr "קבצים להורדה"
+
+#~ msgid "הגב"
+#~ msgstr "Replay"
+
+#~ msgid "אתה חייב <a href=\"%s\">להתחבר</a> כדי להגיב."
+#~ msgstr "You must <a href=\"%s\">log in</a>to replay."
+
+#~ msgid "השב לתגובה זו"
+#~ msgstr "Replay to this comment"
+
+#~ msgid "תגובה"
+#~ msgstr "Comment"
+
+#~ msgid "שלב"
+#~ msgstr "level"
+
+#~ msgid "צברת סה”כ"
+#~ msgstr "You accumulated total"
+
+#~ msgid "נקודות"
+#~ msgstr "points"
+
+#~ msgid "למד וצבור עוד"
+#~ msgstr "Learn and Earn More"
+
+#~ msgid "נקודות כדי לעלות לשלב הבא"
+#~ msgstr "points to move up to the next level"
 
 #~ msgid "השיעורים שלי"
 #~ msgstr "My Lessons"

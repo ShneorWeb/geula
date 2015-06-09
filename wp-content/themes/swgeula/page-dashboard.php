@@ -60,7 +60,7 @@ $current_user = wp_get_current_user();
            <?php
                 // TODO: get the current level
                 $current_level = 1;
-                echo __('שלב', 'swgeulatr') . ' ' . $current_level; 
+                echo __('level', 'swgeulatr') . ' ' . $current_level; 
              ?>
          </div>
          </i>
@@ -82,7 +82,7 @@ $current_user = wp_get_current_user();
                 <?php
                     //TODO: get the number of points tahat user have
                     $total_points = 138;
-                    echo __('צברת סה”כ', 'swgeulatr') . ' ' . $total_points . ' ' . __('נקודות', 'swgeulatr') 
+                    echo __('You accumulated total', 'swgeulatr') . ' ' . $total_points . ' ' . __('points', 'swgeulatr') 
                 ?>
             </p>
             
@@ -97,7 +97,7 @@ $current_user = wp_get_current_user();
                 <?php
                     //TODO: get the number of points tahat user need to get to go to next level
                     $points_to_next_level = 770;
-                    echo __('למד וצבור עוד', 'swgeulatr') . ' ' . $points_to_next_level . ' ' . __('נקודות כדי לעלות לשלב הבא', 'swgeulatr') 
+                    echo __('Learn and Earn More', 'swgeulatr') . ' ' . $points_to_next_level . ' ' . __('points to move up to the next level', 'swgeulatr') 
                 ?>
             </p>
             
@@ -132,7 +132,7 @@ $current_user = wp_get_current_user();
                        <div class="elipse"></div>
                        <div class="number_and_sub">
                             <b>8</b>
-                            <p><?php echo __('נושא', 'swgeulatr'); ?></p>
+                            <p><?php echo __('subject', 'swgeulatr'); ?></p>
                         </div>
                     </div>
                 </div>
