@@ -86,34 +86,35 @@ get_header(); ?>
                     <!-- filter by subject -->
                      <form>      
                          
-                         <select id="select_subject" name="select_subject" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick"> 
+                         <select id="select_subject" name="select_subject" onchange="filterBoxesTeach(jQuery('#select_subject').val(),jQuery('#select_order').val())" class="selectpicker show-tick"> 
                              
                              <option value="<?php echo $this_category->cat_ID; ?>">
                                 <?php _e("subject","swgeula");?>
                              </option> 
                              
                              <?php   
-                              $tempCat = get_category($cat);
-                              $tempParent = get_category($tempCat->parent);
-                              if ($tempParent->parent == getCatIDOfLibrary()) {
-                                $tempCatID = $tempCat->parent;
-                                $parent_cat = $cat;
-                              }
-                              else $tempCatID = $this_category->cat_ID;
+                              
+                             $teachCats = getMyCatsTeach();
+                             $arrTeachSubjects = array();
 
-                              $categories = get_categories(array(
-                                        'hide_empty' => 0,
-                                        'child_of' => $tempCatID,
-                                        'parent' => $tempCatID,
-                              )); 
+                             foreach ($teachCats as $teachCat) {                                 
+                                    $cats_str = get_category_parents($teachCat, false, '%#%');
+                                    $cats_array = explode('%#%', $cats_str);
+                                    $cat_depth = sizeof($cats_array)-2;
+
+                                    if ($cat_depth==3) :                                
+                                      $temp1 = get_category($teachCat);  
+                                      $temp2 = get_category($temp1->parent);
+                                      if ( !in_array(array($temp2->cat_ID,$temp2->cat_name),$arrTeachSubjects) ) $arrTeachSubjects[] = array($temp2->cat_ID,$temp2->cat_name);
+                                    endif;
+                                 
+                             }                             
       
-                              foreach ($categories as $category) {
-                                $option = '<option value="'.$category->cat_ID.'"';
-                                if ( $tempParent->parent == getCatIDOfLibrary() &&  $cat==$category->cat_ID) $option .= ' selected';
+                              foreach ($arrTeachSubjects as $catTeach) {
+                                $option = '<option value="'.$catTeach[0].'"';
+                                //if ( $tempParent->parent == getCatIDOfLibrary() &&  $cat==$category->cat_ID) $option .= ' selected';
                                 $option .= '>';
-                                $option .= $category->cat_name;
-                                /*$option .= ' ('.$category->category_count.')';*/
-                                  /*$option .= $category->parent;*/
+                                $option .= $catTeach[1];                                
                                 $option .= '</option>';
                                 echo $option;
                               }                                                          
@@ -127,7 +128,7 @@ get_header(); ?>
                     
      <form>          
            <!-- filter by order -->                          
-           <select id="select_order" name="select_order" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick">
+           <select id="select_order" name="select_order" onchange="filterBoxesTeach(jQuery('#select_subject').val(),jQuery('#select_order').val())" class="selectpicker show-tick">
                <option value="new_to_old"><?php _e("old to new","swgeula");?></option>
                <option value="old_to_new"><?php _e("new to old","swgeula");?></option>
                <option value="alphabet"><?php _e("alphabetical","swgeula");?></option>                                                                          
@@ -143,7 +144,7 @@ get_header(); ?>
        <div class="categories row" id="div-cat-boxes">                                    
                 <?php                  
                   $arrMyCats = array();
-                  $arrMyCats = getMyCatsTeach();                     
+                  $arrMyCats = $teachCats;                     
                   $bMyLessons = true;
                   $orderby="ID"; 
                   include_once("inc/category_boxes.php");

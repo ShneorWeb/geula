@@ -920,7 +920,7 @@ function getMyCatsStudied() {
 	 return array();
 }
 
-function getMyCatsTeach() {
+function getMyCatsTeach($parentCat=-1) {
 
 	global $wpdb;	
 
@@ -934,7 +934,7 @@ function getMyCatsTeach() {
 
 				$args = array(
 					'type'                     => 'post',
-					'child_of'                 => getCatIDOfLibrary(),					
+					'child_of'                 => ($parentCat==-1)?getCatIDOfLibrary():$parentCat,					
 					'orderby'                  => 'name',
 					'order'                    => 'ASC',
 					'hide_empty'               => 0,					
@@ -945,11 +945,11 @@ function getMyCatsTeach() {
 				if (count($results)>0) :					
 					
 					foreach($results as $row) :			
-						$cat_authors = get_field('swauthors', "category_".$row->cat_ID);
+						$cat_authors = get_field('swauthors', "category_".$row->cat_ID);								
 						if ($cat_authors['ID'] == $userID) $arrRetVal[] = $row->cat_ID;	
 					endforeach;
 
-				endif;
+				endif;				
 
 				return $arrRetVal;
 	 	endif;			
@@ -985,7 +985,6 @@ function getMyCatsNotYetStudied() {
 	 endif;
 	 return array();
 }
-
 
 function setSchedule() {
 	global $wpdb;	
@@ -1287,6 +1286,28 @@ function getCatBoxes() {
 
 add_action('wp_ajax_get_cat_boxes', 'getCatBoxes');
 add_action('wp_ajax_nopriv_get_cat_boxes', 'getCatBoxes');
+
+function getCatBoxesTeach() {		
+
+	$parent_cat = (int)$_POST['parent_cat'];	
+	$order = $_POST['order'];
+	$orderby = $_POST['order_by'];			    
+
+	$arrMyCats = array();
+    $arrMyCats = getMyCatsTeach($parent_cat);                     
+    $bMyLessons = true;
+    
+	ob_start();
+	include_once("inc/category_boxes.php");
+	$inc = ob_get_clean();
+
+	echo($inc);
+	
+	exit;
+}
+
+add_action('wp_ajax_get_cat_boxes_teach', 'getCatBoxesTeach');
+add_action('wp_ajax_nopriv_get_cat_boxes_teach', 'getCatBoxesTeach');
 /****************End Lessons Ajax ****************************************/
 
 function getCatIDOfLibrary() {

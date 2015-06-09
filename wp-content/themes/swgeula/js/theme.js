@@ -1,4 +1,5 @@
 var filterBoxes;
+var filterBoxesTeach;
 var addToMyLessons;
 var removeFromMyLessons;
 var hideCat;
@@ -92,6 +93,40 @@ filterBoxes = function(iAuthorID,parentCat,sSort,iCatID,bInNosse) {
               'author_id': iAuthorID,
               'cat' : iCatID,
               'in_nosse' : bInNosse
+          },          
+          url: ajaxurl,          
+          success    : function(data){
+             
+               //$data = $(data);
+               //$data.hide();
+               //console.log(data);
+               //$content.append($data);
+               //$data.fadeIn(500);
+               $("#div-cat-boxes").html(data);
+          },
+          error     : function(jqXHR, textStatus, errorThrown) {
+              console.log(jqXHR + " :: " + textStatus + " :: " + errorThrown);
+          }      
+  });
+}
+
+filterBoxesTeach = function(parentCat,sSort) {    
+  
+  sOrderby = "ID"; 
+  if (sSort == 'new_to_old') sOrder = "desc";  
+  else if (sSort == 'old_to_new') sOrder = "asc"; 
+  if (sSort == "alphabet") { 
+    sOrderby = "name";
+    sOrder = "asc";  
+  }  
+
+  $.ajax({
+          type : "post",
+          data : {
+              'action': 'get_cat_boxes_teach',
+              'order_by': sOrderby,
+              'order': sOrder,
+              'parent_cat': parentCat              
           },          
           url: ajaxurl,          
           success    : function(data){
