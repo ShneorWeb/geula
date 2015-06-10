@@ -437,6 +437,11 @@ function equal_heights(){
       //
       $('.email_field_cont').append($('.fa-check-circle'));
      
+     //
+     $(".table_schedule_cont").mCustomScrollbar({
+             axis:"x" // horizontal scrollbar
+     });
+     
      
 //end of window.load function
  });

@@ -42,6 +42,21 @@ get_header(); ?>
                             <a class="current">
                                 <?php _e('lessons I teach', 'swgeula'); ?>
                             </a>
+                             
+                              <a href="
+                               <?php 
+                                if($gsLocaleShort=='he'){
+                                    $temp2 = get_page_by_path('תזמון-שיעורים');  
+                                    echo get_permalink( $temp2->ID );
+                                }
+                                else{
+                                   $temp2 = get_page_by_path('scheduling-lessons');  
+                                   echo get_permalink( $temp2->ID ); 
+                                }
+                                 ?>
+                               ">
+                                <?php _e('Scheduling Lessons', 'swgeula'); ?>
+                            </a>
                         </div>
 
                         <div class="image_category">
