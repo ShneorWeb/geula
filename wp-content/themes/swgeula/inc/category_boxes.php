@@ -8,22 +8,24 @@
       
 					//if (is_category() || is_single() || $bIsAjax) {                      
                        
-                      //if in my lessons page get my catgories:                                                   
+                      //if in my lessons page get my catgories:                                                                         
+                      
                       if ( $bMyLessons ) {
-                        $args = array(   
-                              'child_of' => $parent_cat,
+                        $args = array(                                 
+                              'child_of' => isset($parent_cat)?$parent_cat:0,
                               'hide_empty' => 0,
-                              'orderby' => $orderby,
+                              'orderby' => isset($orderby)?$orderby:'cat_ID',
                               'order' => $order,                            
                               'include' => implode(",", $arrMyCats)
                         );
+                        //var_dump($args);
                       }
 
                       else {  
                         $args = array(	 
-                              'child_of' => $parent_cat,
+                              'child_of' => isset($parent_cat)?$parent_cat:0,
                               'hide_empty' => 0,
-                              'orderby' => $orderby,
+                              'orderby' => isset($orderby)?$orderby:'cat_ID',
                               'order' => $order
                         );
                       }
@@ -34,7 +36,7 @@
 
                       //var_dump($cats);
 
-                      if ($orderby!="name") :                        
+                       if ($orderby!="name") :                        
                            //sort categories by last updated post:
                           $arrCatsArray = array();
                           foreach ($cats as $cat2) : 
@@ -86,18 +88,17 @@
                           usort($arrCatsArray, "compareNames");  
 
                       endif; //of if ($order!="name")
-
                        
                         
 				        foreach ($arrCatsArray as $cat) : 
+
 
                             $cat = (object)$cat; 
                         
                             //get depth of category from - http://www.devdevote.com/cms/wordpress-hacks/get_depth
                             $cats_str = get_category_parents($cat->cat_ID, false, '%#%');
                             $cats_array = explode('%#%', $cats_str);
-                            $cat_depth = sizeof($cats_array)-2;
-                            
+                            $cat_depth = sizeof($cats_array)-2;                            
                           
                             
     				                $values = get_field('swauthors', "category_".$cat->cat_ID);

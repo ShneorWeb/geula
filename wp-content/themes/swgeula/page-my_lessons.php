@@ -12,6 +12,14 @@ else {
 $current_user = wp_get_current_user();
 ?>	
 
+<script>
+//console.log("moment=");
+//moment.tz.add('America/Los_Angeles|PST PDT|80 70|0101|1Lzm0 1zb0 Op0');
+//var jun = moment("2014-06-01T12:00:00Z");
+//console.log( jun.tz('America/Los_Angeles').format('ha z') );
+//moment().tz("America/Los_Angeles").format();
+</script>
+
 <div class="col-lg-12 col-md-12 archive_cont">	
 
     <div class="page-header">	
@@ -45,14 +53,14 @@ $current_user = wp_get_current_user();
                 <div class="image_category">
                                
                                <?php 
-                                    $arrNextScheduled = getNextSchedulesCat();
-                                    if ( is_array($arrNextScheduled) && count($arrNextScheduled)>0 ) $bScheduled = true;
+                                    $arrNextScheduled = getNextScheduledCat();
+                                    if ( isset($arrNextScheduled) && is_int($arrNextScheduled) ) $bScheduled = true;
                                     else $bScheduled = false;
 
                                     $bMyLessons=true;
                                     $arrMyCats = array();
-                                    $tempArrMyCats = getMyCatsStudied();   
-                                    $tempArrMyCats2 = getMyCatsNotYetStudied();   
+                                    $tempArrMyCats = getMyCatsStudied();                                       
+                                    $tempArrMyCats2 = getMyCatsNotYetStudied();                                       
                                 ?>
                                 
                                 <div class="big_icon">
@@ -120,15 +128,15 @@ $current_user = wp_get_current_user();
                    </div>
                    
                    <h3 class="ltl_title">
-                       <?php                                                    
+                       <?php                                      
                             if ( is_array($tempArrMyCats) && count($tempArrMyCats)>0 ) $arrMyCats = $tempArrMyCats;                                                         
                             echo __("series I'm learning", 'swgeula') . __("<span id='count-my-lessons-learn'>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");
                             if ( count($arrMyCats)==0 ) $arrMyCats[] = -1;
-                            $NumberSpanID = "count-my-lessons-learn";
+                            $NumberSpanID = "count-my-lessons-learn";                            
                        ?>
                    </h3>
                    
-                   <div class="row cat_cont">
+                   <div class="row cat_cont">                    
                         <?php if ($arrMyCats[0]!=-1) include_once("inc/category_boxes.php");?>
                    </div>
                    
@@ -142,7 +150,7 @@ $current_user = wp_get_current_user();
                        ?>
                    </h3>
                    
-                   <div class="row cat_cont">
+                   <div class="row cat_cont">                    
                         <?php if ($arrMyCats[0]!=-1)  include_once("inc/category_boxes.php");?>
                    </div>
     </div>	

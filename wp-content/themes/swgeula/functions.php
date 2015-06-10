@@ -265,7 +265,11 @@ function swgeula_manual_scripts(){
     );
      wp_enqueue_script(
         'moment-with-locales', '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js', array()
-    );          
+    );     
+    wp_enqueue_script(
+        'moment-tzones', get_template_directory_uri() . '/js/moment-timezone-with-data.js', array()
+    );    
+    
     wp_enqueue_script(
         'bootstrap-tabcollapse', get_template_directory_uri() . '/js/bootstrap-tabcollapse.js', array(), '1.0.0'
     );
@@ -911,7 +915,37 @@ function getMyCatsStudied() {
 				if (count($results)>0) :					
 					
 					foreach($results as $row) :			
-						$arrRetVal[] = $row['cat_id'];	
+						$checkCat = get_categories('hide_empty=>0,include=>'.$row['cat_id']); //get_categories only return categoires in current language					
+						if (count($checkCat)>0) $arrRetVal[] = $row['cat_id'];	
+					endforeach;
+
+				endif;
+
+				return $arrRetVal;
+	 	endif;			
+
+	 endif;
+	 return array();
+}
+
+function getMyCatsNotYetStudied() {
+	global $wpdb;	
+
+	if ( is_user_logged_in() ) :				
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;
+
+		if (is_int($userID)) :
+
+				$arrRetVal = array();	
+
+				$results = $wpdb->get_results("SELECT DISTINCT cat_id FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_status=0 ORDER BY id ASC;",ARRAY_A);		
+					
+				if (count($results)>0) :					
+					
+					foreach($results as $row) :			
+						$checkCat = get_categories('hide_empty=>0,include=>'.$row['cat_id']); //get_categories only return categoires in current language					
+						if (count($checkCat)>0) $arrRetVal[] = $row['cat_id'];	
 					endforeach;
 
 				endif;
@@ -957,33 +991,6 @@ function getMyCatsTeach($parentCat=-1,$userID) {
  	return $arrRetVal;
 }
 
-function getMyCatsNotYetStudied() {
-	global $wpdb;	
-
-	if ( is_user_logged_in() ) :				
-		$current_user = wp_get_current_user();
-		$userID = $current_user->ID;
-
-		if (is_int($userID)) :
-
-				$arrRetVal = array();	
-
-				$results = $wpdb->get_results("SELECT DISTINCT cat_id FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_status=0 ORDER BY cat_id ASC;",ARRAY_A);		
-					
-				if (count($results)>0) :					
-					
-					foreach($results as $row) :			
-						$arrRetVal[] = $row['cat_id'];	
-					endforeach;
-
-				endif;
-
-				return $arrRetVal;
-	 	endif;			
-
-	 endif;
-	 return array();
-}
 
 function setSchedule() {
 	global $wpdb;	
@@ -1019,7 +1026,7 @@ add_action('wp_ajax_set_schedule', 'setSchedule');
 add_action('wp_ajax_nopriv_set_schedule', 'setSchedule');
 
 
-function getNextSchedulesCat() {
+function getNextScheduledCat() {
 	global $wpdb;	
 
 	if ( is_user_logged_in() ) { 		
@@ -1028,16 +1035,13 @@ function getNextSchedulesCat() {
 		$userID = $current_user->ID;	
 
 		if (is_int($userID)) :
-				
-				$results = $wpdb->get_results("SELECT cat_id,schedule_date FROM wp_sw_schedules WHERE user_id = $userID AND schedule_date>='".date('d-m-Y H:i:s')."' ORDER BY schedule_date ASC LIMIT 1;",ARRAY_A);											
 
-				if (count($results)>0) :														
-					$arrRetVal = array();
-					$arrRetVal[] = $results[0]['cat_id'];
-					$arrRetVal[] = $results[0]['schedule_date'];
-					return $arrRetVal;										
-				else :  
-					return $wpdb->last_error;	
+				$arrCatsNotStudies = getMyCatsNotYetStudied();
+				
+				$results = $wpdb->get_results("SELECT id FROM wp_sw_schedules WHERE user_id = $userID LIMIT 1;",ARRAY_A);											
+
+				if (count($results)>0 && is_array($arrCatsNotStudies) && count($arrCatsNotStudies)>0 ) :																			
+					return $arrCatsNotStudies[0];														
 				endif;
 
 	 	endif;			
@@ -1046,55 +1050,6 @@ function getNextSchedulesCat() {
 	return "";
 }
 
-/*
-used for ajax - maybe can be deleted
-function getLessonStarted() {
-	global $wpdb;	
-	
-	$lessonIDs = $_POST['lesson_ids'];
-	$arrLessonIDs = explode(",", $lessonIDs);
-	$userID = (int)$_POST['user_id'];
-	$arrLessonsBegan = array();
-
-	if ( is_int($userID) && is_array($arrLessonIDs) ) :
-
-		$results = $wpdb->get_results("SELECT lesson_id,video_pos FROM wp_sw_user_lesson WHERE user_id = $userID AND lesson_id IN ($lessonIDs) ORDER BY id DESC;",ARRAY_A);		
-		
-		if (count($results)>0) {
-
-			$retStr = "[";
-			$bFirst = true;
-
-			foreach($results as $row) {																
-
-				if ($bFirst) $bFirst=false;
-				else $retStr .= ",";
-
-				$retStr .= "[".$row['lesson_id'].",";
-				
-				if ($row['video_pos']==0 || $row['video_pos']>0) $retStr .= "1";								
-				else $retStr .= "0";																
-				
-				$retStr .= "]";
-			}
-
-			$retStr .= "]";
-
-			echo $retStr;
-			exit; 
-		}
-
-		echo(0);			
-		exit;
-
-	endif;	
-
-	echo(0);			
-	exit;
-}
-add_action('wp_ajax_get_lesson_started', 'getLessonStarted');
-add_action('wp_ajax_nopriv_get_lesson_started', 'getLessonStarted');
-*/
 function YTDurationToSeconds($sMatch) {		
   $di = new DateInterval($sMatch);      
   $seconds =$di->h*3600 + $di->i*60 + $di->s;
