@@ -799,10 +799,11 @@ function getNextLessonToPlay($catID) {
 			foreach($results as $row) {																				
 				if ($row['done']==0) return get_permalink($row['lesson_id']);					
 			}			
-			return get_permalink($results[0]['lesson_id']);
+			return $results[0]['lesson_id'];
 		}
 	endif;	
 }
+
 
 function addToMyLessons() {
 	global $wpdb;	
@@ -944,6 +945,35 @@ function getMyCatsNotYetStudied() {
 				if (count($results)>0) :					
 					
 					foreach($results as $row) :			
+						$checkCat = get_categories('hide_empty=>0,include=>'.$row['cat_id']); //hack - get_categories only returns categories in current language - maybe change this todo					
+						if (count($checkCat)>0) $arrRetVal[] = $row['cat_id'];	
+					endforeach;
+
+				endif;
+
+				return $arrRetVal;
+	 	endif;			
+
+	 endif;
+	 return array();
+}
+
+function getLessonNotYetDone() {
+	global $wpdb;	
+
+	if ( is_user_logged_in() ) :				
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;
+
+		if (is_int($userID)) :
+
+				$arrRetVal = array();	
+
+				$results = $wpdb->get_results("SELECT DISTINCT cat_id FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_status!=2 ORDER BY id ASC;",ARRAY_A);		
+					
+				if (count($results)>0) :					
+					
+					foreach($results as $row) :			
 						$checkCat = get_categories('hide_empty=>0,include=>'.$row['cat_id']); //get_categories only return categoires in current language					
 						if (count($checkCat)>0) $arrRetVal[] = $row['cat_id'];	
 					endforeach;
@@ -956,6 +986,7 @@ function getMyCatsNotYetStudied() {
 	 endif;
 	 return array();
 }
+
 
 function getMyCatsTeach($parentCat=-1,$userID) {
 
@@ -1026,27 +1057,22 @@ add_action('wp_ajax_set_schedule', 'setSchedule');
 add_action('wp_ajax_nopriv_set_schedule', 'setSchedule');
 
 
-function getNextScheduledCat() {
-	global $wpdb;	
+function getNextScheduledCat($userID) {
+	global $wpdb;			
 
-	if ( is_user_logged_in() ) { 		
+	if (is_int($userID)) :
 
-		$current_user = wp_get_current_user();
-		$userID = $current_user->ID;	
+			$arrCatsNotStudies = getLessonNotYetDone();			
 
-		if (is_int($userID)) :
+			$results = $wpdb->get_results("SELECT id FROM wp_sw_schedules WHERE user_id = $userID LIMIT 1;",ARRAY_A);											
 
-				$arrCatsNotStudies = getMyCatsNotYetStudied();
-				
-				$results = $wpdb->get_results("SELECT id FROM wp_sw_schedules WHERE user_id = $userID LIMIT 1;",ARRAY_A);											
+			if (is_array($results) && count($results)>0 && count($arrCatsNotStudies)>0 ) :																			
+				return $arrCatsNotStudies[0];														
+			endif;
 
-				if (count($results)>0 && is_array($arrCatsNotStudies) && count($arrCatsNotStudies)>0 ) :																			
-					return $arrCatsNotStudies[0];														
-				endif;
+ 	endif;			
 
-	 	endif;			
-
-	}	
+		
 	return "";
 }
 
@@ -1960,4 +1986,116 @@ add_action( 'wp_ajax_nopriv_gettimez', 'getTimeZones' );
 add_action( 'wp_ajax_gettimez', 'getTimeZones' );
 
 /*****************************END AJAX/ANGUALR FUNCTIONS******************/
+
+
+/*****************************WP_CRON FUNCTIONS******************/
+
+function sendEmail($uid,$lessonID) {
+	
+	$arrUsers = arra();
+	$arrUsers[] = $uid;
+
+	$users = get_users('include='.$arrUsers.'&number=1');
+	foreach ( $users as $user ) {
+		$user_email = $user->user_email;
+	}
+
+	$lessonLink = get_permalink($lessonID);
+
+
+	$message = __('This is an alert. Your scheduled lesson is about to begin in less than an hour. Please click on the link below to start learning:') . "\r\n\r\n";
+	$message .= $lessonLink . "\r\n\r\n";	
+	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";	
+
+	
+	$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
+
+	$title = sprintf( __('[%s] Geula Lesson Alert'), $blogname );	
+	
+	$swheaders = 'From: Geula Lessons Website <noreply@geula.wpengine.com>' . "\r\n";
+
+	if ( $message && !wp_mail( $user_email, wp_specialchars_decode( $title ), $message, $swheaders ) ) return 0;
+	return 1;
+}
+
+// This function will run once the 'delete_post_revisions' is called
+function sw_send_alerts() {
+	global $wpdb;
+
+	$userIDs = $wpdb->get_results("SELECT DISTINCT user_id FROM wp_sw_schedules ORDER BY user_ID ASC;",ARRAY_A);		
+
+	foreach ($userIDs as $arrUserID) {
+
+		$userID = $arrUserID['user_id'];
+
+		$results = $wpdb->get_results("SELECT id,sent_alert,schedule_day,schedule_time FROM wp_sw_schedules WHERE user_id = $userID ORDER BY id ASC;",ARRAY_A);				
+		
+		if (count($results)>0) {
+
+			foreach($results as $result) :
+				//get user timezone:
+				$user_tzone = get_user_meta( $userID, 'user_timezone', true );
+				
+				if (!is_string($user_tzone)) return;
+
+				$date = new DateTime('NOW');
+				$date->setTimezone(new DateTimeZone($user_tzone));
+				
+				$hours = (int)$date->format('H');
+				$mins = (int)$date->format('i');
+				$scheduledHours = (int)substr($result['schedule_time'],0,(int)strstr($result['schedule_time'],":"));
+				$scheduledMins = (int)substr($result['schedule_time'],strstr($result['schedule_time'],":")+1);
+
+				if (((int)$result['sent_alert']==0) && $result['schedule_day'] == $date->format('N') || //schedule is for today				
+					( ($result['schedule_day'] == $date->format('N')+1) || ($result['schedule_day']==1 && $date->format('N')==7) )  &&  ($scheduledHours==0) && ($hours>=23) && ($mins>=$scheduledMins) ) { //this is a special case where the lesson is scheduled for hour 00 or 00:30 so need to send email at 23:00 the day before
+					
+					if ( ($hours==$scheduledHours-1 && $mins>=$scheduledMins) ||  ($hours==$scheduledHours && $mins<$scheduledMins) ) {
+						//check if email not sent send email
+						$arrNextScheduled = (array)getNextScheduledCat($userID);                                                                      
+						$lessonID = (int)getNextLessonToPlay((int)$arrNextScheduled[0]);
+
+						sendEmail($userID,$lessonID);
+
+						//change db field to sent
+						$wpdb->update('wp_sw_schedules', array('sent_alert' => 1), array( 'id' =>  $result['id']) ); 
+
+					}
+				} 
+				elseif ( ((int)$result['sent_alert']==1) && ($date->format('N')>$result['schedule_day'] || ($date->format('N')==1 && $result['schedule_day']==7) ) ) {  //day after alert turn sent field to 0
+
+					$wpdb->update('wp_sw_schedules', array('sent_alert' => 0), array( 'id' =>  $result['id']) ); 
+				}	
+
+			endforeach;	
+		}
+
+	}
+}
+
+add_action( 'send_alerts', 'sw_send_alerts' );
+
+function add_custom_cron_intervals( $schedules ) {
+    // $schedules stores all recurrence schedules within WordPress
+    $schedules['every_minute'] = array(
+        'interval'  => 60,
+        'display'   => 'Every Minute'
+    );
+ 
+    // Return our newly added schedule to be merged into the others
+    return (array)$schedules; 
+}
+add_filter( 'cron_schedules', 'add_custom_cron_intervals', 10, 1 );
+
+
+function send_lesson_alerts() {
+   if( !wp_next_scheduled( 'send_lesson_alerts' ) ) {
+        // Schedule the event
+        wp_schedule_event( time(), 'every_minute', 'send_alerts' );
+    } 
+   
+}
+add_action( 'init', 'sw_send_alerts'); //send_lesson_alerts
+
+/*****************************END WP_CRON FUNCTIONS******************/
+
 ?>

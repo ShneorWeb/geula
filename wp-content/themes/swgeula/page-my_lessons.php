@@ -53,9 +53,9 @@ $current_user = wp_get_current_user();
                 <div class="image_category">
                                
                                <?php 
-                                    $arrNextScheduled = getNextScheduledCat();
-                                    if ( isset($arrNextScheduled) && is_int($arrNextScheduled) ) $bScheduled = true;
-                                    else $bScheduled = false;
+                                    $arrNextScheduled = (array)getNextScheduledCat($current_user->ID);                                                                       
+                                    if ( is_array($arrNextScheduled) && (count($arrNextScheduled)>0) ) $bScheduled = true;
+                                    else $bScheduled = false;                                    
 
                                     $bMyLessons=true;
                                     $arrMyCats = array();
@@ -92,7 +92,7 @@ $current_user = wp_get_current_user();
                                         
                                         <div class="single_lesson_cont">
 								    
-                                            <a href="#">
+                                            <a href="<?php echo get_permalink((int)getNextLessonToPlay((int)$arrNextScheduled[0]));?>">
                                                 <div class="name">      
                                                   
                                                    <?php if(ICL_LANGUAGE_CODE=='he'){?>                              
@@ -102,9 +102,9 @@ $current_user = wp_get_current_user();
                                                     <?php } ?>
                                                     
                                                     <?php                                                                                                                            
-                                                    if ( is_array($arrNextScheduled) && count($arrNextScheduled)>0 ) {
-                                                        $tempCatObj = get_category($arrNextScheduled[0]);                                                                                                        
-                                                        echo($tempCatObj->name);
+                                                    if ( $bScheduled) {                                                        
+                                                        $temp = get_post((int)getNextLessonToPlay((int)$arrNextScheduled[0]));                                                        
+                                                        echo $temp->post_title;                                                        
                                                     }
                                                     elseif ( is_array($tempArrMyCats) && (count($tempArrMyCats)>0) ) {
                                                         _e("start learning to get updated with next lesson","swgeula");
