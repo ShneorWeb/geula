@@ -241,7 +241,7 @@
 
                                                               <div class="category_square_number">
                                                                   <?php 
-                                                                      $user_post_count = count_user_posts( $user_id );
+                                                                      $user_post_count = count_user_posts( $the_user->ID );
                                                                       echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');                                                            
                                                                   ?>                                                        
                                                               </div>
