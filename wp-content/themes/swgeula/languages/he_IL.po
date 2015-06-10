@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
-"POT-Creation-Date: 2015-06-09 14:00+0200\n"
-"PO-Revision-Date: 2015-06-09 14:01+0200\n"
+"POT-Creation-Date: 2015-06-10 14:24+0200\n"
+"PO-Revision-Date: 2015-06-10 14:26+0200\n"
 "Last-Translator: erez lieberman <erez2613@gmail.com>\n"
 "Language-Team: \n"
 "Language: he_IL\n"
@@ -35,19 +35,33 @@ msgstr ""
 msgid "Try looking in the monthly archives. %1$s"
 msgstr ""
 
-#: author.php:42
+#: author.php:50
 #, fuzzy
 msgid " lessons in the library"
 msgstr "שיעורים בספריה"
 
-#: author.php:68
-msgid "נושא"
-msgstr "Subject"
+#: author.php:64 inc/level_one_category.php:49 page-authors.php:27
+#: page-lessons_teach.php:99
+#, fuzzy
+msgid "Search"
+msgstr "חפש"
 
-#: author.php:260 inc/category_boxes.php:191 inc/level_three_category.php:324
-#: inc/library.php:245 page-authors.php:82 single.php:462
-msgid "lessons in the library"
-msgstr "שיעורים בספריה"
+#: author.php:75 inc/level_one_category.php:97 page-dashboard.php:135
+#: page-lessons_teach.php:110
+msgid "subject"
+msgstr "נושא"
+
+#: author.php:115 inc/level_one_category.php:136 page-lessons_teach.php:150
+msgid "old to new"
+msgstr "ישן לחדש"
+
+#: author.php:116 inc/level_one_category.php:137 page-lessons_teach.php:151
+msgid "new to old"
+msgstr "חדש לישן"
+
+#: author.php:117 inc/level_one_category.php:138 page-lessons_teach.php:152
+msgid "alphabetical"
+msgstr "אלף בתי"
 
 #: comments.php:35 comments.php:59
 msgid "Comment navigation"
@@ -354,36 +368,36 @@ msgstr "היכנס באמצעות חשבון קיים"
 msgid "Primary Menu"
 msgstr ""
 
-#: functions.php:371
+#: functions.php:381
 msgid "<strong>ERROR</strong>: Please type your full name."
 msgstr "שגיאה: אנא מלא את שמך המלא"
 
-#: functions.php:447
+#: functions.php:457
 msgid "Header Menu"
 msgstr ""
 
-#: functions.php:448
+#: functions.php:458
 msgid "Right Menu"
 msgstr ""
 
-#: functions.php:1126 functions.php:1128 functions.php:1129
-#: inc/category_boxes.php:138 inc/library.php:181
+#: functions.php:1083 functions.php:1085 functions.php:1086
+#: inc/category_boxes.php:139 inc/library.php:181
 msgid " "
 msgstr ""
 
-#: functions.php:1126
+#: functions.php:1083
 msgid "hrs"
 msgstr "ש'"
 
-#: functions.php:1127
+#: functions.php:1084
 msgid "hour"
 msgstr "שעה"
 
-#: functions.php:1128
+#: functions.php:1085
 msgid "and"
 msgstr "ו"
 
-#: functions.php:1129
+#: functions.php:1086
 msgid "mins"
 msgstr "ד'"
 
@@ -407,51 +421,34 @@ msgstr "הסר מהשיעורים שלי"
 msgid "add to my lessons"
 msgstr "הוסף לשעורים שלי"
 
-#: inc/category_boxes.php:137 inc/library.php:180 single.php:28
+#: inc/category_boxes.php:138 inc/library.php:180 single.php:28
 msgid "lesson"
 msgstr "שיעור"
 
-#: inc/category_boxes.php:137 inc/library.php:180
+#: inc/category_boxes.php:138 inc/library.php:180
 #, fuzzy
 msgid " 1"
 msgstr "%1$s ב %2$s"
 
-#: inc/category_boxes.php:138 inc/level_three_category.php:110
+#: inc/category_boxes.php:139 inc/level_three_category.php:110
 #: inc/library.php:181
 msgid "lessons"
 msgstr "שיעורים"
+
+#: inc/category_boxes.php:192 inc/level_three_category.php:324
+#: inc/library.php:245 page-authors.php:82 single.php:462
+msgid "lessons in the library"
+msgstr "שיעורים בספריה"
 
 #: inc/extras.php:52
 #, fuzzy, php-format
 msgid "Page %s"
 msgstr "עמוד %s"
 
-#: inc/level_one_category.php:49 page-authors.php:27
-#, fuzzy
-msgid "Search"
-msgstr "חפש"
-
 #: inc/level_one_category.php:58 inc/level_three_category.php:301
 #: single.php:444
 msgid "teacher"
 msgstr "מוסר שיעור"
-
-#: inc/level_one_category.php:97 page-dashboard.php:135
-#: page-lessons_teach.php:95
-msgid "subject"
-msgstr "נושא"
-
-#: inc/level_one_category.php:136 page-lessons_teach.php:135
-msgid "old to new"
-msgstr "ישן לחדש"
-
-#: inc/level_one_category.php:137 page-lessons_teach.php:136
-msgid "new to old"
-msgstr "חדש לישן"
-
-#: inc/level_one_category.php:138 page-lessons_teach.php:137
-msgid "alphabetical"
-msgstr "אלף בתי"
 
 #: inc/level_three_category.php:69
 msgid "new"
@@ -600,57 +597,94 @@ msgstr "למד וצבור עוד"
 msgid "points to move up to the next level"
 msgstr "נקודות כדי לעבור לשלב הבא"
 
-#: page-lessons_teach.php:40 page-my_lessons.php:29
+#: page-lessons_teach.php:40 page-my_lessons.php:37 page-scheduling.php:39
 msgid "my lessons"
 msgstr "השיעורים שלי"
 
-#: page-lessons_teach.php:43 page-my_lessons.php:41
+#: page-lessons_teach.php:43 page-my_lessons.php:49 page-scheduling.php:51
 msgid "lessons I teach"
 msgstr "שיעורים שאני מוסר"
 
-#: page-lessons_teach.php:70
-msgid " שיעורים בספריה"
-msgstr "lessons in library"
+#: page-lessons_teach.php:58 page-my_lessons.php:63 page-scheduling.php:54
+msgid "Scheduling Lessons"
+msgstr "תזמון שיעורים"
 
-#: page-lessons_teach.php:84
-msgid "חיפוש"
-msgstr ""
+#: page-lessons_teach.php:85
+#, fuzzy
+msgid " lessons in library"
+msgstr "שיעורים בספריה"
 
-#: page-my_lessons.php:77
+#: page-my_lessons.php:99
 msgid "schedule learning"
 msgstr "תזמן לימוד"
 
-#: page-my_lessons.php:82
+#: page-my_lessons.php:104
 msgid "next lesson"
 msgstr "השיעור הבא"
 
-#: page-my_lessons.php:102
+#: page-my_lessons.php:124
 msgid "start learning to get updated with next lesson"
 msgstr "התחל ללמוד כדי להתעדכן בשיעור הבא"
 
-#: page-my_lessons.php:104
+#: page-my_lessons.php:126
 msgid "add series and start learning to get updated with next lesson"
 msgstr "הוסף סדרות והתחל ללמוד כדי להתעדכן בשיעור הבא"
 
-#: page-my_lessons.php:125
+#: page-my_lessons.php:147
 msgid "series I'm learning"
 msgstr "סדרות שאני לומד"
 
-#: page-my_lessons.php:125
+#: page-my_lessons.php:147
 msgid "<span id='count-my-lessons-learn'>"
 msgstr ""
 
-#: page-my_lessons.php:125 page-my_lessons.php:139
+#: page-my_lessons.php:147 page-my_lessons.php:161
 msgid "</span>"
 msgstr ""
 
-#: page-my_lessons.php:139
+#: page-my_lessons.php:161
 msgid "series I added"
 msgstr "סדרות שהוספתי"
 
-#: page-my_lessons.php:139
+#: page-my_lessons.php:161
 msgid "<span id='count-my-lessons-add'>"
 msgstr ""
+
+#: page-scheduling.php:62
+msgid "Manned time strip"
+msgstr "רצועת זמן מאוישת"
+
+#: page-scheduling.php:63
+msgid "Unmanned time strip"
+msgstr "רצועת זמן לא מאוישת"
+
+#: page-scheduling.php:75
+msgid "Sunday"
+msgstr "ראשון"
+
+#: page-scheduling.php:278
+msgid "Monday"
+msgstr "שני"
+
+#: page-scheduling.php:291
+msgid "Tuesday"
+msgstr "שלישי"
+
+#: page-scheduling.php:305
+msgid "Wednesday"
+msgstr "רביעי"
+
+#: page-scheduling.php:319
+msgid "Thursday"
+msgstr "חמישי"
+
+#: page-scheduling.php:333
+msgid "Friday"
+msgstr "שישי"
+
+#: page-scheduling.php:347
+msgid "Saturday"
+msgstr "מוצ\"ש"
 
 #: search.php:16
 #, php-format
@@ -672,6 +706,12 @@ msgstr "מראי מקומות"
 #: single.php:314
 msgid "files to download"
 msgstr "קבצים להורדה"
+
+#~ msgid "נושא"
+#~ msgstr "Subject"
+
+#~ msgid " שיעורים בספריה"
+#~ msgstr "lessons in library"
 
 #~ msgid "הגב"
 #~ msgstr "Replay"
