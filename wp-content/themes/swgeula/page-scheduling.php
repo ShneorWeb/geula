@@ -86,7 +86,7 @@ $current_user = wp_get_current_user();
                                    <thead>
                                         <tr>
                                             <th>
-                                                <big>7</big><small>AM</small>
+                                                <a href="javascript:void(0)" onclick="addSchedule(2,'07:00')"><big>7</big><small>AM</small></a>
                                             </th>
                                             <th>
                                                 <big>8</big><small>AM</small>

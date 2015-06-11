@@ -3,7 +3,7 @@ var filterBoxesTeach;
 var addToMyLessons;
 var removeFromMyLessons;
 var hideCat;
-var setSchedule;
+var addSchedule;
 
 function goToLogin() {
   var sLang = sCurLang.indexOf("_")!=-1?sCurLang.substr(0,sCurLang.indexOf("_")):sCurLang;  
@@ -145,21 +145,20 @@ filterBoxesTeach = function(parentCat,sSort,iAuthorID) {
   });
 }
 
-setSchedule = function(timestamp,catid) {
-  if (catid==-1) catid = getNextCatToSchedule();
-
+addSchedule = function(scheduleDay,scheduleTime) {
+  
   $.ajax({
           type : "post",
           data : {
-              'action': 'set_schedule',
-              'cat_id': catid,     
-              'time_stamp': timestamp,                           
+              'action': 'add_schedule',
+              'schedule_day': scheduleDay,     
+              'schedule_time': scheduleTime     
           },          
           url: ajaxurl,          
           success    : function(data){                                        
               //console.log("in success");
-              console.log(data);              
-              $('#dp1').hide();                                                         
+              //console.log(data);              
+              //$('#dp1').hide();                                                         
           },
           error     : function(jqXHR, textStatus, errorThrown) {
             console.log("in error");

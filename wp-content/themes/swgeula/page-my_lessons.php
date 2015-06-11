@@ -67,9 +67,10 @@ $current_user = wp_get_current_user();
                 <div class="image_category">
                                
                                <?php 
-                                    $arrNextScheduled = (array)getNextScheduledCat($current_user->ID);                                                                       
+                                    $arrNextScheduled = getNextScheduledCat($current_user->ID);                                                                                                           
                                     if ( is_array($arrNextScheduled) && (count($arrNextScheduled)>0) ) $bScheduled = true;
-                                    else $bScheduled = false;                                    
+                                    else $bScheduled = false;  
+
 
                                     $bMyLessons=true;
                                     $arrMyCats = array();

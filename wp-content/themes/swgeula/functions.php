@@ -877,6 +877,33 @@ function removeFromMyLessons() {
 add_action('wp_ajax_remove_from_my_lessons', 'removeFromMyLessons');
 add_action('wp_ajax_nopriv_remove_from_my_lessons', 'removeFromMyLessons');
 
+function addSchedule() {
+	global $wpdb;	
+
+	if ( is_user_logged_in() ) { 		
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;	
+
+		$scheduleDay = (int)$_POST['schedule_day'];
+		$scheduleTime = $_POST['schedule_time'];	
+
+		$wpdb->delete( 'wp_sw_schedules', array( 'user_id' => $userID, 'schedule_day' => $scheduleDay, 'schedule_time' => $scheduleTime) );
+
+		$wpdb->insert("wp_sw_schedules", array( 		
+							'user_id' => $userID,
+							'schedule_day' => $scheduleDay, 																		
+							'schedule_time' => $scheduleTime,
+							'repeat' => 1
+							)				
+				);
+		return 1;				
+	}
+	return 0;
+}
+
+add_action('wp_ajax_add_schedule', 'addSchedule');
+add_action('wp_ajax_nopriv_add_schedule', 'addSchedule');
+
 function getCatInMyLessons($catID) {
 	global $wpdb;	
 	if ( is_user_logged_in() ) :	
@@ -1029,40 +1056,6 @@ function getMyCatsTeach($parentCat=-1,$userID) {
 }
 
 
-function setSchedule() {
-	global $wpdb;	
-	$userID = -1;	
-
-	if ( is_user_logged_in() ) { 		
-		$catID = (int)$_POST['cat_id'];
-		$timeStamp = (int)$_POST['time_stamp'];		
-		
-		$current_user = wp_get_current_user();
-		$userID = $current_user->ID;		
-		
-		if ( is_int($userID) && ($catID>0) && ($timeStamp>0) ) :			
-				
-				$wpdb->delete( 'wp_sw_schedules', array( 'user_id'=>$userID, 'cat_id' => $catID ) );
-				
-				$wpdb->insert("wp_sw_schedules", array( 		
-							'user_id' => $userID,
-							'cat_id' => $catID, 																		
-							'schedule_date' => date('d-m-Y H:i:s',$timeStamp),
-							'repeat' => 0
-							)				
-				);
-				echo 1;		
-				exit;
-				
-		endif;	
-	}
-	echo 0;		
-	exit;
-}
-add_action('wp_ajax_set_schedule', 'setSchedule');
-add_action('wp_ajax_nopriv_set_schedule', 'setSchedule');
-
-
 function getNextScheduledCat($userID) {
 	global $wpdb;			
 
@@ -1073,13 +1066,13 @@ function getNextScheduledCat($userID) {
 			$results = $wpdb->get_results("SELECT id FROM wp_sw_schedules WHERE user_id = $userID LIMIT 1;",ARRAY_A);											
 
 			if (is_array($results) && count($results)>0 && count($arrCatsNotStudies)>0 ) :																			
-				return $arrCatsNotStudies[0];														
+				return (array)$arrCatsNotStudies[0];														
 			endif;
 
  	endif;			
 
 		
-	return "";
+	return -1;
 }
 
 function YTDurationToSeconds($sMatch) {		
