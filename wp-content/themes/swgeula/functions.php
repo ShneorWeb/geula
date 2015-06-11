@@ -946,7 +946,7 @@ function getMyCatsNotYetStudied() {
 
 				$arrRetVal = array();	
 
-				$results = $wpdb->get_results("SELECT DISTINCT cat_id FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_status=0 ORDER BY id ASC;",ARRAY_A);		
+				$results = $wpdb->get_results("SELECT DISTINCT cat_id FROM wp_sw_cats_learn WHERE user_id = $userID AND cat_status=0 ORDER BY cat_id ASC;",ARRAY_A);		
 					
 				if (count($results)>0) :					
 					

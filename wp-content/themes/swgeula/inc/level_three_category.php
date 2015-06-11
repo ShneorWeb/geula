@@ -123,7 +123,7 @@
                                 <div class="rail--btns">
                                     <!--TODO: what link is need to go to? -->
                                     <a href="#" id="playBtnCont">
-                                        <button type="button" class="btn btn-default playBtn" onclick="document.location.href='<?php echo get_permalink(getNextLessonToPlay($cat_id)); ?>';">
+                                        <button type="button" class="btn btn-default playBtn" onclick="addToMyLessons(<?php echo $cat_id;?>);document.location.href='<?php echo get_permalink(getNextLessonToPlay($cat_id)); ?>';">
                                            <?php if(ICL_LANGUAGE_CODE=='he'){?>
                                                 <i class="fa fa-play fa-flip-horizontal"></i> 
                                             <?php }else{?>

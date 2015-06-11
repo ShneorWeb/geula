@@ -1,5 +1,5 @@
-<ul class="product_list" style="padding:0px;">
-					<?php                   
+<ul class="product_list" style="padding:0px;">  
+					<?php                             
 
                     //if parent cat is empty
                      if($parent_cat == ""){
@@ -8,8 +8,8 @@
       
 					//if (is_category() || is_single() || $bIsAjax) {                      
                        
-                      //if in my lessons page get my catgories:                                                                         
-                      
+                      //if in my lessons page get my catgories:                                                                                               
+
                       if ( $bMyLessons ) {
                         $args = array(                                 
                               'child_of' => isset($parent_cat)?$parent_cat:0,

@@ -74,7 +74,7 @@ $current_user = wp_get_current_user();
                                     $bMyLessons=true;
                                     $arrMyCats = array();
                                     $tempArrMyCats = getMyCatsStudied();                                       
-                                    $tempArrMyCats2 = getMyCatsNotYetStudied();                                       
+                                    $tempArrMyCats2 = getMyCatsNotYetStudied();                                                                           
                                 ?>
                                 
                                 <div class="big_icon">
@@ -151,21 +151,21 @@ $current_user = wp_get_current_user();
                    </h3>
                    
                    <div class="row cat_cont">                    
-                        <?php if ($arrMyCats[0]!=-1) include_once("inc/category_boxes.php");?>
+                        <?php if ($arrMyCats[0]!=-1) include("inc/category_boxes.php");?>
                    </div>
                    
                     <h3 class="ltl_title">
                        <?php                                                             
                             $arrMyCats = null;              
                             if ( is_array($tempArrMyCats2) && count($tempArrMyCats2)>0 ) $arrMyCats = $tempArrMyCats2;                                                                                     
-                            echo __("series I added", 'swgeula') . __("<span id='count-my-lessons-add'>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");
+                            echo __("series I added", 'swgeula') . __("<span id='count-my-lessons-add'>") . __( (isset($arrMyCats) && is_array($arrMyCats))?count($arrMyCats):0) . __("</span>");                            
                             if ( count($arrMyCats)==0 ) $arrMyCats[] = -1;
-                            $NumberSpanID = "count-my-lessons-add";
+                            $NumberSpanID = "count-my-lessons-add";                            
                        ?>
                    </h3>
                    
                    <div class="row cat_cont">                    
-                        <?php if ($arrMyCats[0]!=-1)  include_once("inc/category_boxes.php");?>
+                        <?php if ($arrMyCats[0]!=-1)  include("inc/category_boxes.php");?>
                    </div>
     </div>	
                      
