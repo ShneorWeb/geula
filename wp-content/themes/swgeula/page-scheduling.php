@@ -10,14 +10,14 @@ if (!is_user_logged_in()) {
 else {
 
 $current_user = wp_get_current_user();
-?>	
+?>  
 
 
-<div class="col-lg-12 col-md-12 archive_cont">	
+<div class="col-lg-12 col-md-12 archive_cont">  
 
-    <div class="page-header">	
-				
-        <div class="header_category">	
+    <div class="page-header"> 
+        
+        <div class="header_category"> 
                 <div class="back_to_libary">
 
                         <h1><?php the_title(); ?></h1>
@@ -68,203 +68,79 @@ $current_user = wp_get_current_user();
                 <div class="clearfix"></div>
                   
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                
+                <?php 
+
+                $arrDays = array(7);
+
+                $arrDays[0] = array('Sunday',7,"One");
+                $arrDays[1] = array('Monday',1,"Two");
+                $arrDays[2] = array('Tuesday',2,"Three");
+                $arrDays[3] = array('Wednesday',3,"Four");
+                $arrDays[4] = array('Thursday',4,"Five");
+                $arrDays[5] = array('Friday',5,"Six");
+                $arrDays[6] = array('Saturday',6,"Seven");                
+
+
+                for ($indDays=0;$indDays<7;$indDays++)  :
+
+                  $arrSlots = getScheduleSlotsForDay($arrDays[$indDays][1]);                 
+                ?>
+
                   <div class="panel ">
-                    <div class="panel-heading" role="tab" id="headingOne">
+                    <div class="panel-heading" role="tab" id="heading<?php echo $arrDays[$indDays][2];?>">
                       <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $arrDays[$indDays][2];?>" aria-expanded="<?php if ($indDays>0) echo "false"; else echo("true"); ?>" aria-controls="collapse<?php echo $arrDays[$indDays][2];?>">
                          <div class="day">
-                             <?php _e('Sunday', 'swgeula'); ?>
+                             <?php _e($arrDays[$indDays][0], 'swgeula'); ?>
                          </div>
                         </a>
                       </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div id="collapse<?php echo $arrDays[$indDays][2];?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $arrDays[$indDays][2];?>"><!-- add class 'in' to collapse panel-->
                       <div class="panel-body">
                       
                           <div class="table_schedule_cont">
                                <table class="schedule">
                                    <thead>
                                         <tr>
-                                            <th>
-                                                <a href="javascript:void(0)" onclick="addSchedule(2,'07:00')"><big>7</big><small>AM</small></a>
-                                            </th>
-                                            <th>
-                                                <big>8</big><small>AM</small>
-                                            </th>
-                                             <th>
-                                                <big>9</big><small>AM</small>
-                                            </th>
-                                            <th>
-                                                <big>10</big><small>AM</small>
-                                            </th>
-                                             <th>
-                                                <big>11</big><small>AM</small>
-                                            </th>
-                                            <th>
-                                                <big>12</big><small>AM</small>
-                                            </th>
-                                             <th>
-                                                <big>1</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>2</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>1</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>3</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>4</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>5</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>6</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>7</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>8</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>9</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>10</big><small>PM</small>
-                                            </th>
-                                            <th>
-                                                <big>11</big><small>PM</small>
-                                            </th>
-                                              <th>
-                                                <big>12</big><small>PM</small>
-                                            </th>
-                                             <th>
-                                                <big>1</big><small>AM</small>
-                                            </th>
-                                             <th>
-                                                <big>2</big><small>AM</small>
-                                            </th>
-                                             <th>
-                                                <big>3</big><small>AM</small>
-                                            </th>
-                                             <th>
-                                                <big>4</big><small>AM</small>
-                                            </th>
-                                             <th>
-                                                <big>5</big><small>AM</small>
-                                            </th>
-                                             <th>
-                                                <big>6</big><small>AM</small>
-                                            </th>
+                                          <?php for ($i=7;$i<=12;$i++) {                                             
+                                            echo ('<th><big>'.$i.'</big><small>'.($i<12?'AM':'PM').'</small></th>');
+                                          }?>
 
+                                          <?php for ($i=1;$i<=12;$i++) {                                             
+                                            echo ('<th><big>'.$i.'</big><small>'.($i<12?'PM':'AM').'</small></th>');
+                                          }?> 
+
+                                          <?php for ($i=1;$i<=6;$i++) {                                                                                          
+                                            echo ('<th><big>'.$i.'</big><small>AM</small></th>');
+                                          }?>                                                                                                                                                                        
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                              <td>
-                                                <div class="table_rect"></div>
-                                                <div class="table_rect"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                 <div class="table_rect"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect yellow"></div>
-                                                 <div class="table_rect"></div>
-                                            </td>
-                                             <td>
-                                                <div class="table_rect yellow"></div>
-                                                 <div class="table_rect"></div>
-                                            </td>
-                                             <td>
-                                                <div class="table_rect yellow"></div>
-                                                 <div class="table_rect"></div>
-                                            </td>
-                                             <td>
-                                                <div class="table_rect"></div>
-                                                <div class="table_rect"></div>
-                                            </td>
-                                              <td>
-                                                <div class="table_rect"></div>
-                                                <div class="table_rect"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect green"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect"></div>
-                                                <div class="table_rect"></div>
-                                            </td>
-                                             <td>
-                                                <div class="table_rect"></div>
-                                                <div class="table_rect"></div>
-                                            </td>
-                                             <td>
-                                                <div class="table_rect"></div>
-                                                <div class="table_rect"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect"></div>
-                                                <div class="table_rect"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                             <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                             <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                             <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                              <td>
-                                                <div class="table_rect"></div>
-                                                <div class="table_rect"></div>
-                                            </td>
-                                              <td>
-                                                <div class="table_rect"></div>
-                                                <div class="table_rect"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
-                                            <td>
-                                                <div class="table_rect green"></div>
-                                                <div class="table_rect yellow"></div>
-                                            </td>
+                                           <?php for ($i=7;$i<=12;$i++) {                                            
+                                            $rectIndex = $i*2;                                            
+                                            echo('<td>'.
+                                                '<a href="javascript:void(0)" onclick="addSchedule('.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':00\')"><div class="table_rect '.($arrSlots[$rectIndex]==1?'yellow':'green').'"></div></a>'.
+                                                '<a href="javascript:void(0)" onclick="addSchedule('.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]==1?'yellow':'green').'"></div></a>'.
+                                            '</td>');
+                                          }?>                                            
+                                          <?php for ($i=1;$i<=12;$i++) { 
+                                             $rectIndex = ($i+12)*2;
+                                             if ($rectIndex==48) $rectIndex=0;
+                                             echo('<td>'.
+                                                '<a href="javascript:void(0)" onclick="addSchedule('.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':00\')"><div class="table_rect '.($arrSlots[$rectIndex]==1?'yellow':'green').'"></div></a>'.
+                                                '<a href="javascript:void(0)" onclick="addSchedule('.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]==1?'yellow':'green').'"></div></a>'.
+                                            '</td>');
+                                           }?> 
+                                           <?php for ($i=1;$i<=6;$i++) { 
+                                             $rectIndex = $i*2;     
+                                             echo('<td>'.
+                                                '<a href="javascript:void(0)" onclick="addSchedule('.$arrDays[$indDays][1].',\''.$i.':00\')"><div class="table_rect '.($arrSlots[$rectIndex]==1?'yellow':'green').'"></div></a>'.
+                                                '<a href="javascript:void(0)" onclick="addSchedule('.$arrDays[$indDays][1].',\''.$i.':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]==1?'yellow':'green').'"></div></a>'.
+                                            '</td>');
+                                          }?> 
                                         </tr>
                                     </tbody>
                                </table>
@@ -272,116 +148,18 @@ $current_user = wp_get_current_user();
                            
                       </div>
                     </div>
-                  </div>
-                  <div class="panel ">
-                    <div class="panel-heading" role="tab" id="headingTwo">
-                      <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                         <div class="day">
-                        <?php _e('Monday', 'swgeula'); ?>
-                            </div>
-                      </a>
-                      </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                      <div class="panel-body">
-                       labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="panel ">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                      <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          <div class="day">
-                          <?php _e('Tuesday', 'swgeula'); ?>
-                            </div>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                      <div class="panel-body">
-                        labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-                   <div class="panel ">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                      <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapseThree">
-                          <div class="day">
-                          <?php _e('Wednesday', 'swgeula'); ?>
-                            </div>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                      <div class="panel-body">
-                        labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-                   <div class="panel ">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                      <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapseThree">
-                          <div class="day">
-                          <?php _e('Thursday', 'swgeula'); ?>
-                            </div>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                      <div class="panel-body">
-                        labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-                  
-                   <div class="panel ">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                      <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapseThree">
-                          <div class="day">
-                          <?php _e('Friday', 'swgeula'); ?>
-                            </div>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                      <div class="panel-body">
-                        labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-                  
-                   <div class="panel">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                      <h4 class="panel-title">
-                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapseThree">
-                          <div class="day">
-                          <?php _e('Saturday', 'swgeula'); ?>
-                            </div>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                      <div class="panel-body">
-                        labore sustainable VHS.
-                      </div>
-                    </div>
-                  </div>
-                  
+                  </div>                  
+                <?php endfor; ?>                  
                 </div>  
                    
                  
-    </div>	
+    </div>  
                      
-			
+      
 </div>
 
 <?php 
     } //of else not logged
 ?>
 <?php get_footer(); ?>
-				
+        

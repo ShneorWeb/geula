@@ -900,9 +900,27 @@ function addSchedule() {
 	}
 	return 0;
 }
-
 add_action('wp_ajax_add_schedule', 'addSchedule');
 add_action('wp_ajax_nopriv_add_schedule', 'addSchedule');
+
+function getScheduleSlotsForDay($iDay) {
+	$arrSlots = array(48); //48 half our slots. 1-taken, 0-free
+
+	for ($i=0;$i<48;$i++) $arrSlots[$i]=0; //init to 0
+
+	global $wpdb;	
+	$results = $wpdb->get_results("SELECT DISTINCT schedule_time FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);		
+	if (count($results)>0) :
+		foreach($results as $row) :	
+			$hour = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
+			$mins = (int)substr($row['schedule_time'],strpos($row['schedule_time'],":")+1);							
+			if ($mins>0) $mins /= 30; 
+			$arrSlots[$hour*2 + $mins] = 1;
+		endforeach;
+	endif;
+
+	return $arrSlots;
+}
 
 function getCatInMyLessons($catID) {
 	global $wpdb;	
@@ -2042,8 +2060,8 @@ function sw_send_alerts() {
 				
 				$hours = (int)$date->format('H');
 				$mins = (int)$date->format('i');
-				$scheduledHours = (int)substr($result['schedule_time'],0,(int)strstr($result['schedule_time'],":"));
-				$scheduledMins = (int)substr($result['schedule_time'],strstr($result['schedule_time'],":")+1);
+				$scheduledHours = (int)substr($result['schedule_time'],0,(int)strpos($result['schedule_time'],":"));
+				$scheduledMins = (int)substr($result['schedule_time'],strpos($result['schedule_time'],":")+1);
 
 				if (((int)$result['sent_alert']==0) && $result['schedule_day'] == $date->format('N') || //schedule is for today				
 					( ($result['schedule_day'] == $date->format('N')+1) || ($result['schedule_day']==1 && $date->format('N')==7) )  &&  ($scheduledHours==0) && ($hours>=23) && ($mins>=$scheduledMins) ) { //this is a special case where the lesson is scheduled for hour 00 or 00:30 so need to send email at 23:00 the day before
