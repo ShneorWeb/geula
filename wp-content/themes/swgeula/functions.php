@@ -877,6 +877,20 @@ function removeFromMyLessons() {
 add_action('wp_ajax_remove_from_my_lessons', 'removeFromMyLessons');
 add_action('wp_ajax_nopriv_remove_from_my_lessons', 'removeFromMyLessons');
 
+function get_timezone_offset($remote_tz, $origin_tz = null) {
+    if($origin_tz === null) {
+        if(!is_string($origin_tz = date_default_timezone_get())) {
+            return false; // A UTC timestamp was returned -- bail out!
+        }
+    }
+    $origin_dtz = new DateTimeZone($origin_tz);
+    $remote_dtz = new DateTimeZone($remote_tz);
+    $origin_dt = new DateTime("now", $origin_dtz);
+    $remote_dt = new DateTime("now", $remote_dtz);
+    $offset = $origin_dtz->getOffset($origin_dt) - $remote_dtz->getOffset($remote_dt);
+    return $offset;
+}
+
 function addSchedule() {
 	global $wpdb;	
 
@@ -886,6 +900,28 @@ function addSchedule() {
 
 		$scheduleDay = (int)$_POST['schedule_day'];
 		$scheduleTime = $_POST['schedule_time'];	
+
+		$user_tz = get_user_meta( $userID, 'user_timezone', true );
+
+		if (is_string($user_tz)) {
+			$offset = get_timezone_offset($user_tz);
+			$offset /= 3600; //change to hours			
+			$hour = (int)substr($scheduleTime,0,(int)strpos($scheduleTime,":"));
+			$mins = (int)substr($scheduleTime,strpos($scheduleTime,":")+1);							
+
+			$hour += $offset;
+			if ($hour>=24) {
+				$hour -= 24;
+				$scheduleDay += 1;
+				if ($scheduleDay==8) $scheduleDay=1;
+			}
+			elseif ($hour<0) {
+				$hour += 24;
+				$scheduleDay -= 1;
+				if ($scheduleDay==0) $scheduleDay=7;
+			}
+			$scheduleTime = ($hour>9?$hour:'0'.$hour) . ':' . ($mins>9?$mins:'0'.$mins);			
+		}
 
 		$wpdb->delete( 'wp_sw_schedules', array( 'user_id' => $userID, 'schedule_day' => $scheduleDay, 'schedule_time' => $scheduleTime) );
 
@@ -906,18 +942,83 @@ add_action('wp_ajax_nopriv_add_schedule', 'addSchedule');
 function getScheduleSlotsForDay($iDay) {
 	$arrSlots = array(48); //48 half our slots. 1-taken, 0-free
 
-	for ($i=0;$i<48;$i++) $arrSlots[$i]=0; //init to 0
+	if ( is_user_logged_in() ) { 		
+		$current_user = wp_get_current_user();
+		$userID = $current_user->ID;			
 
-	global $wpdb;	
-	$results = $wpdb->get_results("SELECT DISTINCT schedule_time FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);		
-	if (count($results)>0) :
-		foreach($results as $row) :	
-			$hour = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
-			$mins = (int)substr($row['schedule_time'],strpos($row['schedule_time'],":")+1);							
-			if ($mins>0) $mins /= 30; 
-			$arrSlots[$hour*2 + $mins] = 1;
-		endforeach;
-	endif;
+		for ($i=0;$i<48;$i++) $arrSlots[$i]=0; //init to 0
+
+		global $wpdb;	
+		$results = $wpdb->get_results("SELECT DISTINCT schedule_time FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);		
+		if (count($results)>0) :
+			foreach($results as $row) :	
+				$hour = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
+				$mins = (int)substr($row['schedule_time'],strpos($row['schedule_time'],":")+1);							
+				if ($mins>0) $mins /= 30; 
+				$arrSlots[$hour*2 + $mins] = 1;
+			endforeach;
+		endif;
+
+		$user_tz = get_user_meta( $userID, 'user_timezone', true );
+		$offset = get_timezone_offset($user_tz);
+		$offset /= 3600; //change to hours
+
+		if ($offset>0) {
+			$tempArray = array(48);
+			for ($i=0;$i<48;$i++) $tempArray[$i]=0; //init to 0
+
+			for ($i=0;$i<(48-$offset*2) ;$i++) {
+				$tempArray[$i+($offset*2)] = $arrSlots[$i];
+			}
+			//get necessary values from previous day:
+			$iDay -= 1;
+			if ($iDay<=0) $iDay=7;
+			$results = $wpdb->get_results("SELECT DISTINCT schedule_time FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);	
+			if (count($results)>0) :
+				foreach($results as $row) :	
+					$hour = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
+					$mins = (int)substr($row['schedule_time'],strpos($row['schedule_time'],":")+1);							
+					if ($mins>0) $mins /= 30; 
+					if ($hour >= 24-$offset) {
+						$hour += $offset;
+						if ($hour>=24) $hour -= 24;
+						$tempArray[$hour*2 + $mins] = 1;
+					}
+				endforeach;
+			endif;
+
+			$arrSlots = $tempArray;
+		}
+		elseif ($offset<0) {
+
+			$tempArray = array(48);
+			for ($i=0;$i<48;$i++) $tempArray[$i]=0; //init to 0
+
+			for ($i=47;$i>=($offset*2) ;$i--) {
+				$tempArray[$i-($offset*2)] = $arrSlots[$i];
+			}
+			
+			//get necessary values from next day:
+			$iDay += 1;
+			if ($iDay>7) $iDay=1;
+			$results = $wpdb->get_results("SELECT DISTINCT schedule_time FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);	
+			if (count($results)>0) :
+				foreach($results as $row) :	
+					$hour = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
+					$mins = (int)substr($row['schedule_time'],strpos($row['schedule_time'],":")+1);							
+					if ($mins>0) $mins /= 30; 
+					if ($hour < $offset) {
+						$hour += (24-$offset);
+						$tempArray[$hour*2 + $mins] = 1;
+					}
+				endforeach;
+			endif;
+
+			$arrSlots = $tempArray;
+		}
+
+
+	}
 
 	return $arrSlots;
 }

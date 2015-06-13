@@ -147,6 +147,8 @@ filterBoxesTeach = function(parentCat,sSort,iAuthorID) {
 
 addSchedule = function(scheduleDay,scheduleTime) {
   
+  var clickedDiv = event.target;
+
   $.ajax({
           type : "post",
           data : {
@@ -157,8 +159,9 @@ addSchedule = function(scheduleDay,scheduleTime) {
           url: ajaxurl,          
           success    : function(data){                                        
               //console.log("in success");
-              //console.log(data);              
-              //$('#dp1').hide();                                                         
+              $(clickedDiv).removeClass('green');
+              $(clickedDiv).addClass('yellow');
+              //$('#dp1').hide();                                                                                     
           },
           error     : function(jqXHR, textStatus, errorThrown) {
             console.log("in error");
