@@ -2178,7 +2178,7 @@ function sw_send_alerts() {
 						$arrNextScheduled = (array)getNextScheduledCat($userID);                                                                      
 						$lessonID = (int)getNextLessonToPlay((int)$arrNextScheduled[0]);
 
-						sendEmailAlert($userID,$lessonID);
+						//sendEmailAlert($userID,$lessonID);
 
 						//change db field to sent
 						$wpdb->update('wp_sw_schedules', array('sent_alert' => 1), array( 'id' =>  $result['id']) ); 
