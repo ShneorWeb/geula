@@ -2442,6 +2442,9 @@ ul.drop {
 .page-template-page-scheduling .table_rect.yellow {
   background-color: #F1C40F;
 }
+.page-template-page-scheduling .table_rect.orange {
+  background-color: orange;
+}
 .page-template-page-scheduling .table_schedule_cont {
   margin-top: 45px;
   overflow: auto;
