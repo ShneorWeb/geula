@@ -145,9 +145,10 @@ filterBoxesTeach = function(parentCat,sSort,iAuthorID) {
   });
 }
 
-addSchedule = function(scheduleDay,scheduleTime) {
-  
-  var clickedDiv = event.target;
+addSchedule = function(el,scheduleDay,scheduleTime) {
+
+  console.log($(el));
+  var clickedDiv = $(el).find('.table_rect');
 
   $.ajax({
           type : "post",

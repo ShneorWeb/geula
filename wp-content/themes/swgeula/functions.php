@@ -961,15 +961,17 @@ function getScheduleSlotsForDay($iDay) {
 
 		$user_tz = get_user_meta( $userID, 'user_timezone', true );
 		$offset = get_timezone_offset($user_tz);
-		$offset /= 3600; //change to hours
+		$offset /= 3600; //change to hours	
 
-		if ($offset>0) {
+		if ($offset<0) {			
+			$offset *= -1;
 			$tempArray = array(48);
 			for ($i=0;$i<48;$i++) $tempArray[$i]=0; //init to 0
 
 			for ($i=0;$i<(48-$offset*2) ;$i++) {
 				$tempArray[$i+($offset*2)] = $arrSlots[$i];
 			}
+			
 			//get necessary values from previous day:
 			$iDay -= 1;
 			if ($iDay<=0) $iDay=7;
@@ -989,8 +991,7 @@ function getScheduleSlotsForDay($iDay) {
 
 			$arrSlots = $tempArray;
 		}
-		elseif ($offset<0) {
-
+		elseif ($offset>0) {			
 			$tempArray = array(48);
 			for ($i=0;$i<48;$i++) $tempArray[$i]=0; //init to 0
 
