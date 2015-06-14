@@ -957,7 +957,7 @@ function getScheduleSlotsForDay($iDay) {
 			foreach($results as $row) :	
 				$hour = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
 				$mins = (int)substr($row['schedule_time'],strpos($row['schedule_time'],":")+1);							
-				if ($mins>0) $mins /= 30; 
+				if ($mins>0) $mins /= 30; 				
 				if ( $row['user_id']==$current_user->ID ) $arrSlots[$hour*2 + $mins] = 2; //2 - taken by me 
 				else $arrSlots[$hour*2 + $mins] = 1; //1 - taken
 			endforeach;
