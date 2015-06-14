@@ -151,7 +151,7 @@ addSchedule = function(el,scheduleDay,scheduleTime) {
   var clickedDiv = $(el).find('.table_rect');
 
   var boolAdd = 1;
-  //if ( $(clickedDiv).hasClass('yellow') ) boolAdd=0;
+  if ( $(clickedDiv).hasClass('orange') ) boolAdd=0; //delete schedule
 
   $.ajax({
           type : "post",
@@ -165,7 +165,7 @@ addSchedule = function(el,scheduleDay,scheduleTime) {
           success    : function(data){                                        
               //console.log("in success");
               $(clickedDiv).removeClass('green');
-              $(clickedDiv).addClass('yellow');
+              $(clickedDiv).addClass('orange');
               //$('#dp1').hide();                                                                                     
           },
           error     : function(jqXHR, textStatus, errorThrown) {
