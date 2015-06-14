@@ -164,8 +164,15 @@ addSchedule = function(el,scheduleDay,scheduleTime) {
           url: ajaxurl,          
           success    : function(data){                                        
               //console.log("in success");
-              $(clickedDiv).removeClass('green');
-              $(clickedDiv).addClass('orange');
+              if (boolAdd) {
+                $(clickedDiv).removeClass('green');
+                $(clickedDiv).addClass('orange');
+              }
+              else {
+                $(clickedDiv).removeClass('orange');
+                if (data=="2") $(clickedDiv).addClass('yellow');
+                else $(clickedDiv).addClass('green');
+              }
               //$('#dp1').hide();                                                                                     
           },
           error     : function(jqXHR, textStatus, errorThrown) {

@@ -927,16 +927,25 @@ function addSchedule() {
 
 		$wpdb->delete( 'wp_sw_schedules', array( 'user_id' => $userID, 'schedule_day' => $scheduleDay, 'schedule_time' => $scheduleTime) );
 
-		if ($bAdd) $wpdb->insert("wp_sw_schedules", array( 		
+		if ($bAdd) {
+			$wpdb->insert("wp_sw_schedules", array( 		
 							'user_id' => $userID,
 							'schedule_day' => $scheduleDay, 																		
 							'schedule_time' => $scheduleTime,
 							'repeat' => 1
 							)				
 				);
-		echo 1;				
+			echo '1';				
+			exit;
+		}
+		else { //deleted scedule. Fine out if another user is scheduled to same time (show yellow)
+			$results = $wpdb->get_results("SELECT id FROM wp_sw_schedules WHERE schedule_day = $scheduleDay AND schedule_time='$scheduleTime';",ARRAY_A);		
+			if (count($results)>0) echo '2';
+			else echo '0';
+			exit;
+		}		
 	}
-	echo 0;
+	echo '0';
 	exit;
 }
 add_action('wp_ajax_add_schedule', 'addSchedule');
