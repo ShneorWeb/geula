@@ -150,12 +150,16 @@ addSchedule = function(el,scheduleDay,scheduleTime) {
   console.log($(el));
   var clickedDiv = $(el).find('.table_rect');
 
+  var boolAdd = 1;
+  //if ( $(clickedDiv).hasClass('yellow') ) boolAdd=0;
+
   $.ajax({
           type : "post",
           data : {
               'action': 'add_schedule',
               'schedule_day': scheduleDay,     
-              'schedule_time': scheduleTime     
+              'schedule_time': scheduleTime,
+              'bool_add' : boolAdd
           },          
           url: ajaxurl,          
           success    : function(data){                                        

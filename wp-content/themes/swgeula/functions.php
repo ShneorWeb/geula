@@ -896,10 +896,11 @@ function addSchedule() {
 
 	if ( is_user_logged_in() ) { 		
 		$current_user = wp_get_current_user();
-		$userID = $current_user->ID;	
+		$userID = $current_user->ID;		
 
 		$scheduleDay = (int)$_POST['schedule_day'];
 		$scheduleTime = $_POST['schedule_time'];	
+		$bAdd =  (int) $_POST['bool_add'];	
 
 		$user_tz = get_user_meta( $userID, 'user_timezone', true );
 
@@ -925,16 +926,17 @@ function addSchedule() {
 
 		$wpdb->delete( 'wp_sw_schedules', array( 'user_id' => $userID, 'schedule_day' => $scheduleDay, 'schedule_time' => $scheduleTime) );
 
-		$wpdb->insert("wp_sw_schedules", array( 		
+		if ($bAdd) $wpdb->insert("wp_sw_schedules", array( 		
 							'user_id' => $userID,
 							'schedule_day' => $scheduleDay, 																		
 							'schedule_time' => $scheduleTime,
 							'repeat' => 1
 							)				
 				);
-		return 1;				
+		echo 1;				
 	}
-	return 0;
+	echo 0;
+	exit;
 }
 add_action('wp_ajax_add_schedule', 'addSchedule');
 add_action('wp_ajax_nopriv_add_schedule', 'addSchedule');
@@ -2109,22 +2111,25 @@ add_action( 'wp_ajax_gettimez', 'getTimeZones' );
 
 /*****************************WP_CRON FUNCTIONS******************/
 
-function sendEmail($uid,$lessonID) {
+function sendEmailAlert($uid,$lessonID) {
 	
-	$arrUsers = arra();
+	$arrUsers = array();
 	$arrUsers[] = $uid;
 
-	$users = get_users('include='.$arrUsers.'&number=1');
+	$users = get_users( array('include'=>$arrUsers,'number'=>1) );
+	
 	foreach ( $users as $user ) {
 		$user_email = $user->user_email;
 	}
 
 	$lessonLink = get_permalink($lessonID);
 
+	echo ("email=".$user_email);
+
 
 	$message = __('This is an alert. Your scheduled lesson is about to begin in less than an hour. Please click on the link below to start learning:') . "\r\n\r\n";
 	$message .= $lessonLink . "\r\n\r\n";	
-	$message .= __('If this was a mistake, just ignore this email and nothing will happen.') . "\r\n\r\n";	
+	$message .= __('Thank you') . "\r\n\r\n";	
 
 	
 	$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
@@ -2137,8 +2142,8 @@ function sendEmail($uid,$lessonID) {
 	return 1;
 }
 
-// This function will run once the 'delete_post_revisions' is called
-function sw_send_alerts() {
+function sw_send_alerts() {	
+
 	global $wpdb;
 
 	$userIDs = $wpdb->get_results("SELECT DISTINCT user_id FROM wp_sw_schedules ORDER BY user_ID ASC;",ARRAY_A);		
@@ -2173,7 +2178,7 @@ function sw_send_alerts() {
 						$arrNextScheduled = (array)getNextScheduledCat($userID);                                                                      
 						$lessonID = (int)getNextLessonToPlay((int)$arrNextScheduled[0]);
 
-						sendEmail($userID,$lessonID);
+						sendEmailAlert($userID,$lessonID);
 
 						//change db field to sent
 						$wpdb->update('wp_sw_schedules', array('sent_alert' => 1), array( 'id' =>  $result['id']) ); 
@@ -2207,13 +2212,13 @@ add_filter( 'cron_schedules', 'add_custom_cron_intervals', 10, 1 );
 
 
 function send_lesson_alerts() {
-   if( !wp_next_scheduled( 'send_lesson_alerts' ) ) {
+   if( !wp_next_scheduled( 'send_alerts' ) ) {
         // Schedule the event
         wp_schedule_event( time(), 'every_minute', 'send_alerts' );
-    } 
+   }    
    
 }
-add_action( 'init', 'sw_send_alerts'); //send_lesson_alerts
+add_action( 'init', 'send_lesson_alerts'); //send_lesson_alerts
 
 /*****************************END WP_CRON FUNCTIONS******************/
 
