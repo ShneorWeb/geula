@@ -445,7 +445,8 @@ class MY_Post_Numbers {
                     </h3>
 
                     <div class="box userdtls">
-                           <?php                                
+                           <?php              
+                                echo "<a href='" . get_author_posts_url( $the_user->ID ) . "'>";
                                 echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 100 ) . '</div>'; 
                             ?>
                                    
@@ -467,10 +468,11 @@ class MY_Post_Numbers {
 
 
 
-
+                      
                     </div>
 
             </div>
+              </a>
 
         </div>
 

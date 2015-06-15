@@ -60,7 +60,7 @@ $current_user = wp_get_current_user();
                    <h1><?php the_field('title', $post->ID); ?></h1>
                    <p><?php the_field('main_cont', $post->ID); ?></p>
                    <div class="mts"><div class="rect"></div><?php _e('Manned time strip', 'swgeula'); ?></div>
-                   <div class="uts"><div class="rect"></div><?php _e('Unmanned time strip', 'swgeula'); ?></div>
+                   <div class="uts"><div class="rect"></div><?php _e('Yours time strip', 'swgeula'); ?></div>
                    <p class="small"><?php the_field('comment', $post->ID); ?></p>
                
                 </div>
@@ -79,8 +79,7 @@ $current_user = wp_get_current_user();
                 $arrDays[3] = array('Wednesday',3,"Four");
                 $arrDays[4] = array('Thursday',4,"Five");
                 $arrDays[5] = array('Friday',5,"Six");
-                $arrDays[6] = array('Saturday',6,"Seven");                
-
+                $arrDays[6] = array('Saturday',6,"Seven");     
 
                 for ($indDays=0;$indDays<7;$indDays++)  :
 

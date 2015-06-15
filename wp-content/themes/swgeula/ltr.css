@@ -635,8 +635,13 @@ button.edit_profile {
     float: left;
 }
 
-.email_field_cont .fa-check-circle {
+.email_field_cont .fa-check {
     float: left;
+}
+
+.fa-check {
+  color: #51b46d;
+  float: left;
 }
 
 ul.drop{
@@ -728,8 +733,17 @@ transform:scaleX(-1);
   width: calc(100% - 70px);
 }
 
-.email_field_cont .fa-check-circle {
-  margin-top: 8px;
+.email_field_cont .form-control[disabled], .email_field_cont .form-control[readonly], .email_field_cont fieldset[disabled] .form-control {
+  margin-top: 0px;
+  font-size: 16px;
+}
+
+.email_field_cont .fa-check {
+  margin-top:5px;
+}
+
+.email_field_cont {
+  float: left;
 }
 
 .menu-menu-right-container a, .menu-menu_right_en0-container a {
@@ -807,6 +821,17 @@ transform:scaleX(-1);
     .menu-menu-right-container ul {
      margin-right: -15px;
     }
+    
+    .page-template-page-my_lessons-php .box.menu a:last-child, .page-template-page-lessons_teach-php .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child {
+      margin-right: 0;
+    }
+    
+    .page-template-page-my_lessons-php .box.menu a, .page-template-page-lessons_teach-php .box.menu a {
+      margin-right: 30px;
+      margin-left: auto;
+      font-size: 1.1rem;
+    }
+    
 }
 @media screen and (max-width:500px) {
     .single_category_list .rail .rail--btns a{float:left;}

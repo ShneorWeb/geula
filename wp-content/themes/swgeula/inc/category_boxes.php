@@ -214,7 +214,7 @@
                      <?php //echo "cat="   . $tempParent2->parent; ?>
 
               <?php echo '<a href="'.get_category_link($cat->parent).'" style="color:'.$color.'" class="category_square_oval_submit"'; ?>
-onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #b2bac2'"
+onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #EAEDEF'"
 <?php echo ">$tempParent->name</a>";?>
               <?php $values = get_field('swlevel', "category_".$cat->cat_ID);                                                    
                         echo '<span class="oval">' . $values . '</span>';                                                            
