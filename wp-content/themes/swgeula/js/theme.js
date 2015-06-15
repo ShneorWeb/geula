@@ -150,18 +150,29 @@ addSchedule = function(el,scheduleDay,scheduleTime) {
   console.log($(el));
   var clickedDiv = $(el).find('.table_rect');
 
+  var boolAdd = 1;
+  if ( $(clickedDiv).hasClass('orange') ) boolAdd=0; //delete schedule
+
   $.ajax({
           type : "post",
           data : {
               'action': 'add_schedule',
               'schedule_day': scheduleDay,     
-              'schedule_time': scheduleTime     
+              'schedule_time': scheduleTime,
+              'bool_add' : boolAdd
           },          
           url: ajaxurl,          
           success    : function(data){                                        
               //console.log("in success");
-              $(clickedDiv).removeClass('green');
-              $(clickedDiv).addClass('yellow');
+              if (boolAdd) {
+                $(clickedDiv).removeClass('green');
+                $(clickedDiv).addClass('orange');
+              }
+              else {
+                $(clickedDiv).removeClass('orange');
+                if (data=="2") $(clickedDiv).addClass('yellow');
+                else $(clickedDiv).addClass('green');
+              }
               //$('#dp1').hide();                                                                                     
           },
           error     : function(jqXHR, textStatus, errorThrown) {
