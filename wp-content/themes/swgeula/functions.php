@@ -799,7 +799,7 @@ function getNextLessonToPlay($catID) {
 	if ( is_int($catID) && ($catID>0) && is_int($userID) && ($userID>0) ) :
 
 
-		$results = $wpdb->get_results("SELECT lesson_id,done FROM wp_sw_user_lesson WHERE user_id = $userID AND cat_id = $catID ORDER BY lesson_id DESC;",ARRAY_A);		
+		$results = $wpdb->get_results("SELECT lesson_id,done FROM wp_sw_user_lesson WHERE user_id = $userID AND cat_id = $catID ORDER BY lesson_id ASC;",ARRAY_A);		
 
 		if (count($results)>0) {			
 
