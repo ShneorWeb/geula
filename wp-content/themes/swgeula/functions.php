@@ -938,7 +938,7 @@ function addSchedule() {
 			echo '1';				
 			exit;
 		}
-		else { //deleted scedule. Fine out if another user is scheduled to same time (show yellow)
+		else { //deleted scedule. Find out if another user is scheduled to same time
 			$results = $wpdb->get_results("SELECT id FROM wp_sw_schedules WHERE schedule_day = $scheduleDay AND schedule_time='$scheduleTime';",ARRAY_A);		
 			if (count($results)>0) echo '2';
 			else echo '0';
