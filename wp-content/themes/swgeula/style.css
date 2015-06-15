@@ -2530,6 +2530,13 @@ li.comment {
   margin-top: 5px;
 }
 
+.single_category_list .category_square_oval span.oval, .single_category_list .category_square_oval a.category_square_oval_submit {
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  font-weight: 400;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */

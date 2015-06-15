@@ -2900,6 +2900,12 @@ li.comment {
   margin-top: 5px;
 }
 
+
+.single_category_list .category_square_oval span.oval, .single_category_list .category_square_oval a.category_square_oval_submit{
+    @include border-radius(20px);
+    font-weight: 400;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
