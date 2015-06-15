@@ -79,8 +79,7 @@ $current_user = wp_get_current_user();
                 $arrDays[3] = array('Wednesday',3,"Four");
                 $arrDays[4] = array('Thursday',4,"Five");
                 $arrDays[5] = array('Friday',5,"Six");
-                $arrDays[6] = array('Saturday',6,"Seven");                
-
+                $arrDays[6] = array('Saturday',6,"Seven");     
 
                 for ($indDays=0;$indDays<7;$indDays++)  :
 
