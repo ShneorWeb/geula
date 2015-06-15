@@ -300,40 +300,45 @@
 			<h3>
                 <?php _e('teacher', 'swgeulatr'); ?>
             </h3>
-			<div class="box userdtls">
-                   <?php
-				   $values = get_field('swauthors', "category_".$cat->cat_ID);                                                                                                                
-          if ( is_array($values) && count($values)>0 ) {             
-                                               
-              $the_user = (object)$values;
-          
-							echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 100 ) . '</div>'; 
-                             ?>
-                            <div class="dtls">
-                                <?php
-                                echo '<div class="author_des"><div class="category_square_author_name">' . $the_user->display_name . '</div>';
-                                echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';
+           
+                
+                <div class="box userdtls" >
+                       
+                       <?php
+                       $values = get_field('swauthors', "category_".$cat->cat_ID);                                                                                                                
+              if ( is_array($values) && count($values)>0 ) {             
 
-                    echo '<div class="category_square_author_subject desc">' .get_the_author_meta('description', $user_id ). '</div>';
-                    ?>
+                  $the_user = (object)$values;
+                  
+                  echo "<a href='" . get_author_posts_url( $the_user->ID ) . "'>";
+
+                                echo '<div class="category_square_avatar">'. get_avatar( $the_user->ID, 100 ) . '</div>'; 
+                                 ?>
+                                <div class="dtls">
+                                    <?php
+                                    echo '<div class="author_des"><div class="category_square_author_name">' . $the_user->display_name . '</div>';
+                                    echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';
+
+                        echo '<div class="category_square_author_subject desc">' .get_the_author_meta('description', $user_id ). '</div>';
+                        ?>
 
 
-                                <div class="category_square_number">
-                                   <?php 
-                                        $user_post_count = count_user_posts( $user_id );
-                                        echo $user_post_count . ' ' . __('lessons in the library', 'swgeulatr');  
-                                    ?>
+                                    <div class="category_square_number">
+                                       <?php 
+                                            $user_post_count = count_user_posts( $user_id );
+                                            echo $user_post_count . ' ' . __('lessons in the library', 'swgeulatr');  
+                                        ?>
+                                    </div>
                                 </div>
-                            </div>
-          <?php 
-          }
-          ?>
-							
-											
+              <?php 
+               
+              }
+              ?>
 
 
-
-				    		</div>
+                                </div>
+                                <?php  echo "</a>"; ?>
+           
 				    		</div>
 				    		
                     </div><!-- row -->

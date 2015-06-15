@@ -264,7 +264,7 @@
                 /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
 ?>
                     
-       <a href="<?php echo get_category_link($cat_parent_id);?>" style="color:<?php echo $color; ?>;" onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #b2bac2'" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
+       <a href="<?php echo get_category_link($cat_parent_id);?>" style="color:<?php echo $color; ?>;" onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #EAEDEF'" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
                      
 
         <?php $values = get_field('swlevel', "category_".$cat2->cat_ID);        
