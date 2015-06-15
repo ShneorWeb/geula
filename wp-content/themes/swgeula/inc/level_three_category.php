@@ -1,7 +1,9 @@
 <?php
   $cat_id = get_query_var('cat');
   $args = array(
-      'category'         => $cat_id
+      'category' => $cat_id,
+      'orderby' => 'date',
+      'order' => 'ASC'
   );
   $posts = get_posts($args); 
   $count = count($posts); 

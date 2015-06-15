@@ -1209,7 +1209,7 @@ function getNextSchedule($userID) {
 
 			$date = new DateTime('NOW');
 			$user_tzone = get_user_meta( $userID, 'user_timezone', true );
-			$date->setTimezone(new DateTimeZone($user_tzone));
+			if (is_string($user_tzone) && !empty($user_tzone)) $date->setTimezone(new DateTimeZone($user_tzone));
 			$curDay = (int)$date->format('N');			
 			$curHours = (int)$date->format('G');					 
 			$curMins = (int)$date->format('i');					 

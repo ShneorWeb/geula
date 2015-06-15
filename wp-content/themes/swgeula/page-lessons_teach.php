@@ -165,7 +165,7 @@ get_header(); ?>
                   $arrMyCats = $teachCats;                     
                   $bMyLessons = true;
                   $orderby="ID"; 
-                  include_once("inc/category_boxes.php");
+                  if (is_array($arrMyCats) && count($arrMyCats)>0) include_once("inc/category_boxes.php");
                 ?>            
         
        </div>
