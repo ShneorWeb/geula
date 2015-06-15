@@ -2427,7 +2427,7 @@ ul.drop {
   color: #a6a8ab;
   float: left;
 }
-.page-template-page-scheduling .panel-title > a.collapsed .day:after, .page-template-page-scheduling .panel-title > small.collapsed .day:after, .page-template-page-scheduling .panel-title > .small.collapsed .day:after, .page-template-page-scheduling .panel-title > small > a.collapsed .day:after, .page-template-page-scheduling .panel-title > .small > a.collapsed .day:after {
+.page-template-page-scheduling .panel-title > a.collapsed .day::after, .page-template-page-scheduling .panel-title > small.collapsed .day::after, .page-template-page-scheduling .panel-title > .small.collapsed .day::after, .page-template-page-scheduling .panel-title > small > a.collapsed .day::after, .page-template-page-scheduling .panel-title > .small > a.collapsed .day::after {
   content: "\f078";
 }
 .page-template-page-scheduling .table_rect {
@@ -3052,6 +3052,17 @@ _responsive styles
   .logged-in .navbar-header .menu-top, .logged-in .navbar-collapse .menu-top {
     margin-top: 34px;
   }
+
+  .page-template-page-scheduling .site-content {
+    max-width: 100%;
+  }
+
+  .page-template-page-my_lessons-php .box.menu a, .page-template-page-lessons_teach-php .box.menu a, .page-template-page-scheduling .box.menu a, .page-template-page-scheduling .box.menu a {
+    margin-left: 30px;
+  }
+  .page-template-page-my_lessons-php .box.menu a:last-child, .page-template-page-lessons_teach-php .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child {
+    margin-left: 0;
+  }
 }
 /* 500 and less ----------- */
 @media screen and (max-width: 500px) {
@@ -3080,6 +3091,21 @@ _responsive styles
 
   .page-template-custom-profile-php .page_cont {
     width: 85%;
+  }
+
+  .page-template-page-scheduling .image_category .mts {
+    width: 100%;
+  }
+  .page-template-page-scheduling .image_category .uts {
+    width: 100%;
+    margin-right: 0;
+    margin-top: 10px;
+  }
+
+  .page-template-page-my_lessons-php .box.menu a, .page-template-page-lessons_teach-php .box.menu a, .page-template-page-scheduling .box.menu a, .page-template-page-scheduling .box.menu a {
+    width: 100%;
+    float: right;
+    margin-bottom: 10px;
   }
 }
 

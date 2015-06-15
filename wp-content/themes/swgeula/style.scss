@@ -2858,7 +2858,6 @@ ul.drop{
 
 
 
-
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
@@ -3463,6 +3462,24 @@ _responsive styles
       margin-top: 34px;
     }
 
+    .page-template-page-scheduling{
+        .site-content {
+          max-width: 100%;
+        }
+    } 
+
+    .page-template-page-my_lessons-php,.page-template-page-lessons_teach-php,.page-template-page-scheduling{
+       .box.menu a{
+            margin-left: 30px;
+        } 
+          .box.menu a:last-child{
+                margin-left: 0;
+        }
+    }
+    
+    
+  
+
 }
 
 /* 500 and less ----------- */
@@ -3497,5 +3514,27 @@ _responsive styles
           width: 85%;
         }
     }
+    
+    .page-template-page-scheduling{
+        .image_category{
+            .mts{
+                width: 100%;
+            }
+            .uts{
+                 width: 100%; 
+                 margin-right: 0;
+                margin-top: 10px;
+            }
+        }
+    } 
+    
+    .page-template-page-my_lessons-php,.page-template-page-lessons_teach-php,.page-template-page-scheduling{
+       .box.menu a{
+          width: 100%;
+          float: right;
+          margin-bottom: 10px;
+        } 
+    }
+
 
 }

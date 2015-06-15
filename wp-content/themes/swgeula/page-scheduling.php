@@ -60,7 +60,7 @@ $current_user = wp_get_current_user();
                    <h1><?php the_field('title', $post->ID); ?></h1>
                    <p><?php the_field('main_cont', $post->ID); ?></p>
                    <div class="mts"><div class="rect"></div><?php _e('Manned time strip', 'swgeula'); ?></div>
-                   <div class="uts"><div class="rect"></div><?php _e('Unmanned time strip', 'swgeula'); ?></div>
+                   <div class="uts"><div class="rect"></div><?php _e('Yours time strip', 'swgeula'); ?></div>
                    <p class="small"><?php the_field('comment', $post->ID); ?></p>
                
                 </div>
