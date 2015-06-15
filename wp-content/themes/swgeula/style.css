@@ -1894,6 +1894,7 @@ button.edit_profile {
 .page-template-page-my_lessons-php .big_icon .status i, .page-template-page-lessons_teach-php .big_icon .status i, .page-template-page-scheduling .big_icon .status i {
   font-size: 80px;
   margin-top: 70px;
+  margin-right: 30px;
 }
 .page-template-page-my_lessons-php .big_icon .status.x i, .page-template-page-lessons_teach-php .big_icon .status.x i, .page-template-page-scheduling .big_icon .status.x i {
   color: #e15258;
