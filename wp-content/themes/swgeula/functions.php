@@ -2219,7 +2219,7 @@ function sendEmailAlert($uid,$lessonID) {
 
 	$title = sprintf( __('[%s] Geula Lesson Alert'), $blogname );	
 	
-	$swheaders = 'From: Geula Lessons Website <noreply@geula.wpengine.com>' . "\r\n";
+	$swheaders = 'From: Geula Lessons Website <noreply@geulahvod.com>' . "\r\n";
 
 	if ( $message && !wp_mail( $user_email, wp_specialchars_decode( $title ), $message, $swheaders ) ) return 0;
 	return 1;

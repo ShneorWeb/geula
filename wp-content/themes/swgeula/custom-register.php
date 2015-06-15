@@ -301,7 +301,7 @@ function retrieve_password() {
 	 */
 	$message = apply_filters( 'retrieve_password_message', $message, $key );
 
-	$swheaders = 'From: Geula Lessons Website <noreply@geula.wpengine.com>' . "\r\n";
+	$swheaders = 'From: Geula Lessons Website <noreply@geulahvod.com>' . "\r\n";
 
 	if ( $message && !wp_mail( $user_email, wp_specialchars_decode( $title ), $message, $swheaders ) )
 		wp_die( __('The e-mail could not be sent.') . "<br />\n" . __('Possible reason: your host may have disabled the mail() function.') );
