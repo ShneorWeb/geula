@@ -1188,6 +1188,80 @@ function getMyCatsTeach($parentCat=-1,$userID) {
  	return $arrRetVal;
 }
 
+function cmpDays($a, $b) {
+    if ($a[0] == $b[0]) {
+        return 0;
+    }
+    return ($a[0] < $b[0]) ? -1 : 1;
+}
+function cmpTime($a, $b) {
+    if ($a[1] == $b[1]) {
+        return 0;
+    }
+    return ($a[1] < $b[1]) ? -1 : 1;
+}
+
+function getNextSchedule($userID) {
+	global $wpdb;	
+	$arrRetVal = array(2);
+
+	if (is_int($userID)) :
+
+			$date = new DateTime('NOW');
+			$user_tzone = get_user_meta( $userID, 'user_timezone', true );
+			$date->setTimezone(new DateTimeZone($user_tzone));
+			$curDay = (int)$date->format('N');			
+			$curHours = (int)$date->format('G');					 
+			$curMins = (int)$date->format('i');					 
+
+			$offset = get_timezone_offset($user_tzone);
+			$offset /= 3600; //change to hours		
+
+			$results = $wpdb->get_results("SELECT schedule_day,schedule_time FROM wp_sw_schedules WHERE (user_id = $userID) AND (schedule_day>=$curDay)  ORDER BY schedule_day ASC,schedule_time ASC;",ARRAY_A);											
+
+			if (count($results)==0) $results = $wpdb->get_results("SELECT schedule_day,schedule_time FROM wp_sw_schedules WHERE (user_id = $userID) ORDER BY schedule_day ASC,schedule_time ASC;",ARRAY_A);											
+			
+			if (count($results)>0 ) :	
+				$arrDaysAndTimes = array();
+				foreach($results as $row) :																																
+
+						$scheduleHours = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
+						$scheduleMins = (int)substr($row['schedule_time'],strpos($row['schedule_time'],":")+1);
+
+						$scheduleHours += $offset;
+						if ($scheduleHours>=24) {
+							$scheduleHours -= 24;
+							$row['schedule_day'] += 1;
+							if ($row['schedule_day']==8) $row['schedule_day']=1;
+						}
+						elseif ($scheduleHours<0) {
+							$scheduleHours += 24;
+							$row['schedule_day'] -= 1;
+							if ($row['schedule_day']==0) $row['schedule_day']=7;
+						}	
+
+						$arrDaysAndTimes[] = array($row['schedule_day'],($scheduleHours>9?$scheduleHours:'0'.$scheduleHours).':'.($scheduleMins>9?$scheduleMins:'0'.$scheduleMins));					
+										
+				endforeach;
+
+				uasort($arrDaysAndTimes, 'cmpDays');				
+				uasort($arrDaysAndTimes, 'cmpTime');
+
+				foreach ($arrDaysAndTimes as $row) :
+					$scheduleHours = (int)substr($row[1],0,(int)strpos($row[1],":"));
+					if ( ($row[0]>$curDay) || ( ($row[0]==$curDay) && ($scheduleHours>$curHours) || ( ($scheduleHours==$curHours)&&($scheduleMins>$curMins) ) ) ) {
+
+							$arrRetVal[0] = $row[0];
+							$arrRetVal[1] =  $row[1];;								
+							return $arrRetVal;				
+					}		
+				endforeach;
+
+			endif;
+	endif;
+	return (array)$arrRetVal;	
+}
+
 
 function getNextScheduledCat($userID) {
 	global $wpdb;			

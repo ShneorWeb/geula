@@ -103,7 +103,27 @@ $current_user = wp_get_current_user();
                                     <?php }?>
                                         
                                         <h3 class="ltl_title">
-                                            <?php _e('next lesson', 'swgeula'); ?>
+                                            <?php 
+                                            $arrDays = array(7);                                            
+                                            $arrDays[0] = 'Monday';
+                                            $arrDays[1] = 'Tuesday';
+                                            $arrDays[2] = 'Wednesday';
+                                            $arrDays[3] = 'Thursday';
+                                            $arrDays[4] = 'Friday';
+                                            $arrDays[5] = 'Saturday'; 
+                                            $arrDays[6] = 'Sunday';
+
+
+                                            $arrSchedule = getNextSchedule($current_user->ID);                                            
+
+                                            _e('The next lesson is scheduled for', 'swgeula'); 
+                                            if ($gsLocaleShort=="en") _e(' ','swgeula');
+                                            _e($arrDays[(int)$arrSchedule[0]-1]);
+                                            _e(' ');
+                                            _e("@",'swgeula');
+                                            _e(' ');
+                                            _e($arrSchedule[1]);
+                                            ?> 
                                         </h3>
                                         
                                         <div class="single_lesson_cont">
@@ -130,8 +150,8 @@ $current_user = wp_get_current_user();
                                                 </div>
                                                 <div class="time">                                            
                                                     <?php                                                    
-                                                    if ( is_array($arrNextScheduled) && count($arrNextScheduled)>0 ) {                                                        
-                                                        echo($arrNextScheduled[1]);
+                                                    if ( is_array($arrSchedule) && count($arrSchedule)>1 ) {                                                        
+                                                        echo($arrSchedule[1]);
                                                     }
                                                     ?> 
                                                  </div>
