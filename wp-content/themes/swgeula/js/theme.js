@@ -164,7 +164,8 @@ addSchedule = function(el,scheduleDay,scheduleTime) {
           url: ajaxurl,          
           success    : function(data){                                        
               //console.log("in success");
-              if (boolAdd) {                
+              if (boolAdd) { 
+                $(clickedDiv).removeClass('yellow');               
                 $(clickedDiv).addClass('green');
               }
               else {

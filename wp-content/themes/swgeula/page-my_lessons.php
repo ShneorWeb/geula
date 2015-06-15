@@ -97,7 +97,14 @@ $current_user = wp_get_current_user();
                                        <?php }?>
                                     </h2>                                
                                     <?php if(!$bScheduled){?>                                    
-                                           <button class="schedule_btn">
+                                           <button class="schedule_btn" onclick="document.location.href='<?php  if($gsLocaleShort=='he'){
+                                    $temp2 = get_page_by_path('תזמון-שיעורים');  
+                                    echo get_permalink( $temp2->ID );
+                                }
+                                else{
+                                   $temp2 = get_page_by_path('scheduling-lessons');  
+                                   echo get_permalink( $temp2->ID ); 
+                                } ?>'">
                                                 <i class="fa fa-clock-o"></i><?php _e('schedule learning', 'swgeula'); ?>                                                
                                             </button>                                                                                                                                                                                        
                                     <?php }?>
@@ -116,13 +123,18 @@ $current_user = wp_get_current_user();
 
                                             $arrSchedule = getNextSchedule($current_user->ID);                                            
 
-                                            _e('The next lesson is scheduled for', 'swgeula'); 
-                                            if ($gsLocaleShort=="en") _e(' ','swgeula');
-                                            _e($arrDays[(int)$arrSchedule[0]-1]);
-                                            _e(' ');
-                                            _e("@",'swgeula');
-                                            _e(' ');
-                                            _e($arrSchedule[1]);
+                                            if ($bScheduled) {
+                                                _e('The next lesson is scheduled for', 'swgeula'); 
+                                                if ($gsLocaleShort=="en") _e(' ','swgeula');
+                                                _e($arrDays[(int)$arrSchedule[0]-1]);
+                                                _e(' ');
+                                                _e("@",'swgeula');
+                                                _e(' ');
+                                                _e($arrSchedule[1]);
+                                            }
+                                            else {
+                                                _e("Next Lesson",'swgeula');
+                                            }
                                             ?> 
                                         </h3>
                                         
