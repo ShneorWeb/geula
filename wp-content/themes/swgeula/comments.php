@@ -43,8 +43,7 @@ if ( post_password_required() ) {
 		<?php endif; // check for comment navigation ?>
 
 		<ol class="comment-list">
-			<?php
-                //TODO: take the avatar image from ofer function
+			<?php               
 				wp_list_comments( array(
 					'style'      => 'ol',
 					'short_ping' => true,

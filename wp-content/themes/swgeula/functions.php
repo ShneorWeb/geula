@@ -1553,18 +1553,23 @@ function getSWGeulaAvatarUID($uid,$size=96)  {
 }
 
 function my_custom_avatar( $avatar, $id_or_email, $size, $default, $alt ) {			
+
     if (!isset($size)) $size=60;
 
     if ( is_numeric( $id_or_email ) ) $id = (int)$id_or_email;       
-    elseif ( is_object( $id_or_email ) ) {    	
+    elseif ( is_object( $id_or_email ) ) {    	    	
         if ( !empty( $id_or_email->ID ) ) {        	
-            $id = (int)$id_or_email->ID;                                    
+            $id = (int)$id_or_email->ID;                                                
+        }        
+        elseif ( !empty( $id_or_email->user_id ) ) {        	
+            $id = (int)$id_or_email->user_id;                                                
         }
     }
     else {
     	$user = get_user_by( 'email', $id_or_email );
-    	$id = (int) $user->ID;    	
+    	$id = (int) $user->ID;    	    	
     }
+
     if (is_numeric($id)) {    
         $customAvatarSrc = getSWGeulaAvatarUID($id,$size);        
 

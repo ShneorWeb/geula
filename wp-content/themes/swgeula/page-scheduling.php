@@ -38,6 +38,15 @@ $current_user = wp_get_current_user();
                              ?>">
                         <?php _e('my lessons', 'swgeula'); ?>
                     </a>
+                    <?php
+                    $curRoles = $current_user->roles;
+                    $bShowLessonsInstruct = false;
+                    foreach($curRoles as $tempRole) {
+                        if ($tempRole == "instructor" || $tempRole == "administrator" || $tempRole == "editor" || $tempRole == "author") $bShowLessonsInstruct = true;
+                    }
+
+                    if ($bShowLessonsInstruct) {
+                    ?>
                     <a href="<?php 
                                 if($gsLocaleShort=='he'){
                                     $temp1 = get_page_by_path('שיעורים-שאני-מוסר');  
@@ -50,6 +59,9 @@ $current_user = wp_get_current_user();
                              ?>">
                         <?php _e('lessons I teach', 'swgeula'); ?>
                     </a>
+                    <?php 
+                    }
+                    ?>
                      <a class="current">
                         <?php _e('Scheduling Lessons', 'swgeula'); ?>
                     </a>
