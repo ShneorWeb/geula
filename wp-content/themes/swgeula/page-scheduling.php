@@ -122,7 +122,7 @@ $current_user = wp_get_current_user();
                                             $rectIndex = $i*2;                                            
                                             echo('<td>'.
                                                 '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':00\')"><div class="table_rect '.($arrSlots[$rectIndex]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
-                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
+                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex+1]==1?'yellow':'green'):'').'"></div></a>'.
                                             '</td>');
                                           }?>                                            
                                           <?php for ($i=1;$i<=12;$i++) { 
@@ -130,14 +130,14 @@ $current_user = wp_get_current_user();
                                              if ($rectIndex==48) $rectIndex=0;
                                              echo('<td>'.
                                                 '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':00\')"><div class="table_rect '.($arrSlots[$rectIndex]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
-                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
+                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex+1]==1?'yellow':'green'):'').'"></div></a>'.
                                             '</td>');
                                            }?> 
                                            <?php for ($i=1;$i<=6;$i++) { 
                                              $rectIndex = $i*2;     
                                              echo('<td>'.
                                                 '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.$i.':00\')"><div class="table_rect '.($arrSlots[$rectIndex]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
-                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.$i.':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
+                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.$i.':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex+1]==1?'yellow':'green'):'').'"></div></a>'.
                                             '</td>');
                                           }?> 
                                         </tr>

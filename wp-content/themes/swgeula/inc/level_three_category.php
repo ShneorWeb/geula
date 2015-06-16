@@ -134,9 +134,17 @@
                                             <?php _e('start', 'swgeulatr'); ?>
 
                                         </button>
-                                    </a>	
-                                    <!--TODO: what link is need to go to? -->
-                                    <a href="#">
+                                    </a>	                                    
+                                    <a href="<?php 
+                                if($gsLocaleShort=='he'){
+                                    $temp2 = get_page_by_path('תזמון-שיעורים');  
+                                    echo get_permalink( $temp2->ID );
+                                }
+                                else{
+                                   $temp2 = get_page_by_path('scheduling-lessons');  
+                                   echo get_permalink( $temp2->ID ); 
+                                }
+                                 ?>">
                                         <button type="button" class="btn btn-default getAfter" >
                                                 <i class="fa fa-clock-o"></i>  
                                                 <?php _e('schedule to circle', 'swgeulatr'); ?>

@@ -5,6 +5,7 @@ var removeFromMyLessons;
 var hideCat;
 var addSchedule;
 
+
 function goToLogin() {
   var sLang = sCurLang.indexOf("_")!=-1?sCurLang.substr(0,sCurLang.indexOf("_")):sCurLang;  
   window.location.href=gbLocal?'/geula/my-account/sign-in/?lang='+sLang:'/my-account/sign-in/?lang='+sLang;
@@ -163,6 +164,7 @@ addSchedule = function(el,scheduleDay,scheduleTime) {
           },          
           url: ajaxurl,          
           success    : function(data){                                        
+              //console.log(data);
               //console.log("in success");
               if (boolAdd) { 
                 $(clickedDiv).removeClass('yellow');               
@@ -280,7 +282,10 @@ function equal_heights(){
 }    
     
  
- $(document).ready(function(){
+ $(document).ready(function(){    
+    
+    $("a[id^='btn_add_']").click(function(e){ e.stopPropagation(); });
+    $("a[id^='btn_rm_']").click(function(e){ e.stopPropagation(); });
      
      //menu icons
      $('.tachometer').prepend('<i class="fa fa-tachometer"></i>');
