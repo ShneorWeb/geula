@@ -620,31 +620,35 @@ default:
 		$first_name = $_POST['first_name'];
 		$last_name = $_POST['last_name'];
 		$user_password = $_POST['user_password'];
+
+		if (!is_email($user_email)) $error1 = new WP_Error( 'email_not_valid', __( "This is not a valid email address", "swgeula" ) );		
 		
-		//$random_password = wp_generate_password( $length=8, $include_standard_special_chars=false );
-		$errors = wp_create_user($user_login,$user_password,$user_email); 
-		if ( !is_wp_error($errors) ) {
+		if ( !is_wp_error($error1) ) {
+			//$random_password = wp_generate_password( $length=8, $include_standard_special_chars=false );
+			$errors = wp_create_user($user_login,$user_password,$user_email); 
+			if ( !is_wp_error($errors) ) {
 
-			$userdata = array( 'ID' => $errors, 'first_name' => $first_name, 'last_name' => $last_name );		 
-			$status = wp_update_user( $userdata );			 			
+				$userdata = array( 'ID' => $errors, 'first_name' => $first_name, 'last_name' => $last_name );		 
+				$status = wp_update_user( $userdata );			 			
 
-			if( !is_wp_error($status) ){
-				//now add verification code:
-				$vccode = md5("swgeula".$errors."vc24");
-				update_user_meta( $errors, 'verify_email_code', $vccode );
+				if( !is_wp_error($status) ){
+					//now add verification code:
+					$vccode = md5("swgeula".$errors."vc24");
+					update_user_meta( $errors, 'verify_email_code', $vccode );
 
-				wp_new_user_notification( $errors, $user_password ); 
+					wp_new_user_notification( $errors, $user_password ); 
 
-				$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url().'/my-account/sign-in/?checkemail=registered';
-				//wp_safe_redirect( $redirect_to );
-				?>
-				<script>
-				window.location.href = '<?php echo home_url(); ?>/my-account/sign-in/?checkemail=registered';
-				</script>
-				<?php
-				exit();
+					$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url().'/my-account/sign-in/?checkemail=registered';
+					//wp_safe_redirect( $redirect_to );
+					?>
+					<script>
+					window.location.href = '<?php echo home_url(); ?>/my-account/sign-in/?checkemail=registered';
+					</script>
+					<?php
+					exit();
+				}
 			}
-		}
+		}		
 	}
 
 	$registration_redirect = ! empty( $_REQUEST['redirect_to'] ) ? $_REQUEST['redirect_to'] : '';
@@ -674,6 +678,11 @@ default:
 
     		<h1><?php _e("Creating a new account","swgeulatr");?></h1>
     		<h2><?php _e("enter your full name and email address","swgeulatr");?></h2>
+    		<?php
+    		if (is_wp_error($error1)) {
+    		?>
+    		<div class="login-error-msg"><?php echo $error1->get_error_message() ?></div>
+    		<?php } ?>
 
     		<?php
     			//$redirect_to = apply_filters( 'registration_redirect', $registration_redirect );
