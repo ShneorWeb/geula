@@ -1,21 +1,23 @@
 <?php 
-/*if (is_user_logged_in()) {
+if (is_user_logged_in()) {
 	wp_safe_redirect(get_category_link(3));
-} else { ?>*/
+} else { 
 
 get_header(); ?>
 
 
-<div class="hero_image" style="background-image:url('<?php the_field('big_image', $post->ID);?>')">
-    <div class="quote_cont">
-        <div class="quote">
-          <?php the_field('quote', $post->ID); ?>
-       </div>
-        <div class="source">
-          <?php the_field('source', $post->ID); ?>
-       </div>
-    </div>
-       
+<div class="hero_image">
+   <img src="<?php the_field('big_image', $post->ID);?>" class="bgImg">
+      
+           <div class="quote_cont">
+            <div class="quote">
+              <?php the_field('quote', $post->ID); ?>
+           </div>
+            <div class="source">
+              <?php the_field('source', $post->ID); ?>
+           </div>
+        </div>
+    
 </div>
 
 <div class="register_cont">
@@ -48,7 +50,7 @@ get_header(); ?>
 
 
 <?php
-// } //of else logged in
+ } //of else logged in
 ?>
 <?php get_footer(); ?>
 				

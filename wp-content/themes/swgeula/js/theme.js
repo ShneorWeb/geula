@@ -281,6 +281,12 @@ function equal_heights(){
        });  
 }    
     
+function hero_height(){
+    var bgImgHeight= $('.home .hero_image img.bgImg').height();
+    $('.home .hero_image').height(bgImgHeight);
+}
+    
+    
  
  $(document).ready(function(){    
     
@@ -422,6 +428,7 @@ function equal_heights(){
          window.location = $(this) .find('h2 a').attr('href')
      });
      
+     hero_height();
     
      
   //end of document).ready function
@@ -460,6 +467,7 @@ function equal_heights(){
              axis:"x" // horizontal scrollbar
      });
      
+     hero_height();
      
 //end of window.load function
  });
@@ -468,6 +476,7 @@ function equal_heights(){
      
      profile_to_mob();
      equal_heights();
+     hero_height();
      
    //end of window.resize function
  });    

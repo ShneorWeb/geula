@@ -2542,9 +2542,10 @@ li.comment {
   display: none !important;
 }
 .home .hero_image {
-  background-size: cover;
-  height: 620px;
   position: relative;
+}
+.home .hero_image .bgImg {
+  position: absolute;
 }
 .home .site-content {
   margin-top: 0;
@@ -2556,13 +2557,12 @@ li.comment {
   width: 100%;
 }
 .home .quote_cont {
-  width: 1170px;
-  margin: 0 auto;
   color: #FFF;
   font-style: italic;
   text-align: left;
-  padding-top: 325px;
-  padding-left: 50px;
+  position: absolute;
+  bottom: 13.70967741935484%;
+  left: 20%;
 }
 .home .quote_cont .quote {
   font-size: 2.625rem;
@@ -2664,7 +2664,7 @@ li.comment {
 }
 .home .credits_cont p.before_credit_logo {
   font-size: 0.875rem;
-  margin-top: 110px;
+  margin-top: 5.8%;
   margin-bottom: 20px;
 }
 
@@ -2898,6 +2898,26 @@ _responsive styles
 
   .selects form {
     margin-right: 22px;
+  }
+
+  .home .quote_cont {
+    bottom: 7%;
+  }
+
+  .home .quote_cont .quote {
+    font-size: 2.125rem;
+  }
+
+  .home .quote_cont .source {
+    font-size: 1rem;
+  }
+
+  .home .register_cont h2 {
+    font-size: 1.8rem;
+  }
+
+  .home .register_cont p {
+    font-size: 1.15rem;
   }
 }
 /* 768 and more ----------- */
@@ -3244,6 +3264,24 @@ _responsive styles
   .page-template-page-my_lessons-php .box.menu a:last-child, .page-template-page-lessons_teach-php .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child {
     margin-left: 0;
   }
+
+  .home .register_cont input, .home .register_cont input[type="submit"] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .home .hero_image .bgImg {
+    width: auto;
+    height: 270px;
+    max-width: 9999px;
+  }
+
+  .home .quote_cont {
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 /* 500 and less ----------- */
 @media screen and (max-width: 500px) {
@@ -3287,6 +3325,14 @@ _responsive styles
     width: 100%;
     float: right;
     margin-bottom: 10px;
+  }
+
+  .home .quote_cont .quote {
+    font-size: 1.4rem;
+  }
+
+  .home .quote_cont {
+    bottom: 17%;
   }
 }
 
