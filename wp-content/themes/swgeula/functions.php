@@ -1112,14 +1112,14 @@ function getScheduleSlotsForDay($iDay) {
 		for ($i=0;$i<48;$i++) $arrSlots[$i]=0; //init to 0
 
 		global $wpdb;	
-		$results = $wpdb->get_results("SELECT DISTINCT schedule_time, user_id FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);		
+		$results = $wpdb->get_results("SELECT schedule_time, user_id FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);		
 		if (count($results)>0) :
 			foreach($results as $row) :	
 				$hour = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
 				$mins = (int)substr($row['schedule_time'],strpos($row['schedule_time'],":")+1);							
 				if ($mins>0) $mins /= 30; 			
 				if ( $row['user_id']==$userID ) $arrSlots[$hour*2 + $mins] = 2; //2 - taken by me 
-				else $arrSlots[$hour*2 + $mins] = 1; //1 - taken
+				elseif ($arrSlots[$hour*2 + $mins]==0) $arrSlots[$hour*2 + $mins] = 1; //1 - taken
 			endforeach;
 		endif;
 
@@ -1139,7 +1139,7 @@ function getScheduleSlotsForDay($iDay) {
 			//get necessary values from previous day:
 			$iDay -= 1;
 			if ($iDay<=0) $iDay=7;
-			$results = $wpdb->get_results("SELECT DISTINCT schedule_time,user_id FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);	
+			$results = $wpdb->get_results("SELECT schedule_time,user_id FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);	
 			if (count($results)>0) :
 				foreach($results as $row) :	
 					$hour = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
@@ -1149,7 +1149,7 @@ function getScheduleSlotsForDay($iDay) {
 						$hour += $offset;
 						if ($hour>=24) $hour -= 24;
 						if ( $row['user_id']==$userID ) $tempArray[$hour*2 + $mins] = 2; //2 - taken by me 
-						else $tempArray[$hour*2 + $mins] = 1;//1 - taken
+						elseif ($tempArray[$hour*2 + $mins]==0) $tempArray[$hour*2 + $mins] = 1;//1 - taken
 					}
 				endforeach;
 			endif;
@@ -1167,7 +1167,7 @@ function getScheduleSlotsForDay($iDay) {
 			//get necessary values from next day:
 			$iDay += 1;
 			if ($iDay>7) $iDay=1;
-			$results = $wpdb->get_results("SELECT DISTINCT schedule_time, user_id FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);	
+			$results = $wpdb->get_results("SELECT schedule_time, user_id FROM wp_sw_schedules WHERE schedule_day = $iDay order by schedule_time ASC;",ARRAY_A);	
 			if (count($results)>0) :
 				foreach($results as $row) :	
 					$hour = (int)substr($row['schedule_time'],0,(int)strpos($row['schedule_time'],":"));
@@ -1176,7 +1176,7 @@ function getScheduleSlotsForDay($iDay) {
 					if ($hour < $offset) {
 						$hour += (24-$offset);
 						if ( $row['user_id']==$userID ) $tempArray[$hour*2 + $mins] = 2; //2 - taken by me 
-						else $tempArray[$hour*2 + $mins] = 1; //2 - taken
+						elseif ($tempArray[$hour*2 + $mins]==0) $tempArray[$hour*2 + $mins] = 1; //1 - taken
 					}
 				endforeach;
 			endif;
@@ -1191,16 +1191,10 @@ function getScheduleSlotsForDay($iDay) {
 
 
 function cmpDays($a, $b) {
-    if ($a[0] == $b[0]) {
-        return 0;
+    if ($a[0] == $b[0]) {        
+    	return ($a[1] < $b[1]) ? -1 : 1;	
     }
     return ($a[0] < $b[0]) ? -1 : 1;
-}
-function cmpTime($a, $b) {
-    if ($a[1] == $b[1]) {
-        return 0;
-    }
-    return ($a[1] < $b[1]) ? -1 : 1;
 }
 
 function getNextSchedule($userID) {
@@ -1249,8 +1243,7 @@ function getNextSchedule($userID) {
 										
 				endforeach;
 
-				uasort($arrDaysAndTimes, 'cmpDays');				
-				uasort($arrDaysAndTimes, 'cmpTime'); 
+				uasort($arrDaysAndTimes, 'cmpDays');								
 
 				foreach ($arrDaysAndTimes as $row) :
 					if ($row[0] < $curDay) {
@@ -1260,23 +1253,23 @@ function getNextSchedule($userID) {
 				endforeach;
 
 				foreach ($arrDaysAndTimes as $row) :
-					$scheduleHours = (int)substr($row[1],0,(int)strpos($row[1],":"));
-					$scheduleMins = (int)substr($row[1],(int)strpos($row[1],":")+1);
+					if ($row[0]==$curDay) {
+						$scheduleHours = (int)substr($row[1],0,(int)strpos($row[1],":"));
+						$scheduleMins = (int)substr($row[1],(int)strpos($row[1],":")+1);
 
-					if ( ($scheduleHours < $curHours) || ($scheduleHours==$curHours && $scheduleMins<$curMins))  {
-						$val = array_shift($arrDaysAndTimes);
-						array_push($arrDaysAndTimes,$val);
+						
+						if ( ($scheduleHours < $curHours) || ($scheduleHours==$curHours && $scheduleMins<$curMins))  {
+							$val = array_shift($arrDaysAndTimes);
+							array_push($arrDaysAndTimes,$val);
+						}
 					}
 				endforeach;
 
-				foreach ($arrDaysAndTimes as $row) :					
-					//if ( ($row[0]>$curDay) || ( ($row[0]==$curDay) && ($scheduleHours>$curHours) || ( ($scheduleHours==$curHours)&&($scheduleMins>$curMins) ) ) ) {
-
-							$arrRetVal[0] = $row[0];
-							$arrRetVal[1] =  $row[1];;								
-							return $arrRetVal;				
-					//}		
-				endforeach;
+				$arrRetVal = array(2);
+				$arrRetVal[0] = $arrDaysAndTimes[0][0];
+				$arrRetVal[1] =  $arrDaysAndTimes[0][1];;								
+				return $arrRetVal; 
+				
 
 			endif;
 	endif;
@@ -2222,7 +2215,7 @@ add_action( 'wp_ajax_gettimez', 'getTimeZones' );
 
 /*****************************WP_CRON FUNCTIONS******************/
 
-function sendEmailAlert($uid,$lessonID) {
+function sendEmailAlert($uid,$lessonID) {	
 	
 	$arrUsers = array();
 	$arrUsers[] = $uid;
@@ -2252,24 +2245,22 @@ function sendEmailAlert($uid,$lessonID) {
 }
 
 function sw_send_alerts() {	
-
 	global $wpdb;
 
 	$userIDs = $wpdb->get_results("SELECT DISTINCT user_id FROM wp_sw_schedules ORDER BY user_ID ASC;",ARRAY_A);		
 
 	foreach ($userIDs as $arrUserID) {
 
-		$userID = $arrUserID['user_id'];
+		$userID = $arrUserID['user_id'];		
 
 		$results = $wpdb->get_results("SELECT id,sent_alert,schedule_day,schedule_time FROM wp_sw_schedules WHERE user_id = $userID ORDER BY id ASC;",ARRAY_A);						
+		
 		
 		if (count($results)>0) {
 
 			foreach($results as $result) :
 				//get user timezone:
-				$user_tzone = get_user_meta( $userID, 'user_timezone', true );
-				
-				if (!is_string($user_tzone)) return;
+				$user_tzone = get_user_meta( $userID, 'user_timezone', true );						
 
 				$date = new DateTime('NOW');
 				$date->setTimezone(new DateTimeZone($user_tzone));
@@ -2281,10 +2272,13 @@ function sw_send_alerts() {
 				$offset /= 3600; //change to hours		
 
 
+				$offset *= -1; //when retreiving day offset should be reversed
+
 				$scheduledHours = (int)substr($result['schedule_time'],0,(int)strpos($result['schedule_time'],":"));
 				$scheduledMins = (int)substr($result['schedule_time'],strpos($result['schedule_time'],":")+1);
 
 				$scheduledHours += $offset;
+				
 				if ($scheduledHours>=24) {
 					$scheduledHours -= 24;
 					$result['schedule_day'] += 1;
@@ -2296,9 +2290,10 @@ function sw_send_alerts() {
 					if ($result['schedule_day']==0) $result['schedule_day']=7;
 				}
 
-				if ( ((int)$result['sent_alert']==1) && $result['schedule_day'] == $date->format('N') || //schedule is for today				
-					( ($result['schedule_day'] == $date->format('N')+1) || ($result['schedule_day']==1 && $date->format('N')==7) )  &&  ($scheduledHours==0) && ($hours>=23) && ($mins>=$scheduledMins) ) { //this is a special case where the lesson is scheduled for hour 00 or 00:30 so need to send email at 23:00 the day before					
+				if  ( ( ((int)$result['sent_alert']==0) && ($result['schedule_day'] == $date->format('N')) ) || //schedule is for today				
+					( ($result['schedule_day'] == $date->format('N')+1) || ($result['schedule_day']==1 && $date->format('N')==7) )  &&  ($scheduledHours==0) && ($hours>=23) && ($mins>=$scheduledMins) ) { //this is a special case where the lesson is scheduled for hour 00 or 00:30 so need to send email at 23:00 the day before										
 					
+
 					if ( ($hours==$scheduledHours-1 && $mins>=$scheduledMins) ||  ($hours==$scheduledHours && $mins<$scheduledMins) ) {
 						//check if email not sent send email
 						$arrNextScheduled = getNextScheduledCat((int)$userID);                                                                      												
@@ -2315,8 +2310,7 @@ function sw_send_alerts() {
 				elseif ( ((int)$result['sent_alert']==1) && ($date->format('N')>$result['schedule_day'] || ($date->format('N')==1 && $result['schedule_day']==7) ) ) {  //day after alert turn sent field to 0
 
 					$wpdb->update('wp_sw_schedules', array('sent_alert' => 0), array( 'id' =>  $result['id']) ); 
-				}	
-
+				}					
 			endforeach;	
 		}
 
