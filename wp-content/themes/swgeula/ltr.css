@@ -750,7 +750,40 @@ transform:scaleX(-1);
   padding-left: 20px;
 }
 
+.archive.author .category_square_avatar.in_header, .page-template-page-dashboard-php .category_square_avatar.in_header, .page-template-page-my_lessons-php .category_square_avatar.in_header, .page-template-page-lessons_teach-php .category_square_avatar.in_header, .page-template-page-scheduling .category_square_avatar.in_header, .page-template-page-help .category_square_avatar.in_header{margin-right:2%;}
+.archive.author .current_category_description, .page-template-page-dashboard-php .current_category_description, .page-template-page-my_lessons-php .current_category_description, .page-template-page-lessons_teach-php .current_category_description, .page-template-page-scheduling .current_category_description, .page-template-page-help .current_category_description, .archive.author .number_of_posts_in_header, .page-template-page-dashboard-php .number_of_posts_in_header, .page-template-page-my_lessons-php .number_of_posts_in_header, .page-template-page-lessons_teach-php .number_of_posts_in_header, .page-template-page-scheduling .number_of_posts_in_header, .page-template-page-help .number_of_posts_in_header, .archive.author .current_category_name, .page-template-page-dashboard-php .current_category_name, .page-template-page-my_lessons-php .current_category_name, .page-template-page-lessons_teach-php .current_category_name, .page-template-page-scheduling .current_category_name, .page-template-page-help .current_category_name{float:left;}
+.archive.author .dtls, .page-template-page-dashboard-php .dtls, .page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls, .page-template-page-scheduling .dtls, .page-template-page-help .dtls{float:left;}
+.page-template-page-dashboard-php .nextstage_block, .page-template-page-my_lessons-php .nextstage_block, .page-template-page-lessons_teach-php .nextstage_block, .page-template-page-scheduling .nextstage_block, .page-template-page-help .nextstage_block{padding-left:4.8%;padding-right:4.8%;}
+.page-template-page-dashboard-php .big_icon, .page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon, .page-template-page-scheduling .big_icon, .page-template-page-help .big_icon{margin-right:2%;float:left;}
+.page-template-page-my_lessons-php .box.menu, .page-template-page-lessons_teach-php .box.menu, .page-template-page-scheduling .box.menu{float:left;}
+.page-template-page-my_lessons-php .box.menu a.last-child, .page-template-page-lessons_teach-php .box.menu a.last-child, .page-template-page-scheduling .box.menu a.last-child{margin-right:0;}
+.page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon, .page-template-page-scheduling .big_icon{margin-right:2%;}
+.page-template-page-my_lessons-php .big_icon .status, .page-template-page-lessons_teach-php .big_icon .status, .page-template-page-scheduling .big_icon .status{left:0;right:0;}
+.page-template-page-my_lessons-php .schedule_btn i, .page-template-page-lessons_teach-php .schedule_btn i, .page-template-page-scheduling .schedule_btn i{margin-right:10px;}
+page-template-page-scheduling .image_category p.small, .page-template-page-scheduling .image_category .mts.small, .page-template-page-scheduling .image_category .uts.small{float:left;}
+.page-template-page-scheduling .image_category .mts, .page-template-page-scheduling .image_category .uts{float:left;}
+.page-template-page-scheduling .image_category .mts .rect, .page-template-page-scheduling .image_category .uts .rect{float:left;margin-right:10px;}
+.page-template-page-scheduling .image_category .uts{margin-left:25px;}
+.page-template-page-scheduling .panel{float:left;}
+.page-template-page-scheduling .panel-title > a, .page-template-page-scheduling .panel-title > small, .page-template-page-scheduling .panel-title > .small, .page-template-page-scheduling .panel-title > small > a, .page-template-page-scheduling .panel-title > .small > a{float:left;}
+.page-template-page-scheduling .panel-title > a .day, .page-template-page-scheduling .panel-title > small .day, .page-template-page-scheduling .panel-title > .small .day, .page-template-page-scheduling .panel-title > small > a .day, .page-template-page-scheduling .panel-title > .small > a .day{float:left;}
+.page-template-page-scheduling .panel-title > a .day:after, .page-template-page-scheduling .panel-title > small .day:after, .page-template-page-scheduling .panel-title > .small .day:after, .page-template-page-scheduling .panel-title > small > a .day:after, .page-template-page-scheduling .panel-title > .small > a .day:after{float:right;}
+.page-template-page-scheduling .table_rect{float:left;}
+.page-template-page-scheduling table.schedule thead tr th big{margin-left:2px;}
+
+.page-template-page-scheduling .panel-title > a .day, .page-template-page-scheduling .panel-title > small .day, .page-template-page-scheduling .panel-title > .small .day, .page-template-page-scheduling .panel-title > small > a .day, .page-template-page-scheduling .panel-title > .small > a .day {
+  width: 145px;
+}
+
 /* responsive styles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+@media screen and (max-width:767px) {
+    .page-template-page-my_lessons-php .box.menu a, .page-template-page-lessons_teach-php .box.menu a, .page-template-page-scheduling .box.menu a, .page-template-page-scheduling .box.menu a{margin-right:30px;}
+    .page-template-page-my_lessons-php .box.menu a:last-child, .page-template-page-lessons_teach-php .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child{margin-right:0;}
+}
+
+
+
 @media screen and (min-width: 1856px){
     .library-page .site-content > .container {
       padding-right: 65px;

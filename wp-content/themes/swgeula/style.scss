@@ -1648,6 +1648,10 @@ main library page
         .fa-check{
             color: #5fcf80;
         }
+    
+        .fa-check-circle{
+            color: #5fcf80;
+        }
 
         .name{
             float: right;
@@ -2150,7 +2154,6 @@ button.edit_profile{
             i{
             font-size: 80px;
             margin-top: 70px;
-            margin-right: 30px;
             }
             
             &.x i{
@@ -2159,6 +2162,7 @@ button.edit_profile{
             
             &.v i{
                      color: #51b46d;
+                     margin-right: 30px;
                 }
         }
     }
@@ -2214,7 +2218,7 @@ button.edit_profile{
                  display:none;
             }
         &:hover{
-            padding: 9px 11px;
+            padding: 7px 9px;
             i.add{
                 display:none;
             }
@@ -2773,7 +2777,7 @@ ul.drop{
       font-size: 1.25rem;
         
         .day{
-            width: 75px;
+            width: 115px;
             float: right;
             &:after{
                 font-family: 'FontAwesome';

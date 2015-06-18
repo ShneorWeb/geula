@@ -1457,6 +1457,9 @@ main library page
 .single_lesson_cont .fa-check {
   color: #5fcf80;
 }
+.single_lesson_cont .fa-check-circle {
+  color: #5fcf80;
+}
 .single_lesson_cont .name {
   float: right;
 }
@@ -1894,13 +1897,13 @@ button.edit_profile {
 .page-template-page-my_lessons-php .big_icon .status i, .page-template-page-lessons_teach-php .big_icon .status i, .page-template-page-scheduling .big_icon .status i {
   font-size: 80px;
   margin-top: 70px;
-  margin-right: 30px;
 }
 .page-template-page-my_lessons-php .big_icon .status.x i, .page-template-page-lessons_teach-php .big_icon .status.x i, .page-template-page-scheduling .big_icon .status.x i {
   color: #e15258;
 }
 .page-template-page-my_lessons-php .big_icon .status.v i, .page-template-page-lessons_teach-php .big_icon .status.v i, .page-template-page-scheduling .big_icon .status.v i {
   color: #51b46d;
+  margin-right: 30px;
 }
 .page-template-page-my_lessons-php .dtls h2, .page-template-page-lessons_teach-php .dtls h2, .page-template-page-scheduling .dtls h2 {
   color: #555459;
@@ -1941,7 +1944,7 @@ button.edit_profile {
   display: none;
 }
 .add_lesson_btn.remove:hover {
-  padding: 9px 11px;
+  padding: 7px 9px;
 }
 .add_lesson_btn.remove:hover i.add {
   display: none;
@@ -2419,7 +2422,7 @@ ul.drop {
   font-size: 1.25rem;
 }
 .page-template-page-scheduling .panel-title > a .day, .page-template-page-scheduling .panel-title > small .day, .page-template-page-scheduling .panel-title > .small .day, .page-template-page-scheduling .panel-title > small > a .day, .page-template-page-scheduling .panel-title > .small > a .day {
-  width: 75px;
+  width: 115px;
   float: right;
 }
 .page-template-page-scheduling .panel-title > a .day:after, .page-template-page-scheduling .panel-title > small .day:after, .page-template-page-scheduling .panel-title > .small .day:after, .page-template-page-scheduling .panel-title > small > a .day:after, .page-template-page-scheduling .panel-title > .small > a .day:after {
