@@ -277,7 +277,7 @@ function equal_heights(){
                    
            });  
            $(this).find('.category_single').height(highestBox2);
-             
+
        });  
 }    
     
@@ -480,5 +480,11 @@ function hero_height(){
      
    //end of window.resize function
  });    
+    
+//
+$( document ).ajaxComplete(function() {
+    equal_heights();
+});
+    
  
 })(jQuery);
