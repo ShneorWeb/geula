@@ -1950,7 +1950,7 @@ margin: 5px 0 45px;
     display: none;
 }
 
-.page-template-page-dashboard-php,.page-template-page-my_lessons-php,.page-template-page-lessons_teach-php{
+.page-template-page-dashboard-php,.page-template-page-my_lessons-php,.page-template-page-lessons_teach-php,.page-template-page-help{
     
      .menu-menu-right-container ul li.microphone {
           background-color: inherit;
@@ -3042,7 +3042,11 @@ li.comment {
     }
 }
 
-
+.page-template-page-help{
+    .image_category{
+        padding: 30px;
+    }
+}
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
@@ -3073,6 +3077,10 @@ _responsive styles
 
     .container {
     max-width: calc(100% - 30px);
+    }
+    
+    .home .container {
+    max-width: 100%;
     }
 
 }
