@@ -53,7 +53,7 @@ if (!function_exists('wp_new_user_notification')) : function wp_new_user_notific
 	wp_mail($user_email, $email_subject, $message);
 
 	//now send to admin:
-	$email_subject2 = 'GEULAH VOD New ser Registration'
+	$email_subject2 = 'GEULAH VOD New ser Registration';
 	$message2 = 'New user registration for GEULAH VOD Website: name: ' . $first_name.' '.$last_name  .' email: '.$user_email;
 	wp_mail(get_option( 'admin_email', 'ofer@shneorweb.com' ), $email_subject2, $message2);
 
