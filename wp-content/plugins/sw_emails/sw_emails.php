@@ -13,6 +13,8 @@ if (!function_exists('wp_new_user_notification')) : function wp_new_user_notific
 
 	$user_login = stripslashes($user->user_login);
 	$user_email = stripslashes($user->user_email);
+	$first_name = stripslashes($user->first_name);
+	$last_name = stripslashes($user->last_name);
 	
 	$the_slug = (ICL_LANGUAGE_CODE=="he")?'email_newreg':'email_newreg_en';
 	$args = array(
@@ -52,7 +54,7 @@ if (!function_exists('wp_new_user_notification')) : function wp_new_user_notific
 
 	//now send to admin:
 	$email_subject2 = 'GEULAH VOD New ser Registration'
-	$message2 = 'New user registration for GEULAH VOD Website: name: ' . stripslashes($user->first_name).' '.stripslashes($user->last_name)  .' email: '.$user_email;
+	$message2 = 'New user registration for GEULAH VOD Website: name: ' . $first_name.' '.$last_name  .' email: '.$user_email;
 	wp_mail(get_option( 'admin_email', 'ofer@shneorweb.com' ), $email_subject2, $message2);
 
 
