@@ -670,7 +670,7 @@ default:
     			f.user_login.value=f.user_email.value;
     			var arrName = f.full_name.value.split(" ");    			    			
     			f.first_name.value = arrName[0];
-    			f.last_name.value = arrName[1];
+    			if ( arrName.length>1 ) f.last_name.value = arrName[1];
     			return true;
 
     		}

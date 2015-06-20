@@ -2222,6 +2222,62 @@ add_action( 'wp_ajax_gettimez', 'getTimeZones' );
 
 /*****************************END AJAX/ANGUALR FUNCTIONS******************/
 
+/*****************************WP EMAILS*****************************/
+function sw_password_title() {
+	return "Password Reset for Geulah VOD";
+}
+add_filter ("retrieve_password_title", "sw_password_title");
+
+
+function sw_retrieve_password_message($message, $key, $user_login, $user_data) {
+
+	$input = filter_input( INPUT_POST, 'user_login', FILTER_SANITIZE_STRING );
+    if( is_email( $input ) ) {
+        $user = get_user_by( 'email', $input );
+    }
+    else {
+		$user = get_user_by( 'login', sanitize_user( $input ) );
+    }
+
+    $user_login = $user->user_login;
+
+    $reset_url = trailingslashit(site_url()) . "wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login); 
+
+	
+	ob_start();
+	
+	$email_subject = "Reset Password for Geulah VOD website";
+	$email_body = "Someone requested that the password be reset for the following account: <br /><br />Username: ".$user_login."<br /><br />If this was a mistake, just ignore this email and nothing will happen.<br /><br />To reset your password, visit the following address: <a href='".$reset_url."'>". $reset_url ."</a>";
+	
+
+	include("email/email_tmpl.php");	
+	
+	$message = ob_get_contents();
+
+	ob_end_clean();
+  
+	return $message;
+}
+add_filter ("retrieve_password_message", "sw_retrieve_password_message",10, 4);
+
+
+
+function sw_wp_mail_content_type() {
+	return "text/html";
+}
+add_filter ("wp_mail_content_type", "sw_wp_mail_content_type");
+	
+function sw_wp_mail_from() {
+	return "noreply@geulahvod.com";
+}
+add_filter ("wp_mail_from", "sw_wp_mail_from");
+	
+function sw_wp_mail_from_name() {
+	return "GEULAH VOD";
+}
+add_filter ("wp_mail_from_name", "sw_wp_mail_from_name");
+/*****************************END WP EMAILS************************/
+
 
 /*****************************WP_CRON FUNCTIONS******************/
 
