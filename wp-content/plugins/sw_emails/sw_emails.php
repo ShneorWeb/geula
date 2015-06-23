@@ -40,6 +40,8 @@ if (!function_exists('wp_new_user_notification')) : function wp_new_user_notific
 		$email_body = preg_replace($patterns, $replacements, $email_body);
 
 	endif;
+
+	$sLang = ICL_LANGUAGE_CODE;
 	
 	ob_start();		
 		

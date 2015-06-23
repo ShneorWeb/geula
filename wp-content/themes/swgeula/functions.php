@@ -2241,13 +2241,26 @@ function sw_retrieve_password_message($message, $key, $user_login, $user_data) {
 
     $user_login = $user->user_login;
 
-    $reset_url = trailingslashit(site_url()) . "wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login); 
+    $reset_url = trailingslashit(site_url()) . "registration/?action=rp&key=$key&login=" . rawurlencode($user_login); 
 
 	
 	ob_start();
+
+	$sLang = $gsLocaleShort;
+
+	$email_subject = __("Reset Password for Geulah VOD website","swgeula");
 	
-	$email_subject = "Reset Password for Geulah VOD website";
-	$email_body = "Someone requested that the password be reset for the following account: <br /><br />Username: ".$user_login."<br /><br />If this was a mistake, just ignore this email and nothing will happen.<br /><br />To reset your password, visit the following address: <a href='".$reset_url."'>". $reset_url ."</a>";
+	$email_body = __("Someone requested that the password be reset for the following account:","swgeula");
+	$email_body  .= __(" ");
+	$email_body  .=  __("Username:","swgeula");
+	$email_body  .=	__($user_login);
+	$email_body  .=	__("<br /><br />");
+	$email_body  .=	__("If this was a mistake, just ignore this email and nothing will happen.","swgeula");
+	$email_body  .=	__("<br /><br />");
+	$email_body  .=	__("To reset your password, visit the following address: ","swgeula");
+	$email_body  .= __("<a href='".$reset_url."'>". $reset_url ."</a>");
+
+	$email_disclaimer = __("This email was sent to you because you are are registered member of Geulah VOD. To unsubscribe please send an email to <a href='mailto:support@geulahvod.com'>support@geulahvod.com</a>","swgeula");
 	
 
 	include("email/email_tmpl.php");	
@@ -2273,7 +2286,7 @@ function sw_wp_mail_from() {
 add_filter ("wp_mail_from", "sw_wp_mail_from");
 	
 function sw_wp_mail_from_name() {
-	return "GEULAH VOD";
+	return "Geulah VOD";
 }
 add_filter ("wp_mail_from_name", "sw_wp_mail_from_name");
 /*****************************END WP EMAILS************************/
@@ -2290,21 +2303,35 @@ function sendEmailAlert($uid,$lessonID) {
 	
 	foreach ( $users as $user ) {
 		$user_email = $user->user_email;
-	}
+	}	
 
 	$lessonLink = get_permalink($lessonID);
 
+	ob_start();
 
-	$message = __('This is an alert. Your scheduled lesson is about to begin in less than an hour. Please click on the link below to start learning:') . "\r\n\r\n";
-	$message .= $lessonLink . "\r\n\r\n";	
-	$message .= __('Thank you') . "\r\n\r\n";	
+	$sLang = $gsLocaleShort;
 
+	$email_subject = __("Lesson Alert from Geulah VOD website","swgeula");
+
+	$email_body = __('This is an alert. Your scheduled lesson is about to begin in less than an hour. Please click on the link below to start learning:',"swgeula");
+	$email_body  .=	__("<br /><br />");
+	$email_body .= "<a href='$lessonLink'>".$lessonLink . "</a><br/><br/>";	
+	$email_body .= __("Thank you","swgeula") . "<br/><br/>";
+	
+	$email_disclaimer = __("This email was sent to you because you are are registered member of Geulah VOD. To unsubscribe please send an email to <a href='mailto:support@geulahvod.com'>support@geulahvod.com</a>","swgeula");
+
+
+	include("email/email_tmpl.php");	
+	
+	$message = ob_get_contents();
+
+	ob_end_clean();	
 	
 	$blogname = wp_specialchars_decode(get_option('blogname'), ENT_QUOTES);
 
-	$title = sprintf( __('[%s] Geula Lesson Alert'), $blogname );	
+	$title = sprintf( __('[%s] Geula Lesson Alert','swgeula'), $blogname );	
 	
-	$swheaders = 'From: Geula Lessons Website <noreply@geulahvod.com>' . "\r\n";
+	$swheaders = 'From: Geulah VOD <noreply@geulahvod.com>' . "\r\n";
 
 	if ( $message && !wp_mail( $user_email, wp_specialchars_decode( $title ), $message, $swheaders ) ) return 0;
 	return 1;

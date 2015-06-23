@@ -1,32 +1,39 @@
 <html>
 	<head>
+
+		<meta charset="UTF-8">	
 		
-		<title><?php echo $email_subject;?></title>
+		<title>email_subject<?php if (isset($email_subject)) echo $email_subject;?></title>
 	
 	</head>
-	<body>
-		<div id="email_container" style="background:#444">
-			<div style="width:570px; padding:0 0 0 20px; margin:50px auto 12px auto" id="email_header">
-				<span style="background:#585858; color:#fff; padding:12px;font-family:trebuchet ms; letter-spacing:1px; 
-					-moz-border-radius-topleft:5px; -webkit-border-top-left-radius:5px; 
-					border-top-left-radius:5px;moz-border-radius-topright:5px; -webkit-border-top-right-radius:5px; 
-					border-top-right-radius:5px;">
-					Geulah VOID
-				</div>
-			</div>
+	<body style="margin:0; padding:0; font-family: Arial; background-color:#ebebeb;" align="center">
+		<center>
+		<div id="email_container" style="background:#39add1;width:100%; height:300px; text-align:center;"><div style="padding-top:60px; color:#fff; font-size:38px;">גאולה VOD</div></div>
 		
-		
-			<div style="width:550px; padding:0 20px 20px 20px; background:#fff; margin:0 auto; border:3px #000 solid;
-				moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; color:#454545;line-height:1.5em; " id="email_content">
-				
-				<h1 style="padding:5px 0 0 0; font-family:georgia;font-weight:500;font-size:24px;color:#000;border-bottom:1px solid #bbb">
-					<?php echo $email_subject;?>
+		<div style="background:#ffffff; min-height:400px;width:1100px;margin-right:auto; margin-left:auto; margin-top:-140px; text-align:center; padding-top:10px;  box-shadow: 3px 3px 5px #888888;" align="center"  id="email_header">
+		<table width="1100" align="center"><tr><td align="center">
+				<h1 style="padding:5px 0 0 0; color:#555459; font-weight: normal;">
+					email_subject<?php if (isset($email_subject)) echo $email_subject;?>
 				</h1>
-				
-				<?php echo $email_body;?>						
-				
-								
-			</div>
-		</div>
+				<h3 style="padding:5px 0 0 0; color:#555459; font-weight: normal; padding-top:0px;">
+					<?php //echo $email_subject;?>
+				</h3>
+			</td></tr>
+			<tr><td align="center">			
+				<div style="border-bottom: 1px solid #555459; padding-top:20px; width: 300px; margin-left:auto; margin-right:auto;" align="center" width="300"></div>
+			</td></tr>				
+			<tr><td align="center">			
+				<div style="color:#555459; padding-top:40px;">tex text text<?php if (isset($email_body)) echo $email_body;?>		</div>
+			</td></tr>	
+		</table>
+		</div>				
+		
+		<div style="color:#39add1; width:1100px; margin-right:auto; margin-left:auto; text-align:right; padding-top:20px; padding-right:20px;" align="center">
+		<table width="1100" align="center"><tr><td <?php if (isset($sLang) && ($sLang=="he")) {?>align="right"<?php }?>>
+			<?php if (isset($email_disclaimer)) echo $email_disclaimer;?>email_dis
+			</td></tr>			
+		</table>
+		</div>							
+	</center>
 	</body>
 </html>
