@@ -2315,7 +2315,7 @@ function sendEmailAlert($uid,$lessonID) {
 
 	$email_body = __('This is an alert. Your scheduled lesson is about to begin in less than an hour. Please click on the link below to start learning:',"swgeula");
 	$email_body  .=	__("<br /><br />");
-	$email_body .= "<a href='$lessonLink'>".$lessonLink . "</a><br/><br/>";	
+	$email_body .= 	__("<a href='$lessonLink'>".$lessonLink . "</a><br/><br/>");	
 	$email_body .= __("Thank you","swgeula") . "<br/><br/>";
 	
 	$email_disclaimer = __("This email was sent to you because you are are registered member of Geulah VOD. To unsubscribe please send an email to <a href='mailto:support@geulahvod.com'>support@geulahvod.com</a>","swgeula");
