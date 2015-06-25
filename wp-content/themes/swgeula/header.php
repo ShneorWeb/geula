@@ -83,7 +83,7 @@ global $gsLocaleShort;
           
           <div class="site-branding">
               <h1 class="site-title">
-                  <a class="navbar-brand" href="<?php echo get_category_link(3); ?>" rel="home" class="nav-brand">
+                  <a class="navbar-brand" href="<?php if ( is_user_logged_in() ) echo get_category_link(getCatIDOfLibrary()); else echo get_home_url(); ?>" rel="home" class="nav-brand">
                       <?php bloginfo( 'name' ); ?>
                   </a>
               </h1>
