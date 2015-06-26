@@ -528,6 +528,24 @@ function compareNames($a, $b) {
             return ($a->name < $b->name) ? -1 : 1;
 }
 
+/************************* Prevent access to wp-admin for subscribers  *********************************/
+function sw_redirect_admin(){
+	if ( is_user_logged_in() ) {
+
+		$user = new WP_User( get_current_user_id() );
+		if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
+			foreach ( $user->roles as $role ) :				
+				if ($role=="subscriber" || $role=="instructor") {
+					wp_safe_redirect(get_category_link(3));
+					exit;		
+				}
+			endforeach;	
+		}		
+	}		
+}
+add_action( 'admin_init', 'sw_redirect_admin' );
+/************************* End Prevent access to wp-admin for subscribers  *********************************/
+
 /************************* Session Management *********************************/
 /*
 function myStartSession() {
