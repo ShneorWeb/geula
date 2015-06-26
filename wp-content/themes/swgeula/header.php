@@ -34,7 +34,7 @@ global $gsLocaleShort;
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
   
-  <?php if ( is_page("registration") || is_page("sign-in") ) {?>  
+  <?php if ( is_page("registration") || is_page("sign-in") || is_page("Home") ) {?>  
   <script src="https://apis.google.com/js/client:platform.js" async defer></script>
   <script src = "https://plus.google.com/js/client:plusone.js"></script>
   <?php } ?>

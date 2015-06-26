@@ -44,6 +44,21 @@ get_header(); ?>
             <input type="password" name="user_password" id="user_password" placeholder="<?php echo __('Password', 'swgeula'); ?>">
             <input type="submit" value="<?php echo __('Create free account', 'swgeula'); ?>">
         </form>
+
+        <br/>
+        <span id="signinButton">          
+          <span
+            class="g-signin"
+            data-callback="signinCallback"
+            data-clientid="1071363229202-e8nga4duksuc3vldrpm3guuikc9i82ae.apps.googleusercontent.com"
+            data-cookiepolicy="single_host_origin"
+            data-requestvisibleactions="http://schema.org/AddAction"
+            data-scope="https://www.googleapis.com/auth/plus.login"
+            data-width="wide"
+            data-height="tall"
+            >
+          </span>
+        </span>
     </div>
 </div>
 
