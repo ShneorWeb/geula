@@ -7,7 +7,8 @@ get_header(); ?>
 
 
 <div class="hero_image">
-   <img src="<?php the_field('big_image', $post->ID);?>" class="bgImg">
+   <img src="<?php the_field('big_image', $post->ID);?>" class="bgImg hidden-xs hidden-sm">
+    <img src="<?php the_field('big_image_mob', $post->ID);?>" class="bgImg visible-xs visible-sm ">
       
            <div class="quote_cont">
             <div class="quote">
@@ -62,20 +63,7 @@ get_header(); ?>
     </div>
 </div>
 
-<div class="donate_cont">
-     <p><?php the_field('donate_title', $post->ID); ?></p>
-     <a href="<?php the_field('donate_url', $post->ID); ?>" target="_blank">
-        <button><?php echo __('Donation', 'swgeula'); ?></button>
-     </a>
-</div>
 
-<div class="credits_cont">
-     <p><?php the_field('credits_title', $post->ID); ?></p>
-     <p class="before_credit_logo"><?php echo __('Design and development:', 'swgeula'); ?></p>
-     <a href="http://www.shneorweb.com/" target="_blank">
-        <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/shneorwebLogo.png">
-     </a>
-</div>
 
 
 <?php

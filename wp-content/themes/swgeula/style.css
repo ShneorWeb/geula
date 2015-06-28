@@ -12,7 +12,7 @@ Author URI:
 
 Tags:
 */
-.category_square_author a, .single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-page-scheduling .schedule_btn, .page-template-custom-profile-php .forgotPass a, .page-template-custom-profile-php #register-me, .page-template-custom-profile-php .picture_cont .drop-box, .box.userdtls, .home .register_cont input[type="submit"], .home .donate_cont button, button.edit_profile, .category_top_square, .category_square_content, .menu-menu-right-container ul li a, .menu-menu_right_en0-container ul li a, .menu-menu-right-container ul li, .menu-menu_right_en0-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .add_lesson_btn.add, .page-template-custom-profile-php .nav-pills > li > a {
+.category_square_author a, .single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-page-scheduling .schedule_btn, .page-template-custom-profile-php .forgotPass a, .page-template-custom-profile-php #register-me, .page-template-custom-profile-php .picture_cont .drop-box, .box.userdtls, .home .register_cont input[type="submit"], .donate_cont button, button.edit_profile, .category_top_square, .category_square_content, .menu-menu-right-container ul li a, .menu-menu_right_en0-container ul li a, .menu-menu-right-container ul li, .menu-menu_right_en0-container ul li, .back_to_libary a, .navbar-header .avatar_name, .navbar-header .notification_icon, .navbar-header .timer, .navbar-header .points, .navbar-collapse .avatar_name, .navbar-collapse .notification_icon, .navbar-collapse .timer, .navbar-collapse .points, .categories.row, .category_square_oval_submit, .library-page .cat_sing, .library-page .header_part a.texts_cont, .library-page .header_part a.btn_cont, .navbar .menu-top, .page-template-page-authors-php .category_single a, .single_category_list .rail .rail--btns .btn, .single_lesson_cont a, .nav-tabs > li > a, .add_lesson_btn.add, .page-template-custom-profile-php .nav-pills > li > a {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -20,12 +20,12 @@ Tags:
   transition: all 0.2s ease-in-out;
 }
 
-.category_square_author a, .single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-page-scheduling .schedule_btn, .page-template-custom-profile-php .forgotPass a, .page-template-custom-profile-php #register-me, .page-template-custom-profile-php .picture_cont .drop-box, .box.userdtls, .home .register_cont input[type="submit"], .home .donate_cont button {
+.category_square_author a, .single_dwnld_file a, .previous_post_link, .next_post_link, .page-template-page-my_lessons-php .schedule_btn, .page-template-page-lessons_teach-php .schedule_btn, .page-template-page-scheduling .schedule_btn, .page-template-custom-profile-php .forgotPass a, .page-template-custom-profile-php #register-me, .page-template-custom-profile-php .picture_cont .drop-box, .box.userdtls, .home .register_cont input[type="submit"], .donate_cont button {
   cursor: pointer;
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-.category_square_author a:hover, .single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover, .page-template-page-my_lessons-php .schedule_btn:hover, .page-template-page-lessons_teach-php .schedule_btn:hover, .page-template-page-scheduling .schedule_btn:hover, .page-template-custom-profile-php .forgotPass a:hover, .page-template-custom-profile-php #register-me:hover, .page-template-custom-profile-php .picture_cont .drop-box:hover, .box.userdtls:hover, .home .register_cont input[type="submit"]:hover, .home .donate_cont button:hover {
+.category_square_author a:hover, .single_dwnld_file a:hover, .previous_post_link:hover, .next_post_link:hover, .page-template-page-my_lessons-php .schedule_btn:hover, .page-template-page-lessons_teach-php .schedule_btn:hover, .page-template-page-scheduling .schedule_btn:hover, .page-template-custom-profile-php .forgotPass a:hover, .page-template-custom-profile-php #register-me:hover, .page-template-custom-profile-php .picture_cont .drop-box:hover, .box.userdtls:hover, .home .register_cont input[type="submit"]:hover, .donate_cont button:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
   opacity: 0.75;
 }
@@ -2639,15 +2639,16 @@ li.comment {
   text-align: center;
   border-color: #51B46D;
 }
-.home .donate_cont {
+
+.donate_cont {
   text-align: center;
   padding: 60px 0;
 }
-.home .donate_cont p {
+.donate_cont p {
   color: #384047;
   font-size: 1.375rem;
 }
-.home .donate_cont button {
+.donate_cont button {
   padding: 6px 44px 9px;
   background-color: #F1C40F;
   -moz-border-radius: 3px;
@@ -2658,16 +2659,17 @@ li.comment {
   font-weight: 700;
   margin-top: 6px;
 }
-.home .credits_cont {
+
+.credits_cont {
   text-align: center;
   background-color: #7f8a94;
   padding: 25px 0;
 }
-.home .credits_cont p {
+.credits_cont p {
   color: #FFF;
   font-size: 1.375rem;
 }
-.home .credits_cont p.before_credit_logo {
+.credits_cont p.before_credit_logo {
   font-size: 0.875rem;
   margin-top: 5.8%;
   margin-bottom: 20px;
@@ -2931,6 +2933,11 @@ _responsive styles
 
   .home .register_cont p {
     font-size: 1.15rem;
+  }
+
+  .home .hero_image {
+    height: 430px !important;
+    overflow: hidden;
   }
 }
 /* 768 and more ----------- */
@@ -3285,7 +3292,7 @@ _responsive styles
 
   .home .hero_image .bgImg {
     width: auto;
-    height: 270px;
+    height: 450px;
     max-width: 9999px;
   }
 
@@ -3345,7 +3352,7 @@ _responsive styles
   }
 
   .home .quote_cont {
-    bottom: 17%;
+    bottom: 5%;
   }
 }
 

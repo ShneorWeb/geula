@@ -3012,7 +3012,10 @@ li.comment {
             @extend %clickbleElement;
         }
     }
-    .donate_cont{
+    
+}
+
+.donate_cont{
          text-align: center;
         padding: 60px 0;
         p{
@@ -3029,9 +3032,10 @@ li.comment {
         @extend %clickbleElement;
         margin-top: 6px;
         }
-    }
+}
+
     
-    .credits_cont{
+.credits_cont{
          text-align: center;
          background-color: #7f8a94;
         padding: 25px 0;
@@ -3046,7 +3050,6 @@ li.comment {
                 margin-bottom: 20px;
             }
         }
-    }
 }
 
 .page-template-page-help{
@@ -3349,6 +3352,13 @@ _responsive styles
     
     .home .register_cont p {
       font-size: 1.15rem;
+    }
+    
+    .home{
+        .hero_image{
+            height: 430px !important;
+            overflow: hidden;
+        }
     }
 }
 
@@ -3706,7 +3716,7 @@ _responsive styles
     
   .home .hero_image .bgImg {
       width: auto;
-      height: 270px;
+      height: 450px;
       max-width: 9999px;
     }
     
@@ -3778,7 +3788,7 @@ _responsive styles
     }
     
     .home .quote_cont {
-      bottom: 17%;
+      bottom: 5%;
     }
 
 }
