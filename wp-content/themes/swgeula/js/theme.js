@@ -252,19 +252,24 @@ function profile_to_mob(){
  //equal heights for div's http://stackoverflow.com/a/11688385/2721050
 function equal_heights(){
         $('.product_list').each(function(){  
-         highestBox1 = 0;
+           highestBox1 = 0;
+            
+            
            $('.category_square_content', this).each(function(){
+               
+                var minHeight = $(this).find('h3.category_square-format').height() + $(this).find('h2').height() + $(this).find('.category_square_description').height() + $(this).find('.bottom_cont').height();
+               
+               $(this).height(minHeight + 30);
+               
                if($(this).height() > highestBox1){
                     highestBox1 = $(this).height(); 
-               } else{
-                   $(this).css('height','auto');
-               }
-                 
+               } 
+               
            });  
             
-            $(this).find('.category_square_content').height(highestBox1);
-            $(this).find('.category_square_content .bottom_cont').css('position','absolute');
-           
+            
+            $('.category_square_content').height(highestBox1);
+                       
         
           highestBox2 = 0;
             $('.category_single', this).each(function(){

@@ -751,6 +751,7 @@ span.category_top_time {
   -webkit-box-shadow: 0 2px 0 rgba(56, 64, 71, 0.2);
   box-shadow: 0 2px 0 rgba(56, 64, 71, 0.2);
   width: 100%;
+  /*max-height: 316px;*/
 }
 .category_square_content h3 {
   color: #B2BAC2;
@@ -2160,6 +2161,7 @@ a.schedule_new {
   bottom: 20px;
   max-width: calc(100% - 60px);
   width: calc(100% - 60px);
+  position: absolute;
 }
 
 .category_square_description {
