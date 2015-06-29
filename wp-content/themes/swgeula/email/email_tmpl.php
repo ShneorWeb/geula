@@ -23,13 +23,13 @@
 				<div style="border-bottom: 1px solid #555459; padding-top:20px; width: 300px; margin-left:auto; margin-right:auto;" align="center" width="300"></div>
 			</td></tr>				
 			<tr><td align="center">			
-				<div style="color:#555459; padding-top:40px;"><?php if (isset($email_body)) echo $email_body;?>		</div>
+				<div style="color:#555459; padding-top:40px;" <?php if (isset($sLang) && ($sLang=="he")) {?>dir="rtl"<?php }?>><?php if (isset($email_body)) echo $email_body;?></div>
 			</td></tr>	
 		</table>
 		</div>				
 		
 		<div style="color:#39add1; width:1100px; margin-right:auto; margin-left:auto; text-align:right; padding-top:20px; padding-right:20px;" align="center">
-		<table width="1100" align="center"><tr><td <?php if (isset($sLang) && ($sLang=="he")) {?>align="right"<?php }?>>
+		<table width="1100" align="center"><tr><td <?php if (isset($sLang) && ($sLang=="he")) {?>align="right"<?php }?> <?php if (isset($sLang) && ($sLang=="he")) {?>dir="rtl"<?php }?> >
 			<?php if (isset($email_disclaimer)) echo $email_disclaimer;?>
 			</td></tr>			
 		</table>
