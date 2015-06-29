@@ -2327,16 +2327,27 @@ function sendEmailAlert($uid,$lessonID) {
 
 	ob_start();
 
-	$sLang = $gsLocaleShort;
+	$lang = get_user_meta( $user->ID, 'user_lang', true );
+	$sLang  = strstr($lang,"_",true);				
 
-	$email_subject = __("Lesson Alert from Geulah VOD website","swgeula");
-
-	$email_body = __('This is an alert. Your scheduled lesson is about to begin in less than an hour. Please click on the link below to start learning:',"swgeula");
-	$email_body  .=	__("<br /><br />");
-	$email_body .= 	__("<a href='$lessonLink'>".$lessonLink . "</a><br/><br/>");	
-	$email_body .= __("Thank you","swgeula") . "<br/><br/>";
-	
-	$email_disclaimer = __("This email was sent to you because you are are registered member of Geulah VOD. To unsubscribe please send an email to <a href='mailto:support@geulahvod.com'>support@geulahvod.com</a>","swgeula");
+	if ($sLang=="he") {
+		$email_subject = "התראת שעור מאתר גאולה VOD";
+		
+		$email_body = 'זוהי התראת שעור. השעור המתוזמן שלך עומד להתחיל בעוד פחות משעה. אנא לחץ על הלינק למטה להתחלת הלימוד:';
+		$email_body  .=	"<br /><br />";
+		$email_body .= 	"<a href='$lessonLink'>".$lessonLink . "</a><br/><br/>";	
+		$email_body .= "תודה רבה" . "<br/><br/>";	
+		$email_disclaimer = "הודעה זו נשלחה אליך מכיון שאתה מנוי באתר Geula VOD. להסרה אנא שלח הודעה לכתובת המייל: <a href='mailto:support@geulahvod.com'>support@geulahvod.com</a>";
+	}
+	else {
+		$email_subject = "Lesson Alert from Geulah VOD website";
+		
+		$email_body = 'This is an alert. Your scheduled lesson is about to begin in less than an hour. Please click on the link below to start learning:';
+		$email_body  .=	"<br /><br />";
+		$email_body .= 	"<a href='$lessonLink'>".$lessonLink . "</a><br/><br/>";	
+		$email_body .= "Thank you" . "<br/><br/>";	
+		$email_disclaimer = "This email was sent to you because you are are registered member of Geulah VOD. To unsubscribe please send an email to <a href='mailto:support@geulahvod.com'>support@geulahvod.com</a>";
+	}
 
 
 	include("email/email_tmpl.php");	
