@@ -2334,8 +2334,8 @@ function sendEmailAlert($uid,$lessonID) {
 		$email_subject = "התראת שעור מאתר גאולה VOD";
 		
 		$email_body = 'זוהי התראת שעור. השעור המתוזמן שלך עומד להתחיל בעוד פחות משעה. אנא לחץ על הלינק למטה להתחלת הלימוד:';
-		$email_body  .=	"<br /><br />";
-		$email_body .= 	"<a href='$lessonLink'>".$lessonLink . "</a><br/><br/>";	
+		$email_body  .=	"<br /><br />";		
+		$email_body .= 	"<a href=\"$lessonLink\">".$lessonLink . "</a><br/><br/>";	
 		$email_body .= "תודה רבה" . "<br/><br/>";	
 		$email_disclaimer = "הודעה זו נשלחה אליך מכיון שאתה מנוי באתר Geula VOD. להסרה אנא שלח הודעה לכתובת המייל: <a href='mailto:support@geulahvod.com'>support@geulahvod.com</a>";
 	}
@@ -2344,7 +2344,7 @@ function sendEmailAlert($uid,$lessonID) {
 		
 		$email_body = 'This is an alert. Your scheduled lesson is about to begin in less than an hour. Please click on the link below to start learning:';
 		$email_body  .=	"<br /><br />";
-		$email_body .= 	"<a href='$lessonLink'>".$lessonLink . "</a><br/><br/>";	
+		$email_body .= 	"<a href=\"$lessonLink\">".$lessonLink . "</a><br/><br/>";	
 		$email_body .= "Thank you" . "<br/><br/>";	
 		$email_disclaimer = "This email was sent to you because you are are registered member of Geulah VOD. To unsubscribe please send an email to <a href='mailto:support@geulahvod.com'>support@geulahvod.com</a>";
 	}
@@ -2422,7 +2422,7 @@ function sw_send_alerts() {
 						$lessonID = (int)getNextLessonToPlay((int)$arrNextScheduled[0]);
 
 						//echo("sending email to...".$userID.' about lesson id:'.$lessonID);
-						sendEmailAlert($userID,$lessonID);						
+						if ($userID>0 && $lessonID>0) sendEmailAlert($userID,$lessonID);						
 
 						//change db field to sent
 						$wpdb->update('wp_sw_schedules', array('sent_alert' => 1), array( 'id' =>  $result['id']) ); 
