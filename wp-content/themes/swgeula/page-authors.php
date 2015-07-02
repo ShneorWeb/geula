@@ -37,21 +37,15 @@ get_header(); ?>
 
 				<ul class="product_list" style="padding:0px;">
 
-					<?php
-                    
+					<?php                 
       
-					
-                        
-                        $args = array(
-                                /* https://codex.wordpress.org/Function_Reference/get_users */
-                                    'blog_id'      => 1,
-                                    'role'         => 'Administrator',
-                                 );
-                                $blogusers = get_users( $args );
-                                // Array of stdClass objects.
+					                     
+                                $blogusers = get_users( 'role=instructor' );
+                                //$blogusers = array_merge( get_users('role=instructor'), get_users('role=administrator') );
+
                                 foreach ( $blogusers as $user ) :
                     
-                    ?>
+                        ?>
 
                            
 							<div class="category_single col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
