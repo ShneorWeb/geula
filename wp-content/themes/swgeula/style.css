@@ -2679,6 +2679,11 @@ li.comment {
   padding: 30px;
 }
 
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  /*background-color: transparent;*/
+  outline: none;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
