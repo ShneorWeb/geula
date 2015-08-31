@@ -69,6 +69,7 @@ class MY_Post_Numbers {
         $vidArray = explode("/", $vidURL);        
         $vidID = $vidArray[count($vidArray)-1];      
         if (preg_match('/(watch\?v=)(\S+)/',$vidID, $matches)) $vidID=$matches[2]; 
+        //else if (preg_match('/([a-zA-Z0-9]+)/',$vidID, $matches)) $vidID=$matches[1];         
         ?>
 
 				<div class="page-header">

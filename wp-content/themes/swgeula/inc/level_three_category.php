@@ -231,9 +231,10 @@
                 if ( have_posts() ) : while ( have_posts() ) : the_post();
                 $counter +=1;
 
-                $vidURL = sanitize_text_field( get_field('video_url') );
-                $vidArray = explode("/", $vidURL);
-                $vidID = $vidArray[count($vidArray)-1];
+                $vidURL = sanitize_text_field( get_field('video_url') );                               
+                $vidArray = explode("/", $vidURL);        
+                $vidID = $vidArray[count($vidArray)-1];      
+                if (preg_match('/(watch\?v=)(\S+)/',$vidID, $matches)) $vidID=$matches[2]; 
                ?>
 
                 <script>
@@ -293,7 +294,7 @@
                                            </i>                                            
                                             <?php the_title(); ?>
                                         </div>
-                                        <div class="time">                                            
+                                        <div class="time">                                                                                    
                                             <?php echo gmdate("H:i:s", getVideoDuration($vidID));?>
                                         </div>
                                     </a>

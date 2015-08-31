@@ -101,8 +101,7 @@
 					
 					$args = array(	 
                         'include' => implode(",",$arrTempCats),
-                        'hide_empty' => 0,
-                        'number' => 3
+                        'hide_empty' => 0                      
                     );
 
 					$count = 0;
@@ -152,11 +151,10 @@
 
           usort($arrCatsArray, "compareDates");
 
-          $iCounter = 0;
-					foreach ($arrCatsArray as $cat2) :
-
-                if ($iCounter>2) break;
-
+          $arrCatsArray2 = array_slice($arrCatsArray, 0, 3); 
+          
+					foreach ($arrCatsArray2 as $cat2) :
+                
                 $cat2 = (object)$cat2; 
 
                 $color = get_field('swcolor', "category_".$cat2->cat_ID);                                
@@ -289,7 +287,6 @@
                 
             <?php endif;?>
             <?php 
-              $iCounter++;
             endforeach  
             ?>
 										
