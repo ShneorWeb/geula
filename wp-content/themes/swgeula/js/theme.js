@@ -147,12 +147,13 @@ filterBoxesTeach = function(parentCat,sSort,iAuthorID) {
 }
 
 addSchedule = function(el,scheduleDay,scheduleTime) {
-
-  console.log($(el));
+ 
   var clickedDiv = $(el).find('.table_rect');
 
   var boolAdd = 1;
   if ( $(clickedDiv).hasClass('green') ) boolAdd=0; //delete schedule
+
+   //console.log(scheduleDay);
 
   $.ajax({
           type : "post",

@@ -530,10 +530,11 @@ function compareNames($a, $b) {
 
 /************************* Prevent access to wp-admin for subscribers  *********************************/
 function sw_redirect_admin(){
+
 	if ( is_user_logged_in() ) {
 
 		$user = new WP_User( get_current_user_id() );
-		if ( !empty( $user->roles ) && is_array( $user->roles ) ) {
+		if ( !empty( $user->roles ) && is_array( $user->roles ) && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX )  ) {
 			foreach ( $user->roles as $role ) :				
 				if ($role=="subscriber" || $role=="instructor") {
 					wp_safe_redirect(get_category_link(3));
