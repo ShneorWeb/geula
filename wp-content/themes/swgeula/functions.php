@@ -1422,6 +1422,7 @@ function getNumStudents($catID) {
 		$vidID = $vidArray[count($vidArray)-1];						
 		
 		if (preg_match('/(watch\?v=)(\S+)/',$vidID, $matches)) $vidID=$matches[2]; 		
+		elseif (preg_match('/(youtu.be\/)(\S+)\?/',$vidURL, $matches)) $vidID=$matches[2]; 
 	}
 	
 	if ( ($vidID!=-1)  && ($post->post_status=="publish") ) {		

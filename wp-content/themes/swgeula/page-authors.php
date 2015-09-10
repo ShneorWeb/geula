@@ -2,7 +2,8 @@
 /*
 Template Name: Authors Page
 */
-get_header(); ?>	
+get_header(); 
+?>	
 
 <div class="col-lg-12 col-md-12 archive_cont">	
 

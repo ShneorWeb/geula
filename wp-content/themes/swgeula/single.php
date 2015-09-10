@@ -69,7 +69,7 @@ class MY_Post_Numbers {
         $vidArray = explode("/", $vidURL);        
         $vidID = $vidArray[count($vidArray)-1];      
         if (preg_match('/(watch\?v=)(\S+)/',$vidID, $matches)) $vidID=$matches[2]; 
-        //else if (preg_match('/([a-zA-Z0-9]+)/',$vidID, $matches)) $vidID=$matches[1];         
+        elseif (preg_match('/(youtu.be\/)(\S+)\?/',$vidURL, $matches)) $vidID=$matches[2]; 
         ?>
 
 				<div class="page-header">
@@ -238,10 +238,10 @@ class MY_Post_Numbers {
                       player = new YT.Player('vid_player', {                        
                         width: '1020',
                         height: '573',                        
-                        videoId: '<?php echo $vidID;?>',
+                        videoId: '<?php echo $vidID;?>',                        
                         playerVars: { 
                           'rel': 0, 
-                          'fs':0,
+                          'fs':0,                          
                           'enablejsapi': 1,
                           'iv_load_policy' : 0,
                           'modestbranding': 1,

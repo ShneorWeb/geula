@@ -1,6 +1,7 @@
 <?php
   $cat_id = get_query_var('cat');
   $args = array(
+      'posts_per_page' => -1,
       'category' => $cat_id,
       'orderby' => 'date',
       'order' => 'ASC'
@@ -232,9 +233,10 @@
                 $counter +=1;
 
                 $vidURL = sanitize_text_field( get_field('video_url') );                               
-                $vidArray = explode("/", $vidURL);        
+                $vidArray = explode("/", $vidURL);                        
                 $vidID = $vidArray[count($vidArray)-1];      
                 if (preg_match('/(watch\?v=)(\S+)/',$vidID, $matches)) $vidID=$matches[2]; 
+                elseif (preg_match('/(youtu.be\/)(\S+)\?/',$vidURL, $matches)) $vidID=$matches[2]; 
                ?>
 
                 <script>
@@ -328,15 +330,15 @@
                                 <div class="dtls">
                                     <?php
                                     echo '<div class="author_des"><div class="category_square_author_name">' . $the_user->display_name . '</div>';
-                                    echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';
+                                    echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $the_user->ID ). '</div>';
 
-                        echo '<div class="category_square_author_subject desc">' .get_the_author_meta('description', $user_id ). '</div>';
+                        echo '<div class="category_square_author_subject desc">' .get_the_author_meta('description', $the_user->ID ). '</div>';
                         ?>
 
 
                                     <div class="category_square_number">
                                        <?php 
-                                            $user_post_count = count_user_posts( $user_id );
+                                            $user_post_count = count_user_posts( $the_user->ID );
                                             echo $user_post_count . ' ' . __('lessons in the library', 'swgeulatr');  
                                         ?>
                                     </div>

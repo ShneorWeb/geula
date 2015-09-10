@@ -2,7 +2,7 @@
 
     <div class="col-lg-12 col-md-12 archive_cont">	
         <?php
-          $author =  get_the_author_meta( 'ID'); 
+          $author =  get_the_author_meta( 'ID');           
         ?>
              <div class="page-header">	
 				
