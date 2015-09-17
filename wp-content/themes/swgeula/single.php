@@ -241,7 +241,7 @@ class MY_Post_Numbers {
                         videoId: '<?php echo $vidID;?>',                        
                         playerVars: { 
                           'rel': 0, 
-                          'fs':0,                          
+                          'fs':1,                          
                           'enablejsapi': 1,
                           'iv_load_policy' : 0,
                           'modestbranding': 1,
