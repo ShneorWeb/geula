@@ -1,0 +1,872 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700,300,400);
+
+body {
+    text-align: left;
+    font-family: 'Open Sans', sans-serif;
+    direction: ltr;
+}
+
+#wrap {
+    */
+  margin-left: auto;
+    margin-right: auto;
+	margin-left: auto;
+}
+
+.menu-menu-left-container ul li {
+    padding-right: 20px;
+	padding-left: 0;
+}
+
+.menu-menu-left-container ul {
+    padding-left: 0px;
+	padding-right: 0;
+}
+
+.menu-menu-left-container a {
+    padding-left: 20px;
+	padding-right: 0;
+}
+
+@media (min-width: 768px) {
+
+}
+
+.navbar-header {
+    float: left;
+}
+
+span.category_top_time a {
+    float: right;
+    padding-right: 20px;
+	padding-left: 0;
+}
+
+span.category_top_time {
+    float: right;
+    padding-right: 20px;
+	padding-left: 0;
+}
+
+.category_square_avatar {
+    margin-right: 10px;
+	margin-left: auto;
+}
+
+span.oval {
+    margin-right: 10px;
+	margin-left: auto;
+}
+
+.category_square_author a {
+    float: left;
+}
+
+
+.category_top_square {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+@media (min-width: 767px) {
+
+.category_top_square {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+}
+
+@media (max-width: 1300px) and (min-width: 767px) {
+
+@media (min-width: 767px) {
+
+.category_top_square {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+}
+
+}
+
+.navbar-brand {
+    float: left;
+}
+
+.single_category_list .image_category {
+    /*padding-right: 5px;
+    padding-left: 5px;*/
+}
+
+.single_category_list .image_category {
+    background-position: left;
+}
+
+.single_category_list .left-content {
+  float: right;
+}
+
+.single_category_list .left-content ul.single_cat_dtls {
+  border-left: 1px solid rgb(255, 255, 255);
+  border-right: none;
+  padding-left: 30px;
+  padding-right: 0;
+}
+
+
+/*
+erez styles start from here - - - - - - - - - - - - - - - - - - - - -
+*/
+
+.ltl_title span {
+    margin-left: 10px;
+	margin-right: auto;
+}
+
+.menu-top {
+    float: right;
+}
+
+.site-content {
+    margin-left: 255px;
+    float: left;
+	margin-right: auto;
+}
+
+.site-content > .container {
+    float: left;
+}
+
+.site-footer {
+    float: left;
+}
+
+.menu-menu-left-container a {
+    float: left;
+}
+
+.menu i {
+    float: left;
+    padding-left: 22px;
+	padding-right: 0;
+}
+
+.sidebar ul li a i, .sidebar ul li a span {
+    padding-right: 25px;
+	padding-left: 0;
+}
+
+.menu-menu-left-container ul li {
+    padding-right: 0;
+    float: left;
+	padding-left: 0;
+}
+
+.menu-menu-left-container ul {
+    float: left;
+}
+
+.back_to_libary i {
+    margin-right: 5px;
+	margin-left: auto;
+}
+
+.image_category {
+    /*
+    background-position: left;
+    padding-left: 21.3%;
+    padding-right: 27%;
+    */
+}
+
+.search_by {
+    padding: 18px 28px 18px 16px;
+}
+
+.search_by .search_text {
+    float: left;
+}
+
+.search_by .search_text .glyphicon-search {
+    margin-right: 12px;
+	margin-left: auto;
+}
+
+.selects {
+    float: right;
+}
+
+.selects form {
+    float: right;
+    margin-left: 30px;
+	margin-right: auto;
+}
+
+.selects select {
+    background-position: right center;
+    padding-right: 25px;
+	padding-left: 0;
+}
+
+.category_top_square i {
+    float: left;
+}
+
+span.category_top_time {
+    padding-right: 0;
+	padding-left: 0;
+}
+
+.category_square_content {
+    float: left;
+}
+
+.category_square_avatar, .author_des {
+    float: left;
+}
+
+.category_square_oval {
+    float: left;
+}
+
+.category_square_author {
+    float: left;
+}
+
+span.oval {
+    margin-right: 10px;
+    float: left;
+	margin-left: auto;
+}
+
+.navbar-header .profile_dtls, .navbar-collapse .profile_dtls {
+    float: left;
+    margin-right: 30px;
+	margin-left: auto;
+}
+
+.navbar-header .points *, .navbar-collapse .points * {
+    float: left;
+}
+
+.navbar-header .points .text, .navbar-collapse .points .text {
+    margin-left: 10px;
+	margin-right: auto;
+}
+
+.navbar-header .avatar_image, .navbar-collapse .avatar_image {
+    margin-right: 10px;
+	margin-left: auto;
+}
+
+.navbar-header .avatar_name, .navbar-collapse .avatar_name {
+    background-position: right center;
+    padding-right: 25px;
+	padding-left: 0;
+}
+
+.category_square_oval_submit, span.oval {
+    float: left;
+    margin-right: 10px;
+	margin-left: auto;
+}
+
+.btn-group.bootstrap-select.show-tick button {
+    background-position: right center;
+    padding: 0 25px 0 0;
+}
+
+.library-page .texts i {
+    float: left;
+    margin-right: 6.1845861084681255%;
+	margin-left: auto;
+}
+
+.library-page .texts .name_and_sedc {
+    float: left;
+}
+
+.library-page .current_category_description, .library-page .current_category_name, .library-page .texts {
+    float: left;
+}
+
+.library-page .stages {
+    float: right;
+}
+
+.library-page .stages ol > li:before {
+    margin-right: 5px;
+    float: left;
+	margin-left: auto;
+}
+
+.library-page .cat_sing {
+    float: left;
+}
+
+.library-page .header_part {
+    float: left;
+    padding: 0 65px 0 270px;
+}
+
+.library-page .header_part a.texts_cont {
+    float: left;
+}
+
+.library-page .header_part a.btn_cont {
+    float: right;
+}
+
+.library-page .bottom_part {
+    float: left;
+}
+
+.library-page .bottom_part .library_image_category {
+    /*
+    background-position: left;
+    float: left;
+    padding: 40px 2.627430373095113% 40px 23.646873357856016%;
+    */
+}
+
+.library-page #spinner {
+    right: 0;
+    left: 0;
+}
+
+.page-template-page-authors-php .category_single a {
+    float: left;
+}
+
+.archive.author .image_category, .page-template-page-dashboard-php .image_category, .page-template-page-my_lessons-php .image_category, .page-template-page-lessons_teach-php .image_category {
+    padding-left: 4.8%;
+    padding-right: 4.8%;
+}
+
+.archive.author .category_square_avatar.in_header, .page-template-page-dashboard-php .category_square_avatar.in_header, .page-template-page-my_lessons-php .category_square_avatar.in_header, .page-template-page-lessons_teach-php .category_square_avatar.in_header {
+    margin-right: 2%;
+	margin-left: auto;
+}
+
+.archive.author .current_category_description, .page-template-page-dashboard-php .current_category_description, .page-template-page-my_lessons-php .current_category_description, .page-template-page-lessons_teach-php .current_category_description, .archive.author .number_of_posts_in_header, .page-template-page-dashboard-php .number_of_posts_in_header, .page-template-page-my_lessons-php .number_of_posts_in_header, .page-template-page-lessons_teach-php .number_of_posts_in_header, .archive.author .current_category_name, .page-template-page-dashboard-php .current_category_name, .page-template-page-my_lessons-php .current_category_name, .page-template-page-lessons_teach-php .current_category_name {
+    float: left;
+}
+
+.archive.author .dtls, .page-template-page-dashboard-php .dtls, .page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls {
+    float: left;
+}
+
+.image_category {
+    float: left;
+}
+
+.back_to_libary {
+    float: left;
+}
+
+.back_to_libary a {
+    float: left;
+}
+
+.categories.row {
+    float: left;
+}
+
+.single_category_list .category_square-format span {
+    margin-right: 4px;
+	margin-left: auto;
+}
+
+.single_category_list .category_square-format i {
+    float: left;
+    margin-right: 20px;
+	margin-left: auto;
+}
+
+.single_category_list .current_category_description, .single_category_list .current_category_name {
+    float: left;
+}
+
+.single_category_list .category_square_oval {
+    left: 2.18978102189781%;
+	right: auto;
+}
+
+.single_category_list .left-content {
+    float: left;
+}
+
+.single_category_list .right-content {
+    float: right;
+}
+
+.single_category_list .right-content ul.single_cat_dtls {
+    padding-left: 30px;
+    border-left: 1px solid #ffffff;
+	padding-right: 0;
+	border-right: none;
+}
+
+.single_category_list .rail .rail--timeline {
+    float: right;
+}
+
+.single_category_list .rail .rail--timeline .start_number {
+    float: right;
+    padding-left: 20px;
+	padding-right: 0;
+}
+
+.single_category_list .rail .rail--timeline .end_number {
+    float: left;
+    padding-right: 20px;
+	padding-left: 0;
+}
+
+.single_category_list .rail .rail--btns {
+    float: left;
+}
+
+.single_category_list .rail .rail--btns .playBtn {
+    margin-right: 15px;
+	margin-left: auto;
+}
+
+.single_category_list .userdtls .dtls {
+    float: left;
+}
+
+.single_category_list .userdtls .category_square_avatar {
+    float: right;
+    text-align: right;
+}
+
+.single_lesson_cont .fa {
+    margin-right: 30px;
+	margin-left: auto;
+}
+
+.single_lesson_cont .name {
+    float: left;
+}
+
+.single_lesson_cont .time {
+    float: right;
+}
+
+.single-post .top, .single-post .bottom {
+    float: left;
+}
+
+.single-post .dtls h1 {
+    float: left;
+}
+
+.single-post .length {
+    float: right;
+}
+
+.nav-tabs > li > a {
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active a:hover, .nav-tabs > li.active a:focus, .nav-tabs > li:hover > a, .nav-tabs > li:hover a:hover, .nav-tabs > li:hover a:focus, .nav-tabs > li:focus > a, .nav-tabs > li:focus a:hover, .nav-tabs > li:focus a:focus {
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+#comments .reply {
+    float: right;
+    text-align: right;
+    margin-right: 5px;
+	margin-left: auto;
+}
+
+#comments .comment-form {
+    text-align: right;
+}
+
+.comment-meta, .comment-content {
+    float: left;
+}
+
+.comment-content {
+    float: right;
+}
+
+.comment-content:before {
+    left: -15px;
+	right: auto;
+    border-width: 10px 15px 10px 0;
+}
+
+#references ul, #references ol {
+    padding-left: 20px;
+	padding-right: 0;
+}
+
+.single_dwnld_file a .fa {
+    margin-right: 10px;
+	margin-left: auto;
+}
+
+.previous_post_link {
+    float: left;
+}
+
+.next_post_link {
+    float: right;
+}
+
+.page-template-page-dashboard-php .nextstage_block, .page-template-page-my_lessons-php .nextstage_block, .page-template-page-lessons_teach-php .nextstage_block {
+    padding-left: 4.8%;
+    padding-right: 4.8%;
+}
+
+.page-template-page-dashboard-php .big_icon, .page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon {
+    margin-right: 2%;
+    float: left;
+	margin-left: auto;
+}
+
+button.edit_profile {
+    float: left;
+}
+
+.achievements_block .achievements_singles {
+    float: left;
+}
+
+.achievements_block .achievements_singles .achievements_single .elipse {
+    float: left;
+    margin-right: 15px;
+	margin-left: auto;
+}
+
+.achievements_block .achievements_singles .achievements_single .number_and_sub {
+    float: left;
+}
+
+.achievements_block #donut-chart {
+    float: left;
+}
+
+.page-template-page-my_lessons-php .box.menu, .page-template-page-lessons_teach-php .box.menu {
+    float: left;
+}
+
+.page-template-page-my_lessons-php .box.menu a, .page-template-page-lessons_teach-php .box.menu a {
+    margin-right: 50px;
+	margin-left: auto;
+}
+
+.page-template-page-my_lessons-php .box.menu a.last-child, .page-template-page-lessons_teach-php .box.menu a.last-child {
+    margin-right: 0;
+	margin-left: auto;
+}
+
+.page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon {
+    margin-right: 2%;
+	margin-left: auto;
+}
+
+.page-template-page-my_lessons-php .big_icon .status, .page-template-page-lessons_teach-php .big_icon .status {
+    left: 0;
+    right: 0;
+}
+
+.page-template-page-my_lessons-php .schedule_btn i, .page-template-page-lessons_teach-php .schedule_btn i {
+    margin-right: 10px;
+	margin-left: auto;
+}
+
+.add_lesson_btn {
+    float: right;
+}
+
+.box.new {
+    float: left;
+}
+
+.page-template-custom-profile-php .site-content {
+    margin-left: 0;
+    float: left;
+	margin-right: auto;
+}
+
+.page-template-custom-profile-php h1.settings_page_title {
+    text-align: left;
+}
+
+.page-template-custom-profile-php .forgotPass {
+    text-align: left;
+}
+
+.page-template-custom-profile-php .progress-label {
+    float: left;
+    text-align: left;
+}
+
+.page-template-custom-profile-php .password_cont .bar {
+    float: right;
+}
+
+.page-template-custom-profile-php .submit_cont {
+    text-align: right;
+}
+
+.page-template-custom-profile-php .picture_cont label, .page-template-custom-profile-php .picture_cont p {
+    float: left;
+}
+
+.page-template-custom-profile-php .picture_cont ul {
+    padding-left: 0;
+    text-align: left;
+	padding-right: 0;
+}
+
+.page-template-custom-register-php label, .page-template-custom-login-php label {
+    text-align: left;
+}
+
+.email_field_cont .form-control {
+    float: left;
+}
+
+.email_field_cont .fa-check {
+    float: left;
+}
+
+.fa-check {
+  color: #51b46d;
+  float: left;
+}
+
+ul.drop{
+    padding-left:0px; left:0;right:auto;
+}
+
+
+/* custom styles -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+.library_image_category,.flipBg {
+-webkit-transform:scaleX(-1);
+-moz-transform:scaleX(-1);
+-ms-transform:scaleX(-1);
+-o-transform:scaleX(-1);
+transform:scaleX(-1);
+}
+
+/* undo the vertical flip for all child elements */
+.library_image_category .product_list,.flipBg > .image_category >.current_category_name,.flipBg > .image_category .current_category_name {
+-webkit-transform:scaleX(-1);
+-moz-transform:scaleX(-1);
+-ms-transform:scaleX(-1);
+-o-transform:scaleX(-1);
+transform:scaleX(-1);
+}
+
+ .menu-menu-right-container a {
+  padding-left: 20px;
+}
+
+.search_by .search_text input[type=search] {
+  text-align: left;
+}
+
+.search_by .search_text .glyphicon-search {
+  float: left;
+}
+
+.category_square_content .bottom_cont {
+  left: 30px;
+}
+
+.single_category_list .right-content {
+  float: left;
+}
+
+.single_category_list .image_category {
+  padding: 1.5% 2.18978102189781%;
+}
+
+.single_category_list .rail .rail--btns {
+  width: 381px;
+}
+
+.single_category_list .rail .rail--timeline {
+  width: calc(100% - 390px);
+}
+
+.rail--btns #playBtnCont{
+    float: left;
+}
+
+.single_lesson_cont .fa {
+  float: left;
+  margin-top: 7px;
+}
+
+#comments #respond textarea#comment {
+  text-align: left;
+}
+
+.menu-menu-right-container ul {
+  padding-left: 0;
+}
+
+.navbar-collapse.collapse{
+    direction: rtl;
+}
+
+.en_elm{
+    display:inline-block;
+}
+
+.he_elm{
+    display:none;
+}
+
+.page-template-custom-profile-php .password_cont .bar {
+  width: calc(100% - 70px);
+}
+
+.email_field_cont .form-control[disabled], .email_field_cont .form-control[readonly], .email_field_cont fieldset[disabled] .form-control {
+  margin-top: 0px;
+  font-size: 16px;
+}
+
+.email_field_cont .fa-check {
+  margin-top:5px;
+}
+
+.email_field_cont {
+  float: left;
+}
+
+.menu-menu-right-container a, .menu-menu_right_en0-container a {
+  padding-left: 20px;
+}
+
+.archive.author .category_square_avatar.in_header, .page-template-page-dashboard-php .category_square_avatar.in_header, .page-template-page-my_lessons-php .category_square_avatar.in_header, .page-template-page-lessons_teach-php .category_square_avatar.in_header, .page-template-page-scheduling .category_square_avatar.in_header, .page-template-page-help .category_square_avatar.in_header{margin-right:2%;}
+.archive.author .current_category_description, .page-template-page-dashboard-php .current_category_description, .page-template-page-my_lessons-php .current_category_description, .page-template-page-lessons_teach-php .current_category_description, .page-template-page-scheduling .current_category_description, .page-template-page-help .current_category_description, .archive.author .number_of_posts_in_header, .page-template-page-dashboard-php .number_of_posts_in_header, .page-template-page-my_lessons-php .number_of_posts_in_header, .page-template-page-lessons_teach-php .number_of_posts_in_header, .page-template-page-scheduling .number_of_posts_in_header, .page-template-page-help .number_of_posts_in_header, .archive.author .current_category_name, .page-template-page-dashboard-php .current_category_name, .page-template-page-my_lessons-php .current_category_name, .page-template-page-lessons_teach-php .current_category_name, .page-template-page-scheduling .current_category_name, .page-template-page-help .current_category_name{float:left;}
+.archive.author .dtls, .page-template-page-dashboard-php .dtls, .page-template-page-my_lessons-php .dtls, .page-template-page-lessons_teach-php .dtls, .page-template-page-scheduling .dtls, .page-template-page-help .dtls{float:left;}
+.page-template-page-dashboard-php .nextstage_block, .page-template-page-my_lessons-php .nextstage_block, .page-template-page-lessons_teach-php .nextstage_block, .page-template-page-scheduling .nextstage_block, .page-template-page-help .nextstage_block{padding-left:4.8%;padding-right:4.8%;}
+.page-template-page-dashboard-php .big_icon, .page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon, .page-template-page-scheduling .big_icon, .page-template-page-help .big_icon{margin-right:2%;float:left;}
+.page-template-page-my_lessons-php .box.menu, .page-template-page-lessons_teach-php .box.menu, .page-template-page-scheduling .box.menu{float:left;}
+.page-template-page-my_lessons-php .box.menu a.last-child, .page-template-page-lessons_teach-php .box.menu a.last-child, .page-template-page-scheduling .box.menu a.last-child{margin-right:0;}
+.page-template-page-my_lessons-php .big_icon, .page-template-page-lessons_teach-php .big_icon, .page-template-page-scheduling .big_icon{margin-right:2%;}
+.page-template-page-my_lessons-php .big_icon .status, .page-template-page-lessons_teach-php .big_icon .status, .page-template-page-scheduling .big_icon .status{left:0;right:0;}
+.page-template-page-my_lessons-php .schedule_btn i, .page-template-page-lessons_teach-php .schedule_btn i, .page-template-page-scheduling .schedule_btn i{margin-right:10px;}
+page-template-page-scheduling .image_category p.small, .page-template-page-scheduling .image_category .mts.small, .page-template-page-scheduling .image_category .uts.small{float:left;}
+.page-template-page-scheduling .image_category .mts, .page-template-page-scheduling .image_category .uts{float:left;}
+.page-template-page-scheduling .image_category .mts .rect, .page-template-page-scheduling .image_category .uts .rect{float:left;margin-right:10px;}
+.page-template-page-scheduling .image_category .uts{margin-left:25px;}
+.page-template-page-scheduling .panel{float:left;}
+.page-template-page-scheduling .panel-title > a, .page-template-page-scheduling .panel-title > small, .page-template-page-scheduling .panel-title > .small, .page-template-page-scheduling .panel-title > small > a, .page-template-page-scheduling .panel-title > .small > a{float:left;}
+.page-template-page-scheduling .panel-title > a .day, .page-template-page-scheduling .panel-title > small .day, .page-template-page-scheduling .panel-title > .small .day, .page-template-page-scheduling .panel-title > small > a .day, .page-template-page-scheduling .panel-title > .small > a .day{float:left;}
+.page-template-page-scheduling .panel-title > a .day:after, .page-template-page-scheduling .panel-title > small .day:after, .page-template-page-scheduling .panel-title > .small .day:after, .page-template-page-scheduling .panel-title > small > a .day:after, .page-template-page-scheduling .panel-title > .small > a .day:after{float:right;}
+.page-template-page-scheduling .table_rect{float:left;}
+.page-template-page-scheduling table.schedule thead tr th big{margin-left:2px;}
+
+.page-template-page-scheduling .panel-title > a .day, .page-template-page-scheduling .panel-title > small .day, .page-template-page-scheduling .panel-title > .small .day, .page-template-page-scheduling .panel-title > small > a .day, .page-template-page-scheduling .panel-title > .small > a .day {
+  width: 145px;
+}
+
+/* responsive styles ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+@media screen and (max-width:767px) {
+    .page-template-page-my_lessons-php .box.menu a, .page-template-page-lessons_teach-php .box.menu a, .page-template-page-scheduling .box.menu a, .page-template-page-scheduling .box.menu a{margin-right:30px;}
+    .page-template-page-my_lessons-php .box.menu a:last-child, .page-template-page-lessons_teach-php .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child{margin-right:0;}
+}
+
+
+
+@media screen and (min-width: 1856px){
+    .library-page .site-content > .container {
+      padding-right: 65px;
+      padding-left:0;
+    }
+}
+
+@media screen and (max-width:1855px) {
+    .library-page .site-content > .container{padding-right:65px;padding-left: 15px;}
+}
+@media screen and (max-width:1300px) {
+    .image_category{padding-left:30%;padding-right:7%;}
+    .site-content{margin-left:60px;}
+    .library-page .header_part{padding-left:75px;padding-right:65px;}
+    .library-page .bottom_part .library_image_category{padding-left:60px;padding-right:49px;}
+}
+@media screen and (max-width:991px) {
+    .single_category_list .rail .rail--btns a{float:left;}
+    .single_category_list .rail .rail--btns a#playBtnCont{margin-right:2%;}
+    .single_category_list .left-content ul.single_cat_dtls{padding-left:0;border-left:none;}
+    .single_category_list .left-content ul.single_cat_dtls li{float:left;margin-right:15px;}
+    .single_category_list .category_square_oval{left:0;}
+    .selects form {
+      margin-left: 16px;
+    }
+    .single_category_list .rail .rail--btns,.single_category_list .rail .rail--timeline {
+      width: 100%;
+    }
+    .single_category_list .rail .rail--btns a#playBtnCont {
+      margin-left: 0;
+    }
+    
+    .single_category_list .rail .rail--btns .playBtn {
+      margin-right: 0;
+    }
+}
+@media screen and (max-width:767px) {
+    .site-content{margin-left:0px;}
+    .selects{float:left;}
+    .search_by{float:left;}
+    .drop{right:-220px;left:auto !important;}
+    .archive_cont.left_to_right_archive_cont{left:-220px;}
+    .navbar-collapse{right:-220px;}
+    .navbar-collapse.left_to_right{right:0;}
+    .menu-top{float:left;}
+    .navbar-collapse .avatar_image, .navbar-collapse .avatar_name, .navbar-collapse .points{float:left;}
+    .navbar-collapse .profile_dtls{margin-right:0;}
+    .navbar-collapse .avatar_image{margin-right:10px;}
+    .navbar-collapse .avatar_name{padding-right:0;}
+    .navbar-collapse .dtls_cont{float:left;}
+    .navbar-collapse .icons_cont{float:right;}
+    .navbar-collapse .notification_icon, .navbar-collapse .timer{float:right;margin-right:0;}
+    .navbar-collapse .name_and_points{float:left;}
+    .navbar-collapse .name_and_points .points .text{margin-left:0;}
+    .library-page .site-content > .container{padding-right:15px;}
+    .library-page .image_category{float:left;}
+    .library-page .header_part{padding-left:15px;padding-right:15px;}
+    .library-page .bottom_part .library_image_category{padding-left:15px;padding-right:15px;}
+    .single_category_list .single_lesson_cont .name .fa{float:left;}
+    .single_category_list .single_lesson_cont .time{text-align:right;}
+    .single-post .length{text-align:right;}
+    .comment-content{margin-left:4%;}
+    .page-template-page-dashboard-php .big_icon{margin-right:0;}
+    .page-template-custom-profile-php .nav-pills > li > a{padding-left:8px;padding-right:8px;}
+    .page-template-custom-profile-php form label{float:left;}
+    .page-template-custom-profile-php .password_cont{float:left;}
+    .page-template-custom-register-php .logAndReg_cont .div-login, .page-template-custom-login-php .logAndReg_cont .div-login{padding-left:5%;padding-right:5%;}
+    .menu-menu-right-container ul {
+     margin-right: -15px;
+    }
+    
+    .page-template-page-my_lessons-php .box.menu a:last-child, .page-template-page-lessons_teach-php .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child, .page-template-page-scheduling .box.menu a:last-child {
+      margin-right: 0;
+    }
+    
+    .page-template-page-my_lessons-php .box.menu a, .page-template-page-lessons_teach-php .box.menu a {
+      margin-right: 30px;
+      margin-left: auto;
+      font-size: 1.1rem;
+    }
+    
+}
+@media screen and (max-width:500px) {
+    .single_category_list .rail .rail--btns a{float:left;}
+    .comment-content{margin-left:7%;}
+}

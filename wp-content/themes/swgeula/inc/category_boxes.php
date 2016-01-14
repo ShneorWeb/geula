@@ -187,9 +187,8 @@
       												    echo '<div class="category_square_author_subject">' .get_the_author_meta('subject', $user_id ). '</div>';?>
                                                       
       											    	<div class="category_square_number">
-      														<?php 
-                                                                  $user_post_count = count_user_posts( $the_user->ID );
-                                                                  echo $user_post_count . ' ' . __('lessons in the library', 'swgeula');  
+      														<?php                                                                  
+                                                                  echo getNumLessons($cat->cat_ID) . ' ' . __('lessons in the library', 'swgeula');  
                                                               ?>
       													</div>
                               <?php 

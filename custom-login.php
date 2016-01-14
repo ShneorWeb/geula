@@ -62,10 +62,10 @@ Template Name: Custom_Login
             <p class="login-msg">    <?php echo _e('Your password has been changed succesfully. Please login.','swgeulatr');?> </p>                        
         <?php  }                   
 
-        $redirect_to = !empty( $_REQUEST['redirecr'] ) ? $_REQUEST['redirecr'] : get_category_link(getCatIDOfLibrary());        
+        $redirect_to = !empty( $_REQUEST['redirecr'] ) ? $_REQUEST['redirecr'] : get_category_link(getCatIDOfLibrary());
             
         $args = array(                                
-                'redirect' => ( (isset($_GET['checkemail']) && $_GET['checkemail']=='registered') || isset($_GET['vc']) )?get_category_link(getCatIDOfLibrary()):$redirect_to, 
+                'redirect' => ( (isset($_GET['checkemail']) && $_GET['checkemail']=='registered') || isset($_GET['vc']) )?home_url('settings'):$redirect_to, 
                 'form_id' => 'loginform-custom',
                 'label_username' => '',
                 'label_password' => '',                
@@ -73,7 +73,6 @@ Template Name: Custom_Login
                 'label_log_in' => __( 'Log In','swgeulatr' ),
                 'remember' => true
         );        
-        //changed from home_url('settings') to library link
         wp_login_form($args); 
         ?>
     

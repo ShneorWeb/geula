@@ -639,12 +639,10 @@ default:
 					wp_new_user_notification( $errors, $user_password ); 
 
 					$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : site_url().'/my-account/sign-in/?checkemail=registered';
-					//$redirect_to = !empty( $_POST['redirect_to'] ) ? $_POST['redirect_to'] : get_category_link(getCatIDOfLibrary() );
 					//wp_safe_redirect( $redirect_to );
 					?>
 					<script>
-					window.location.href = '<?php echo home_url(); ?>/my-account/sign-in/?checkemail=registered';					
-					//window.location.href= gsLibraryDir;
+					window.location.href = '<?php echo home_url(); ?>/my-account/sign-in/?checkemail=registered';
 					</script>
 					<?php
 					exit();
@@ -688,7 +686,6 @@ default:
 
     		<?php
     			//$redirect_to = apply_filters( 'registration_redirect', $registration_redirect );
-    		    $redirect_to = site_url().'/library';
 				login_header(__('Registration Form'), '', $errors);
 			?>
 
@@ -697,7 +694,7 @@ default:
 					<input type="hidden" name="first_name" id="first_name" value="" />				
 					<input type="hidden" name="last_name" id="last_name" value="" />				
 				<p>					
-					<input type="text" class="form-control" name="full_name" id="full_name" placeholder="<?php _e('Name','swgeulatr'); ?>" value="<?php $tempVal1=esc_attr( wp_unslash($first_name) ); $tempVal2=esc_attr( wp_unslash($last_name) ); if ( !empty($tempVal1) && !empty($tempVal2) ) echo trim($tempVal1) . ' ' . trim($tempVal2); ?>" />
+					<input type="text" class="form-control" name="full_name" id="full_name" placeholder="<?php _e('Name','swgeulatr'); ?>" value="<?php echo trim(esc_attr( wp_unslash( $first_name ) ) . ' ' . esc_attr( wp_unslash( $last_name )) ); ?>" />
 				</p>
 				<p>					
 					<input type="email" class="form-control" name="user_email" id="user_email" placeholder="<?php _e('E-mail','swgeulatr') ?>" value="<?php echo esc_attr( wp_unslash( $user_email ) ); ?>" />
