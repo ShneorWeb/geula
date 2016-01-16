@@ -2,16 +2,19 @@
   $cat_id = get_query_var('cat');
   $args = array(
       'posts_per_page' => -1,
-      'category' => $cat_id,
+      'cat' => $cat_id,
       'orderby' => 'date',
       'order' => 'ASC'
   );
-  $posts = get_posts($args); 
-  $count = count($posts); 
+  //$posts = get_posts($args); 
+  $query1 = new WP_Query( $args );
+  $count = $query1->post_count; 
   $arrPostIDs = array();
-  foreach ( $posts as $post ) :    
-      $arrPostIDs[] = $post->ID;
-  endforeach;  
+  if ( have_posts() ) : while ( $query1->have_posts() )  : 
+      $query1->the_post();
+      $arrPostIDs[] = $query1->post->ID;
+  endwhile; endif; 
+  rewind_posts();
 
   $category_link = get_category_link( $parentcat_id ); 
 ?>
@@ -231,7 +234,7 @@
 			         <?php
                 $userID = get_current_user_id();
                 $counter = 0;
-                if ( have_posts() ) : while ( have_posts() ) : the_post();
+                if ( have_posts() ) : while ( $query1->have_posts() ) : $query1->the_post();
                 $counter +=1;
 
                 $vidURL = sanitize_text_field( get_field('video_url') );                               

@@ -188,7 +188,7 @@
                                                       
       											    	<div class="category_square_number">
       														<?php                                                                  
-                                                                  echo getNumLessons($cat->cat_ID) . ' ' . __('lessons in the library', 'swgeula');  
+                                                                  if (is_numeric($numLessons)) echo $numLessons . ' ' . __('lessons in the library', 'swgeula');  
                                                               ?>
       													</div>
                               <?php 

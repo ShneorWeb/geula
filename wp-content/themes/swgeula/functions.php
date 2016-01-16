@@ -1356,7 +1356,7 @@ function getTotalVideoDuration($arrLessonIDs) {
 
 	if (is_array($arrLessonIDs)) {
 
-		$results = $wpdb->get_results("SELECT duration FROM wp_sw_videos WHERE lesson_id IN (".implode(",", $arrLessonIDs).") ORDER BY id DESC;",ARRAY_A);		
+		$results = $wpdb->get_results("SELECT duration FROM wp_sw_videos WHERE lesson_id IN (".implode(",", $arrLessonIDs).") ORDER BY id DESC;",ARRAY_A);				
 		
 		if (count($results)>0) {
 			
@@ -1408,6 +1408,7 @@ function getNumStudents($catID) {
 }
 
  function sw_update_video_table( $post_id, $post, $update) {	 	
+
  	global $wpdb;
  	global $IS_LOCAL;
 
@@ -1415,7 +1416,7 @@ function getNumStudents($catID) {
 	$vidID = -1;	
 
 	$fieldID = $IS_LOCAL?'field_554136579a911':'field_554136579a911';	
-	
+		
 	if (isset( $_REQUEST['fields'][$fieldID] )) {
 		$vidURL = sanitize_text_field( $_REQUEST['fields'][$fieldID] );
 		$vidArray = explode("/", $vidURL);
@@ -1423,9 +1424,10 @@ function getNumStudents($catID) {
 		
 		if (preg_match('/(watch\?v=)(\S+)/',$vidID, $matches)) $vidID=$matches[2]; 		
 		elseif (preg_match('/(youtu.be\/)(\S+)\?/',$vidURL, $matches)) $vidID=$matches[2]; 
+
 	}
 	
-	if ( ($vidID!=-1)  && ($post->post_status=="publish") ) {		
+	if ( ($vidID!=-1) ) {		
 		$wpdb->delete( 'wp_sw_videos', array( 'lesson_id' => $post_id ) );
 
 		$wpdb->insert("wp_sw_videos", array( 		
@@ -1477,10 +1479,26 @@ add_action( 'save_post', 'sw_update_video_table', 10, 3 );
 	return 0;	
 }
 
+function get_cat_post_count($cat) {
+	global $wpdb;
+	$post_count = 0;
+
+	$querystr = "
+				SELECT count
+				FROM $wpdb->term_taxonomy, $wpdb->posts, $wpdb->term_relationships
+				WHERE $wpdb->posts.ID = $wpdb->term_relationships.object_id
+				AND $wpdb->term_relationships.term_taxonomy_id = $wpdb->term_taxonomy.term_taxonomy_id
+				AND $wpdb->term_taxonomy.term_id = $cat
+				AND $wpdb->posts.post_status = 'publish'
+	";
+	$result = $wpdb->get_var($querystr);
+  	
+   return $result;
+}
+
 function getNumLessons($catID) {
-	if ( $catID>0 ) {
-		$postsInCat = get_term_by('ID',$catID,'category');
-		return $postsInCat->count;	
+	if ( is_numeric($catID) && $catID>0 ) {		
+		return get_cat_post_count($catID);				
 	}
 	return 0;
 }
