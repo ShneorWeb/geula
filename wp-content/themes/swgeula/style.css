@@ -2643,6 +2643,8 @@ li.comment {
 .donate_cont {
   text-align: center;
   padding: 60px 0;
+  float: right;
+  width: 100%;
 }
 .donate_cont p {
   color: #384047;
@@ -2664,6 +2666,8 @@ li.comment {
   text-align: center;
   background-color: #7f8a94;
   padding: 25px 0;
+  float: right;
+  width: 100%;
 }
 .credits_cont p {
   color: #FFF;
@@ -2688,6 +2692,14 @@ li.comment {
   right: 0;
   left: 0;
   margin: auto;
+}
+
+.nav.nav-pills li:nth-child(4) {
+  display: none;
+}
+
+.home .navbar-toggle {
+  display: none;
 }
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------

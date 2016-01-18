@@ -11,7 +11,15 @@
 $defaultPost = 4;
     
 ?>
-    <div class="donate_cont">
+   
+
+	</div><!-- #content -->
+	
+	
+</div>
+ </div>
+
+ <div class="donate_cont">
      <p><?php the_field('donate_title', $defaultPost); ?></p>
      <a href="<?php the_field('donate_url', $defaultPost); ?>" target="_blank">
         <button><?php echo __('Donation', 'swgeula'); ?></button>
@@ -26,14 +34,11 @@ $defaultPost = 4;
      </a>
 </div>
 
-	</div><!-- #content -->
-
 	<footer id="colophon" class="clearfix site-footer" role="contentinfo">
 		<div class="site-info">
 			 <p>&copy; <?php bloginfo('name'); ?> <?php echo date('Y'); ?></p>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
-</div>
 
 <?php wp_footer(); ?>
 
