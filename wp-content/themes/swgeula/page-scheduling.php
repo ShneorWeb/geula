@@ -76,6 +76,10 @@ $current_user = wp_get_current_user();
                    <p class="small"><?php the_field('comment', $post->ID); ?></p>
                
                 </div>
+                
+                 <div class="image_category">
+                   <p><?php the_field('extra_banner', $post->ID); ?></p>
+                </div>
             
                 <div class="clearfix"></div>
                   
