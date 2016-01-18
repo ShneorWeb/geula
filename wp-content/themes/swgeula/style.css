@@ -2702,6 +2702,10 @@ li.comment {
   display: none;
 }
 
+.page-template-page-dashboard .nextstage_block, .page-template-page-dashboard .achievements_block {
+  display: none;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */

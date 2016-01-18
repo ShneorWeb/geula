@@ -252,6 +252,9 @@ function profile_to_mob(){
     
  //equal heights for div's http://stackoverflow.com/a/11688385/2721050
 function equal_heights(){
+    
+    if($('.page-template-page-authors').length < 1){    
+    
         $('.product_list').each(function(){  
            highestBox1 = 0;
             
@@ -285,6 +288,7 @@ function equal_heights(){
            $(this).find('.category_single').height(highestBox2);
 
        });  
+    }
 }    
     
 function hero_height(){
