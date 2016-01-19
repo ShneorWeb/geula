@@ -2864,6 +2864,11 @@ _responsive styles
     width: 49%;
   }
 
+  .single_category_list .rail .rail--btns button.btn.getAfter {
+    float: right;
+    width: 49%;
+  }
+
   .single_category_list .rail .rail--btns .btn {
     width: 100%;
   }
@@ -3194,7 +3199,8 @@ _responsive styles
   }
 
   .library-page .bottom_part .library_image_category {
-    background-size: cover;
+    background-size: contain;
+    padding-top: 59%;
   }
 
   .single_category_list .image_category {
@@ -3380,6 +3386,10 @@ _responsive styles
 
   .home .quote_cont {
     bottom: 5%;
+  }
+
+  .single_category_list .rail .rail--btns button.btn.getAfter {
+    width: 100%;
   }
 }
 
