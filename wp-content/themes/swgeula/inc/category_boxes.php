@@ -165,7 +165,7 @@
                                                         ?>
     												<p>
                                                     <?php $short_description = get_field('short_description', "category_".$cat->cat_ID);
-                                                        echo substr( $short_description, 0,177); 
+                                                        echo mb_substr($short_description, 0,177,'UTF-8'); 
                                                         /*echo "...";*/
                                                         ?>
                                                     </p>

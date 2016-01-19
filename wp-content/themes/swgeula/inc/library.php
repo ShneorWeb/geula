@@ -226,8 +226,8 @@
                                                       /*echo category_description($cat2->term_id); */
                                                       ?>
   												<p>
-                                                  <?php $short_description = get_field('short_description', "category_".$cat->cat_ID);
-                                                      echo substr( $short_description, 0,177); 
+                                                  <?php $short_description = get_field('short_description', "category_".$cat2->cat_ID);
+                                                      echo mb_substr( $short_description, 0,160,'UTF-8'); 
                                                       /*echo "...";*/
                                                       ?>
                                                   </p>

@@ -253,26 +253,44 @@ function profile_to_mob(){
  //equal heights for div's http://stackoverflow.com/a/11688385/2721050
 function equal_heights(){
     
-    if($('.page-template-page-authors').length < 1){    
+     
     
         $('.product_list').each(function(){  
            highestBox1 = 0;
             
+             if($('.page-template-page-authors').length < 1){  
             
-           $('.category_square_content', this).each(function(){
-               
-                var minHeight = $(this).find('h3.category_square-format').height() + $(this).find('h2').height() + $(this).find('.category_square_description').height() + $(this).find('.bottom_cont').height();
-               
-               $(this).height(minHeight + 30);
-               
-               if($(this).height() > highestBox1){
-                    highestBox1 = $(this).height(); 
-               } 
-               
-           });  
-            
-            
-            $('.category_square_content').height(highestBox1);
+                   $('.category_square_content', this).each(function(){
+
+                        var minHeight = $(this).find('h3.category_square-format').height() + $(this).find('h2').height() + $(this).find('.category_square_description').height() + $(this).find('.bottom_cont').height();
+
+                       $(this).height(minHeight + 30);
+
+                       if($(this).height() > highestBox1){
+                            highestBox1 = $(this).height(); 
+                       } 
+
+                   });  
+
+
+                    $('.category_square_content').height(highestBox1);
+                 
+             }else{
+                 $('.category_square_content', this).each(function(){
+
+                        var minHeight = $(this).find('h3.category_square-format').height() + $(this).find('h2').height() + $(this).find('.category_square_description').height() + $(this).find('.bottom_cont').height();
+
+                       $(this).css('min-height',minHeight + 30);
+
+                       if($(this).height() > highestBox1){
+                            highestBox1 = $(this).height(); 
+                       } 
+
+                   });  
+
+
+                    $('.category_square_content').height(highestBox1);
+             }
                        
         
           highestBox2 = 0;
@@ -288,7 +306,7 @@ function equal_heights(){
            $(this).find('.category_single').height(highestBox2);
 
        });  
-    }
+    
 }    
     
 function hero_height(){
