@@ -712,14 +712,14 @@ function googleUserReg() {
 	if ( !empty($uid_google) && !empty($email) && (!empty($fname) || !empty($lname)) ) :
 
 		$results = $wpdb->get_results("SELECT user_id FROM wp_sw_google_users WHERE google_id = $uid_google LIMIT 1;",ARRAY_A);		
-		
+
 		if (count($results)>0) { //user found. login			
 				wp_set_auth_cookie($results[0]['user_id']);				
 				echo 11;
 				exit;
-		}
+		} 
 		elseif( !empty($email) ) { //user is regsitered with wordpress so link to google account			
-			$results = $wpdb->get_results("SELECT ID FROM wp_users WHERE user_email = '$email' LIMIT 1;",ARRAY_A);	
+			$results = $wpdb->get_results("SELECT ID FROM wp_users WHERE user_email = '$email' LIMIT 1;",ARRAY_A);				
 			if (count($results)>0) { 
 				$wpdb->insert("wp_sw_google_users", array( 		
 						'user_id' => $results[0]['ID'], 
@@ -758,7 +758,7 @@ function googleUserReg() {
 							$imageUrl4 = str_replace("sz=50", "sz=240", $imageUrl);
 							$imageUrl5 = str_replace("sz=50", "sz=49", $imageUrl);
 
-							update_usermeta('', 'custom_avatar', $imageUrl1);
+							update_usermeta($user_id, 'custom_avatar', $imageUrl1);
 							update_usermeta($user_id, 'custom_avatar_100', $imageUrl2);
 							update_usermeta($user_id, 'custom_avatar_160', $imageUrl3);
 							update_usermeta($user_id, 'custom_avatar_240', $imageUrl4);
