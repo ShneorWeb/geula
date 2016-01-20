@@ -272,8 +272,10 @@ function equal_heights(){
 
                    });  
 
-
-                    $('.category_square_content').height(highestBox1);
+                    if( $('.category_square_content').length > 1){
+                        $('.category_square_content').height(highestBox1);    
+                    }
+                    
                  
              }else{
                  $('.category_square_content', this).each(function(){
