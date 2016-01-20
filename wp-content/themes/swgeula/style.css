@@ -2715,6 +2715,14 @@ li.comment {
   width: calc(100% - 45px);
 }
 
+.category_square_oval_submit, span.oval {
+  margin-bottom: 10px;
+}
+
+.image_category {
+  padding-right: 34.3%;
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
@@ -2808,7 +2816,7 @@ _responsive styles
   }
 
   .image_category {
-    padding-right: 30%;
+    padding-right: 40%;
     padding-left: 7%;
     padding-top: 4.3%;
   }
@@ -2884,6 +2892,10 @@ _responsive styles
 
   .comment-content {
     width: calc(92% - 30px);
+  }
+
+  .image_category {
+    padding-right: 50%;
   }
 }
 /* 991 and less ----------- */
@@ -3008,6 +3020,10 @@ _responsive styles
   .home .hero_image {
     height: 430px !important;
     overflow: hidden;
+  }
+
+  .image_category {
+    padding-right: 65%;
   }
 }
 /* 768 and more ----------- */
