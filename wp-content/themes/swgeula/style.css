@@ -1093,6 +1093,7 @@ main library page
   float: right;
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
+  width: calc(100% - 120px);
 }
 .library-page .header_part a.texts_cont:hover {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
@@ -1109,6 +1110,9 @@ main library page
   font-size: 1.125rem;
   font-weight: 400;
   margin: 1px 0 0 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .library-page .header_part a.btn_cont {
   float: left;

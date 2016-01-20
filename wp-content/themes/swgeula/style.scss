@@ -1221,6 +1221,7 @@ main library page
             float: right;
             @include opacity(1);
             @extend %trans;
+            width: calc(100% - 120px);
                 &:hover{
                     @include opacity(0.75);
                 }
@@ -1238,6 +1239,9 @@ main library page
             font-size: 1.125rem;
             font-weight: 400;
             margin: 1px 0 0 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         a.btn_cont{
