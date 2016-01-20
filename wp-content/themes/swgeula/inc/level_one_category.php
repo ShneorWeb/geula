@@ -137,9 +137,9 @@
                     
      <form>          
            <!-- filter by order -->                          
-           <select id="select_order" name="select_order" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick">
-               <option value="new_to_old"><?php _e("old to new","swgeula");?></option>
-               <option value="old_to_new"><?php _e("new to old","swgeula");?></option>
+           <select id="select_order" name="select_order" onchange="filterBoxes(jQuery('#select_author').val(),jQuery('#select_subject').val(),jQuery('#select_order').val(),<?php echo $this_category->cat_ID;?>,<?php echo $bInNosse?"1":"0";?>)" class="selectpicker show-tick">               
+               <option value="new_to_old"><?php _e("new to old","swgeula");?></option>
+               <option value="old_to_new"><?php _e("old to new","swgeula");?></option>
                <option value="alphabet"><?php _e("alphabetical","swgeula");?></option>                                                                          
            </select>    
      </form>
@@ -151,7 +151,7 @@
           <div id="spinner"></div>				    	   	
 		
 			 <div class="categories row" id="div-cat-boxes">                            
-                <?php $orderby="ID"; include_once("category_boxes.php");?>            
+                <?php $orderby="ID"; $order="desc"; include_once("category_boxes.php");?>            
 				
 			 </div>
 				
