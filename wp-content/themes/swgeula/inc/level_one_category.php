@@ -66,7 +66,7 @@
                                     'hide_empty' => false,
                                     'style'  => 'none'
                                  );
-                                $authors = wp_list_authors( $args );
+                                /*$authors = wp_list_authors( $args );
                                 $arrAuthors = explode(",", $authors);                               
                                 $arrCurrentName = array();
                                 foreach($arrAuthors as $at) {                                 
@@ -81,7 +81,12 @@
                                         }
                                       }                                  
                                     }
+                                }*/
+                                $instructors = get_users( array( 'role'=>'instructor', 'fields'=>array( 'ID','display_name' ), 'orderby'=>'display_name', 'order'=>'ASC' ) );
+                                foreach($instructors as $instructor) {
+                                  echo("<option value='".$instructor->ID."'>".addslashes($instructor->display_name)."</option>");
                                 }
+
                                 ?>                                                          
                         </select>                     
                          
