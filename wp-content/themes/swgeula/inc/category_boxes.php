@@ -211,13 +211,14 @@
                             
                          /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/    ?>                   
                      <?php //echo "cat="   . $tempParent2->parent; ?>
-
+              <div class="tags_and_level">
               <?php echo '<a href="'.get_category_link($cat->parent).'" style="color:'.$color.'" class="category_square_oval_submit"'; ?>
 onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #EAEDEF'"
 <?php echo ">$tempParent->name</a>";?>
               <?php $values = get_field('swlevel', "category_".$cat->cat_ID);                                                    
                         echo '<span class="oval">' . $values . '</span>';                                                            
               ?>
+              </div>
                                                         
             <?php 
                 $catAddID=$cat->cat_ID; 

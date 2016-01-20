@@ -2706,6 +2706,15 @@ li.comment {
   display: none;
 }
 
+.page-template-page-scheduling .table_schedule_cont {
+  float: right;
+}
+
+.tags_and_level {
+  float: right;
+  width: calc(100% - 45px);
+}
+
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
 ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------  */
@@ -2753,6 +2762,31 @@ _responsive styles
 
   .page-template-custom-profile-php .page_cont {
     width: 75%;
+  }
+
+  .page-template-page-scheduling {
+  /*
+  overflow-x: hidden;
+  .navbar {
+     max-width: calc(100% - 857px);
+  }
+  
+
+  
+  .site-content > .container {
+     max-width: calc(100% - 880px);
+       .collapse {
+         display: block !important;
+         height: 0 !important;
+           &.in{
+               height: auto !important;;
+           }
+      }
+  }
+  */
+  }
+  .page-template-page-scheduling .site-content {
+    max-width: calc(100% - 255px);
   }
 }
 /* 1300 and less ----------- */
@@ -2827,6 +2861,10 @@ _responsive styles
   .page-template-page-my_lessons-php .big_icon .status i, .page-template-page-lessons_teach-php .big_icon .status i, .page-template-page-scheduling .big_icon .status i {
     font-size: 60px;
     margin-top: 47px;
+  }
+
+  .page-template-page-scheduling .site-content {
+    max-width: calc(100% - 60px);
   }
 }
 /* 1024 and less ----------- */

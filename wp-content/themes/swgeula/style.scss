@@ -3092,6 +3092,14 @@ li.comment {
     }
 }
 
+.page-template-page-scheduling .table_schedule_cont {
+    float: right;
+}
+
+.tags_and_level{
+    float: right;
+    width: calc(100% - 45px);
+}
 
 /* ----------- ----------- ----------- ----------- ----------- ----------- ----------- -----------
 _responsive styles
@@ -3153,6 +3161,34 @@ _responsive styles
             width: 75%;
         }
     }
+    
+    .page-template-page-scheduling{
+        .site-content{
+            max-width:calc(100% - 255px);
+        }
+        
+        /*
+        overflow-x: hidden;
+        .navbar {
+           max-width: calc(100% - 857px);
+        }
+        
+      
+        
+        .site-content > .container {
+           max-width: calc(100% - 880px);
+             .collapse {
+               display: block !important;
+               height: 0 !important;
+                 &.in{
+                     height: auto !important;;
+                 }
+            }
+        }
+        */
+    } 
+    
+    
 }
 
 /* 1300 and less ----------- */
@@ -3234,6 +3270,11 @@ _responsive styles
         
     } 
     
+     .page-template-page-scheduling{
+        .site-content{
+            max-width:calc(100% - 60px);
+        }
+    }
   
 
 }

@@ -277,7 +277,7 @@
                   $cat_parent_name = $cat_parent_object->name;                                                      
                   /*echo '<span class="oval" style="background:'. $color .'; color:#ffffff; border:1px solid #' . $color .';">חדש</span>';*/
   ?>
-                      
+             <div class="tags_and_level">         
          <a href="<?php echo get_category_link($cat_parent_id);?>" style="color:<?php echo $color; ?>;" onMouseOver="this.style.border='2px solid <?php echo $color; ?>'" onMouseOut="this.style.border='2px solid #EAEDEF'" class="category_square_oval_submit"><?php echo $cat_parent_name; ?></a>
                        
 
@@ -286,6 +286,7 @@
                       echo '<span class="oval">' . $values . '</span>';                
                 }
           ?>      
+            </div>
 
           <div id="lessob_buttons">
           <?php 

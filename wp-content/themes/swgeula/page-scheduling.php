@@ -13,7 +13,7 @@ $current_user = wp_get_current_user();
 ?>  
 
 
-<div class="col-lg-12 col-md-12 archive_cont">  
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 archive_cont">  
 
     <div class="page-header"> 
         
