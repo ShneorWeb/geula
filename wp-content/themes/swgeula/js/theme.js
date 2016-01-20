@@ -48,7 +48,7 @@ function signinCallback(authResult) {
                        //console.log(data);
                        if (data==2) jQuery("div.login-error-msg").text('this email is already registered');
                        else if (data==0) jQuery("div.login-error-msg").text('an error occured');
-                       else if (data==1) document.location.href= gbLocal?'/geula/my-account/settings/':'/my-account/settings/';                       
+                       else if (data==1) document.location.href= gsLibraryDir; //gbLocal?'/geula/my-account/settings/':'/my-account/settings/';                       
                        else if (data==11) document.location.href= gsLibraryDir;   
                 });
         });
