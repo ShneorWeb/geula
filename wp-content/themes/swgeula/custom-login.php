@@ -95,7 +95,7 @@ Template Name: Custom_Login
         data-clientid="1071363229202-e8nga4duksuc3vldrpm3guuikc9i82ae.apps.googleusercontent.com"
         data-cookiepolicy="single_host_origin"
         data-requestvisibleactions="http://schema.org/AddAction"
-        data-scope="https://www.googleapis.com/auth/plus.login email profile"
+        data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
         data-width="wide"
         data-height="tall"
         >
