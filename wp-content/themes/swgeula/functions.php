@@ -1553,6 +1553,49 @@ add_action('wp_ajax_get_cat_boxes_teach', 'getCatBoxesTeach');
 add_action('wp_ajax_nopriv_get_cat_boxes_teach', 'getCatBoxesTeach');
 /****************End Lessons Ajax ****************************************/
 
+
+/**************** Change edit post page to include by instructor ****************************************/
+function geulaSwitchUser() {
+        
+    $users = get_users('role=instructor');
+
+    echo'<select id="post_author_override" name="post_author_override" class="">';
+
+    $users = get_users('role=administrator');
+    foreach($users as $user) {
+        echo '<option value="'.$user->ID.'"';
+
+        if ($post->post_author == $user->ID){ echo 'selected="selected"'; }
+
+        echo'>';
+        echo $user->display_name.'</option>';     
+    }
+
+    $users = get_users('role=contributor');
+    foreach($users as $user) {
+        echo '<option value="'.$user->ID.'"';
+
+        if ($post->post_author == $user->ID){ echo 'selected="selected"'; }
+
+        echo'>';
+        echo $user->display_name.'</option>';     
+    }
+    
+    $users = get_users('role=instructor');
+
+    foreach($users as $user) {
+        echo '<option value="'.$user->ID.'"';
+
+        if ($post->post_author == $user->ID){ echo 'selected="selected"'; }
+
+        echo'>';
+        echo $user->display_name.'</option>';     
+    }
+    echo'</select>';
+}
+add_filter('wp_dropdown_users', 'geulaSwitchUser');
+/****************End Change edit post page to include by instructor ****************************************/
+
 function getCatIDOfLibrary() {
 	return 3;
 }
