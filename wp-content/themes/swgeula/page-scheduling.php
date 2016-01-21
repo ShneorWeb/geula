@@ -80,90 +80,105 @@ $current_user = wp_get_current_user();
               
             
                 <div class="clearfix"></div>
-                  
-                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                
+
                 <?php 
-
-                $arrDays = array(7);
-
-                $arrDays[0] = array('Sunday',7,"One");
-                $arrDays[1] = array('Monday',1,"Two");
-                $arrDays[2] = array('Tuesday',2,"Three");
-                $arrDays[3] = array('Wednesday',3,"Four");
-                $arrDays[4] = array('Thursday',4,"Five");
-                $arrDays[5] = array('Friday',5,"Six");
-                $arrDays[6] = array('Saturday',6,"Seven");     
-
-                for ($indDays=0;$indDays<7;$indDays++)  :
-
-                  $arrSlots = getScheduleSlotsForDay($arrDays[$indDays][1]);                 
+                $user_tz = get_user_meta( $current_user->ID, 'user_timezone', true );
+                    
+                if ( is_null($user_tz) || empty($user_tz) || ($user_tz=="") ) {?>
+                
+                  <div style="width:400px; text-align:center; margin-left:auto; margin-right:auto;"><?php _e('To join the global study cycle of Moshiach and Geula please specify <a href="/my-account/settings/" style="text-decoration:underline;">your time zone</a>.', 'swgeula'); ?></div>
+                  
+                <?php                   
+                }
+                else {
                 ?>
+                  
+                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                  
+                  <?php 
 
-                  <div class="panel ">
-                    <div class="panel-heading" role="tab" id="heading<?php echo $arrDays[$indDays][2];?>">
-                      <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $arrDays[$indDays][2];?>" aria-expanded="<?php if ($indDays>0) echo "false"; else echo("true"); ?>" aria-controls="collapse<?php echo $arrDays[$indDays][2];?>">
-                         <div class="day">
-                             <?php _e($arrDays[$indDays][0]); ?>
-                         </div>
-                        </a>
-                      </h4>
-                    </div>
-                    <div id="collapse<?php echo $arrDays[$indDays][2];?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $arrDays[$indDays][2];?>"><!-- add class 'in' to collapse panel-->
-                      <div class="panel-body">
-                      
-                          <div class="table_schedule_cont">
-                               <table class="schedule">
-                                   <thead>
-                                        <tr>
-                                          <?php for ($i=7;$i<=12;$i++) {                                             
-                                            echo ('<th><big>'.$i.'</big><small>'.($i<12?'AM':'PM').'</small></th>');
-                                          }?>
+                  $arrDays = array(7);
 
-                                          <?php for ($i=1;$i<=12;$i++) {                                             
-                                            echo ('<th><big>'.$i.'</big><small>'.($i<12?'PM':'AM').'</small></th>');
-                                          }?> 
+                  $arrDays[0] = array('Sunday',7,"One");
+                  $arrDays[1] = array('Monday',1,"Two");
+                  $arrDays[2] = array('Tuesday',2,"Three");
+                  $arrDays[3] = array('Wednesday',3,"Four");
+                  $arrDays[4] = array('Thursday',4,"Five");
+                  $arrDays[5] = array('Friday',5,"Six");
+                  $arrDays[6] = array('Saturday',6,"Seven");     
 
-                                          <?php for ($i=1;$i<=6;$i++) {                                                                                          
-                                            echo ('<th><big>'.$i.'</big><small>AM</small></th>');
-                                          }?>                                                                                                                                                                        
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                           <?php for ($i=7;$i<=12;$i++) {                                            
-                                            $rectIndex = $i*2;                                            
-                                            echo('<td>'.
-                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':00\')"><div class="table_rect '.($arrSlots[$rectIndex]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
-                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex+1]==1?'yellow':'green'):'').'"></div></a>'.
-                                            '</td>');
-                                          }?>                                            
-                                          <?php for ($i=1;$i<=12;$i++) { 
-                                             $rectIndex = ($i+12)*2;
-                                             if ($rectIndex==48) $rectIndex=0;
-                                             echo('<td>'.
-                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<12?($i+12):'00').':00\')"><div class="table_rect '.($arrSlots[$rectIndex]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
-                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<12?($i+12):'00').':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex+1]==1?'yellow':'green'):'').'"></div></a>'.
-                                            '</td>');
-                                           }?> 
-                                           <?php for ($i=1;$i<=6;$i++) { 
-                                             $rectIndex = $i*2;     
-                                             echo('<td>'.
-                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.$i.':00\')"><div class="table_rect '.($arrSlots[$rectIndex]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
-                                                '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.$i.':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex+1]==1?'yellow':'green'):'').'"></div></a>'.
-                                            '</td>');
-                                          }?> 
-                                        </tr>
-                                    </tbody>
-                               </table>
+                  for ($indDays=0;$indDays<7;$indDays++)  :
+
+                    $arrSlots = getScheduleSlotsForDay($arrDays[$indDays][1]);                                 
+                  ?>
+
+                    <div class="panel ">
+                      <div class="panel-heading" role="tab" id="heading<?php echo $arrDays[$indDays][2];?>">
+                        <h4 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $arrDays[$indDays][2];?>" aria-expanded="<?php if ($indDays>0) echo "false"; else echo("true"); ?>" aria-controls="collapse<?php echo $arrDays[$indDays][2];?>">
+                           <div class="day">
+                               <?php _e($arrDays[$indDays][0]); ?>
                            </div>
-                           
+                          </a>
+                        </h4>
                       </div>
-                    </div>
-                  </div>                  
-                <?php endfor; ?>                  
-                </div>  
+                      <div id="collapse<?php echo $arrDays[$indDays][2];?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?php echo $arrDays[$indDays][2];?>"><!-- add class 'in' to collapse panel-->
+                        <div class="panel-body">
+                        
+                            <div class="table_schedule_cont">
+                                 <table class="schedule">
+                                     <thead>
+                                          <tr>
+                                            <?php for ($i=7;$i<=12;$i++) {                                             
+                                              echo ('<th><big>'.$i.'</big><small>'.($i<12?'AM':'PM').'</small></th>');
+                                            }?>
+
+                                            <?php for ($i=1;$i<=12;$i++) {                                             
+                                              echo ('<th><big>'.$i.'</big><small>'.($i<12?'PM':'AM').'</small></th>');
+                                            }?> 
+
+                                            <?php for ($i=1;$i<=6;$i++) {                                                                                          
+                                              echo ('<th><big>'.$i.'</big><small>AM</small></th>');
+                                            }?>                                                                                                                                                                        
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr>
+                                             <?php for ($i=7;$i<=12;$i++) {                                            
+                                              $rectIndex = $i*2;                                            
+                                              echo('<td>'.
+                                                  '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':00\')"><div class="table_rect '.($arrSlots[$rectIndex]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
+                                                  '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<11?'0'.$i:$i).':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex+1]==1?'yellow':'green'):'').'"></div></a>'.
+                                              '</td>');
+                                            }?>                                            
+                                            <?php for ($i=1;$i<=12;$i++) { 
+                                               $rectIndex = ($i+12)*2;
+                                               if ($rectIndex==48) $rectIndex=0;
+                                               echo('<td>'.
+                                                  '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<12?($i+12):'00').':00\')"><div class="table_rect '.($arrSlots[$rectIndex]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
+                                                  '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.($i<12?($i+12):'00').':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex+1]==1?'yellow':'green'):'').'"></div></a>'.
+                                              '</td>');
+                                             }?> 
+                                             <?php for ($i=1;$i<=6;$i++) { 
+                                               $rectIndex = $i*2;     
+                                               echo('<td>'.
+                                                  '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.$i.':00\')"><div class="table_rect '.($arrSlots[$rectIndex]>0?($arrSlots[$rectIndex]==1?'yellow':'green'):'').'"></div></a>'.
+                                                  '<a href="javascript:void(0)" onclick="addSchedule(this,'.$arrDays[$indDays][1].',\''.$i.':30\')"><div class="table_rect '.($arrSlots[$rectIndex+1]>0?($arrSlots[$rectIndex+1]==1?'yellow':'green'):'').'"></div></a>'.
+                                              '</td>');
+                                            }?> 
+                                          </tr>
+                                      </tbody>
+                                 </table>
+                             </div>
+                             
+                        </div>
+                      </div>
+                    </div>                  
+                  <?php endfor; ?>                  
+                  </div>  
+                <?php
+                }
+                ?>                
                   
                 <?php if(get_field('extra_banner', $post->ID)){ ?>
                      <div class="image_category">
