@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: swgeula\n"
 "POT-Creation-Date: 2015-06-17 16:46+0200\n"
-"PO-Revision-Date: 2015-06-17 16:49+0200\n"
+"PO-Revision-Date: 2016-01-21 12:23+0200\n"
 "Last-Translator: erez lieberman <erez2613@gmail.com>\n"
 "Language-Team: \n"
 "Language: he_IL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8\n"
-"X-Poedit-Basepath: ..\\\n"
+"X-Generator: Poedit 1.8.3\n"
+"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _e;__;esc_attr_e\n"
@@ -636,7 +636,7 @@ msgstr "שיעורים שאני מוסר"
 
 #: page-lessons_teach.php:58 page-my_lessons.php:73 page-scheduling.php:66
 msgid "Scheduling Lessons"
-msgstr "תזמון שיעורים"
+msgstr "תזמון למעגל העולמי"
 
 #: page-lessons_teach.php:85
 #, fuzzy
