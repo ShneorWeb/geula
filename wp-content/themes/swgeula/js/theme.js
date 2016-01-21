@@ -28,6 +28,11 @@ function signinCallback(authResult) {
                 }                                 
                // console.log(resp);
                 var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
+                var tz = jstz.determine(); // Determines the time zone of the browser client      
+                var sLocalTZ = tz.name();
+                if (sLocalTZ == 'Asia/Beirut') sLocalTZ = 'Asia/Jerusalem';//fix Israel TZ
+                if (sLocalTZ =="United Kingdom") sLocalTZ = 'Europe/London';//fix UK TZ
+                
                 var data = {        
                         'action': 'google_user_reg',
                         'uid': resp.id,
@@ -40,7 +45,8 @@ function signinCallback(authResult) {
                         'language': resp.language,
                         'occupation' : resp.occupation,
                         'language' : resp.language,
-                        'places-lived' : jQuery.isArray(resp.placesLived)?resp.placesLived[0].value:''
+                        'places-lived' : jQuery.isArray(resp.placesLived)?resp.placesLived[0].value:'',
+                        'utimezone' : sLocalTZ
                     };                               
                 console.log(data);
                     

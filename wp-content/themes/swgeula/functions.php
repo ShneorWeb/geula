@@ -123,7 +123,7 @@ function swgeula_scripts() {
 
 	wp_enqueue_script( 'swgeula-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', false );
 
-	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', false );
+	wp_enqueue_script( 'swgeula-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', false );	
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -173,11 +173,7 @@ function swgeula_scripts() {
 			'angular-file-upload-shim',
 			get_stylesheet_directory_uri() . '/angular/angular-file-upload-shim.min.js	',
 			array( 'angularjs')
-		);	
-		wp_enqueue_script(
-			'detect-zone',
-			get_stylesheet_directory_uri() . '/js/jstz-1.0.4.min.js	'			
-		);			
+		);						
 		wp_enqueue_script(
 			'password-strength',
 			get_stylesheet_directory_uri() . '/js/ng-password-strength.min.js'			
@@ -285,6 +281,11 @@ function swgeula_manual_scripts(){
      wp_enqueue_script(
         'mCustomScrollbar', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array(), '1.0.0'
     );
+
+    wp_enqueue_script(
+			'detect-zone',
+			get_template_directory_uri() . '/js/jstz-1.0.4.min.js	'			
+	);
     
     
     /* theme js have to be last */
@@ -699,7 +700,7 @@ function googleUserReg() {
 	$occupation = $_POST['occupation'];
 	$lang = $_POST['language'];
 	$plived = $_POST['places-lived'];
-
+	$utimezone = $_POST['utimezone'];
 	
 
 	$arrPlived = explode(",", $plived);
@@ -768,6 +769,7 @@ function googleUserReg() {
 						if (!empty($lang)) update_user_meta($user_id, 'user_lang', $lang);
 						if (!empty($city)) update_user_meta($user_id, 'user_city', $city);
 						if (!empty($country)) update_user_meta($user_id, 'user_country', $country);	 					
+						if (!empty($utimezone)) update_user_meta($user_id, 'user_timezone', $utimezone);	 					
 
 						wp_set_auth_cookie($user_id);		
 						echo 1;
