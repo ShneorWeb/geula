@@ -790,6 +790,27 @@ add_action('wp_ajax_google_user_reg', 'googleUserReg');
 add_action('wp_ajax_nopriv_google_user_reg', 'googleUserReg');
 
 
+function setUserTZbyVC() {
+	
+	$utimezone = $_POST['utimezone'];
+	$vcode = $_POST['vc'];
+	
+	$blogusers = get_users( array( 'meta_key'=>'verify_email_code','meta_value'=>$vcode ) );
+	
+	foreach ( $blogusers as $user ) {
+		$userid=$user->ID;
+	}	
+
+	if ( !empty($utimezone) && !is_null($utimezone) && is_numeric($userid) ) update_user_meta($userid, 'user_timezone', $utimezone);	 						
+
+	echo 1;
+	exit;	
+}
+
+add_action('wp_ajax_set_user_tz', 'setUserTZbyVC');
+add_action('wp_ajax_nopriv_set_user_tz', 'setUserTZbyVC');
+
+
 function getLessonStarted($lessonID,$userID) {
 	global $wpdb;		
 	
@@ -1228,6 +1249,9 @@ function getNextSchedule($userID) {
 
 			$date = new DateTime('NOW');
 			$user_tzone = get_user_meta( $userID, 'user_timezone', true );
+
+			if ( is_null($user_tzone) || empty($user_tzone) || ($user_tzone=="")) return $arrRetVal;
+
 			if (is_string($user_tzone) && !empty($user_tzone)) $date->setTimezone(new DateTimeZone($user_tzone));
 			$curDay = (int)$date->format('N');			
 			$curHours = (int)$date->format('G');					 
@@ -2448,6 +2472,8 @@ function sw_send_alerts() {
 			foreach($results as $result) :
 				//get user timezone:
 				$user_tzone = get_user_meta( $userID, 'user_timezone', true );						
+
+				if (empty($user_tzone) || is_null($user_tzone) || ($user_tzone=="")) return;
 
 				$date = new DateTime('NOW');
 				$date->setTimezone(new DateTimeZone($user_tzone));

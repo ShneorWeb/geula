@@ -84,9 +84,10 @@ $current_user = wp_get_current_user();
                 <?php 
                 $user_tz = get_user_meta( $current_user->ID, 'user_timezone', true );
                     
-                if ( is_null($user_tz) || empty($user_tz) || ($user_tz=="") ) {?>
+                if ( is_null($user_tz) || empty($user_tz) || ($user_tz=="") ) {                
+                ?>
                 
-                  <div style="width:400px; text-align:center; margin-left:auto; margin-right:auto;"><?php _e('To join the global study cycle of Moshiach and Geula please specify <a href="/my-account/settings/" style="text-decoration:underline;">your time zone</a>.', 'swgeula'); ?></div>
+                  <div style="width:400px; text-align:center; margin-left:auto; margin-right:auto; margin-top:20px; color:red;"><?php _e('To join the global study cycle of Moshiach and Geula please specify <a href="/my-account/settings/" style="text-decoration:underline; color:red;">your time zone</a>.', 'swgeula'); ?></div>
                   
                 <?php                   
                 }

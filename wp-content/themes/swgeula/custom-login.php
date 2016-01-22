@@ -54,8 +54,8 @@ Template Name: Custom_Login
             <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("This key has expired.","swgeulatr");?></p>      
         <?php } elseif ( isset($_GET['action']) && 'invalidkey' == $_GET['action'] ) {  ?>
             <p class="login-error-msg"><strong><?php _e("ERROR:","swgeulatr");?></strong> <?php _e("This key is invalid.","swgeulatr");?></p>      
-        <?php } elseif  ( isset($_GET['checkemail']) && 'registered' == $_GET['checkemail'] ) {?>
-            <p class="login-msg">    <?php echo _e('Registration complete. Please check your e-mail and login.','swgeulatr');?> </p>
+        <?php } elseif  ( isset($_GET['checkemail']) && 'registered' == $_GET['checkemail'] ) {?>                
+            <p class="login-msg">    <?php echo _e('Registration complete. Please check your e-mail and login.','swgeulatr');?> </p>            
         <?php } elseif  ( isset($_GET['checkemail']) && 'confirm' == $_GET['checkemail'] ) {?>
             <p class="login-msg">    <?php echo _e('An email has been sent to you with reset instructions. Please check your email and follow the link to reset your password','swgeulatr');?> </p>                                     
         <?php } elseif  ( isset($_GET['action']) && 'pcsignin' == $_GET['action'] ) {?>
@@ -72,8 +72,31 @@ Template Name: Custom_Login
                 'label_remember' => __( 'Remember Me','swgeulatr' ),
                 'label_log_in' => __( 'Log In','swgeulatr' ),
                 'remember' => true
-        );        
+        );  
         //changed from home_url('settings') to library link
+
+            if ( isset($_GET['vc']) ) :
+        ?>
+            <!-- now set timezone for this user: -->
+            <script>
+                var ajaxurl = gbLocal?'/geula/wp-admin/admin-ajax.php':'/wp-admin/admin-ajax.php';
+                var tz = jstz.determine(); // Determines the time zone of the browser client      
+                var sLocalTZ = tz.name();
+                if (sLocalTZ == 'Asia/Beirut') sLocalTZ = 'Asia/Jerusalem';//fix Israel TZ
+                if (sLocalTZ =="United Kingdom") sLocalTZ = 'Europe/London';//fix UK TZ
+                var data = {        
+                        'action': 'set_user_tz',                                       
+                        'vc' : '<?php echo $_GET["vc"];?>',
+                        'utimezone' : sLocalTZ
+                    };                                               
+                jQuery.post(ajaxurl, data, function(data) {                                    
+                       //console.log(data);                       
+                });
+
+            </script>
+            <!-- end set timezone -->
+        <?php 
+            endif;
         wp_login_form($args); 
         ?>
     

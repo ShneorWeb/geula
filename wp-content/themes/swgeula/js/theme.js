@@ -48,7 +48,7 @@ function signinCallback(authResult) {
                         'places-lived' : jQuery.isArray(resp.placesLived)?resp.placesLived[0].value:'',
                         'utimezone' : sLocalTZ
                     };                               
-                console.log(data);
+                //console.log(data);
                     
                 jQuery.post(ajaxurl, data, function(data) {                                    
                        //console.log(data);
